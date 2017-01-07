@@ -88,6 +88,18 @@ app.post('/post', function(req, res){
   console.log(req.body.address);
   console.log(req.body.date);
   console.log(req.body.description);
+
+  var newPost = {
+    title: req.body.title,
+    address: req.body.address,
+    description: req.body.description
+  };
+
+  Post.create(newPost, function(err, results){
+    if (err) console.log(err);
+      console.log('Successfully uploaded new post');
+  });
+
 });
 
 // PUT request
