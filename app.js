@@ -82,6 +82,14 @@ app.post('/', function (req, res) {
   res.send('Got a POST request')
 });
 
+app.post('/post', function(req, res){
+  res.send('Received JSON data!');
+  console.log(req.body.title);
+  console.log(req.body.address);
+  console.log(req.body.date);
+  console.log(req.body.description);
+});
+
 // PUT request
 app.put('/user', function (req, res) {
   //upload seed data into MongoDB
