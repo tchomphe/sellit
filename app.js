@@ -27,9 +27,7 @@ var post = new Schema({
   date: { type: Date, default: Date.now },
   type: String,
   description: String,
-  hasAttachment: Boolean,
-  //img: { data: Buffer, contentType: String },
-  //username: [{type: ObjectId, ref: 'user'}]
+  username: {type: ObjectId, ref: 'user'}
 });
 
 var user = new Schema({
