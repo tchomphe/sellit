@@ -46,10 +46,31 @@ var userSchema = new Schema({
 var User = mongoose.model('User', userSchema);
 var Post = mongoose.model('Post', postSchema);
 
-//create objects for User and Post
-var user = new User();
-var post = new Post();
-
+//instantiate seed data
+var user = {
+  name: {
+    first: 'John',
+    last: 'Connor'
+  },
+  phone: 1234,
+  username: 'theRealConner',
+  password: 'theRealPW',
+  email: 'conner@skynet.com'
+};
+var posts = [
+  {
+    title: 'Samsung Galaxy S5',
+    address: 'L2L 1Z9',
+    type: 'Smart Phone'
+    //username: 'theRealConner'
+  },
+  {
+    title: 'HTC One',
+    address: 'A9A F3F',
+    type: 'Phone'
+    //username: 'theRealConner'
+  }
+];
 
 // GET request
 app.get('/', function(req, res){
@@ -63,6 +84,17 @@ app.post('/', function (req, res) {
 
 // PUT request
 app.put('/user', function (req, res) {
+  //upload seed data into MongoDB
+  User.create(user, function(err, results){
+    if (err) console.log(err);
+      console.log('Successfully added seed user');
+  });
+  Post.create(posts, function(err, results){
+    if (err) console.log(err);
+    console.log('Successfully added seed posts');
+  });
+
+
   res.send('Got a PUT request at /user')
 });
 
