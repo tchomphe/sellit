@@ -16,7 +16,7 @@ app.use(cookieParser());
 // Setting middleware path location
 app.use('/assets', express.static(path.join(__dirname, 'public')));
 
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/sellit');
 
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
