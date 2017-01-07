@@ -21,7 +21,7 @@ mongoose.connect('mongodb://localhost/sellit');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
-var post = new Schema({
+var postSchema = new Schema({
   title:  String,
   address: String,
   date: { type: Date, default: Date.now },
@@ -30,7 +30,7 @@ var post = new Schema({
   username: {type: ObjectId, ref: 'user'}
 });
 
-var user = new Schema({
+var userSchema = new Schema({
   name: {
       first: { type: String, required: true, trim: true},
       last: { type: String, required: true, trim: true}
@@ -41,6 +41,14 @@ var user = new Schema({
   email:  {type: String, required: true, unique: true},
   //posts:[{type: ObjectId, ref: 'post'}]
 });
+
+//create Models for User and Post
+var User = mongoose.model('User', userSchema);
+var Post = mongoose.model('Post', postSchema);
+
+//create objects for User and Post
+var user = new User();
+var post = new Post();
 
 
 // GET request
