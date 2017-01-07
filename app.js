@@ -29,7 +29,7 @@ var post = new Schema({
   description: String,
   hasAttachment: Boolean,
   //img: { data: Buffer, contentType: String },
-  username: [{type: ObjectId, ref: 'user'}]
+  //username: [{type: ObjectId, ref: 'user'}]
 });
 
 var user = new Schema({
@@ -41,8 +41,9 @@ var user = new Schema({
   username: {type: String, required: true, unique: true},
   password: {type: String, required: true},
   email:  {type: String, required: true, unique: true},
-  posts:[{type: ObjectId, ref: 'post'}]
+  //posts:[{type: ObjectId, ref: 'post'}]
 });
+
 
 // GET request
 app.get('/', function(req, res){
@@ -63,7 +64,6 @@ app.put('/user', function (req, res) {
 app.delete('/user', function (req, res) {
   res.send('Got a DELETE request at /user')
 });
-
 
 app.listen(3000, function(){
   console.log('Server running on port: 3000');
