@@ -73,8 +73,12 @@ var posts = [
 ];
 
 // GET request
-app.get('/', function(req, res){
+app.get('/getByTitle', function(req, res){
     res.send('Got a GET request');
+
+    Post.findOne({'title': 'Brake'}, 'title address description date', function(err, post) {
+      console.log(post.description + " was created on: " + post.date);
+    });
 });
 
 // POST request
@@ -82,12 +86,8 @@ app.post('/', function (req, res) {
   res.send('Got a POST request')
 });
 
-app.post('/post', function(req, res){
+app.post('/createPost', function(req, res){
   res.send('Received JSON data!');
-  console.log(req.body.title);
-  console.log(req.body.address);
-  console.log(req.body.date);
-  console.log(req.body.description);
 
   var newPost = {
     title: req.body.title,
@@ -95,9 +95,20 @@ app.post('/post', function(req, res){
     description: req.body.description
   };
 
+  //create new database entry from POST request's JSON object
   Post.create(newPost, function(err, results){
     if (err) console.log(err);
-      console.log('Successfully uploaded new post');
+    console.log('Successfully uploaded new post');
+
+    //retrieve new db object & log its attributes to console
+    Post.findOne({'title': newPost.title}, 'title address description date', function(err, post) {
+      if (err) return handleError(err);
+
+      console.log(post.title);
+      console.log(post.address);
+      console.log(post.date);
+      console.log(post.description);
+    });
   });
 
 });
