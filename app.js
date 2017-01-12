@@ -88,27 +88,40 @@ app.post('/createPost', function(req, res){
 
 });
 
-// PUT request
-app.put('/posts/:id', function (req, res) {
-  res.send('Got a PUT request at /user');
-  Post.findByIdAndUpdate({_id: req.params.id}, { $set: { title: req.body.title}}, { new: true }, function (err, Post) {
-  if (err) return handleError(err);
-  console.log('Update successful!');
-  //res.send(Post);
-});
+//Put request to /user
+app.put('/user/:id', function(err, res){
+  res.send('Got a put request at /user');
+  User.findByIdAndUpdate({_id: req.params.id}, {$set: {phone: req.body.phone}}, {new: true}, function(err, User) {
+    if(err) return handleError(err);
+    Console.log('Update user phone number successful');
+  });
 });
 
-// DELETE user request
+// PUT request to /post
+app.put('/post/:id', function (req, res) {
+  res.send('Got a PUT request at /post');
+  Post.findByIdAndUpdate({_id: req.params.id}, {$set: {title: req.body.title}}, {new: true}, function(err, Post) {
+  if (err) return handleError(err);
+  console.log('Update post title successful!');
+  //res.send(Post);
+  });
+});
+
+// DELETE request to /user
 app.delete('/user', function (req, res) {
   res.send('Got a DELETE request at /user');
+  User.findOneAndRemove({'_id': req.params.id}, function(err, result){
+    if(err) return handleError(err);
+    console.log('Delete user successful!');
+  });
 });
 
-// DELETE post request
-app.delete('/posts/:id', function (req, res) {
+// DELETE request to /post
+app.delete('/post/:id', function (req, res) {
   res.send('Got a DELETE request at /user');
   Post.findOneAndRemove({'_id': req.params.id}, function(err, result){
     if(err) return handleError(err);
-    console.log('Delete successful!');
+    console.log('Delete post successful!');
   });
 });
 
