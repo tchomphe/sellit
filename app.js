@@ -89,13 +89,27 @@ app.post('/createPost', function(req, res){
 });
 
 // PUT request
-app.put('/user', function (req, res) {
-  res.send('Got a PUT request at /user')
+app.put('/posts/:id', function (req, res) {
+  res.send('Got a PUT request at /user');
+  Post.findByIdAndUpdate({_id: req.params.id}, { $set: { title: req.body.title}}, { new: true }, function (err, Post) {
+  if (err) return handleError(err);
+  console.log('Update successful!');
+  //res.send(Post);
+});
 });
 
-// DELETE request
+// DELETE user request
 app.delete('/user', function (req, res) {
-  res.send('Got a DELETE request at /user')
+  res.send('Got a DELETE request at /user');
+});
+
+// DELETE post request
+app.delete('/posts/:id', function (req, res) {
+  res.send('Got a DELETE request at /user');
+  Post.findOneAndRemove({'_id': req.params.id}, function(err, result){
+    if(err) return handleError(err);
+    console.log('Delete successful!');
+  });
 });
 
 app.listen(3000, function(){
