@@ -4,8 +4,9 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var path = require('path');
 var mongoose = require('mongoose');
-var Post = require('./models/post');
+//var Post = require('./models/post');
 var User = require('./models/user');
+var api = require('./api');
 
 var app = express();
 
@@ -21,13 +22,7 @@ app.use('/assets', express.static(path.join(__dirname, 'public')));
 mongoose.connect('mongodb://localhost/sellit');
 
 // GET request
-app.get('/getByTitle', function(req, res){
-    res.send('Got a GET request');
-
-    Post.findOne({'title': 'Brake'}, 'title address description date', function(err, post) {
-      console.log(post.description + " was created on: " + post.date);
-    });
-});
+app.get('/getByTitle', api.getPostByTitle);
 
 // POST request
 app.post('/', function (req, res) {
