@@ -4,6 +4,8 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var path = require('path');
 var mongoose = require('mongoose');
+var Post = require('./models/post');
+var User = require('./models/user');
 
 var app = express();
 
@@ -17,35 +19,6 @@ app.use(cookieParser());
 app.use('/assets', express.static(path.join(__dirname, 'public')));
 
 mongoose.connect('mongodb://localhost/sellit');
-
-var Schema = mongoose.Schema;
-var ObjectId = Schema.ObjectId;
-
-var postSchema = new Schema({
-  title:  String,
-  address: String,
-  date: { type: Date, default: Date.now },
-  type: String,
-  description: String,
-  username: {type: ObjectId, ref: 'user'}
-});
-
-var userSchema = new Schema({
-  name: {
-      first: { type: String, required: true, trim: true},
-      last: { type: String, required: true, trim: true}
-  },
-  phone: Number, 
-  username: {type: String, required: true, unique: true},
-  password: {type: String, required: true},
-  email:  {type: String, required: true, unique: true},
-  //posts:[{type: ObjectId, ref: 'post'}]
-});
-
-//create Models for User and Post
-var User = mongoose.model('User', userSchema);
-var Post = mongoose.model('Post', postSchema);
-
 
 // GET request
 app.get('/getByTitle', function(req, res){
