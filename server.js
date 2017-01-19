@@ -19,18 +19,26 @@ app.use('/assets', express.static(path.join(__dirname, 'public')));
 
 mongoose.connect('mongodb://localhost/sellit');
 
-// GET requests
+// GET request
 app.get('/getByTitle', api.getPostByTitle);
 
-// POST requests
+// POST request
+app.post('/', function (req, res) {
+  res.send('Got a POST request')
+});
+
 app.post('/createPost', api.createPost);
 
-// PUT requests
+//Put request to /user
 app.put('/user/:id', api.updateUserInfo);
+
+// PUT request to /post
 app.put('/post/:id', api.updatePostInfo);
 
-// DELETE requests
+// DELETE request to /user
 app.delete('/user', api.deleteUser);
+
+// DELETE request to /post
 app.delete('/post/:id', api.deletePost);
 
 app.listen(3000, function(){
