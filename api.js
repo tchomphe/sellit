@@ -2,7 +2,7 @@
 var Post = require('./models/post');
 var User = require('./models/user');
 
-// GET request
+//-------------------------- GET request --------------------------//
 exports.getPostByTitle = function(req, res){
     res.send('Got a GET request');
     Post.findOne({'title': 'Chicken'}, 'title address description date', function(err, post) {
@@ -10,7 +10,7 @@ exports.getPostByTitle = function(req, res){
     });
 };
 
-// POST request
+//-------------------------- POST request --------------------------//
 exports.createPost = function(req, res){
   res.send('Received JSON data!');
 
@@ -37,7 +37,7 @@ exports.createPost = function(req, res){
   });
 };
 
-// PUT requests
+//-------------------------- PUT requests --------------------------//
 exports.updateUserInfo = function(err, res){
   res.send('Got a put request at /user');
   User.findByIdAndUpdate({_id: req.params.id}, {$set: {phone: req.body.phone}}, {new: true}, function(err, User) {
@@ -72,7 +72,7 @@ exports.updatePostInfo = function (req, res) {
   });
 };
 
-// DELETE requests
+//-------------------------- DELETE requests --------------------------//
 exports.deleteUser = function (req, res) {
   res.send('Got a DELETE request at /user');
   User.findOneAndRemove({'_id': req.params.id}, function(err, result){
