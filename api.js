@@ -4,10 +4,17 @@ var User = require('./models/user');
 
 //-------------------------- GET request --------------------------//
 exports.getPostByTitle = function(req, res){
-    res.send('Got a GET request');
-    Post.findOne({'title': 'Chicken'}, 'title address description date', function(err, post) {
-      console.log(post.description + " was created on: " + post.date);
-    });
+  res.send('Got a GET request');
+  Post.findOne({'title': 'Chicken'}, 'title address description date', function(err, post) {
+    console.log(post.description + " was created on: " + post.date);
+  });
+};
+
+exports.getUsernameByID = function(req, res){
+  User.findOne({'_id': req.params.id}, 'username', function(err, user){
+    if (err) console.log(err);
+    console.log(user.username);
+  });
 };
 
 //-------------------------- POST request --------------------------//

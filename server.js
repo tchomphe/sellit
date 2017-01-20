@@ -21,6 +21,7 @@ mongoose.connect('mongodb://localhost/sellit');
 
 // GET request
 app.get('/getByTitle', api.getPostByTitle);
+app.get('/getUsername/:id', api.getUsernameByID);
 
 // POST request
 app.post('/', function (req, res) {
