@@ -6,7 +6,7 @@ var path = require('path');
 var mongoose = require('mongoose');
 var api = require('./api');
 
-//var User = require('./models/user');
+var User = require('./models/user');
 var passport = require('passport'),
  LocalStrategy = require('passport-local').Strategy;
 
@@ -24,10 +24,8 @@ app.use('/assets', express.static(path.join(__dirname, 'public')));
 mongoose.connect('mongodb://localhost/sellit');
 
 passport.use(new LocalStrategy(
-  function(username, password, done){    
-    console.log('About to check db');
-    User.findOne({ username:username }, function(err, user){
-      console.log('Just checked db');
+  function(username, password, done){      
+    User.findOne({ username:username }, function(err, user){      
       if(err) {
         console.log('Error! ' + err);
         return done(err); }

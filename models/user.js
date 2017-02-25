@@ -15,5 +15,9 @@ var userSchema = new Schema({
   //posts:[{type: ObjectId, ref: 'post'}]
 });
 
+userSchema.methods.validPassword = function(pw){
+  return (this.password === pw);
+}
+
 //create & export User Model
 module.exports = mongoose.model('User', userSchema);
