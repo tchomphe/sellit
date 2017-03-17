@@ -5,10 +5,12 @@ var cookieParser = require('cookie-parser');
 var path = require('path');
 var mongoose = require('mongoose');
 var api = require('./api');
+var exphbs  = require('express-handlebars');
+
 
 var User = require('./models/user');
 var passport = require('passport'),
- LocalStrategy = require('passport-local').Strategy;
+LocalStrategy = require('passport-local').Strategy;
 
 var app = express();
 
@@ -21,29 +23,37 @@ app.use(cookieParser());
 // Setting middleware path location
 app.use('/assets', express.static(path.join(__dirname, 'public')));
 
+// Set up view engine
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
+
+
 mongoose.connect('mongodb://localhost/sellit');
 
 passport.use(new LocalStrategy(
   function(username, password, done){      
     User.findOne({ username:username }, function(err, user){      
       if(err) {
-        console.log('Error! ' + err);
+        // console.log('Error! ' + err);
         return done(err); }
       if(!user) {
-        console.log('User not found');
+        // console.log('User not found');
         return done(null, false, {message: 'Incorrect username'});
       }
       if(!user.validPassword(password)){
-        console.log('Invalid PW');
+        // console.log('Invalid PW');
         return done(null, false, {message: 'Incorrect password'});
       }
-      console.log('Username: ' + username + ', password: ' + password);
+      // console.log('Username: ' + username + ', password: ' + password);
       return done(null, user);
     });
   }
 ));
 
 // GET request
+app.get('/', function(req, res){
+  res.render('home');
+});
 app.get('/getByTitle', api.getPostByTitle);
 app.get('/getUsername/:id', api.getUsernameByID);
 
