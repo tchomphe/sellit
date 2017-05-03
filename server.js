@@ -54,6 +54,9 @@ passport.use(new LocalStrategy(
 app.get('/', function(req, res){
   res.render('home');
 });
+app.get('/bundle.js', function(req, res){
+  res.sendFile(__dirname + '/static/js/bundle.js');
+});
 app.get('/getByTitle', api.getPostByTitle);
 app.get('/getUsername/:id', api.getUsernameByID);
 
