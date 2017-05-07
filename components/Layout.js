@@ -7,7 +7,7 @@ class Layout extends React.Component {
                 <header>
                     <h2>HEADER</h2>
                 </header>
-                <div className="app-content">app content goes here</div>
+                <div className="app-content">{this.props.children}</div>
                 <footer>
                     <h2>FOOTER</h2>
                 </footer>
