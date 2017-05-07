@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.use(cookieParser());
 
 // Setting middleware path location
-app.use('/assets', express.static(path.join(__dirname, 'public')));
+app.use('/assets', express.static(path.join(__dirname, 'static')));
 
 // Set up view engine
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -54,9 +54,7 @@ passport.use(new LocalStrategy(
 app.get('/', function(req, res){
   res.render('home');
 });
-app.get('/bundle.js', function(req, res){
-  res.sendFile(__dirname + '/static/js/bundle.js');
-});
+
 app.get('/getByTitle', api.getPostByTitle);
 app.get('/getUsername/:id', api.getUsernameByID);
 
