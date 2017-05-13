@@ -4,7 +4,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, hashHistory } from 'react-router-dom';
 
 import Layout from './Layout';
-import MainPage from './MainPage';
+import MainContainer from './MainContainer';
+import PostTile from './PostTile';
 // import NotFoundPage from 'NotFoundPage';
 
 export default class AppRoutes extends React.Component {
@@ -12,7 +13,8 @@ export default class AppRoutes extends React.Component {
     return (
       <Router history={hashHistory}>
         <Layout>
-          <Route path="/" component={MainPage}/>
+          <Route exact={true} path="/" component={MainContainer}/>
+          <Route path="/post" component={PostTile}/>
         </Layout>
       </Router>
       );
