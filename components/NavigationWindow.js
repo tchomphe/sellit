@@ -7,12 +7,12 @@ class NavigationWindow extends React.Component{
         return(
             <div>
                 {/*<!-- Button trigger modal -->*/}
-                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#navModal">
                 Launch demo modal
                 </button>
 
                 {/*<!-- Modal -->*/}
-                <div className="modal fade" id="myModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal fade" id="navModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                     <div className="modal-header">
