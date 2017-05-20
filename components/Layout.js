@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Layout extends React.Component {
+export default class Layout extends React.Component {
     render(){
         return(
             <div className="app-layout container-fluid">
@@ -9,5 +9,3 @@ class Layout extends React.Component {
         );
     }
 }
-
-export default Layout;
