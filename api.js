@@ -1,12 +1,24 @@
-
 var Post = require('./models/post');
 var User = require('./models/user');
 
 //-------------------------- GET request --------------------------//
+exports.getPostPage = function(req, res){
+  var query = {};
+  var options = { 
+    page: req.params.pageNum,
+    limit: 10
+  };
+
+  Post.paginate(query, options, function(err, result){
+    console.log('Pagination success.');
+    res.send(result);
+  });
+};
+
 exports.getPostByTitle = function(req, res){
-  res.send('Got a GET request');
-  Post.findOne({'title': 'Chicken'}, 'title address description date', function(err, post) {
+  Post.findOne({'title': req.params.title}, 'title address description date', function(err, post) {
     console.log(post.description + " was created on: " + post.date);
+    res.send(post);
   });
 };
 
