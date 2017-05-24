@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
+var mongoosePaginate = require('mongoose-paginate');
 
 //define Post Schema
 var postSchema = new Schema({
@@ -11,6 +12,9 @@ var postSchema = new Schema({
   description: String,
   username: {type: ObjectId, ref: 'user'}
 });
+
+//plug in pagination
+postSchema.plugin(mongoosePaginate);
 
 //create & export Post Model
 module.exports = mongoose.model('Post', postSchema);
