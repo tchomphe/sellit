@@ -15,19 +15,30 @@ class NavigationWindow extends React.Component{
                 <div className="modal fade" id="navModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
+                    
+                    <div className="modal-header">                        
                     </div>
-                    <div className="modal-body">
-                        ...
+                        
+                    <div className="modal-body">            
+                        <div class="row">
+                            <input id="1" class="form-control" type="text" name="search" placeholder="Search..." required/>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success" type="submit">
+                                        <i class="glyphicon glyphicon-search" aria-hidden="true"></i> Search
+                                    </button>
+                                </span>
+                        </div>
+                        <div class="row">                                    
+                            <span>
+                                <button class="btn btn-success" type="submit"> Post an ad </button>
+                            </span>
+                        </div>                        
                     </div>
+
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
                     </div>
+                    
                     </div>
                 </div>
                 </div>
