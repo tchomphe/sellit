@@ -8,17 +8,15 @@ class NavigationWindow extends React.Component{
             <div>
                 {/*<!-- Button trigger modal -->*/}
                 <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#navModal">
-                Launch demo modal
+                Launch Search bar
                 </button>
 
                 {/*<!-- Modal -->*/}
-                <div className="modal fade" id="navModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                    
+                <div className="modal fade" id="navModal" tabIndex="-1" role="dialog">
+                <div className="modal-dialog">
+                    <div className="modal-content">                    
                     <div className="modal-header">                        
-                    </div>
-                        
+                    </div>                        
                     <div className="modal-body">            
                         <div class="row">
                             <input id="1" class="form-control" type="text" name="search" placeholder="Search..." required/>
@@ -34,11 +32,9 @@ class NavigationWindow extends React.Component{
                             </span>
                         </div>                        
                     </div>
-
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                    
+                    </div>             
                     </div>
                 </div>
                 </div>
