@@ -18,17 +18,17 @@ class NavigationWindow extends React.Component{
                     <div className="modal-header">                        
                     </div>                        
                     <div className="modal-body">            
-                        <div class="row">
-                            <input id="1" class="form-control" type="text" name="search" placeholder="Search..." required/>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-success" type="submit">
-                                        <i class="glyphicon glyphicon-search" aria-hidden="true"></i> Search
+                        <div className="row">
+                            <input id="1" className="form-control" type="text" name="search" placeholder="Search..." required/>
+                                <span className="input-group-btn">
+                                    <button className="btn btn-success" type="submit">
+                                        <i className="glyphicon glyphicon-search" aria-hidden="true"></i> Search
                                     </button>
                                 </span>
                         </div>
-                        <div class="row">                                    
+                        <div className="row">                                    
                             <span>
-                                <button class="btn btn-success" type="submit"> Post an ad </button>
+                                <button className="btn btn-success" type="submit"> Post an ad </button>
                             </span>
                         </div>                        
                     </div>
