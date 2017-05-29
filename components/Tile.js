@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class Tile extends React.Component {
     render(){
@@ -13,6 +14,6 @@ export default class Tile extends React.Component {
 }
 
 Tile.propTypes = {
-    title: React.PropTypes.string.isRequired,
-    address: React.PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
 }
