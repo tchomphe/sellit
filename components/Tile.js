@@ -11,3 +11,8 @@ export default class Tile extends React.Component {
         )
     }
 }
+
+Tile.propTypes = {
+    title: React.PropTypes.string.isRequired,
+    address: React.PropTypes.string.isRequired,
+}
