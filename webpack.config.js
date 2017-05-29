@@ -33,7 +33,7 @@ var config = {
     //   beautify: false,
     //   dead_code: true
     // })
-  ]  
+  ]
 }
 
 module.exports = config;

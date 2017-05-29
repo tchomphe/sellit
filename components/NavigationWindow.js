@@ -14,10 +14,10 @@ class NavigationWindow extends React.Component{
                 {/*<!-- Modal -->*/}
                 <div className="modal fade" id="navModal" tabIndex="-1" role="dialog">
                 <div className="modal-dialog">
-                    <div className="modal-content">                    
-                    <div className="modal-header">                        
-                    </div>                        
-                    <div className="modal-body">            
+                    <div className="modal-content">
+                    <div className="modal-header">
+                    </div>
+                    <div className="modal-body">
                         <div className="row">
                             <input id="1" className="form-control" type="text" name="search" placeholder="Search..." required/>
                                 <span className="input-group-btn">
@@ -26,15 +26,15 @@ class NavigationWindow extends React.Component{
                                     </button>
                                 </span>
                         </div>
-                        <div className="row">                                    
+                        <div className="row">
                             <span>
                                 <button className="btn btn-success" type="submit"> Post an ad </button>
                             </span>
-                        </div>                        
+                        </div>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>             
+                    </div>
                     </div>
                 </div>
                 </div>
