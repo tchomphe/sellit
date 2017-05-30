@@ -1,5 +1,5 @@
 var express = require('express');
-var logger = require('morgan'); 
+var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var path = require('path');
@@ -31,8 +31,8 @@ app.set('view engine', 'handlebars');
 mongoose.connect('mongodb://localhost/sellit');
 
 passport.use(new LocalStrategy(
-  function(username, password, done){      
-    User.findOne({ username:username }, function(err, user){      
+  function(username, password, done){
+    User.findOne({ username:username }, function(err, user){
       if(err) {
         // console.log('Error! ' + err);
         return done(err); }
@@ -64,7 +64,7 @@ app.post('/', function (req, res) {
   res.send('Got a POST request')
 });
 app.post('/login', passport.authenticate('local', function(req, res){
-  console.log('BRAP! Authentication passed nikka! ');
+  console.log('Passport authentication passed!');
   //res.redirect('/login/success');
 }));
 
