@@ -28,7 +28,7 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 
-mongoose.connect('mongodb://localhost/sellit');
+mongoose.connect('mongodb://127.0.0.1/sellit');
 
 passport.use(new LocalStrategy(
   function(username, password, done){
