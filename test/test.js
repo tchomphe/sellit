@@ -4,7 +4,7 @@ var server = require('../server');
 
 describe('Start up server for testing', function () {
   before(function () {
-    server.listen(3000);
+    server.listen();
   });
 
   after(function () {
@@ -13,7 +13,7 @@ describe('Start up server for testing', function () {
 });
 
 it('Initial request status', function(done) {
-    request('http://localhost:3000' , function(error, response, body) {
+    request('http://localhost:8080' , function(error, response, body) {
             expect(response.statusCode).to.equal(200);
             done();
     });

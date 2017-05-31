@@ -86,6 +86,6 @@ app.delete('/post/:id', api.deletePost);
 app.post('/login', passport.authenticate('local', { successRedirect: '/',
                                                     failureRedirect: '/login' }));
 
-app.listen(3000, function(){
-  console.log('Server running on port: 3000');
+app.listen(8080, function(){
+  console.log('Server running on port: 8080');
 })
