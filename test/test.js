@@ -35,4 +35,17 @@ describe('api tests', function () {
         });                
       });
     });
+
+    describe('PUT /post/:id', function(){
+      it('should respond with 200 OK', function(done){
+        request
+        .put('http://localhost:8080/post/59348b46f4b6222178aae558')
+        .set('Content-Type', 'application/json')
+        .send('{"title":"New Title", "address":"New Address", "description":"New Description"}')
+        .end(function(error, response, body){
+          expect(response.statusCode).to.equal(200);
+          done();
+        });        
+      });
+    });
 });
