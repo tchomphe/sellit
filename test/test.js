@@ -48,4 +48,15 @@ describe('api tests', function () {
         });        
       });
     });
+
+    describe('DELETE /post/:id', function(){
+      it('should respond with 200 OK', function(done){
+        request
+        .delete('http://localhost:8080/post/59348b46f4b6222178aae558')
+        .end(function(error, response, body){
+          expect(response.statusCode).to.equal(200);
+          done();
+        });
+      });
+    });
 });
