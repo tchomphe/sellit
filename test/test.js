@@ -26,4 +26,13 @@ describe('api tests', function () {
     })
   });
 
+  describe('GET /getByTitle/:title', function(){
+    it('responds with 200 OK', function(done) {
+      request('http://localhost:8080/getByTitle/iPhone%2034s', function(error, response, body){
+          expect(response.statusCode).to.equal(200);
+          console.log(response.body);
+          done();
+        });                
+      });
+    });
 });
