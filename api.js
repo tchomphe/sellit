@@ -22,10 +22,11 @@ exports.getPostByTitle = function(req, res){
   });
 };
 
-exports.getUsernameByID = function(req, res){
-  User.findOne({'_id': req.params.id}, 'username', function(err, user){
+exports.getUserByID = function(req, res){
+  User.findOne({'_id': req.params.id}, 'username name email phone', function(err, user){
     if (err) console.log(err);
     console.log(user.username);
+    res.send(user);
   });
 };
 

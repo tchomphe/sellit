@@ -57,7 +57,7 @@ app.get('/', function(req, res){
 
 app.get('/getPostPage/:pageNum', api.getPostPage);
 app.get('/getByTitle/:title', api.getPostByTitle);
-app.get('/getUsername/:id', api.getUsernameByID);
+app.get('/user/:id', api.getUserByID);
 
 // POST request
 app.post('/', function (req, res) {
