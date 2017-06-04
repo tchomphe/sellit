@@ -4,7 +4,7 @@ var User = require('./models/user');
 //-------------------------- GET request --------------------------//
 exports.getPostPage = function(req, res){
   var query = {};
-  var options = { 
+  var options = {
     page: req.params.pageNum,
     limit: 10
   };
@@ -67,25 +67,8 @@ exports.updateUserInfo = function(err, res){
 
 exports.updatePostInfo = function (req, res) {
   res.send('Got a PUT request at /post');
-  var updatedPost = {};
-  
-  if(req.body.title){
-      updatedPost.title = req.body.title;
-  };
-  if(req.body.address){
-      updatedPost.address = req.body.address;
-  }
-  if(req.body.title){
-      updatedPost.date = req.body.date;
-  }
-  if(req.body.type){
-      updatedPost.type = req.body.type;
-  }
-  if(req.body.description){
-      updatedPost.description = req.body.description;
-  }
-  
-  Post.findByIdAndUpdate({_id: req.params.id}, updatedPost, {new: true}, function(err, Post) {
+
+  Post.findByIdAndUpdate({_id: req.params.id}, req.body, {new: true}, function(err, Post) {
   if (err) return handleError(err);
   console.log('Update post title successful!');
   });
