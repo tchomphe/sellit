@@ -2,6 +2,8 @@ var expect = require('chai').expect;
 var request = require('superagent');
 var server = require('../server');
 
+var postId;
+
 describe('api tests', function () {
 
   describe('GET /', function(){
@@ -20,7 +22,7 @@ describe('api tests', function () {
         .set('Content-Type', 'application/json')
         .send('{"title":"iPhone 34s","address":"A1B2C3","description":"Test description here!"}')
         .end(function(error, response, body){
-          expect(response.statusCode).to.equal(200);
+          expect(response.statusCode).to.equal(200);          
           done();
         });
     })
@@ -31,6 +33,8 @@ describe('api tests', function () {
       request('http://localhost:8080/getByTitle/iPhone%2034s', function(error, response, body){
           expect(response.statusCode).to.equal(200);
           console.log(response.body);
+          postId = response.body._id;
+          console.log('post ID: ' + postId);
           done();
         });                
       });
@@ -39,7 +43,7 @@ describe('api tests', function () {
     describe('PUT /post/:id', function(){
       it('should respond with 200 OK', function(done){
         request
-        .put('http://localhost:8080/post/59348b46f4b6222178aae558')
+        .put('http://localhost:8080/post/'+postId)
         .set('Content-Type', 'application/json')
         .send('{"title":"New Title", "address":"New Address", "description":"New Description"}')
         .end(function(error, response, body){
@@ -52,7 +56,7 @@ describe('api tests', function () {
     describe('DELETE /post/:id', function(){
       it('should respond with 200 OK', function(done){
         request
-        .delete('http://localhost:8080/post/59348b46f4b6222178aae558')
+        .delete('http://localhost:8080/post/'+postId)
         .end(function(error, response, body){
           expect(response.statusCode).to.equal(200);
           done();
