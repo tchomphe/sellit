@@ -63,7 +63,7 @@ exports.createPost = function(req, res){
 exports.updateUserInfo = function(req, res){
   //define mongoose function settings
   var query = {_id: req.params.id};
-  var newObject = {$set: {phone: req.body.phone}};
+  var newObject = {$set:req.body};
   var settings = {new: true};
 
   User.findByIdAndUpdate(query, newObject, settings, function(err, user) {
@@ -81,8 +81,11 @@ exports.updateUserInfo = function(req, res){
 };
 
 exports.updatePostInfo = function (req, res) {
+  var query = {_id: req.params.id};
+  var newObject = {$set: req.body};
+  var settings = {new: true};
 
-  Post.findByIdAndUpdate({_id: req.params.id}, req.body, {new: true}, function(err, post) {
+  Post.findByIdAndUpdate(query, newObject, settings, function(err, post) {
     if (err)
       return console.log('ERROR in updatePostInfo:', err);
     else
