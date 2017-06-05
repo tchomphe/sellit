@@ -60,13 +60,23 @@ exports.createPost = function(req, res){
 };
 
 //-------------------------- PUT requests --------------------------//
-exports.updateUserInfo = function(err, res){
-  res.send('Got a put request at /user');
-  User.findByIdAndUpdate({_id: req.params.id}, {$set: {phone: req.body.phone}}, {new: true}, function(err, User) {
-    if(err)
-      return console.log('ERROR in updatePostInfo:', err);
-    else
-      Console.log('Update user phone number successful');
+exports.updateUserInfo = function(req, res){
+  //define mongoose function settings
+  var query = {_id: req.params.id};
+  var newObject = {$set: {phone: req.body.phone}};
+  var settings = {new: true};
+
+  User.findByIdAndUpdate(query, newObject, settings, function(err, User) {
+    if(err){
+      res.status(500);
+      console.log('ERROR in updatePostInfo:', err);
+    }
+    else{
+      res.status(200);
+      console.log('Update user phone number successful');
+    }
+
+    res.send('Got a put request at /user');
   });
 };
 
