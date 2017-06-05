@@ -47,12 +47,14 @@ exports.createPost = function(req, res){
 
     //retrieve new db object & log its attributes to console
     Post.findOne({'title': newPost.title}, 'title address description date', function(err, post) {
-      if (err) return handleError(err);
-
-      console.log(post.title);
-      console.log(post.address);
-      console.log(post.date);
-      console.log(post.description);
+      if (err)
+        return console.log('ERROR in createPost:', err);
+      else {
+        console.log(post.title);
+        console.log(post.address);
+        console.log(post.date);
+        console.log(post.description);
+      }
     });
   });
 };
@@ -61,17 +63,21 @@ exports.createPost = function(req, res){
 exports.updateUserInfo = function(err, res){
   res.send('Got a put request at /user');
   User.findByIdAndUpdate({_id: req.params.id}, {$set: {phone: req.body.phone}}, {new: true}, function(err, User) {
-    if(err) return handleError(err);
-    Console.log('Update user phone number successful');
+    if(err)
+      return console.log('ERROR in updatePostInfo:', err);
+    else
+      Console.log('Update user phone number successful');
   });
 };
 
 exports.updatePostInfo = function (req, res) {
   res.send('Got a PUT request at /post');
 
-  Post.findByIdAndUpdate({_id: req.params.id}, req.body, {new: true}, function(err, Post) {
-  if (err) return handleError(err);
-  console.log('Update post title successful!');
+  Post.findByIdAndUpdate({_id: req.params.id}, req.body, {new: true}, function(err, post) {
+    if (err)
+      return console.log('ERROR in updatePostInfo:', err);
+    else
+      console.log('Update post title successful! New post: '+post);
   });
 };
 
@@ -79,15 +85,19 @@ exports.updatePostInfo = function (req, res) {
 exports.deleteUser = function (req, res) {
   res.send('Got a DELETE request at /user');
   User.findOneAndRemove({'_id': req.params.id}, function(err, result){
-    if(err) return handleError(err);
-    console.log('Delete user successful!');
+    if(err)
+      return console.log('ERROR in deleteUser:', err);
+    else
+      console.log('Deleted user successful!');
   });
 };
 
 exports.deletePost = function (req, res) {
   res.send('Got a DELETE request at /post');
   Post.findOneAndRemove({'_id': req.params.id}, function(err, result){
-    if(err) return handleError(err);
-    console.log('Delete post successful!');
+    if(err)
+      return console.log('ERROR in deletePost:', err);
+    else
+      console.log('Deleted post successful!');
   });
 };
