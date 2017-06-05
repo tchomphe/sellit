@@ -32,8 +32,6 @@ exports.getUserByID = function(req, res){
 
 //-------------------------- POST request --------------------------//
 exports.createPost = function(req, res){
-  res.send('Received JSON data!');
-
   var newPost = {
     title: req.body.title,
     address: req.body.address,
@@ -57,6 +55,8 @@ exports.createPost = function(req, res){
       }
     });
   });
+
+  res.send('Received JSON data!');
 };
 
 //-------------------------- PUT requests --------------------------//
@@ -66,7 +66,7 @@ exports.updateUserInfo = function(req, res){
   var newObject = {$set: {phone: req.body.phone}};
   var settings = {new: true};
 
-  User.findByIdAndUpdate(query, newObject, settings, function(err, User) {
+  User.findByIdAndUpdate(query, newObject, settings, function(err, user) {
     if(err){
       res.status(500);
       console.log('ERROR in updatePostInfo:', err);
@@ -81,7 +81,6 @@ exports.updateUserInfo = function(req, res){
 };
 
 exports.updatePostInfo = function (req, res) {
-  res.send('Got a PUT request at /post');
 
   Post.findByIdAndUpdate({_id: req.params.id}, req.body, {new: true}, function(err, post) {
     if (err)
@@ -89,25 +88,29 @@ exports.updatePostInfo = function (req, res) {
     else
       console.log('Update post title successful! New post: '+post);
   });
+
+  res.send('Got a PUT request at /post');
 };
 
 //-------------------------- DELETE requests --------------------------//
 exports.deleteUser = function (req, res) {
-  res.send('Got a DELETE request at /user');
   User.findOneAndRemove({'_id': req.params.id}, function(err, result){
     if(err)
       return console.log('ERROR in deleteUser:', err);
     else
       console.log('Deleted user successful!');
   });
+
+  res.send('Got a DELETE request at /user');
 };
 
 exports.deletePost = function (req, res) {
-  res.send('Got a DELETE request at /post');
   Post.findOneAndRemove({'_id': req.params.id}, function(err, result){
     if(err)
       return console.log('ERROR in deletePost:', err);
     else
       console.log('Deleted post successful!');
   });
+
+  res.send('Got a DELETE request at /post');
 };
