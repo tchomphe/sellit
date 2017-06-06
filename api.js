@@ -46,6 +46,13 @@ exports.getUserByID = function(req, res){
   });
 };
 
+exports.getPostByID = function(req, res){
+  Post.findOne({'_id': req.params.id}, 'title address description date', function(err, post){
+    varifyQuerySuccess(err, res, 'getPostByID');
+    res.send(post);
+  });
+};
+
 exports.getUserByUsername = function(req, res){
   User.findOne({'username': req.params.username}, 'name username email phone', function(err, user) {
     varifyQuerySuccess(err, res, 'getUserByUsername');
