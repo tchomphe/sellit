@@ -27,7 +27,7 @@ app.use('/assets', express.static(path.join(__dirname, 'static')));
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-
+// Connect to the database
 mongoose.connect('mongodb://127.0.0.1/sellit');
 
 passport.use(new LocalStrategy(
@@ -50,7 +50,7 @@ passport.use(new LocalStrategy(
   }
 ));
 
-// GET request
+// GET requests
 app.get('/', function(req, res){
   res.render('home');
 });
@@ -59,33 +59,24 @@ app.get('/getPostPage/:pageNum', api.getPostPage);
 app.get('/getByTitle/:title', api.getPostByTitle);
 app.get('/user/:id', api.getUserByID);
 
-// POST request
-app.post('/', function (req, res) {
-  res.send('Got a POST request')
-});
+// POST requests
+app.post('/createPost', api.createPost);
 app.post('/login', passport.authenticate('local', function(req, res){
   console.log('Passport authentication passed!');
   //res.redirect('/login/success');
 }));
-
-app.post('/createPost', api.createPost);
-
-//Put request to /user
-app.put('/user/:id', api.updateUserInfo);
-
-// PUT request to /post
-app.put('/post/:id', api.updatePostInfo);
-
-// DELETE request to /user
-app.delete('/user', api.deleteUser);
-
-// DELETE request to /post
-app.delete('/post/:id', api.deletePost);
-
-// Post request to /login
 app.post('/login', passport.authenticate('local', { successRedirect: '/',
                                                     failureRedirect: '/login' }));
 
+// PUT requests
+app.put('/user/:id', api.updateUserInfo);
+app.put('/post/:id', api.updatePostInfo);
+
+// DELETE requests
+app.delete('/user', api.deleteUser);
+app.delete('/post/:id', api.deletePost);
+
+// Start up server
 app.listen(8080, function(){
   console.log('Server running on port: 8080');
 })
