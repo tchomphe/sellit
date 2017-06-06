@@ -1,6 +1,23 @@
 var Post = require('./models/post');
 var User = require('./models/user');
 
+/**
+ * Helper Function that varifies the success or failure of a MongoDB query
+ * @param {Error} err
+ * @param {Response} res
+ * @param {String} funcName
+ */
+varifyQuerySuccess = function(err, res, funcName){
+  if(err){
+      res.status(500);
+      console.log('ERROR in ' + funcName + ': ', err);
+    }
+    else{
+      res.status(200);
+      console.log('MongoDB query was successful.');
+    }
+}
+
 //-------------------------- GET request --------------------------//
 exports.getPostPage = function(req, res){
   var query = {};
@@ -67,17 +84,10 @@ exports.updateUserInfo = function(req, res){
   var settings = {new: true};
 
   User.findByIdAndUpdate(query, newObject, settings, function(err, user) {
-    if(err){
-      res.status(500);
-      console.log('ERROR in updatePostInfo:', err);
-    }
-    else{
-      res.status(200);
-      console.log('Update user phone number successful');
-    }
-
-    res.send('Got a put request at /user');
+    varifyQuerySuccess(err, res, 'updateUserInfo');
   });
+
+  res.send('Got a put request at /user');
 };
 
 exports.updatePostInfo = function (req, res) {
@@ -86,10 +96,7 @@ exports.updatePostInfo = function (req, res) {
   var settings = {new: true};
 
   Post.findByIdAndUpdate(query, newObject, settings, function(err, post) {
-    if (err)
-      return console.log('ERROR in updatePostInfo:', err);
-    else
-      console.log('Update post title successful! New post: '+post);
+    varifyQuerySuccess(err, res, 'updateUserInfo');
   });
 
   res.send('Got a PUT request at /post');
