@@ -47,6 +47,25 @@ exports.getUserByID = function(req, res){
 };
 
 //-------------------------- POST request --------------------------//
+exports.createUser = function(req, res){
+  var newUser = {
+    name: {
+      first: req.body.name.first,
+      last: req.body.name.last
+    },
+    username: req.body.username,
+    password: req.body.password,
+    phone: req.body.phone,
+    email: req.body.email
+  };
+
+  //create new database entry from POST request's JSON object
+  User.create(newUser, function(err, results){
+    varifyQuerySuccess(err, res, 'createUser');
+    res.send('Received and processed JSON data.');
+  });
+};
+
 exports.createPost = function(req, res){
   var newPost = {
     title: req.body.title,
@@ -57,9 +76,8 @@ exports.createPost = function(req, res){
   //create new database entry from POST request's JSON object
   Post.create(newPost, function(err, results){
     varifyQuerySuccess(err, res, 'createPost');
+    res.send('Received and processed JSON data.');
   });
-
-  res.send('Received JSON data!');
 };
 
 //-------------------------- PUT requests --------------------------//

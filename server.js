@@ -61,6 +61,7 @@ app.get('/user/:id', api.getUserByID);
 
 // POST requests
 app.post('/createPost', api.createPost);
+app.post('/createUser', api.createUser);
 app.post('/login', passport.authenticate('local', function(req, res){
   console.log('Passport authentication passed!');
   //res.redirect('/login/success');
