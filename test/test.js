@@ -22,7 +22,20 @@ describe('api tests', function () {
         .set('Content-Type', 'application/json')
         .send('{"title":"iPhone 34s","address":"A1B2C3","description":"Test description here!"}')
         .end(function(error, response, body){
-          expect(response.statusCode).to.equal(200);          
+          expect(response.statusCode).to.equal(200);
+          done();
+        });
+    })
+  });
+
+  describe('POST /createUser', function(){
+    it('responds with 200 OK', function(done) {
+      request
+        .post('http://localhost:8080/createUser')
+        .set('Content-Type', 'application/json')
+        .send('{"name":{"first":"Son", "last":"Goku"}, "username":"superGoku", "password":"worstpassword123", "phone":"1117770000","email":"goku@gmail.com"}')
+        .end(function(error, response, body){
+          expect(response.statusCode).to.equal(200);
           done();
         });
     })
@@ -36,7 +49,7 @@ describe('api tests', function () {
           postId = response.body._id;
           console.log('post ID: ' + postId);
           done();
-        });                
+        });
       });
     });
 
@@ -49,7 +62,7 @@ describe('api tests', function () {
         .end(function(error, response, body){
           expect(response.statusCode).to.equal(200);
           done();
-        });        
+        });
       });
     });
 
