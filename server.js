@@ -58,6 +58,7 @@ app.get('/', function(req, res){
 app.get('/getPostPage/:pageNum', api.getPostPage);
 app.get('/getByTitle/:title', api.getPostByTitle);
 app.get('/user/:id', api.getUserByID);
+app.get('/userByUsername/:username', api.getUserByUsername);
 
 // POST requests
 app.post('/createPost', api.createPost);
@@ -74,7 +75,7 @@ app.put('/user/:id', api.updateUserInfo);
 app.put('/post/:id', api.updatePostInfo);
 
 // DELETE requests
-app.delete('/user', api.deleteUser);
+app.delete('/user/:id', api.deleteUser);
 app.delete('/post/:id', api.deletePost);
 
 // Start up server

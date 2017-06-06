@@ -46,6 +46,13 @@ exports.getUserByID = function(req, res){
   });
 };
 
+exports.getUserByUsername = function(req, res){
+  User.findOne({'username': req.params.username}, 'name username email phone', function(err, user) {
+    varifyQuerySuccess(err, res, 'getUserByUsername');
+    res.send(user);
+  })
+}
+
 //-------------------------- POST request --------------------------//
 exports.createUser = function(req, res){
   var newUser = {
