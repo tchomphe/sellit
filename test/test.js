@@ -15,6 +15,9 @@ describe('API tests', function () {
     });
   });
 
+// Create //
+// -------//
+
   describe('POST /createPost', function(){
     it('responds with HTTP Status 200', function(done) {
       request
@@ -40,6 +43,9 @@ describe('API tests', function () {
         });
     })
   });
+
+// Retrieve //
+// -------- //
 
   describe('GET /postByTitle/:title', function(){
     it('responds with HTTP Status 200', function(done) {
@@ -86,6 +92,9 @@ describe('API tests', function () {
     })
   });
 
+// Update //
+// -------//
+
   describe('PUT /post/:id', function(){
     it('responds with HTTP Status 200', function(done){
       request
@@ -111,6 +120,9 @@ describe('API tests', function () {
         });
     });
   });
+
+// Delete //
+// -------//
 
   describe('DELETE /post/:id', function(){
     it('responds with HTTP Status 200', function(done){
