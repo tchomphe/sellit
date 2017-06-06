@@ -7,7 +7,7 @@ var postId, userId;
 describe('api tests', function () {
 
   describe('GET /', function(){
-    it('responds with 200 OK', function(done) {
+    it('responds with HTTP Status 200', function(done) {
       request('http://localhost:8080' , function(error, response, body) {
         expect(response.statusCode).to.equal(200);
         done();
@@ -16,7 +16,7 @@ describe('api tests', function () {
   });
 
   describe('POST /createPost', function(){
-    it('responds with 200 OK', function(done) {
+    it('responds with HTTP Status 200', function(done) {
       request
         .post('http://localhost:8080/createPost')
         .set('Content-Type', 'application/json')
@@ -29,7 +29,7 @@ describe('api tests', function () {
   });
 
   describe('POST /createUser', function(){
-    it('responds with 200 OK', function(done) {
+    it('responds with HTTP Status 200', function(done) {
       request
         .post('http://localhost:8080/createUser')
         .set('Content-Type', 'application/json')
@@ -42,7 +42,7 @@ describe('api tests', function () {
   });
 
   describe('GET /getByTitle/:title', function(){
-    it('responds with 200 OK', function(done) {
+    it('responds with HTTP Status 200', function(done) {
       request('http://localhost:8080/getByTitle/iPhone%2034s', function(error, response, body){
         expect(response.statusCode).to.equal(200);
         console.log(response.body);
@@ -54,7 +54,7 @@ describe('api tests', function () {
   });
 
   describe('GET /userByUsername/:username', function(){
-    it('responds with 200 OK', function(done) {
+    it('responds with HTTP Status 200', function(done) {
       request.get('http://localhost:8080/userByUsername/superGoku', function(error, response, body){
         expect(response.statusCode).to.equal(200);
         console.log(response.body);
@@ -65,7 +65,7 @@ describe('api tests', function () {
   });
 
   describe('PUT /post/:id', function(){
-    it('should respond with 200 OK', function(done){
+    it('responds with HTTP Status 200', function(done){
       request
       .put('http://localhost:8080/post/'+postId)
       .set('Content-Type', 'application/json')
@@ -78,24 +78,24 @@ describe('api tests', function () {
   });
 
   describe('DELETE /post/:id', function(){
-    it('should respond with 200 OK', function(done){
+    it('responds with HTTP Status 200', function(done){
       request
-      .delete('http://localhost:8080/post/'+postId)
-      .end(function(error, response, body){
-        expect(response.statusCode).to.equal(200);
-        done();
-      });
+        .delete('http://localhost:8080/post/'+postId)
+        .end(function(error, response, body){
+          expect(response.statusCode).to.equal(200);
+          done();
+        });
     });
   });
 
   describe('DELETE /user/:id', function(){
-    it('responds with 200 OK', function(done){
+    it('responds with HTTP Status 200', function(done){
       request
-      .delete('http://localhost:8080/user/'+userId)
-      .end(function(error, response, body){
-        expect(response.statusCode).to.equal(200);
-        done();
-      });
+        .delete('http://localhost:8080/user/'+userId)
+        .end(function(error, response, body){
+          expect(response.statusCode).to.equal(200);
+          done();
+        });
     });
   });
 });
