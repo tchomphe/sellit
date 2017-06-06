@@ -34,15 +34,14 @@ exports.getPostPage = function(req, res){
 
 exports.getPostByTitle = function(req, res){
   Post.findOne({'title': req.params.title}, 'title address description date', function(err, post) {
-    console.log(post.description + " was created on: " + post.date);
+    varifyQuerySuccess(err, res, 'getPostByTitle');
     res.send(post);
   });
 };
 
 exports.getUserByID = function(req, res){
   User.findOne({'_id': req.params.id}, 'username name email phone', function(err, user){
-    if (err) console.log(err);
-    console.log(user.username);
+    varifyQuerySuccess(err, res, 'getUserByID');
     res.send(user);
   });
 };
@@ -57,20 +56,7 @@ exports.createPost = function(req, res){
 
   //create new database entry from POST request's JSON object
   Post.create(newPost, function(err, results){
-    if (err) console.log(err);
-    console.log('Successfully uploaded new post');
-
-    //retrieve new db object & log its attributes to console
-    Post.findOne({'title': newPost.title}, 'title address description date', function(err, post) {
-      if (err)
-        return console.log('ERROR in createPost:', err);
-      else {
-        console.log(post.title);
-        console.log(post.address);
-        console.log(post.date);
-        console.log(post.description);
-      }
-    });
+    varifyQuerySuccess(err, res, 'createPost');
   });
 
   res.send('Received JSON data!');
@@ -105,10 +91,7 @@ exports.updatePostInfo = function (req, res) {
 //-------------------------- DELETE requests --------------------------//
 exports.deleteUser = function (req, res) {
   User.findOneAndRemove({'_id': req.params.id}, function(err, result){
-    if(err)
-      return console.log('ERROR in deleteUser:', err);
-    else
-      console.log('Deleted user successful!');
+    varifyQuerySuccess(err, res, 'deleteUser');
   });
 
   res.send('Got a DELETE request at /user');
@@ -116,10 +99,7 @@ exports.deleteUser = function (req, res) {
 
 exports.deletePost = function (req, res) {
   Post.findOneAndRemove({'_id': req.params.id}, function(err, result){
-    if(err)
-      return console.log('ERROR in deletePost:', err);
-    else
-      console.log('Deleted post successful!');
+    varifyQuerySuccess(err, res, 'deletePost');
   });
 
   res.send('Got a DELETE request at /post');
