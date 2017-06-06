@@ -4,7 +4,7 @@ var server = require('../server');
 
 var postId, userId;
 
-describe('api tests', function () {
+describe('API tests', function () {
 
   describe('GET /', function(){
     it('responds with HTTP Status 200', function(done) {
@@ -53,6 +53,17 @@ describe('api tests', function () {
     });
   });
 
+  describe('GET /post/:id', function(){
+    it('responds with HTTP Status 200', function(done) {
+      request.get('http://localhost:8080/post/'+postId, function(error, response, body){
+        expect(response.statusCode).to.equal(200);
+        console.log(response.body);
+        userId = response.body._id;
+        done();
+      })
+    })
+  });
+
   describe('GET /userByUsername/:username', function(){
     it('responds with HTTP Status 200', function(done) {
       request.get('http://localhost:8080/userByUsername/superGoku', function(error, response, body){
@@ -64,16 +75,40 @@ describe('api tests', function () {
     })
   });
 
+  describe('GET /user/:id', function(){
+    it('responds with HTTP Status 200', function(done) {
+      request.get('http://localhost:8080/user/'+userId, function(error, response, body){
+        expect(response.statusCode).to.equal(200);
+        console.log(response.body);
+        userId = response.body._id;
+        done();
+      })
+    })
+  });
+
   describe('PUT /post/:id', function(){
     it('responds with HTTP Status 200', function(done){
       request
-      .put('http://localhost:8080/post/'+postId)
-      .set('Content-Type', 'application/json')
-      .send('{"title":"New Title", "address":"New Address", "description":"New Description"}')
-      .end(function(error, response, body){
-        expect(response.statusCode).to.equal(200);
-        done();
-      });
+        .put('http://localhost:8080/post/'+postId)
+        .set('Content-Type', 'application/json')
+        .send('{"title":"New Title", "address":"New Address", "description":"New Description"}')
+        .end(function(error, response, body){
+          expect(response.statusCode).to.equal(200);
+          done();
+        });
+    });
+  });
+
+  describe('PUT /user/:id', function(){
+    it('responds with HTTP Status 200', function(done){
+      request
+        .put('http://localhost:8080/user/'+userId)
+        .set('Content-Type', 'application/json')
+        .send('{"name":{"first":"Just", "last":"Raditz"}, "username":"trueSaiyan"}')
+        .end(function(error, response, body){
+          expect(response.statusCode).to.equal(200);
+          done();
+        });
     });
   });
 
