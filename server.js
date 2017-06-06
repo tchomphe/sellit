@@ -55,8 +55,8 @@ app.get('/', function(req, res){
   res.render('home');
 });
 
-app.get('/getPostPage/:pageNum', api.getPostPage);
-app.get('/getByTitle/:title', api.getPostByTitle);
+app.get('/paginatePosts/:pageNum', api.paginatePosts);
+app.get('/postByTitle/:title', api.getPostByTitle);
 app.get('/user/:id', api.getUserByID);
 app.get('/userByUsername/:username', api.getUserByUsername);
 

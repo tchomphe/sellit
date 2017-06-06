@@ -19,7 +19,7 @@ varifyQuerySuccess = function(err, res, funcName){
 }
 
 //-------------------------- GET request --------------------------//
-exports.getPostPage = function(req, res){
+exports.paginatePosts = function(req, res){
   var query = {};
   var options = {
     page: req.params.pageNum,

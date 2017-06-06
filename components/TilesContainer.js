@@ -19,7 +19,7 @@ export default class TilesContainer extends React.Component {
 
     getPosts(){
         //send GET request to API and update state with response
-        Request.get('/getPostPage/1').then((res) => {
+        Request.get('/paginatePosts/1').then((res) => {
             this.setState({
                 recentPosts: res.body.docs.map((post) =>
                     <Tile key={post._id.toString()} title={post.title} address={post.address} />

@@ -41,9 +41,9 @@ describe('api tests', function () {
     })
   });
 
-  describe('GET /getByTitle/:title', function(){
+  describe('GET /postByTitle/:title', function(){
     it('responds with HTTP Status 200', function(done) {
-      request('http://localhost:8080/getByTitle/iPhone%2034s', function(error, response, body){
+      request('http://localhost:8080/postByTitle/iPhone%2034s', function(error, response, body){
         expect(response.statusCode).to.equal(200);
         console.log(response.body);
         postId = response.body._id;
