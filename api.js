@@ -89,9 +89,8 @@ exports.updateUserInfo = function(req, res){
 
   User.findByIdAndUpdate(query, newObject, settings, function(err, user) {
     varifyQuerySuccess(err, res, 'updateUserInfo');
+    res.send('Got a put request at /user');
   });
-
-  res.send('Got a put request at /user');
 };
 
 exports.updatePostInfo = function (req, res) {
@@ -101,24 +100,22 @@ exports.updatePostInfo = function (req, res) {
 
   Post.findByIdAndUpdate(query, newObject, settings, function(err, post) {
     varifyQuerySuccess(err, res, 'updateUserInfo');
+    res.send('Got a PUT request at /post');
   });
 
-  res.send('Got a PUT request at /post');
 };
 
 //-------------------------- DELETE requests --------------------------//
 exports.deleteUser = function (req, res) {
   User.findOneAndRemove({'_id': req.params.id}, function(err, result){
     varifyQuerySuccess(err, res, 'deleteUser');
+    res.send('Got a DELETE request at /user');
   });
-
-  res.send('Got a DELETE request at /user');
 };
 
 exports.deletePost = function (req, res) {
   Post.findOneAndRemove({'_id': req.params.id}, function(err, result){
     varifyQuerySuccess(err, res, 'deletePost');
+    res.send('Got a DELETE request at /post');
   });
-
-  res.send('Got a DELETE request at /post');
 };
