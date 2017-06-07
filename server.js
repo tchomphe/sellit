@@ -16,10 +16,16 @@ LocalStrategy = require('passport-local').Strategy;
 var app = express();
 
 // Define multer settings
-var uploadingSettings = multer({
-  dest: './static/uploads/',
-  limits: {fileSize: 1000000, files:5},
-})
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './static/uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname + '_' + Date.now())
+  },
+  limits : {fileSize: 1000000, files:5},
+});
+var upload = multer({ storage: storage })
 
 // Logger to print request/response to server
 app.use(logger('dev'));
@@ -71,7 +77,7 @@ app.get('/userByUsername/:username', api.getUserByUsername);
 // POST requests
 app.post('/createPost', api.createPost);
 app.post('/createUser', api.createUser);
-app.post('/upload', uploadingSettings.array('postImage'), function(req, res) {
+app.post('/upload', upload.array('postImage'), function(req, res) {
   console.log('Received upload..');
   console.log('Name: ' + req.files[0].originalname);
   res.status(200).send();
