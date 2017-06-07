@@ -2,7 +2,9 @@ var expect = require('chai').expect;
 var request = require('superagent');
 var server = require('../server');
 
-var postId, userId;
+// TODO: Create JSON file used to seed data for testing
+// temporary variables for storing ID's
+var postID, userID;
 
 describe('API tests', function () {
 
@@ -52,8 +54,7 @@ describe('API tests', function () {
       request('http://localhost:8080/postByTitle/iPhone%2034s', function(error, response, body){
         expect(response.statusCode).to.equal(200);
         console.log(response.body);
-        postId = response.body._id;
-        console.log('post ID: ' + postId);
+        postID = response.body._id;
         done();
       });
     });
@@ -61,10 +62,9 @@ describe('API tests', function () {
 
   describe('GET /post/:id', function(){
     it('responds with HTTP Status 200', function(done) {
-      request.get('http://localhost:8080/post/'+postId, function(error, response, body){
+      request.get('http://localhost:8080/post/'+postID, function(error, response, body){
         expect(response.statusCode).to.equal(200);
         console.log(response.body);
-        userId = response.body._id;
         done();
       })
     })
@@ -75,7 +75,7 @@ describe('API tests', function () {
       request.get('http://localhost:8080/userByUsername/superGoku', function(error, response, body){
         expect(response.statusCode).to.equal(200);
         console.log(response.body);
-        userId = response.body._id;
+        userID = response.body._id;
         done();
       })
     })
@@ -83,10 +83,9 @@ describe('API tests', function () {
 
   describe('GET /user/:id', function(){
     it('responds with HTTP Status 200', function(done) {
-      request.get('http://localhost:8080/user/'+userId, function(error, response, body){
+      request.get('http://localhost:8080/user/'+userID, function(error, response, body){
         expect(response.statusCode).to.equal(200);
         console.log(response.body);
-        userId = response.body._id;
         done();
       })
     })
@@ -98,7 +97,7 @@ describe('API tests', function () {
   describe('PUT /post/:id', function(){
     it('responds with HTTP Status 200', function(done){
       request
-        .put('http://localhost:8080/post/'+postId)
+        .put('http://localhost:8080/post/'+postID)
         .set('Content-Type', 'application/json')
         .send('{"title":"New Title", "address":"New Address", "description":"New Description"}')
         .end(function(error, response, body){
@@ -111,7 +110,7 @@ describe('API tests', function () {
   describe('PUT /user/:id', function(){
     it('responds with HTTP Status 200', function(done){
       request
-        .put('http://localhost:8080/user/'+userId)
+        .put('http://localhost:8080/user/'+userID)
         .set('Content-Type', 'application/json')
         .send('{"name":{"first":"Just", "last":"Raditz"}, "username":"trueSaiyan"}')
         .end(function(error, response, body){
@@ -127,7 +126,7 @@ describe('API tests', function () {
   describe('DELETE /post/:id', function(){
     it('responds with HTTP Status 200', function(done){
       request
-        .delete('http://localhost:8080/post/'+postId)
+        .delete('http://localhost:8080/post/'+postID)
         .end(function(error, response, body){
           expect(response.statusCode).to.equal(200);
           done();
@@ -138,7 +137,7 @@ describe('API tests', function () {
   describe('DELETE /user/:id', function(){
     it('responds with HTTP Status 200', function(done){
       request
-        .delete('http://localhost:8080/user/'+userId)
+        .delete('http://localhost:8080/user/'+userID)
         .end(function(error, response, body){
           expect(response.statusCode).to.equal(200);
           done();
