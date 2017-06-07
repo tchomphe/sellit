@@ -6,6 +6,7 @@ var path = require('path');
 var mongoose = require('mongoose');
 var api = require('./api');
 var exphbs  = require('express-handlebars');
+var multer = require('multer');
 
 
 var User = require('./models/user');
@@ -13,6 +14,12 @@ var passport = require('passport'),
 LocalStrategy = require('passport-local').Strategy;
 
 var app = express();
+
+// Define multer settings
+var uploadingSettings = multer({
+  dest: __dirname + 'static/uploads/',
+  limits: {fileSize: 1000000, files:5},
+})
 
 // Logger to print request/response to server
 app.use(logger('dev'));
@@ -64,6 +71,8 @@ app.get('/userByUsername/:username', api.getUserByUsername);
 // POST requests
 app.post('/createPost', api.createPost);
 app.post('/createUser', api.createUser);
+//app.post('/upload', uploadingSettings.single('postImage'), function(req, res) {});
+app.post('/upload', uploadingSettings.array('postImages'), function(req, res) {});
 app.post('/login', passport.authenticate('local', function(req, res){
   console.log('Passport authentication passed!');
   //res.redirect('/login/success');
