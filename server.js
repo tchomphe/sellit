@@ -17,7 +17,7 @@ var app = express();
 
 // Define multer settings
 var uploadingSettings = multer({
-  dest: __dirname + 'static/uploads/',
+  dest: './static/uploads/',
   limits: {fileSize: 1000000, files:5},
 })
 
@@ -71,8 +71,11 @@ app.get('/userByUsername/:username', api.getUserByUsername);
 // POST requests
 app.post('/createPost', api.createPost);
 app.post('/createUser', api.createUser);
-//app.post('/upload', uploadingSettings.single('postImage'), function(req, res) {});
-app.post('/upload', uploadingSettings.array('postImages'), function(req, res) {});
+app.post('/upload', uploadingSettings.array('postImage'), function(req, res) {
+  console.log('Received upload..');
+  console.log('Name: ' + req.files[0].originalname);
+  res.status(200).send();
+});
 app.post('/login', passport.authenticate('local', function(req, res){
   console.log('Passport authentication passed!');
   //res.redirect('/login/success');
