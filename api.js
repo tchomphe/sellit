@@ -64,8 +64,8 @@ exports.getUserByUsername = function(req, res){
 exports.createUser = function(req, res){
   var newUser = {
     name: {
-      first: req.body.name.first,
-      last: req.body.name.last
+      first: req.body.firstName,
+      last: req.body.lastName
     },
     username: req.body.username,
     password: req.body.password,
@@ -91,8 +91,8 @@ exports.createPost = function(req, res){
     address: req.body.address,
     description: req.body.description,
     postImage: images
-  };    
-  
+  };
+
   //create new database entry from POST request's JSON object
   Post.create(newPost, function(err, results){
     varifyQuerySuccess(err, res, 'createPost');
