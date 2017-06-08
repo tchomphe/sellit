@@ -10,7 +10,8 @@ var postSchema = new Schema({
   date: { type: Date, default: Date.now },
   type: String,
   description: String,
-  username: {type: ObjectId, ref: 'user'}
+  username: {type: ObjectId, ref: 'user'},
+  postImage:[],
 });
 
 //plug in pagination

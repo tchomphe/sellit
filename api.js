@@ -57,8 +57,8 @@ exports.getUserByUsername = function(req, res){
   User.findOne({'username': req.params.username}, 'name username email phone', function(err, user) {
     varifyQuerySuccess(err, res, 'getUserByUsername');
     res.send(user);
-  })
-}
+  });
+};
 
 //-------------------------- POST request --------------------------//
 exports.createUser = function(req, res){
@@ -84,9 +84,10 @@ exports.createPost = function(req, res){
   var newPost = {
     title: req.body.title,
     address: req.body.address,
-    description: req.body.description
-  };
-
+    description: req.body.description,
+    postImage: req.files[0].path,
+  };    
+  
   //create new database entry from POST request's JSON object
   Post.create(newPost, function(err, results){
     varifyQuerySuccess(err, res, 'createPost');
