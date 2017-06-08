@@ -24,8 +24,10 @@ describe('API tests', function () {
     it('responds with HTTP Status 200', function(done) {
       request
         .post('http://localhost:8080/createPost')
-        .set('Content-Type', 'application/json')
-        .send('{"title":"iPhone 34s","address":"A1B2C3","description":"Test description here!"}')
+        .set('Content-Type', 'multipart/form-data')
+        .field('title', 'iPhone 34s')
+        .field('address', 'A1B2C3')
+        .field('description', 'Test description here!')
         .end(function(error, response, body){
           expect(response.statusCode).to.equal(200);
           done();
