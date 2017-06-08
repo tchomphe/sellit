@@ -39,8 +39,13 @@ describe('API tests', function () {
     it('responds with HTTP Status 200', function(done) {
       request
         .post('http://localhost:8080/createUser')
-        .set('Content-Type', 'application/json')
-        .send('{"name":{"first":"Son", "last":"Goku"}, "username":"superGoku", "password":"worstpassword123", "phone":"1117770000","email":"goku@gmail.com"}')
+        .set('Content-Type', 'multipart/form-data')
+        .field('firstName', 'Son')
+        .field('lastName', 'Goku')
+        .field('username', 'superGoku')
+        .field('password', 'worstpassword123')
+        .field('phone', '1117770000')
+        .field('email', 'goku@gmail.com')
         .end(function(error, response, body){
           expect(response.statusCode).to.equal(200);
           done();
