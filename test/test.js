@@ -28,8 +28,8 @@ describe('API tests', function () {
         .field('title', 'iPhone 34s')
         .field('address', 'A1B2C3')
         .field('description', 'Test description here!')
-        //.attach('postImages', __dirname + '/image1.jpg')
-        //.attach('postImages', __dirname + '/image2.jpg')
+        .attach('postImages', __dirname + '/image1.jpg')
+        .attach('postImages', __dirname + '/image2.jpg')
         .end(function(error, response, body){
           expect(response.statusCode).to.equal(200);
           done();
