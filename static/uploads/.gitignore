@@ -1,0 +1,7 @@
+# This file needs to exist for uploads/ to be pushed to git, which is neccessary for codeship testing
+
+# While we're at it, ignore everything in this directory
+*
+
+# Except this file
+!.gitignore
