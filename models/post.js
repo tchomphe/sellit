@@ -11,7 +11,7 @@ var postSchema = new Schema({
   type: String,
   description: String,
   username: {type: ObjectId, ref: 'user'},
-  postImage:[],
+  images:[],
 });
 
 //plug in pagination

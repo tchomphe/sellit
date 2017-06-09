@@ -81,16 +81,16 @@ exports.createUser = function(req, res){
 };
 
 exports.createPost = function(req, res){
-  var images = [];
+  var uploadedImages = [];
   (req.files).forEach(function(image) {
-    images.push(image.path);
+    uploadedImages.push(image.path);
   }, this);
 
   var newPost = {
     title: req.body.title,
     address: req.body.address,
     description: req.body.description,
-    postImage: images
+    images: uploadedImages
   };
 
   //create new database entry from POST request's JSON object

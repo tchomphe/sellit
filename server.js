@@ -75,8 +75,8 @@ app.get('/postByTitle/:title', api.getPostByTitle);
 app.get('/userByUsername/:username', api.getUserByUsername);
 
 // POST requests
-app.post('/createPost', upload.array('postImage'), api.createPost);
-app.post('/createUser', upload.array(), api.createUser);
+app.post('/createPost', upload.array('postImages'), api.createPost);
+app.post('/createUser', upload.array('userImages'), api.createUser);
 app.post('/login', passport.authenticate('local', function(req, res){
   console.log('Passport authentication passed!');
   //res.redirect('/login/success');
