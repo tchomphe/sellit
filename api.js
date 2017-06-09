@@ -1,5 +1,6 @@
 var Post = require('./models/post');
 var User = require('./models/user');
+var fs = require('fs');
 
 /**
  * Helper Function that varifies the success or failure of a MongoDB query
@@ -134,6 +135,16 @@ exports.deleteUser = function (req, res) {
 };
 
 exports.deletePost = function (req, res) {
+  // find and delete any images attachments
+  Post.findOne({'_id': req.params.id}, 'images', function(err, post){
+    if (post.images !== []){
+      (post.images).forEach(function(imageURL){
+        fs.unlinkSync(imageURL);
+      });
+    }
+  });
+
+  // delete post
   Post.findOneAndRemove({'_id': req.params.id}, function(err, result){
     varifyQuerySuccess(err, res, 'deletePost');
     res.send('Got a DELETE request at /post');
