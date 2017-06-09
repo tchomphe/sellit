@@ -4,5 +4,4 @@ public/.DS_Store
 static/js/bundle.js
 .vscode/
 babel_cache/
-static/uploads/
 yarn.lock
