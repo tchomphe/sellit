@@ -118,7 +118,7 @@ describe('API tests', function () {
       request
         .put('http://localhost:8080/user/'+userID)
         .set('Content-Type', 'application/json')
-        .send('"email":"gokuSayan@dbz.com", "nickname":"Super Sayan"}')
+        .send('{"email":"gokuSayan@dbz.com", "nickname":"Super Sayan"}')
         .end(function(error, response, body){
           expect(response.statusCode).to.equal(200);
           done();
