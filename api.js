@@ -85,6 +85,7 @@ exports.createPost = function(req, res){
   var newPost = {
     title: req.body.title,
     address: req.body.address,
+    type: req.body.type,
     description: req.body.description,
     images: uploadedImages
   };
