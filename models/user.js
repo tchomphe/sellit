@@ -4,15 +4,11 @@ var ObjectId = Schema.ObjectId;
 
 //define User Schema
 var userSchema = new Schema({
-  name: {
-      first: { type: String, required: true, trim: true},
-      last: { type: String, required: true, trim: true}
-  },
-  phone: Number, 
-  username: {type: String, required: true, unique: true},
+  email:  {type: String, required: true, unique: true, trim: true},
   password: {type: String, required: true},
-  email:  {type: String, required: true, unique: true},
-  //posts:[{type: ObjectId, ref: 'post'}]
+  nickname: { type: String, trim: true},
+  phone: Number,
+  posts: [{type: ObjectId, ref: 'post'}]
 });
 
 userSchema.methods.validPassword = function(pw){
