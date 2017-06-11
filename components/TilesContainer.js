@@ -30,10 +30,8 @@ export default class TilesContainer extends React.Component {
 
     render(){
         return(
-            <div className="col-12">
-                <div className="tiles-container card-columns">
-                    {this.state.recentPosts}
-                </div>
+            <div className="col-12">                
+                    {this.state.recentPosts}                
                 <NavigationWindow />
             </div>
         );
