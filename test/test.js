@@ -27,6 +27,7 @@ describe('API tests', function () {
         .set('Content-Type', 'multipart/form-data')
         .field('title', 'iPhone 34s')
         .field('address', 'A1B2C3')
+        .field('type', 'Phone')
         .field('description', 'Test description here!')
         .attach('postImages', __dirname + '/image1.jpg')
         .attach('postImages', __dirname + '/image2.jpg')
