@@ -42,12 +42,9 @@ describe('API tests', function () {
       request
         .post('http://localhost:8080/createUser')
         .set('Content-Type', 'multipart/form-data')
-        .field('firstName', 'Son')
-        .field('lastName', 'Goku')
-        .field('username', 'superGoku')
+        .field('email', 'goku@gmail.com')
         .field('password', 'worstpassword123')
         .field('phone', '1117770000')
-        .field('email', 'goku@gmail.com')
         .end(function(error, response, body){
           expect(response.statusCode).to.equal(200);
           done();
@@ -79,9 +76,9 @@ describe('API tests', function () {
     })
   });
 
-  describe('GET /userByUsername/:username', function(){
+  describe('GET /userByEmail/:email', function(){
     it('responds with HTTP Status 200', function(done) {
-      request.get('http://localhost:8080/userByUsername/superGoku', function(error, response, body){
+      request.get('http://localhost:8080/userByEmail/goku@gmail.com', function(error, response, body){
         expect(response.statusCode).to.equal(200);
         console.log(response.body);
         userID = response.body._id;
@@ -121,7 +118,7 @@ describe('API tests', function () {
       request
         .put('http://localhost:8080/user/'+userID)
         .set('Content-Type', 'application/json')
-        .send('{"name":{"first":"Just", "last":"Raditz"}, "username":"trueSaiyan"}')
+        .send('"email":"gokuSayan@dbz.com", "nickname":"Super Sayan"}')
         .end(function(error, response, body){
           expect(response.statusCode).to.equal(200);
           done();
