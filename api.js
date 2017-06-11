@@ -41,7 +41,7 @@ exports.getPostByTitle = function(req, res){
 };
 
 exports.getUserByID = function(req, res){
-  User.findOne({'_id': req.params.id}, 'username name email phone', function(err, user){
+  User.findOne({'_id': req.params.id}, 'email nickname', function(err, user){
     varifyQuerySuccess(err, res, 'getUserByID');
     res.send(user);
   });
@@ -54,9 +54,9 @@ exports.getPostByID = function(req, res){
   });
 };
 
-exports.getUserByUsername = function(req, res){
-  User.findOne({'username': req.params.username}, 'name username email phone', function(err, user) {
-    varifyQuerySuccess(err, res, 'getUserByUsername');
+exports.getUserByEmail = function(req, res){
+  User.findOne({'email': req.params.email}, 'name email email phone', function(err, user) {
+    varifyQuerySuccess(err, res, 'getUserByEmail');
     res.send(user);
   });
 };
@@ -64,14 +64,9 @@ exports.getUserByUsername = function(req, res){
 //-------------------------- POST request --------------------------//
 exports.createUser = function(req, res){
   var newUser = {
-    name: {
-      first: req.body.firstName,
-      last: req.body.lastName
-    },
-    username: req.body.username,
+    email: req.body.email,
     password: req.body.password,
     phone: req.body.phone,
-    email: req.body.email
   };
 
   //create new database entry from POST request's JSON object

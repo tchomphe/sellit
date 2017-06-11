@@ -72,7 +72,7 @@ app.get('/paginatePosts/:pageNum', api.paginatePosts);
 app.get('/post/:id', api.getPostByID);
 app.get('/user/:id', api.getUserByID);
 app.get('/postByTitle/:title', api.getPostByTitle);
-app.get('/userByUsername/:username', api.getUserByUsername);
+app.get('/userByEmail/:email', api.getUserByEmail);
 
 // POST requests
 app.post('/createPost', upload.array('postImages'), api.createPost);
