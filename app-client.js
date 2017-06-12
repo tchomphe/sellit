@@ -7,5 +7,8 @@ window.onload = () => {
 
     //display NavigationWindow on page load
     // $('#navModal').modal('show');
-     $('#navModal').modal('open');
+    //$('#navModal').modal('open');
+    $('.modal').modal();
+    $('#navModal').modal('open');
+
 };
