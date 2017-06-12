@@ -5,10 +5,9 @@ import AppRoutes from './components/AppRoutes';
 window.onload = () => {
     ReactDOM.render(<AppRoutes />, document.getElementById('container'));
 
-    //display NavigationWindow on page load
-    // $('#navModal').modal('show');
-    //$('#navModal').modal('open');
+    // Initialize modal plugin
     $('.modal').modal();
+    //display NavigationWindow on page load        
     $('#navModal').modal('open');
 
 };
