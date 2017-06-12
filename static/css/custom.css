@@ -19,6 +19,12 @@ body {
     width: 100%;
 }
 
+.corner-menu {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+}
+
 .container {
     padding: 2px 16px;
 }
