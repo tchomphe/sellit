@@ -1,15 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import CornerMenu from './CornerMenu';
 
 
 class NavigationWindow extends React.Component{
     render(){
         return(
             <div>
-                {/*<!-- Button trigger modal -->*/}
-                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#navModal">
-                Launch Search bar
-                </button>
+                <CornerMenu />
 
                 {/*<!-- Modal -->*/}
                 <div className="modal fade" id="navModal" tabIndex="-1" role="dialog">
