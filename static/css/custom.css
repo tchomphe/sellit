@@ -19,6 +19,15 @@ body {
     right: 30px;
 }
 
+.login-button {
+    width: 100%;
+    font-size: 17px;
+}
+
+.modal .modal-content {
+    padding: 30px 40px;
+}
+
 /* search box color modification*/
 nav {
     color: #fff;
@@ -29,4 +38,4 @@ nav {
 }
 
 /* set modal window's height and width */
-.modal { width: 40% !important ; height: 30% !important ; }
+.modal { width: 40% !important; }
