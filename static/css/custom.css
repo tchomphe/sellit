@@ -1,9 +1,3 @@
-*:not(.btn-floating) {
-  -webkit-border-radius: 1px !important;
-     -moz-border-radius: 1px !important;
-          border-radius: 1px !important;
-}
-
 body {
 	background-color:black;
 }
@@ -25,16 +19,7 @@ body {
     right: 30px;
 }
 
-.card .card-title {
-    font-size: 17px;
-    font-weight: 300;
-}
-
-html {
-    font-size: 9.5px;
-}
-
-/* Search box color modification*/
+/* search box color modification*/
 nav {
     color: #fff;
     background-color: #ee6e73;
@@ -43,5 +28,5 @@ nav {
     line-height: 56px;
 }
 
-/* increase the height and width as you desire */
-.modal { width: 40% !important ; height: 30% !important ; }  
+/* set modal window's height and width */
+.modal { width: 40% !important ; height: 30% !important ; }
