@@ -36,7 +36,7 @@ class RegistrationWindow extends React.Component{
                                         <label for="phone">Phone</label>
                                     </div>
                                 </div>
-                                <a className="waves-effect waves-light btn-large">Register</a>
+                                <a className="modal-action modal-close waves-effect waves-light btn-large">Register</a>
                             </form>
                         </div>
                     </div>
