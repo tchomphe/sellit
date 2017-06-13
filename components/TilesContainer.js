@@ -1,6 +1,7 @@
 import React from 'react';
 import Tile from './Tile';
 import NavigationWindow from './NavigationWindow';
+import RegistrationWindow from './RegistrationWindow';
 import CornerMenu from './CornerMenu';
 import Request from 'superagent';
 
@@ -35,6 +36,7 @@ export default class TilesContainer extends React.Component {
                 {this.state.recentPosts}
                 <CornerMenu />
                 <NavigationWindow />
+                <RegistrationWindow />
             </div>
         );
     }
