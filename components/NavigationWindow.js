@@ -1,12 +1,10 @@
 import React from 'react';
-import CornerMenu from './CornerMenu';
 
 
 class NavigationWindow extends React.Component{
     render(){
         return(
             <div>
-                <CornerMenu />
                 <div id="navModal" className="modal">
                     <div className="modal-content">
                         <nav><form>
@@ -16,10 +14,9 @@ class NavigationWindow extends React.Component{
                             </div>
                         </form></nav>
                         <br />
-                        <a className="waves-effect waves-light btn-large login-button">login to post</a>
+                        <a className="modal-action modal-close waves-effect waves-light btn-large login-button">login to post</a>
                     </div>
                 </div>
-
             </div>
         );
     }

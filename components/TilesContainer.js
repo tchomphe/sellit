@@ -1,6 +1,7 @@
 import React from 'react';
 import Tile from './Tile';
 import NavigationWindow from './NavigationWindow';
+import CornerMenu from './CornerMenu';
 import Request from 'superagent';
 
 export default class TilesContainer extends React.Component {
@@ -31,7 +32,8 @@ export default class TilesContainer extends React.Component {
     render(){
         return(
             <div className="col s12">
-                    {this.state.recentPosts}
+                {this.state.recentPosts}
+                <CornerMenu />
                 <NavigationWindow />
             </div>
         );
