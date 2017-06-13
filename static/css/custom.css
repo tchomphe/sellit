@@ -24,8 +24,28 @@ body {
     font-size: 17px;
 }
 
-.modal .modal-content {
+.modal .modal-close {
+    padding: 10px 18px;
+    height: 44px;
+    line-height: 27px;
+    font-size: 22px;
+    border-radius: 12px;
+    box-shadow: none;
+    right: -6px;
+    top: -9px;
+    position: absolute;
+    text-transform: none;
+    border: 1px solid lightgray;
+    background-color: white;
+    color: black;
+}
+
+#navModal .modal-content {
     padding: 30px 40px;
+}
+
+.modal .modal-content {
+    padding: 10px 30px;
 }
 
 /* search box color modification*/
@@ -38,4 +58,8 @@ nav {
 }
 
 /* set modal window's height and width */
-.modal { width: 40% !important; }
+.modal {
+    width: 40% !important;
+    border-radius: 8px;
+    max-height: 90%;
+}

@@ -6,6 +6,7 @@ class RegistrationWindow extends React.Component{
         return(
             <div>
                 <div id="regModal" className="modal">
+                    <a className="modal-action modal-close waves-effect waves-light btn-large">x</a>
                     <div className="modal-content">
                          <div className="row">
                             <form className="col s12 center">
@@ -36,7 +37,7 @@ class RegistrationWindow extends React.Component{
                                         <label for="phone">Phone</label>
                                     </div>
                                 </div>
-                                <a className="modal-action modal-close waves-effect waves-light btn-large">Register</a>
+                                <a className="waves-effect waves-light btn-large">Register</a>
                             </form>
                         </div>
                     </div>
