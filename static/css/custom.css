@@ -1,4 +1,4 @@
-* {
+*:not(.btn-floating) {
   -webkit-border-radius: 1px !important;
      -moz-border-radius: 1px !important;
           border-radius: 1px !important;
@@ -29,4 +29,12 @@ body {
     .card {
         width: 48%;
     }
+}
+/* Search box color modification*/
+nav {
+    color: #fff;
+    background-color: #ee6e73;
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
 }
