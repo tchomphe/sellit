@@ -25,11 +25,15 @@ body {
     right: 30px;
 }
 
-@media only screen and (max-width: 800px) {
-    .card {
-        width: 48%;
-    }
+.card .card-title {
+    font-size: 17px;
+    font-weight: 300;
 }
+
+html {
+    font-size: 9.5px;
+}
+
 /* Search box color modification*/
 nav {
     color: #fff;
@@ -38,3 +42,6 @@ nav {
     height: 56px;
     line-height: 56px;
 }
+
+/* increase the height and width as you desire */
+.modal { width: 40% !important ; height: 30% !important ; }  
