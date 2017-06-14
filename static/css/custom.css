@@ -13,7 +13,13 @@ body {
     width: 100%;
 }
 
-.corner-menu {
+.floatingBackButton {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+}
+
+.floatingMenuButton {
     position: fixed;
     top: 30px;
     right: 30px;
