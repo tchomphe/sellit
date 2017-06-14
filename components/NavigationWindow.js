@@ -5,7 +5,7 @@ class NavigationWindow extends React.Component{
     render(){
         return(
             <div>
-                <div id="navModal" className="modal">
+                <div id="navigationModal" className="modal">
                     <div className="modal-content">
                         <nav><form>
                             <div className="input-field">
@@ -14,7 +14,7 @@ class NavigationWindow extends React.Component{
                             </div>
                         </form></nav>
                         <br />
-                        <a href="#postModal" className="waves-effect waves-light btn-large login-button">login to post</a>
+                        <a href="#registerModal" className="waves-effect waves-light btn-large login-button">login to post</a>
                     </div>
                 </div>
             </div>

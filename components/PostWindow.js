@@ -13,13 +13,14 @@ class PostWindow extends React.Component{
                         <div className="row">
                             <div className="col m8 postInformation">
                                 <h5 className="center">Post Title</h5>
+                                <br />
                                 <div className="row">
-                                    <div className="col s4 right-align"><b>Price:</b></div>
-                                    <div className="col s8 left-align">[price goes here]</div>
-                                    <div className="col s4 right-align"><b>Address:</b></div>
-                                    <div className="col s8 left-align">[address goes here]</div>
-                                    <div className="col s4 right-align"><b>Description:</b></div>
-                                    <div className="col s8 left-align">[description goes here Lorem ipsum dolor sit amet, mea ex partiendo accusamus reprehendunt, vis ei sanctus expetenda suavitate, has id sale oporteat accommodare. Dolor dolorum expetenda id qui.]</div>
+                                    <div className="col s3 right-align"><b>Price:</b></div>
+                                    <div className="col s9 left-align">[price goes here]</div>
+                                    <div className="col s3 right-align"><b>Address:</b></div>
+                                    <div className="col s9 left-align">[address goes here]</div>
+                                    <div className="col s3 right-align"><b>Description:</b></div>
+                                    <div className="col s9 left-align">[description goes here Lorem ipsum dolor sit amet, mea ex partiendo accusamus reprehendunt, vis ei sanctus expetenda suavitate, has id sale oporteat accommodare. Dolor dolorum expetenda id qui.]</div>
                                 </div>
                             </div>
                             <div className="col m4 postContact"></div>

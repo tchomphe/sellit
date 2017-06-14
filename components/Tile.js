@@ -6,7 +6,9 @@ export default class Tile extends React.Component {
         return(
             <div className="card">
                 <div className="card-image">
-                    <img src="https://placehold.it/350x250" alt="Card image cap" />
+                    <a href="#postModal" className="waves-effect waves-light">
+                        <img src="https://placehold.it/350x250" alt="Card image cap" />
+                    </a>
                 </div>
                 <div className="card-content">
                     <span className="card-title">{this.props.title}</span>

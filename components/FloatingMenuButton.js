@@ -4,7 +4,7 @@ export default class FloatingMenuButton extends React.Component {
     render(){
         return(
             <div className="floatingMenuButton">
-                <a className="btn-floating btn-large waves-effect waves-light red" href="#navModal">
+                <a className="btn-floating btn-large waves-effect waves-light red" href="#navigationModal">
                     <i className="material-icons">search</i>
                 </a>
             </div>
