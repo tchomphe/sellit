@@ -2,7 +2,8 @@ import React from 'react';
 import Tile from './Tile';
 import NavigationWindow from './NavigationWindow';
 import RegistrationWindow from './RegistrationWindow';
-import CornerMenu from './CornerMenu';
+import FloatingMenuButton from './FloatingMenuButton';
+import FloatingBackButton from './FloatingBackButton';
 import Request from 'superagent';
 
 export default class TilesContainer extends React.Component {
@@ -34,7 +35,8 @@ export default class TilesContainer extends React.Component {
         return(
             <div className="col s12">
                 {this.state.recentPosts}
-                <CornerMenu />
+                <FloatingMenuButton />
+                <FloatingBackButton />
                 <NavigationWindow />
                 <RegistrationWindow />
             </div>
