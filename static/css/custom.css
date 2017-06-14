@@ -2,6 +2,14 @@ body {
 	background-color:black;
 }
 
+#container .container {
+    width: 100%;
+}
+
+#container .container .row {
+    margin: 0px;
+}
+
 .card {
     width: 33%;
     display: inline-block;
@@ -9,18 +17,20 @@ body {
     border: none;
 }
 
-.card img {
+.card a, .card a img {
     width: 100%;
 }
 
 .floatingBackButton {
     position: fixed !important;
+    z-index: 99;
     top: 30px;
     left: 30px;
 }
 
 .floatingMenuButton {
     position: fixed;
+    z-index: 99;
     top: 30px;
     right: 30px;
 }
@@ -114,4 +124,10 @@ nav {
 .modal {
     border-radius: 8px;
     max-height: 90%;
+}
+
+@media screen and (max-width: 650px) {
+    .card {
+        width: 48%;
+    }
 }
