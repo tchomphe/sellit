@@ -65,6 +65,17 @@ body {
     color: black;
 }
 
+.postImagesSlideshow, .postLocationMap {
+    background-color: turquoise;
+    height: 250px;
+}
+
+.postContact {
+    background-color: lightgreen;
+    width: 150px;
+    height: 400px;
+}
+
 .modalButtonBack:hover {
     background-color: #03a9f4;
     box-shadow: none;

@@ -2,6 +2,7 @@ import React from 'react';
 import Tile from './Tile';
 import NavigationWindow from './NavigationWindow';
 import RegistrationWindow from './RegistrationWindow';
+import PostWindow from './PostWindow';
 import FloatingMenuButton from './FloatingMenuButton';
 import FloatingBackButton from './FloatingBackButton';
 import Request from 'superagent';
@@ -39,6 +40,7 @@ export default class TilesContainer extends React.Component {
                 <FloatingBackButton />
                 <NavigationWindow />
                 <RegistrationWindow />
+                <PostWindow />
             </div>
         );
     }
