@@ -1,5 +1,6 @@
 import React from 'react';
 import FloatingBackButton from './FloatingBackButton';
+import PostContact from './PostContact';
 
 class PostWindow extends React.Component{
     render(){
@@ -24,7 +25,9 @@ class PostWindow extends React.Component{
                                     <div className="col s9 left-align">[description goes here Lorem ipsum dolor sit amet, mea ex partiendo accusamus reprehendunt, vis ei sanctus expetenda suavitate, has id sale oporteat accommodare. Dolor dolorum expetenda id qui.]</div>
                                 </div>
                             </div>
-                            <div className="col m4 postContact"></div>
+                            <div className="col m4 postContact">
+                                <PostContact />
+                            </div>
                         </div>
                         <div className="row">
                             <div className="col s12 postLocationMap"></div>
