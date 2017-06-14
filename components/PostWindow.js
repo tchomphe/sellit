@@ -1,11 +1,12 @@
 import React from 'react';
-
+import FloatingBackButton from './FloatingBackButton';
 
 class PostWindow extends React.Component{
     render(){
         return(
             <div>
                 <div id="postModal" className="modal">
+                    <FloatingBackButton />
                     <div className="modal-content">
                         <div className="row">
                             <div className="col s12 postImagesSlideshow"></div>
