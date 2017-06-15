@@ -19,8 +19,8 @@ class PostContact extends React.Component{
                 </div>
                 <div className="row">
                     <div className="input-field col s12">
-                        <textarea id="textarea1" className="materialize-textarea"></textarea>
-                        <label for="textarea1">Textarea</label>
+                        <textarea id="message" className="materialize-textarea"></textarea>
+                        <label for="message">Message</label>
                     </div>
                 </div>
                 <a className="waves-effect waves-light btn-large">Send Email</a>    
