@@ -8,22 +8,22 @@ class PostContact extends React.Component{
                 <div className="row center">
                     <div className="input-field col s12">
                         <input id="email" type="email" className="validate" />
-                        <label for="email" data-error="wrong" data-success="right">* Email</label>
+                        <label htmlFor="email" data-error="wrong" data-success="right">* Email</label>
                     </div>
                 </div>
                 <div className="row">
                     <div className="input-field col l8 m6">
                         <input id="name" type="text" className="validate" />
-                        <label for="name">Name</label>
+                        <label htmlFor="name">Name</label>
                     </div>
                 </div>
                 <div className="row">
                     <div className="input-field col s12">
                         <textarea id="message" className="materialize-textarea"></textarea>
-                        <label for="message">Message</label>
+                        <label htmlFor="message">Message</label>
                     </div>
                 </div>
-                <a className="waves-effect waves-light btn-large">Send Email</a>    
+                <a className="waves-effect waves-light btn-large">Send Email</a>
             </form>
         );
     }
