@@ -36,8 +36,7 @@ export default class TilesContainer extends React.Component {
         return(
             <div className="col s12">
                 {this.state.recentPosts}
-                <FloatingMenuButton />
-                <FloatingBackButton />
+                <FloatingMenuButton />                
                 <NavigationWindow />
                 <RegistrationWindow />
                 <PostWindow />
