@@ -1,5 +1,5 @@
 import React from 'react';
-import Tile from './Tile';
+import PostTile from './PostTile';
 import NavigationWindow from './NavigationWindow';
 import RegistrationWindow from './RegistrationWindow';
 import PostWindow from './PostWindow';
@@ -26,7 +26,7 @@ export default class TilesContainer extends React.Component {
         Request.get('/paginatePosts/1').then((res) => {
             this.setState({
                 recentPosts: res.body.docs.map((post) =>
-                    <Tile key={post._id.toString()} title={post.title} address={post.address} />
+                    <PostTile key={post._id.toString()} title={post.title} address={post.address} />
                 ),
             })
         });
