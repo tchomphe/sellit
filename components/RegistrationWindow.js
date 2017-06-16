@@ -7,7 +7,6 @@ class RegistrationWindow extends React.Component{
             <div>
                 <div id="registerModal" className="modal">
                     <a className="modal-action modal-close btn-large modalButtonClose">x</a>
-                    <a className="modal-action modal-close btn-large modalButtonBack">{"<"}</a>
                     <div className="modal-content">
                          <div className="row">
                             <form className="col s12 center">
