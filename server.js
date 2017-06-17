@@ -64,7 +64,7 @@ passport.use(new LocalStrategy(
 ));
 
 // GET requests
-app.get('/', function(req, res){
+app.get(['/', '/create-post'], function(req, res){
   res.render('home');
 });
 
