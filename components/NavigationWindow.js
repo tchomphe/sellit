@@ -14,7 +14,8 @@ class NavigationWindow extends React.Component{
                             </div>
                         </form></nav>
                         <br />
-                        <a href="#registerModal" className="waves-effect waves-light btn-large login-button">login to post</a>
+                        <a href="#loginModal" className="waves-effect waves-light btn-large login-button">login to post</a>
+                        <a href="#registerModal" className="waves-effect waves-light btn-large login-button">(or create an account)</a>
                     </div>
                 </div>
             </div>
