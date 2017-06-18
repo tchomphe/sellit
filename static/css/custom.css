@@ -104,6 +104,12 @@ nav {
     line-height: 56px;
 }
 
+.nav-wrapper form {
+    display: inline-block;
+    margin-left: 300px;
+    width: 400px;
+}
+
 /* set modal window's height and width */
 .modal {
     border-radius: 8px;
