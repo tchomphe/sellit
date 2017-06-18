@@ -1,5 +1,5 @@
 {
-  "name": "sellit",
+  "name": "tolist",
   "version": "1.0.0",
   "description": "A buy, sell and trade web application.",
   "main": "app.js",
