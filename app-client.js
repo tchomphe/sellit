@@ -7,7 +7,5 @@ window.onload = () => {
 
     // Initialize modal plugin
     $('.modal').modal();
-    //display NavigationWindow on page load
-    $('#navigationModal').modal('open');
 
 };

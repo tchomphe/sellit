@@ -1,6 +1,6 @@
 import React from 'react';
 import PostTile from './PostTile';
-import NavigationWindow from './NavigationWindow';
+import NavigationHeader from './NavigationHeader';
 import RegistrationWindow from './RegistrationWindow';
 import PostWindow from './PostWindow';
 import FloatingMenuButton from './FloatingMenuButton';
@@ -35,7 +35,7 @@ export default class TilesContainer extends React.Component {
     render(){
         return(
             <div className="col s12">
-                <NavigationWindow />
+                <NavigationHeader />
                 {this.state.recentPosts}
                 <FloatingMenuButton />
                 <RegistrationWindow />

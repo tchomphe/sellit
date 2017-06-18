@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class NavigationWindow extends React.Component{
+class NavigationHeader extends React.Component{
     render(){
         return(
             <div>
@@ -27,4 +27,4 @@ class NavigationWindow extends React.Component{
     }
 }
 
-export default NavigationWindow;
+export default NavigationHeader;
