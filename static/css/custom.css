@@ -4,6 +4,7 @@ body {
 
 #container .container {
     width: 100%;
+    max-width: 100%;
 }
 
 #container .container .row {
