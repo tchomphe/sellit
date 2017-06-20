@@ -66,6 +66,7 @@ exports.createUser = function(req, res){
   var newUser = {
     email: req.body.email,
     password: req.body.password,
+    nickname: req.body.nickname,
     phone: req.body.phone,
   };
 
