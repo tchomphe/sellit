@@ -6,8 +6,8 @@ var server = require('../server');
 // temporary variables for storing ID's
 var postID, userID;
 
+// Homepage Tests =================================================== //
 describe('User-related API tests', function () {
-
   describe('GET /', function(){
     it('responds with HTTP Status 200', function(done) {
       request('http://localhost:8080' , function(error, response, body) {
@@ -16,6 +16,11 @@ describe('User-related API tests', function () {
       });
     });
   });
+});
+
+
+describe('User-related API tests', function () {
+
 
 // Create //
 // -------//
