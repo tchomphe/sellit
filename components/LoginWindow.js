@@ -8,7 +8,7 @@ class LoginWindow extends React.Component{
                     <a className="modal-action modal-close btn-large modalButtonClose">x</a>
                     <div className="modal-content">
                          <div className="row">
-                            <form className="col s12 center">
+                            <form className="col s12 center" method="post" action="/login">
                                 <h5>Login</h5>
                                 <div className="row center">
                                     <div className="input-field col s12">
@@ -22,7 +22,7 @@ class LoginWindow extends React.Component{
                                         <label htmlFor="password">Password</label>
                                     </div>
                                 </div>
-                                <a className="waves-effect waves-light btn-large">Login</a>
+                                <a className="waves-effect waves-light btn-large" type="submit">Login</a>
                             </form>
                         </div>
                     </div>
