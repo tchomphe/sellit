@@ -18,12 +18,8 @@ describe('User-related API tests', function () {
   });
 });
 
-
+// User API Tests ===================================================== //
 describe('User-related API tests', function () {
-
-
-// Create //
-// -------//
 
   describe('POST /createUser', function(){
     it('responds with HTTP Status 200', function(done) {
@@ -39,9 +35,6 @@ describe('User-related API tests', function () {
         });
     })
   });
-
-// Retrieve //
-// -------- //
 
   describe('GET /userByEmail/:email', function(){
     it('responds with HTTP Status 200', function(done) {
@@ -64,9 +57,6 @@ describe('User-related API tests', function () {
     })
   });
 
-// Update //
-// -------//
-
   describe('PUT /user/:id', function(){
     it('responds with HTTP Status 200', function(done){
       request
@@ -81,7 +71,7 @@ describe('User-related API tests', function () {
   });
 });
 
-
+// Post API Tests ===================================================== //
 describe('Post-related API tests', function () {
 
   describe('POST /createPost', function(){
@@ -137,7 +127,7 @@ describe('Post-related API tests', function () {
   });
 });
 
-
+// Cleanup ============================================================//
 describe('Cleanup, and DELETE API tests', function () {
 
   describe('DELETE /post/:id', function(){
