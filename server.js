@@ -77,12 +77,11 @@ app.get('/userByEmail/:email', api.getUserByEmail);
 // POST requests
 app.post('/createPost', upload.array('postImages'), api.createPost);
 app.post('/createUser', upload.array('userImages'), api.createUser);
-app.post('/login', passport.authenticate('local', function(req, res){
-  console.log('Passport authentication passed!');
-  //res.redirect('/login/success');
-}));
-app.post('/login', passport.authenticate('local', { successRedirect: '/',
-                                                    failureRedirect: '/login' }));
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/', failureRedirect: '/#login' }),
+  function(req, res){
+    console.log('Passport authentication passed!');
+});
 
 // PUT requests
 app.put('/user/:id', api.updateUserInfo);
