@@ -7,8 +7,7 @@ var userSchema = new Schema({
   email:  {type: String, required: true, unique: true, trim: true},
   password: {type: String, required: true},
   nickname: { type: String, trim: true},
-  phone: Number,
-  posts: [{type: ObjectId, ref: 'post'}]
+  phone: Number  
 });
 
 userSchema.methods.validPassword = function(pw){
