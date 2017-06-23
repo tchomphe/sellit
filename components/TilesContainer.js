@@ -2,6 +2,7 @@ import React from 'react';
 import PostTile from './PostTile';
 import NavigationHeader from './NavigationHeader';
 import RegistrationWindow from './RegistrationWindow';
+import LoginWindow from './LoginWindow';
 import PostWindow from './PostWindow';
 import FloatingMenuButton from './FloatingMenuButton';
 import FloatingBackButton from './FloatingBackButton';
@@ -39,6 +40,7 @@ export default class TilesContainer extends React.Component {
                 {this.state.recentPosts}
                 <FloatingMenuButton />
                 <RegistrationWindow />
+                <LoginWindow />
                 <PostWindow />
             </div>
         );
