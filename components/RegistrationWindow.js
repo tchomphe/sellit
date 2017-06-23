@@ -33,8 +33,9 @@ class RegistrationWindow extends React.Component{
                                         <label>Phone</label>
                                     </div>
                                 </div>
-                                <input type="submit" />
-                                <a className="waves-effect waves-light btn-large">Register</a>
+                                <button className="btn-large waves-effect waves-light" type="submit" name="action">Register
+                                    <i className="material-icons right">send</i>
+                                </button>
                             </form>
                         </div>
                     </div>
