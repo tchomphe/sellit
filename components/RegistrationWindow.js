@@ -9,21 +9,17 @@ class RegistrationWindow extends React.Component{
                     <a className="modal-action modal-close btn-large modalButtonClose">x</a>
                     <div className="modal-content">
                          <div className="row">
+                            <h5>Create Account</h5>
                             <form className="col s12 center" method="post" action="/createUser" >
-                                <h5>Create Account</h5>
                                 <div className="row center">
                                     <div className="input-field col s12">
                                         <input name ="email" type="email" className="validate" required="required"/>
                                         <label data-error="Not a valid email address">* Email</label>
                                     </div>
-                                </div>
-                                <div className="row">
                                     <div className="input-field col l6">
                                         <input name="password" type="password" className="validate" />
                                         <label >* Password</label>
                                     </div>
-                                </div>
-                                <div className="row">
                                     <div className="input-field col l8 m6">
                                         <input name="nickname" type="text" className="validate" />
                                         <label>Name/Nickname</label>
