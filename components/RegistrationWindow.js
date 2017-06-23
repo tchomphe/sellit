@@ -13,8 +13,8 @@ class RegistrationWindow extends React.Component{
                                 <h5>Create Account</h5>
                                 <div className="row center">
                                     <div className="input-field col s12">
-                                        <input name ="email" type="text" className="validate" />
-                                        <label>* Email</label>
+                                        <input name ="email" type="email" className="validate" required="required"/>
+                                        <label data-error="Not a valid email address">* Email</label>
                                     </div>
                                 </div>
                                 <div className="row">
