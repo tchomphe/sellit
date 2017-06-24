@@ -71,9 +71,11 @@ exports.createUser = function(req, res){
   };
 
   //create new database entry from POST request's JSON object
-  User.create(newUser, function(err, results){
-    varifyQuerySuccess(err, res, 'createUser');
-    res.send('Received and processed JSON data.');
+  User.createUser(newUser, function(err){
+    if (err)
+      console.log(':( User Creation Error ==> ' + err);
+
+    res.send('done');
   });
 };
 
