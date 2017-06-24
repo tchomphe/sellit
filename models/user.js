@@ -18,7 +18,7 @@ userSchema.methods.validPassword = function(pw){
 // Create & export User Model
 var User = module.exports = mongoose.model('User', userSchema);
 
-module.exports.createUser = function(newUser, callback){
+module.exports.saveNewUser = function(newUser, callback){
   // Create hash for user's password
   newUser.password = crypto.createHmac('sha256', newUser.password)
     .update('saltyy:[')
