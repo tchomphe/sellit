@@ -78,7 +78,7 @@ app.get('/userByEmail/:email', api.getUserByEmail);
 // POST requests
 app.post('/createPost', upload.array('postImages'), api.createPost);
 app.post('/createUser', upload.array('userImages'), api.createUser);
-app.post('/login', passport.authenticate('local'), function(req, res){});
+app.post('/login', passport.authenticate('local', {successRedirect: '/',failureRedirect: '/', failureFlash: true }));
 
 // PUT requests
 app.put('/user/:id', api.updateUserInfo);
