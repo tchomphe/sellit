@@ -27,8 +27,8 @@ module.exports.saveNewUser = function(newUser, callback){
   // Save new user to database
   User.create(newUser, function(err, user){
     if (err)
-      callback(err);
+      callback(err, null);
     else
-      callback(null);
+      callback(null, user);
   });
 }
