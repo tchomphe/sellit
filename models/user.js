@@ -12,7 +12,7 @@ var userSchema = new Schema({
 });
 
 userSchema.methods.validPassword = function(pw){
-  return (this.password === pw);
+  return (this.password === crypto.createHmac('sha256', pw).update('saltyy:[').digest('hex'))
 }
 
 // Create & export User Model

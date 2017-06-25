@@ -44,21 +44,22 @@ app.set('view engine', 'handlebars');
 mongoose.connect('mongodb://127.0.0.1/sellit');
 
 passport.use(new LocalStrategy(
-  function(username, password, done){
-    User.findOne({ username:username }, function(err, user){
+  function(email, password, done){
+    User.findOne({ email:email }, function(err, user){
       if(err) {
-        // console.log('Error! ' + err);
+        console.log('Error! ' + err);
         return done(err); }
       if(!user) {
-        // console.log('User not found');
-        return done(null, false, {message: 'Incorrect username'});
+        console.log('User not found');
+        return done(null, false, {message: 'Incorrect email'});
       }
       if(!user.validPassword(password)){
-        // console.log('Invalid PW');
+        console.log('Invalid PW');
         return done(null, false, {message: 'Incorrect password'});
       }
-      // console.log('Username: ' + username + ', password: ' + password);
-      return done(null, user);
+      console.log('Passport authentication passed!');
+      console.log('Email: ' + email + ', password: ' + password);
+      return done();
     });
   }
 ));
@@ -77,11 +78,7 @@ app.get('/userByEmail/:email', api.getUserByEmail);
 // POST requests
 app.post('/createPost', upload.array('postImages'), api.createPost);
 app.post('/createUser', upload.array('userImages'), api.createUser);
-app.post('/login',
-  passport.authenticate('local', { successRedirect: '/', failureRedirect: '/#login' }),
-  function(req, res){
-    console.log('Passport authentication passed!');
-});
+app.post('/login', passport.authenticate('local'), function(req, res){});
 
 // PUT requests
 app.put('/user/:id', api.updateUserInfo);
