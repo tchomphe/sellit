@@ -5,6 +5,7 @@ import RegistrationWindow from './RegistrationWindow';
 import LoginWindow from './LoginWindow';
 import PostWindow from './PostWindow';
 import FloatingBackButton from './FloatingBackButton';
+import Banner from './Banner';
 import Request from 'superagent';
 
 export default class TilesContainer extends React.Component {
@@ -36,7 +37,8 @@ export default class TilesContainer extends React.Component {
         return(
             <div className="col s12">
                 <NavigationHeader />
-                {this.state.recentPosts}                
+                <Banner />
+                {this.state.recentPosts}
                 <RegistrationWindow />
                 <LoginWindow />
                 <PostWindow />

@@ -23,6 +23,11 @@ body {
     width: 100%;
 }
 
+.banner {
+    height: 400px;
+    background-color: #ee6e73;
+}
+
 .floatingBackButton {
     position: fixed !important;
     z-index: 99;
