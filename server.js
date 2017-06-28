@@ -77,14 +77,23 @@ app.post('/login', function(req, res, next){
   console.log('Received login Request...');
   console.log(req.body);
 
-  passport.authenticate('local', function(err) {
-    console.log('Processed login Request.....');
-    if (err) { console.log('ERROR: ' + err.message); return res.redirect('/'); }
+  if (req.body.email){
+    passport.authenticate('local', function(err) {
+      console.log('Processed login Request.....');
+      if (err) {
+        console.log('ERROR: ' + err.message);
+        return res.redirect('/');
+      }
 
-    //TODO: log user in, potentially with req.logIn(user, func)
-    console.log('SUCCESS: ' + req.body.email + ' has been logged in.');
-    return res.redirect('/create-post');
-  })(req, res, next);
+      //TODO: log user in, potentially with req.logIn(user, func)
+      console.log('SUCCESS: ' + req.body.email + ' has been logged in.');
+      return res.redirect('/create-post');
+    })(req, res, next);
+  }
+  else{
+    console.log('ERROR: Body email field is null');
+    return res.redirect('/');
+  }
 });
 
 // PUT requests
