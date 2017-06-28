@@ -10,7 +10,7 @@ class LoginWindow extends React.Component{
                         <h5>Login</h5>
                         <form className="row center" method="post" action="/login">
                             <div className="input-field col s12">
-                                <input id="email" type="email" name="username" className="validate" />
+                                <input id="email" type="email" name="email" className="validate" />
                                 <label htmlFor="email" data-error="wrong" data-success="right">Email</label>
                             </div>
                             <div className="input-field col l12">
