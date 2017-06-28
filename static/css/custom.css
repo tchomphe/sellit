@@ -15,17 +15,29 @@ body {
     width: 33%;
     display: inline-block;
     margin: 0px;
-    border: 1px solid black;
+    border: 5px solid black;
     border-radius: 0;
+    background-color: #000000;
 }
+
 
 .card a, .card a img {
     width: 100%;
 }
+.card .card-image img {
+     border-radius: 0px 0px 0 0;
+}
+
+.card .card-content{
+    color: #ffffff;
+}
 
 .banner {
     height: 400px;
-    background-color: #ee6e73;
+    background-color: #000000;
+    background-image: url('/assets/img/toronto3.jpg');
+    background-size: 100%;
+
 }
 
 .floatingBackButton {
@@ -34,7 +46,9 @@ body {
     top: 30px;
     left: 30px;
 }
-
+.btn {
+    border-radius: 0;
+}
 .floatingMenuButton {
     position: fixed;
     z-index: 99;
@@ -53,12 +67,12 @@ body {
     top: 0px;
     height: 45px;
     padding: 8px 22px 0px 24px;
-    color: black;
+    color: #26a69a;
     line-height: 26px;
     font-size: 22px;
     text-transform: none;
-    border: 1px solid lightgray;
-    border-radius: 0px 0px 0px 12px;
+    /*border: 1px solid #ffffff;*/
+    border-radius: 0px 0px 0px 0px;
     border-right: none;
     border-top: none;
     box-shadow: none;
@@ -104,13 +118,19 @@ body {
 /* search box color modification*/
 nav {
     color: #fff;
-    background-color: #ee6e73;
+    background-color: #000000;
     width: 100%;
     height: 56px;
     line-height: 56px;
     position: fixed;
     z-index: 99;
     left: 0px;
+    opacity: 0.8;    
+}
+
+.input-field input[type=search]:focus {
+    background-color: #000000;
+    color: #ffffff;
 }
 
 .nav-wrapper form {
@@ -121,7 +141,7 @@ nav {
 
 /* set modal window's height and width */
 .modal {
-    border-radius: 8px;
+    border-radius: 0px;
     max-height: 90%;
 }
 

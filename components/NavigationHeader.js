@@ -7,7 +7,7 @@ class NavigationHeader extends React.Component{
             <div>
                 <nav className="left-align">
                     <div className="nav-wrapper">
-                        <a href="#!" className="brand-logo left">TOlist</a>
+                        <a href="#!" className="brand-logo left">Toronto list</a>
                         <form>
                             <div className="input-field">
                                 <input id="search" type="search" required />
