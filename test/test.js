@@ -36,6 +36,20 @@ describe('User-related API tests', function () {
     })
   });
 
+  describe('POST /login', function(){
+    it('should redirect to /create-post', function(done) {
+      request
+        .post('http://localhost:8080/login')
+        .type('form')
+        .send({email: 'goku@gmail.com', password: 'worstpassword123'})
+        .end(function(error, response, body){
+          //placeholder test condition
+          expect(response.redirects[0]).to.contain('/create-post');
+          done();
+        });
+    })
+  });
+
   describe('GET /userByEmail/:email', function(){
     it('responds with HTTP Status 200', function(done) {
       request.get('http://localhost:8080/userByEmail/goku@gmail.com', function(error, response, body){
