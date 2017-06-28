@@ -50,18 +50,10 @@ passport.use(new LocalStrategy({
   },
   function(username, password, done){
     User.findOne({ email:username }, function(err, user){
-      if(err) {
-        console.log('Error! ' + err);
-        return done(err); }
-      if(!user) {
-        console.log('User not found');
-        return done(null, false, {message: 'Incorrect email'});
-      }
-      if(!user.validPassword(password)){
-        console.log('Invalid PW');
-        return done(new Error('Invalid Password!'), null);
-      }
-      console.log('Passport authentication passed!');
+      if(err) { return done(err); }
+      if(!user) { return done(new Error('User not found.')); }
+      if(!user.validPassword(password)) { return done(new Error('Invalid Password!')); }
+
       return done(null, username, 'Authentication Passed');
     });
   }
@@ -85,13 +77,12 @@ app.post('/login', function(req, res, next){
   console.log('Received login Request...');
   console.log(req.body);
 
-  passport.authenticate('local', function(err, user, info) {
+  passport.authenticate('local', function(err) {
     console.log('Processed login Request.....');
-    if (err) { console.log('ERROR: ' + err); return res.redirect('/'); }
-    if (!user) { console.log('NO SUCH USER: ' + info); return res.redirect('/'); }
+    if (err) { console.log('ERROR: ' + err.message); return res.redirect('/'); }
 
     //TODO: log user in, potentially with req.logIn(user, func)
-    console.log('SUCCESS');
+    console.log('SUCCESS: ' + req.body.email + ' has been logged in.');
     return res.redirect('/create-post');
   })(req, res, next);
 });
