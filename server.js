@@ -43,9 +43,13 @@ app.set('view engine', 'handlebars');
 // Connect to the database
 mongoose.connect('mongodb://127.0.0.1/sellit');
 
-passport.use(new LocalStrategy(
-  function(email, password, done){
-    User.findOne({ email:email }, function(err, user){
+passport.use(new LocalStrategy({
+    // define parameters in req.body passportjs defines as username and password
+    usernameField: 'email',
+    passwordField: 'password'
+  },
+  function(username, password, done){
+    User.findOne({ email:username }, function(err, user){
       if(err) {
         console.log('Error! ' + err);
         return done(err); }
@@ -55,11 +59,10 @@ passport.use(new LocalStrategy(
       }
       if(!user.validPassword(password)){
         console.log('Invalid PW');
-        return done(null, false, {message: 'Incorrect password'});
+        return done(new Error('Invalid Password!'), null);
       }
       console.log('Passport authentication passed!');
-      console.log('Email: ' + email + ', password: ' + password);
-      return done();
+      return done(null, username, 'Authentication Passed');
     });
   }
 ));
@@ -78,7 +81,20 @@ app.get('/userByEmail/:email', api.getUserByEmail);
 // POST requests
 app.post('/createPost', upload.array('postImages'), api.createPost);
 app.post('/createUser', upload.array('userImages'), api.createUser);
-app.post('/login', passport.authenticate('local', {successRedirect: '/',failureRedirect: '/', failureFlash: true }));
+app.post('/login', function(req, res, next){
+  console.log('Received login Request...');
+  console.log(req.body);
+
+  passport.authenticate('local', function(err, user, info) {
+    console.log('Processed login Request.....');
+    if (err) { console.log('ERROR: ' + err); return res.redirect('/'); }
+    if (!user) { console.log('NO SUCH USER: ' + info); return res.redirect('/'); }
+
+    //TODO: log user in, potentially with req.logIn(user, func)
+    console.log('SUCCESS');
+    return res.redirect('/create-post');
+  })(req, res, next);
+});
 
 // PUT requests
 app.put('/user/:id', api.updateUserInfo);
