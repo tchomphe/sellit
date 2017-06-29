@@ -67,6 +67,7 @@ app.get(['/', '/create-post'], function(req, res){
 app.get('/paginatePosts/:pageNum', api.paginatePosts);
 app.get('/post/:id', api.getPostByID);
 app.get('/user/:id', api.getUserByID);
+app.get('/searchByTitle/:title', api.searchByTitle);
 app.get('/postByTitle/:title', api.getPostByTitle);
 app.get('/userByEmail/:email', api.getUserByEmail);
 

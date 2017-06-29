@@ -2,13 +2,21 @@ import React from 'react';
 
 
 class NavigationHeader extends React.Component{
+    constructor(props){
+        super(props);
+
+        this.state={
+            searchedPosts: [],
+        }
+    }
+
     render(){
         return(
             <div>
                 <nav className="left-align">
                     <div className="nav-wrapper">
                         <a href="#!" className="brand-logo left">Toronto list</a>
-                        <form>
+                        <form method="get" action="/searchByTitle">
                             <div className="input-field">
                                 <input id="search" type="search" required />
                                 <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>

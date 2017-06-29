@@ -33,6 +33,13 @@ exports.paginatePosts = function(req, res){
   });
 };
 
+exports.searchByTitle = function(req, res){
+  Post.paginate(Post.find({'title': req.params.title}), {limit:10}, function(err, result){
+    console.log('Pagination success.');
+    res.send(result);
+  });
+};
+
 exports.getPostByTitle = function(req, res){
   Post.findOne({'title': req.params.title}, 'title address description date', function(err, post) {
     varifyQuerySuccess(err, res, 'getPostByTitle');
