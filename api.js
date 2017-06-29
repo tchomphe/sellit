@@ -34,7 +34,12 @@ exports.paginatePosts = function(req, res){
 };
 
 exports.searchByTitle = function(req, res){
-  Post.paginate(Post.find({'title': req.params.title}), {limit:10}, function(err, result){
+  var titleWords = req.params.title.split(" ");
+
+  //define regular expression used in mongoDB query
+  var regExpQuery = new RegExp('.*' + titleWords[0] + '.*', "i");
+
+  Post.paginate(Post.find({'title': regExpQuery }), {limit:10}, function(err, result){
     console.log('Pagination success.');
     res.send(result);
   });
