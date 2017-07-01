@@ -37,17 +37,43 @@ describe('User-related API tests', function () {
   });
 
   describe('POST /login', function(){
-    it('should redirect to /create-post', function(done) {
-      request
-        .post('http://localhost:8080/login')
-        .type('form')
-        .send({email: 'goku@gmail.com', password: 'worstpassword123'})
-        .end(function(error, response, body){
-          //placeholder test condition
-          expect(response.redirects[0]).to.contain('/create-post');
-          done();
-        });
-    })
+    describe('with VALID credentials', function() {
+      it('should redirect to /create-post', function(done) {
+        request
+          .post('http://localhost:8080/login')
+          .type('form')
+          .send({email: 'goku@gmail.com', password: 'worstpassword123'})
+          .end(function(error, response, body){
+            //test for redirection URL, varifying login success
+            expect(response.redirects[0]).to.contain('/create-post');
+            done();
+          });
+      });
+    });
+    describe('with INVALID credentials', function() {
+      it('should respond with: Invalid Password!', function(done) {
+        request
+          .post('http://localhost:8080/login')
+          .type('form')
+          .send({email: 'goku@gmail.com', password: 'wrongpass'})
+          .end(function(error, response, body){
+            //test for redirection URL, varifying login failure
+            expect(response.body.error).to.equal('Invalid Password!');
+            done();
+          });
+      })
+      it('should respond with: User Not found!', function(done) {
+        request
+          .post('http://localhost:8080/login')
+          .type('form')
+          .send({email: 'goku@g.com', password: 'worstpassword123'})
+          .end(function(error, response, body){
+            //test for redirection URL, varifying login failure
+            expect(response.body.error).to.equal('User Not Found!');
+            done();
+          });
+      })
+    });
   });
 
   describe('GET /userByEmail/:email', function(){
