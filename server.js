@@ -1,5 +1,6 @@
 //--------------- CONFIGURE VARIABLES ---------------//
 var express = require('express');
+var expressSession = require('express-session')
 var mongoose = require('mongoose');
 var app = express();
 var api = require('./api');
@@ -30,11 +31,14 @@ var User = require('./models/user'); // used for authentication
 
 
 //--------------- CONFIGURE MIDDLEWARE ---------------//
+app.use('/assets', express.static(path.join(__dirname, 'static'))); // define public path location
 app.use(logger('dev')); // records client requests -> server, via console.log()
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
-app.use(cookieParser());
-app.use('/assets', express.static(path.join(__dirname, 'static'))); // define public path location
+app.use(expressSession({resave: false, saveUninitialized: false, secret: 'sellit, TOlist or listTO?'}));
+// app.use(passport.initialize);
+// app.use(passport.session);
 
 // Set up view engine
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
