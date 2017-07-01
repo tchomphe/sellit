@@ -1,21 +1,17 @@
+//--------------- CONFIGURE VARIABLES ---------------//
 var express = require('express');
-var logger = require('morgan');
+var mongoose = require('mongoose');
+var app = express();
+var api = require('./api');
+
+var exphbs  = require('express-handlebars');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var path = require('path');
-var mongoose = require('mongoose');
-var api = require('./api');
-var exphbs  = require('express-handlebars');
+var logger = require('morgan');
+
+// Define multer settings (for multi-form file uploading) //
 var multer = require('multer');
-
-
-var User = require('./models/user');
-var passport = require('passport'),
-LocalStrategy = require('passport-local').Strategy;
-
-var app = express();
-
-// Define multer settings
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './static/uploads')
@@ -27,20 +23,25 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage })
 
-// Logger to print request/response to server
-app.use(logger('dev'));
+// TODO: move passport authentication into separate file
+var passport = require('passport'),
+  LocalStrategy = require('passport-local').Strategy;
+var User = require('./models/user'); // used for authentication
+
+
+//--------------- CONFIGURE MIDDLEWARE ---------------//
+app.use(logger('dev')); // records client requests -> server, via console.log()
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(cookieParser());
-
-// Setting middleware path location
-app.use('/assets', express.static(path.join(__dirname, 'static')));
+app.use('/assets', express.static(path.join(__dirname, 'static'))); // define public path location
 
 // Set up view engine
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 // Connect to the database
+// TODO: update db name to final site's name
 mongoose.connect('mongodb://127.0.0.1/sellit');
 
 passport.use(new LocalStrategy({
@@ -59,6 +60,8 @@ passport.use(new LocalStrategy({
   }
 ));
 
+
+//----------------- CONFIGURE ROUTING -----------------//
 // GET requests
 app.get(['/', '/create-post'], function(req, res){
   res.render('home');
@@ -108,4 +111,4 @@ app.delete('/post/:id', api.deletePost);
 // Start up server
 app.listen(8080, function(){
   console.log('Server running on port: 8080');
-})
+});
