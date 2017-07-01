@@ -51,7 +51,7 @@ passport.use(new LocalStrategy({
   function(username, password, done){
     User.findOne({ email:username }, function(err, user){
       if(err) { return done(err); }
-      if(!user) { return done(new Error('User not found.')); }
+      if(!user) { return done(new Error('User Not Found!')); }
       if(!user.validPassword(password)) { return done(new Error('Invalid Password!')); }
 
       return done(null, username, 'Authentication Passed');
@@ -83,7 +83,7 @@ app.post('/login', function(req, res, next){
       console.log('Processed login Request.....');
       if (err) {
         console.log('ERROR: ' + err.message);
-        return res.redirect('/');
+        return res.status(400).send({error: err.message});
       }
 
       //TODO: log user in, potentially with req.logIn(user, func)
