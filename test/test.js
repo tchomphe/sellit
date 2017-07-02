@@ -28,7 +28,7 @@ describe('User-related API tests', function () {
         .post('http://localhost:8080/createUser')
         .set('Content-Type', 'multipart/form-data')
         .field('email', 'goku@gmail.com')
-        .field('password', 'worstpassword123')
+        .field('password', 'kamehameha!')
         .field('phone', '1117770000')
         .end(function(error, response, body){
           expect(response.statusCode).to.equal(200);
@@ -63,7 +63,7 @@ describe('User-related API tests', function () {
       request
         .put('http://localhost:8080/user/'+userID)
         .set('Content-Type', 'application/json')
-        .send('{"email":"gokuSayan@dbz.com", "nickname":"Super Sayan"}')
+        .send('{"email":"gokuSuperSayan@dbz.com", "nickname":"Son Goku"}')
         .end(function(error, response, body){
           expect(response.statusCode).to.equal(200);
           done();
@@ -90,7 +90,7 @@ describe('Passportjs tests', function () {
       goku
         .post('http://localhost:8080/login')
         .type('form')
-        .send({email: 'gokuSayan@dbz.com', password: 'wrongpass'})
+        .send({email: 'gokuSuperSayan@dbz.com', password: 'wrongpassword'})
         .end(function(error, response, body){
           //test for redirection URL, varifying login failure
           expect(response.body.error).to.equal('Invalid Password!');
@@ -104,7 +104,7 @@ describe('Passportjs tests', function () {
       goku
         .post('http://localhost:8080/login')
         .type('form')
-        .send({email: 'hercules@dbz.com', password: 'worstpassword123'})
+        .send({email: 'hercules@dbz.com', password: 'kamehameha!'})
         .end(function(error, response, body){
           //test for redirection URL, varifying login failure
           expect(response.body.error).to.equal('User Not Found!');
@@ -118,7 +118,7 @@ describe('Passportjs tests', function () {
       goku
         .post('http://localhost:8080/login')
         .type('form')
-        .send({email: 'gokuSayan@dbz.com', password: 'worstpassword123'})
+        .send({email: 'gokuSuperSayan@dbz.com', password: 'kamehameha!'})
         .end(function(error, response, body){
           //test for redirection URL, varifying login success
           expect(response.redirects[0]).to.contain('/create-post');
@@ -135,7 +135,7 @@ describe('Passportjs tests', function () {
           expect(response.body.message).to.equal('User is logged in!');
           done();
         });
-    })
+    });
   });
 });
 
@@ -147,10 +147,10 @@ describe('Post-related API tests', function () {
       request
         .post('http://localhost:8080/createPost')
         .set('Content-Type', 'multipart/form-data')
-        .field('title', 'iPhone 34s')
-        .field('address', 'A1B2C3')
+        .field('title', 'iCapsule')
+        .field('address', 'Turtle Island')
         .field('type', 'Phone')
-        .field('description', 'Test description here!')
+        .field('description', 'Good condition, I managed to hold this phone twice with only minor dents!')
         .attach('postImages', __dirname + '/image1.jpg')
         .attach('postImages', __dirname + '/image2.jpg')
         .end(function(error, response, body){
@@ -162,7 +162,7 @@ describe('Post-related API tests', function () {
 
   describe('GET /postByTitle/:title', function(){
     it('responds with HTTP Status 200', function(done) {
-      request('http://localhost:8080/postByTitle/iPhone%2034s', function(error, response, body){
+      request('http://localhost:8080/postByTitle/iCapsule', function(error, response, body){
         expect(response.statusCode).to.equal(200);
         console.log(response.body);
         postID = response.body._id;
@@ -186,7 +186,7 @@ describe('Post-related API tests', function () {
       request
         .put('http://localhost:8080/post/'+postID)
         .set('Content-Type', 'application/json')
-        .send('{"title":"New Title", "address":"New Address", "description":"New Description"}')
+        .send('{"title":"iCapsule 4s", "address":"55959 Snake Way", "description":"..err just OK condition now."}')
         .end(function(error, response, body){
           expect(response.statusCode).to.equal(200);
           done();
