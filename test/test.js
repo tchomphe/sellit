@@ -138,6 +138,28 @@ describe('Passportjs tests', function () {
         });
     });
   });
+
+  describe('GET /logout', function(){
+    it('should redirect to / with status of 200', function(done) {
+      goku
+        .get('http://localhost:8080/logout').end(function(error, response, body){
+          expect(response.statusCode).to.equal(200);
+          expect(response.header.location).to.equal('/');
+          done();
+        });
+    });
+  });
+
+  describe('GET /myAccount', function(){
+    it('should redirect to / with status 400', function(done) {
+      goku
+        .get('http://localhost:8080/myAccount').end(function(error, response, body){
+          expect(response.statusCode).to.equal(400);
+          expect(response.header.location).to.equal('/');
+          done();
+        });
+    })
+  });
 });
 
 // Post API Tests ===================================================== //
