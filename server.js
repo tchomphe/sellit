@@ -33,12 +33,12 @@ var User = require('./models/user'); // used for authentication
 //--------------- CONFIGURE MIDDLEWARE ---------------//
 app.use('/assets', express.static(path.join(__dirname, 'static'))); // define public path location
 app.use(logger('dev')); // records client requests -> server, via console.log()
-app.use(cookieParser());
-app.use(bodyParser.json());
+app.use(cookieParser()); // read cookies, needed for authentication
+app.use(bodyParser.json()); // parse through html forms
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(expressSession({resave: false, saveUninitialized: false, secret: 'sellit, TOlist or listTO?'}));
-// app.use(passport.initialize);
-// app.use(passport.session);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Set up view engine
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -56,13 +56,21 @@ passport.use(new LocalStrategy({
   function(username, password, done){
     User.findOne({ email:username }, function(err, user){
       if(err) { return done(err); }
-      if(!user) { return done(new Error('User Not Found!')); }
-      if(!user.validPassword(password)) { return done(new Error('Invalid Password!')); }
+      if(!user) { return done(new Error('User Not Found!'), false); }
+      if(!user.validPassword(password)) { return done(new Error('Invalid Password!'), false); }
 
-      return done(null, username, 'Authentication Passed');
+      return done(null, user);
     });
   }
 ));
+
+// set up serialization & deserialization of user their session
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
 
 //----------------- CONFIGURE ROUTING -----------------//
@@ -86,16 +94,23 @@ app.post('/login', function(req, res, next){
   console.log(req.body);
 
   if (req.body.email){
-    passport.authenticate('local', function(err) {
-      console.log('Processed login Request.....');
+    passport.authenticate('local', function(err, user) {
       if (err) {
         console.log('ERROR: ' + err.message);
         return res.status(400).send({error: err.message});
       }
+      console.log('Authentication successful.....');
 
-      //TODO: log user in, potentially with req.logIn(user, func)
-      console.log('SUCCESS: ' + req.body.email + ' has been logged in.');
-      return res.redirect('/create-post');
+      // establish user login, potentially with req.logIn(user, func)
+      req.login(user, function(err){
+        if (err) {
+          console.log('login() ERROR: ' + err);
+          return res.status(400).send({error: err});
+        }
+
+        console.log('SUCCESS: ' + req.body.email + ' has been logged in.');
+        return res.redirect('/create-post');
+      });
     })(req, res, next);
   }
   else{
