@@ -144,9 +144,11 @@ describe('Post-related API tests', function () {
 
   describe('POST /createPost', function(){
     it('responds with HTTP Status 200', function(done) {
-      request
+      //TODO: include authentication when creating, updating, and deleting a post
+      request // should be -> goku
         .post('http://localhost:8080/createPost')
         .set('Content-Type', 'multipart/form-data')
+        .field('ownerID', userID)
         .field('title', 'iCapsule')
         .field('address', 'Turtle Island')
         .field('type', 'Phone')
