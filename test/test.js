@@ -121,7 +121,8 @@ describe('Passportjs tests', function () {
         .send({email: 'gokuSuperSayan@dbz.com', password: 'kamehameha!'})
         .end(function(error, response, body){
           //test for redirection URL, varifying login success
-          expect(response.redirects[0]).to.contain('/create-post');
+          expect(response.statusCode).to.equal(200);
+          expect(response.header.location).to.equal('/create-post');
           done();
         });
     });

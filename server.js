@@ -89,11 +89,11 @@ app.get('/myAccount', function(req, res){
   if (req.isAuthenticated())
     res.status(200).send({message: 'User is logged in!'});
   else
-    res.redirect('/', 400);
+    res.redirect(400, '/');
 });
 app.get('/logout', function(req, res){
   req.logout();
-  res.redirect('/');
+  res.redirect(200, '/');
 });
 
 // POST requests
@@ -119,13 +119,13 @@ app.post('/login', function(req, res, next){
         }
 
         console.log('SUCCESS: ' + req.body.email + ' has been logged in.');
-        return res.redirect('/create-post');
+        return res.redirect(200, '/create-post');
       });
     })(req, res, next);
   }
   else{
     console.log('ERROR: Body email field is null');
-    return res.redirect('/');
+    return res.redirect(400, '/');
   }
 });
 
