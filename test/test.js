@@ -3,8 +3,9 @@ var request = require('superagent');
 var server = require('../server');
 
 // TODO: Create JSON file used to seed data for testing
-// temporary variables for storing ID's
+// declare variables for testing
 var postID, userID;
+var goku = request.agent();
 
 // Homepage Tests =================================================== //
 describe('User-related API tests', function () {
@@ -73,9 +74,48 @@ describe('User-related API tests', function () {
 
 // Authentication & Login Session Tests ============================= //
 describe('Passportjs tests', function () {
+
+  describe('GET /myAccount', function(){
+    it('should redirect to / with status 400', function(done) {
+      goku
+        .get('http://localhost:8080/myAccount').end(function(error, response, body){
+          expect(response.statusCode).to.equal(400);
+          done();
+        });
+    })
+  });
+
+  describe('with INVALID credentials', function() {
+    it('should respond with: Invalid Password!', function(done) {
+      goku
+        .post('http://localhost:8080/login')
+        .type('form')
+        .send({email: 'gokuSayan@dbz.com', password: 'wrongpass'})
+        .end(function(error, response, body){
+          //test for redirection URL, varifying login failure
+          expect(response.body.error).to.equal('Invalid Password!');
+          done();
+        });
+    });
+  });
+
+  describe('with INVALID credentials', function() {
+    it('should respond with: User Not found!', function(done) {
+      goku
+        .post('http://localhost:8080/login')
+        .type('form')
+        .send({email: 'hercules@dbz.com', password: 'worstpassword123'})
+        .end(function(error, response, body){
+          //test for redirection URL, varifying login failure
+          expect(response.body.error).to.equal('User Not Found!');
+          done();
+        });
+    });
+  });
+
   describe('with VALID credentials', function() {
     it('should redirect to /create-post', function(done) {
-      request
+      goku
         .post('http://localhost:8080/login')
         .type('form')
         .send({email: 'gokuSayan@dbz.com', password: 'worstpassword123'})
@@ -86,26 +126,13 @@ describe('Passportjs tests', function () {
         });
     });
   });
-  describe('with INVALID credentials', function() {
-    it('should respond with: Invalid Password!', function(done) {
-      request
-        .post('http://localhost:8080/login')
-        .type('form')
-        .send({email: 'gokuSayan@dbz.com', password: 'wrongpass'})
-        .end(function(error, response, body){
-          //test for redirection URL, varifying login failure
-          expect(response.body.error).to.equal('Invalid Password!');
-          done();
-        });
-    })
-    it('should respond with: User Not found!', function(done) {
-      request
-        .post('http://localhost:8080/login')
-        .type('form')
-        .send({email: 'hercules@dbz.com', password: 'worstpassword123'})
-        .end(function(error, response, body){
-          //test for redirection URL, varifying login failure
-          expect(response.body.error).to.equal('User Not Found!');
+
+  describe('GET /myAccount', function(){
+    it('should respond with happy message', function(done) {
+      goku
+        .get('http://localhost:8080/myAccount').end(function(error, response, body){
+          expect(response.statusCode).to.equal(200);
+          expect(response.body.message).to.equal('User is logged in!');
           done();
         });
     })
