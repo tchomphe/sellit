@@ -85,6 +85,16 @@ app.get('/user/:id', api.getUserByID);
 app.get('/searchByTitle/:title', api.searchByTitle);
 app.get('/postByTitle/:title', api.getPostByTitle);
 app.get('/userByEmail/:email', api.getUserByEmail);
+app.get('/myAccount', function(req, res){
+  if (req.isAuthenticated())
+    res.status(200).send({message: 'User is logged in!'});
+  else
+    res.redirect('/', 400);
+});
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 
 // POST requests
 app.post('/createPost', upload.array('postImages'), api.createPost);
