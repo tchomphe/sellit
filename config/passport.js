@@ -2,7 +2,7 @@
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../config/models/user'); // used for authentication
 
-module.exports = function(passport){
+module.exports.defineLocalStrategy = function(passport){
     passport.use(new LocalStrategy({
         // define parameters in req.body passportjs defines as username and password
         usernameField: 'email',
@@ -21,9 +21,39 @@ module.exports = function(passport){
 
     // set up serialization & deserialization of user their session
     passport.serializeUser(function(user, done) {
-    done(null, user);
+        done(null, user);
     });
     passport.deserializeUser(function(user, done) {
-    done(null, user);
+        done(null, user);
     });
+}
+
+module.exports.handleLogin = function(req, res, next, passport){
+    console.log('Received login Request...');
+    console.log(req.body);
+
+    if (req.body.email){
+        passport.authenticate('local', function(err, user) {
+            if (err) {
+            console.log('ERROR: ' + err.message);
+            return res.status(400).send({error: err.message});
+            }
+            console.log('Authentication successful.....');
+
+            // establish user login, potentially with req.logIn(user, func)
+            req.login(user, function(err){
+            if (err) {
+                console.log('login() ERROR: ' + err);
+                return res.status(400).send({error: err});
+            }
+
+            console.log('SUCCESS: ' + req.body.email + ' has been logged in.');
+            return res.redirect(200, '/create-post');
+            });
+        })(req, res, next);
+    }
+    else{
+        console.log('ERROR: Body email field is null');
+        return res.redirect(400, '/');
+    }
 }
