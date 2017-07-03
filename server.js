@@ -74,7 +74,7 @@ app.get('/logout', function(req, res){
 // POST requests
 app.post('/createPost', upload.array('postImages'), api.createPost);
 app.post('/createUser', upload.array('userImages'), api.createUser);
-app.post('/login', (req, res, next) => authentication.handleLogin(req, res, next, passport));
+app.post('/login', function(req, res, next){ authentication.handleLogin(req, res, next, passport);});
 
 // PUT requests
 app.put('/user/:id', api.updateUserInfo);
