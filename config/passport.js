@@ -1,6 +1,6 @@
 // load variables needed for setup
 var LocalStrategy = require('passport-local').Strategy;
-var User = require('../models/user'); // used for authentication
+var User = require('../config/models/user'); // used for authentication
 
 module.exports = function(passport){
     passport.use(new LocalStrategy({
