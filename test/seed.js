@@ -26,7 +26,7 @@ var seedPosts = [
 ];
 
 module.exports.upload = function() {
-    console.log('Uploading seed data...');
+    console.log('SEED UPLOADING...');
 
     User.insertMany(seedUsers, function(err, docs){
         if (err) { console.log(err); }
@@ -36,4 +36,22 @@ module.exports.upload = function() {
     });
 
     console.log('Finished uploading seed data.');
+}
+
+module.exports.clean = function() {
+  console.log('SEED CLEANING...');
+
+  seedUsers.forEach(function(seedUser) {
+    User.findOneAndRemove({'_id': seedUser._id}, function(err, result){
+      if (err) { console.log('Error in User seed data cleanup! --> ' + err); }
+      console.log('Cleaned: ' + seedUser.username);
+    })
+  });
+
+  seedPosts.forEach(function(seedPost) {
+    User.findOneAndRemove({'ownerID': seedPost.ownerID}, function(err, result){
+      if (err) { console.log('Error in Posts seed data cleanup! --> ' + err); }
+      console.log('Cleaned: ' + seedPost.title);
+    })
+  });
 }
