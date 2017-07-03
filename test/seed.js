@@ -1,7 +1,6 @@
 var User = require('../config/models/user');
 var Post = require('../config/models/post');
-var ObjectID = require('mongodb').ObjectID;
-var vagetaID = ObjectID();
+var vagetaID = "595ac2f805957207512c4b64";
 
 var seedUsers = [
   {
