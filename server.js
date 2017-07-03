@@ -26,9 +26,17 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 
 
-//--------------- CONFIGURE MIDDLEWARE ---------------//
-require('./config/passport')(passport); // passport configuration
+//-------- CONFIGURE DB, VIEW ENGINE, & AUTH  --------//
+// TODO: update db name to final site's name
+mongoose.connect('mongodb://127.0.0.1/sellit'); // connect to the database
 
+require('./config/passport')(passport); // passportjs configuration
+
+app.engine('handlebars', exphbs({defaultLayout: 'main'})); // set up view engine
+app.set('view engine', 'handlebars');
+
+
+//--------------- CONFIGURE MIDDLEWARE ---------------//
 app.use('/assets', express.static(path.join(__dirname, 'static'))); // define public path location
 app.use(logger('dev')); // records client requests -> server, via console.log()
 app.use(cookieParser()); // read cookies, needed for authentication
@@ -37,14 +45,6 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.use(expressSession({resave: false, saveUninitialized: false, secret: 'sellit, TOlist or listTO?'}));
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Set up view engine
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
-
-// Connect to the database
-// TODO: update db name to final site's name
-mongoose.connect('mongodb://127.0.0.1/sellit');
 
 
 //----------------- CONFIGURE ROUTING -----------------//
