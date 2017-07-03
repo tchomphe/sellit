@@ -6,6 +6,7 @@ var app = express();
 var api = require('./api');
 
 var exphbs  = require('express-handlebars');
+var passport = require('passport');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var path = require('path');
@@ -24,13 +25,10 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage })
 
-// TODO: move passport authentication into separate file
-var passport = require('passport'),
-  LocalStrategy = require('passport-local').Strategy;
-var User = require('./models/user'); // used for authentication
-
 
 //--------------- CONFIGURE MIDDLEWARE ---------------//
+require('./config/passport')(passport); // passport configuration
+
 app.use('/assets', express.static(path.join(__dirname, 'static'))); // define public path location
 app.use(logger('dev')); // records client requests -> server, via console.log()
 app.use(cookieParser()); // read cookies, needed for authentication
@@ -47,30 +45,6 @@ app.set('view engine', 'handlebars');
 // Connect to the database
 // TODO: update db name to final site's name
 mongoose.connect('mongodb://127.0.0.1/sellit');
-
-passport.use(new LocalStrategy({
-    // define parameters in req.body passportjs defines as username and password
-    usernameField: 'email',
-    passwordField: 'password'
-  },
-  function(username, password, done){
-    User.findOne({ email:username }, function(err, user){
-      if(err) { return done(err); }
-      if(!user) { return done(new Error('User Not Found!'), false); }
-      if(!user.validPassword(password)) { return done(new Error('Invalid Password!'), false); }
-
-      return done(null, user);
-    });
-  }
-));
-
-// set up serialization & deserialization of user their session
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
 
 
 //----------------- CONFIGURE ROUTING -----------------//
