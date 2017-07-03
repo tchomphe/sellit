@@ -1,14 +1,17 @@
 var expect = require('chai').expect;
 var request = require('superagent');
 var server = require('../server');
+var seeder = require('./seed');
 
-// TODO: Create JSON file used to seed data for testing
 // declare variables for testing
 var postID, userID;
 var goku = request.agent();
 
+// upload seed data
+seeder.upload();
+
 // Homepage Tests =================================================== //
-describe('User-related API tests', function () {
+describe('Homepage API tests', function () {
   describe('GET /', function(){
     it('responds with HTTP Status 200', function(done) {
       request('http://localhost:8080' , function(error, response, body) {
@@ -174,7 +177,7 @@ describe('Post-related API tests', function () {
         .field('ownerID', userID)
         .field('title', 'iCapsule')
         .field('address', 'Turtle Island')
-        .field('type', 'Phone')
+        .field('type', 'smartphone')
         .field('description', 'Good condition, I managed to hold this phone twice with only minor dents!')
         .attach('postImages', __dirname + '/image1.jpg')
         .attach('postImages', __dirname + '/image2.jpg')
@@ -240,7 +243,10 @@ describe('Cleanup, and DELETE API tests', function () {
         .delete('http://localhost:8080/user/'+userID)
         .end(function(error, response, body){
           expect(response.statusCode).to.equal(200);
-          done();
+          done(
+            // clean seed data
+            seeder.clean()
+          );
         });
     });
   });
