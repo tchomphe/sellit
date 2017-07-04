@@ -2,7 +2,7 @@ var User = require('../config/models/user');
 var Post = require('../config/models/post');
 var vagetaID = "595ac2f805957207512c4b64";
 
-var seedUsers = [
+var seedUsers = module.exports.users = [
   {
     _id: vagetaID,
     email: 'vageta@gmail.com',
@@ -10,7 +10,7 @@ var seedUsers = [
     username: 'Sayan Prince'
   }
 ];
-var seedPosts = [
+var seedPosts = module.exports.posts = [
   {
     ownerID: vagetaID,
     title: 'iCapsure Ultimate',
