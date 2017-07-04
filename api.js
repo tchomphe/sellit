@@ -46,28 +46,28 @@ exports.searchByTitle = function(req, res){
 };
 
 exports.getPostByTitle = function(req, res){
-  Post.findOne({'title': req.params.title}, 'title address description date', function(err, post) {
+  Post.findOne({'title': req.params.title}, 'title type address description date', function(err, post) {
     varifyQuerySuccess(err, res, 'getPostByTitle');
     res.send(post);
   });
 };
 
 exports.getUserByID = function(req, res){
-  User.findOne({'_id': req.params.id}, 'email nickname', function(err, user){
+  User.findOne({'_id': req.params.id}, 'email nickname phone', function(err, user){
     varifyQuerySuccess(err, res, 'getUserByID');
     res.send(user);
   });
 };
 
 exports.getPostByID = function(req, res){
-  Post.findOne({'_id': req.params.id}, 'title address description date', function(err, post){
+  Post.findOne({'_id': req.params.id}, 'title type address description date', function(err, post){
     varifyQuerySuccess(err, res, 'getPostByID');
     res.send(post);
   });
 };
 
 exports.getUserByEmail = function(req, res){
-  User.findOne({'email': req.params.email}, 'name email email phone', function(err, user) {
+  User.findOne({'email': req.params.email}, 'email nickname phone', function(err, user) {
     varifyQuerySuccess(err, res, 'getUserByEmail');
     res.send(user);
   });
@@ -90,25 +90,31 @@ exports.createUser = function(req, res){
 };
 
 exports.createPost = function(req, res){
-  var uploadedImages = [];
-  (req.files).forEach(function(image) {
-    uploadedImages.push(image.path);
-  }, this);
+  //varify user is logged in
+  // if (req.isAuthenticated()){
+    var uploadedImages = [];
+    (req.files).forEach(function(image) {
+      uploadedImages.push(image.path);
+    }, this);
 
-  var newPost = {
-    ownerID: req.body.ownerID,
-    title: req.body.title,
-    address: req.body.address,
-    type: req.body.type,
-    description: req.body.description,
-    images: uploadedImages
-  };
+    var newPost = {
+      ownerID: req.body.ownerID,
+      title: req.body.title,
+      address: req.body.address,
+      type: req.body.type,
+      description: req.body.description,
+      images: uploadedImages
+    };
 
-  //create new database entry from POST request's JSON object
-  Post.create(newPost, function(err, results){
-    varifyQuerySuccess(err, res, 'createPost');
-    res.send('Received and processed JSON data.');
-  });
+    //create new database entry from POST request's JSON object
+    Post.create(newPost, function(err, results){
+      varifyQuerySuccess(err, res, 'createPost');
+      res.send('Received and processed JSON data.');
+    });
+  // }
+  // else {
+  //   res.status(400).send({message: 'You must log in!'});
+  // }
 };
 
 //-------------------------- PUT requests --------------------------//
