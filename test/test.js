@@ -22,6 +22,59 @@ describe('Homepage API tests', function () {
   });
 });
 
+// Post API Tests for Seed Data ======================================= //
+describe('Post-related API tests for -existing- DB data,', function () {
+
+  describe('GET /postByTitle/:title', function(){
+    it('responds with HTTP Status 200', function(done) {
+      request('http://localhost:8080/postByTitle/' + seeder.posts[0].title, function(error, response, body){
+        expect(response.body.type).to.equal(seeder.posts[0].type);
+        expect(response.body.address).to.equal(seeder.posts[0].address);
+        expect(response.statusCode).to.equal(200);
+        postID = response.body._id;
+        done();
+      });
+    });
+  });
+
+  describe('GET /post/:id', function(){
+    it('responds with HTTP Status 200', function(done) {
+      request.get('http://localhost:8080/post/'+postID, function(error, response, body){
+        expect(response.body.title).to.equal(seeder.posts[0].title);
+        expect(response.body.type).to.equal(seeder.posts[0].type);
+        expect(response.body.address).to.equal(seeder.posts[0].address);
+        expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });
+  });
+
+  describe('PUT /post/:id', function(){
+    it('responds with HTTP Status 200', function(done){
+      request
+        .put('http://localhost:8080/post/'+postID)
+        .set('Content-Type', 'application/json')
+        .send('{"title":"iNode 5s", "address":"123 Royal Way", "description":"Ok Condition. It works, deal with it."}')
+        .end(function(error, response, body){
+          expect(response.statusCode).to.equal(200);
+          done();
+        });
+    });
+  });
+
+  describe('GET /post/:id', function(){
+    it('responds with HTTP Status 200', function(done) {
+      request.get('http://localhost:8080/post/'+postID, function(error, response, body){
+        expect(response.body.title).to.equal("iNode 5s");
+        expect(response.body.address).to.equal("123 Royal Way");
+        expect(response.body.description).to.equal("Ok Condition. It works, deal with it.");
+        expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });
+  });
+});
+
 // User API Tests ===================================================== //
 describe('User-related API tests', function () {
 
@@ -37,7 +90,7 @@ describe('User-related API tests', function () {
           expect(response.statusCode).to.equal(200);
           done();
         });
-    })
+    });
   });
 
   describe('GET /userByEmail/:email', function(){
@@ -47,8 +100,8 @@ describe('User-related API tests', function () {
         console.log(response.body);
         userID = response.body._id;
         done();
-      })
-    })
+      });
+    });
   });
 
   describe('GET /user/:id', function(){
@@ -57,8 +110,8 @@ describe('User-related API tests', function () {
         expect(response.statusCode).to.equal(200);
         console.log(response.body);
         done();
-      })
-    })
+      });
+    });
   });
 
   describe('PUT /user/:id', function(){
@@ -85,7 +138,7 @@ describe('Passportjs tests', function () {
           expect(response.statusCode).to.equal(400);
           done();
         });
-    })
+    });
   });
 
   describe('with INVALID credentials', function() {
@@ -161,12 +214,12 @@ describe('Passportjs tests', function () {
           expect(response.header.location).to.equal('/');
           done();
         });
-    })
+    });
   });
 });
 
-// Post API Tests ===================================================== //
-describe('Post-related API tests', function () {
+// Post API Tests for New Data ======================================== //
+describe('Post-related API tests for -new- DB data,', function () {
 
   describe('POST /createPost', function(){
     it('responds with HTTP Status 200', function(done) {
@@ -185,28 +238,21 @@ describe('Post-related API tests', function () {
           expect(response.statusCode).to.equal(200);
           done();
         });
-    })
+    });
   });
 
   describe('GET /postByTitle/:title', function(){
     it('responds with HTTP Status 200', function(done) {
       request('http://localhost:8080/postByTitle/iCapsule', function(error, response, body){
+        expect(response.body.title).to.equal("iCapsule");
+        expect(response.body.address).to.equal("Turtle Island");
+        expect(response.body.description).to.equal("Good condition, I managed to hold this phone twice with only minor dents!");
         expect(response.statusCode).to.equal(200);
         console.log(response.body);
         postID = response.body._id;
         done();
       });
     });
-  });
-
-  describe('GET /post/:id', function(){
-    it('responds with HTTP Status 200', function(done) {
-      request.get('http://localhost:8080/post/'+postID, function(error, response, body){
-        expect(response.statusCode).to.equal(200);
-        console.log(response.body);
-        done();
-      })
-    })
   });
 
   describe('PUT /post/:id', function(){
@@ -219,6 +265,19 @@ describe('Post-related API tests', function () {
           expect(response.statusCode).to.equal(200);
           done();
         });
+    });
+  });
+
+  describe('GET /postByTitle/:title', function(){
+    it('responds with HTTP Status 200', function(done) {
+      request('http://localhost:8080/postByTitle/iCapsule%204s', function(error, response, body){
+        expect(response.body.address).to.equal("55959 Snake Way");
+        expect(response.body.description).to.equal("..err just OK condition now.");
+        expect(response.statusCode).to.equal(200);
+        console.log(response.body);
+        postID = response.body._id;
+        done();
+      });
     });
   });
 });
