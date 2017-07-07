@@ -14,7 +14,7 @@ export default class TilesContainer extends React.Component {
 
         //define state variable holding data for Tiles
         this.state = {
-            recentPosts: [],
+            displayedPosts: [],
         };
     }
 
@@ -26,7 +26,7 @@ export default class TilesContainer extends React.Component {
         //send GET request to API and update state with response
         Request.get('/paginatePosts/1').then((res) => {
             this.setState({
-                recentPosts: res.body.docs.map((post) =>
+                displayedPosts: res.body.docs.map((post) =>
                     <PostTile key={post._id.toString()} title={post.title} address={post.address} />
                 ),
             })
@@ -38,7 +38,7 @@ export default class TilesContainer extends React.Component {
             this.setState({
                 displayedPosts: res.body.docs.map((post) =>
                     <PostTile key={post._id.toString()} title={post.title} address={post.address} />
-                    ),
+                ),
             })
         });
     }
@@ -48,7 +48,7 @@ export default class TilesContainer extends React.Component {
             <div className="app-content row center">
                 <NavigationHeader searchPost={this.searchPost.bind(this)}/>
                 <Banner />
-                {this.state.recentPosts}
+                {this.state.displayedPosts}
                 <RegistrationWindow />
                 <LoginWindow />
                 <PostWindow />
