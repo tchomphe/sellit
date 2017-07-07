@@ -5,6 +5,7 @@ var seeder = require('./seed');
 
 // declare variables for testing
 var postID, userID;
+var vageta = request.agent();
 var goku = request.agent();
 
 // upload seed data
@@ -18,6 +19,74 @@ describe('Homepage API tests', function () {
         expect(response.statusCode).to.equal(200);
         done();
       });
+    });
+  });
+});
+
+// Establish Existing User Session =================================== //
+describe('Vageta login session tests', function () {
+
+  describe('GET /myAccount', function(){
+    it('should redirect to / with status 400', function(done) {
+      vageta
+        .get('http://localhost:8080/myAccount').end(function(error, response, body){
+          expect(response.statusCode).to.equal(400);
+          done();
+        });
+    });
+  });
+
+  describe('with INVALID credentials', function() {
+    it('should respond with: Invalid Password!', function(done) {
+      vageta
+        .post('http://localhost:8080/login')
+        .type('form')
+        .send({email: seeder.users.vageta.email, password: 'wrongpassword'})
+        .end(function(error, response, body){
+          //test for redirection URL, varifying login failure
+          expect(response.body.error).to.equal('Invalid Password!');
+          done();
+        });
+    });
+  });
+
+  describe('with INVALID credentials', function() {
+    it('should respond with: User Not found!', function(done) {
+      vageta
+        .post('http://localhost:8080/login')
+        .type('form')
+        .send({email: 'hercules@dbz.com', password: seeder.users.vageta.password})
+        .end(function(error, response, body){
+          //test for redirection URL, varifying login failure
+          expect(response.body.error).to.equal('User Not Found!');
+          done();
+        });
+    });
+  });
+
+  describe('with VALID credentials', function() {
+    it('should redirect to /create-post', function(done) {
+      vageta
+        .post('http://localhost:8080/login')
+        .type('form')
+        .send({email: seeder.users.vageta.email, password: seeder.users.vageta.password})
+        .end(function(error, response, body){
+          //test for redirection URL, varifying login success
+          expect(response.statusCode).to.equal(200);
+          expect(response.header.location).to.equal('/create-post');
+          done();
+        });
+    });
+  });
+
+  describe('GET /myAccount', function(){
+    it('should respond with happy message', function(done) {
+      vageta
+        .get('http://localhost:8080/myAccount').end(function(error, response, body){
+          expect(response.statusCode).to.equal(200);
+          expect(response.body.message).to.equal('User is logged in!');
+          done();
+        });
     });
   });
 });
