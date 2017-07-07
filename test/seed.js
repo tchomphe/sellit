@@ -30,9 +30,16 @@ module.exports.upload = function() {
     console.log('SEED UPLOADING...');
 
     // write seed users in mongoDB
-    for (var currentUser in seedUsers){
-      User.saveNewUser(seedUsers[currentUser], function(err, user){
-        if (err) { console.log(err); };
+    for (let i in seedUsers){
+      // save literal pw
+      var literalPassword = seedUsers[i].password;
+
+      // JS always passes objects by reference!
+      // TODO: find a way to pass this by value so saveNewUser doesn't replace pw with hashed version
+      User.saveNewUser(seedUsers[i], function(err, user){
+        if (err) { console.log(err); }
+        // load literal pw
+        seedUsers[i].password = literalPassword;
       });
     }
 
@@ -48,10 +55,10 @@ module.exports.clean = function() {
   console.log('SEED CLEANING...');
 
   // clean seed users
-  for (var currentUser in seedUsers){
-    User.findOneAndRemove({'_id': seedUsers[currentUser]._id}, function(err, result){
+  for (let i in seedUsers){
+    User.findOneAndRemove({'_id': seedUsers[i]._id}, function(err, result){
       if (err) { console.log('Error in User seed data cleanup! --> ' + err); }
-      console.log('Cleaned: ' + seedUsers[currentUser].username);
+      console.log('Cleaned: ' + seedUsers[i].username);
     });
   }
 
