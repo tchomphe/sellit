@@ -14,6 +14,7 @@ var path = require('path');
 var logger = require('morgan');
 
 // Define multer settings (for multi-form file uploading) //
+// TODO: move multer settings into config/ folder
 var multer = require('multer');
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -31,10 +32,10 @@ var upload = multer({ storage: storage })
 // TODO: update db name to final site's name
 mongoose.connect('mongodb://127.0.0.1/sellit'); // connect to the database
 
-authentication.defineLocalStrategy(passport); // passportjs configuration
-
 app.engine('handlebars', exphbs({defaultLayout: 'main'})); // set up view engine
 app.set('view engine', 'handlebars');
+
+authentication.defineLocalStrategy(passport); // passportjs configuration
 
 
 //--------------- CONFIGURE MIDDLEWARE ---------------//
