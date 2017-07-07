@@ -46,7 +46,7 @@ export default class TilesContainer extends React.Component {
     render(){
         return(
             <div className="app-content row center">
-                <NavigationHeader />
+                <NavigationHeader searchPost={this.searchPost.bind(this)}/>
                 <Banner />
                 {this.state.recentPosts}
                 <RegistrationWindow />
