@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 class NavigationHeader extends React.Component{
@@ -10,15 +11,20 @@ class NavigationHeader extends React.Component{
         }
     }
 
+    handleSubmit(e){
+        e.preventDefault();
+        this.props.searchPost("garuda");
+    }
+
     render(){
         return(
             <div>
                 <nav className="left-align">
                     <div className="nav-wrapper">
                         <a href="#!" className="brand-logo left">Toronto list</a>
-                        <form method="get" action="/searchByTitle">
+                        <form onSubmit={(e) => (this.handleSubmit(e))} >
                             <div className="input-field">
-                                <input id="search" type="search" required />
+                                <input id="search" type="search" ref="search" required />
                                 <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
                             </div>
                         </form>
