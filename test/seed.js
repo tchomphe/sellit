@@ -27,35 +27,35 @@ var seedPosts = module.exports.posts = [
 ];
 
 module.exports.upload = function() {
-    console.log('SEED UPLOADING...');
+  console.log('SEED UPLOADING...');
 
-    // write seed users in mongoDB
-    for (let i in seedUsers){
-      // save literal pw
-      var literalPassword = seedUsers[i].password;
+  // write seed users in mongoDB
+  for (var i in seedUsers){
+    // save literal pw
+    var literalPassword = seedUsers[i].password;
 
-      // JS always passes objects by reference!
-      // TODO: find a way to pass this by value so saveNewUser doesn't replace pw with hashed version
-      User.saveNewUser(seedUsers[i], function(err, user){
-        if (err) { console.log(err); }
-        // load literal pw
-        seedUsers[i].password = literalPassword;
-      });
-    }
-
-    // write seed posts in mongoDB
-    Post.insertMany(seedPosts, function(err, docs){
-        if (err) { console.log(err); }
+    // JS always passes objects by reference!
+    // TODO: find a way to pass this by value so saveNewUser doesn't replace pw with hashed version
+    User.saveNewUser(seedUsers[i], function(err, user){
+      if (err) { console.log(err); }
+      // load literal pw
+      seedUsers[i].password = literalPassword;
     });
+  }
 
-    console.log('Finished uploading seed data.');
+  // write seed posts in mongoDB
+  Post.insertMany(seedPosts, function(err, docs){
+      if (err) { console.log(err); }
+  });
+
+  console.log('Finished uploading seed data.');
 }
 
 module.exports.clean = function() {
   console.log('SEED CLEANING...');
 
   // clean seed users
-  for (let i in seedUsers){
+  for (var i in seedUsers){
     User.findOneAndRemove({'_id': seedUsers[i]._id}, function(err, result){
       if (err) { console.log('Error in User seed data cleanup! --> ' + err); }
       console.log('Cleaned: ' + seedUsers[i].username);
