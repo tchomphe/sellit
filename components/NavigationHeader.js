@@ -13,7 +13,7 @@ class NavigationHeader extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
-        this.props.searchPost("garuda");
+        this.props.searchPost(this.refs.search.value);
     }
 
     render(){
