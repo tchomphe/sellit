@@ -11,7 +11,7 @@ var goku = request.agent();
 // upload seed data
 seeder.upload();
 
-// Homepage Tests =================================================== //
+// Session-less API Tests ============================================ //
 describe('Session-less API tests,', function () {
 
   describe('GET /', function(){
@@ -139,12 +139,12 @@ describe('Vageta login session tests', function () {
   });
 });
 
-// Post API Tests for Seed Data ======================================= //
+// API Tests Requiring Session ======================================== //
 describe('Post-related API tests for -existing- DB data,', function () {
 
   describe('PUT /post/:id', function(){
     it('responds with HTTP Status 200', function(done){
-      request
+      vageta
         .put('http://localhost:8080/post/'+postID)
         .set('Content-Type', 'application/json')
         .send('{"title":"iNode 5s", "address":"123 Royal Way", "description":"Ok Condition. It works, deal with it."}')
@@ -157,7 +157,7 @@ describe('Post-related API tests for -existing- DB data,', function () {
 
   describe('GET /post/:id', function(){
     it('responds with HTTP Status 200', function(done) {
-      request.get('http://localhost:8080/post/'+postID, function(error, response, body){
+      vageta.get('http://localhost:8080/post/'+postID, function(error, response, body){
         expect(response.body.title).to.equal("iNode 5s");
         expect(response.body.address).to.equal("123 Royal Way");
         expect(response.body.description).to.equal("Ok Condition. It works, deal with it.");
@@ -168,7 +168,7 @@ describe('Post-related API tests for -existing- DB data,', function () {
   });
 });
 
-// User API Tests ===================================================== //
+// API Tests for New User Creation ==================================== //
 describe('User-related API tests', function () {
 
   describe('POST /createUser', function(){
