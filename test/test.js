@@ -12,11 +12,59 @@ var goku = request.agent();
 seeder.upload();
 
 // Homepage Tests =================================================== //
-describe('Homepage API tests', function () {
+describe('Session-less API tests,', function () {
+
   describe('GET /', function(){
     it('responds with HTTP Status 200', function(done) {
       request('http://localhost:8080' , function(error, response, body) {
         expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });
+  });
+
+  describe('GET /postByTitle/:title', function(){
+    it('responds with correct post and HTTP Status 200', function(done) {
+      request('http://localhost:8080/postByTitle/' + seeder.posts[0].title, function(error, response, body){
+        expect(response.body.type).to.equal(seeder.posts[0].type);
+        expect(response.body.address).to.equal(seeder.posts[0].address);
+        expect(response.statusCode).to.equal(200);
+        postID = response.body._id;
+        done();
+      });
+    });
+  });
+
+  describe('GET /post/:id', function(){
+    it('responds with correct post and HTTP Status 200', function(done) {
+      request.get('http://localhost:8080/post/'+postID, function(error, response, body){
+        expect(response.body.title).to.equal(seeder.posts[0].title);
+        expect(response.body.type).to.equal(seeder.posts[0].type);
+        expect(response.body.address).to.equal(seeder.posts[0].address);
+        expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });
+  });
+
+  describe('GET /userByEmail/:email', function(){
+    it('responds with correct user and HTTP Status 200', function(done) {
+      request.get('http://localhost:8080/userByEmail/'+seeder.users.vageta.email, function(error, response, body){
+        expect(response.body._id).to.equal(seeder.users.vageta._id);
+        expect(response.body.nickname).to.equal(seeder.users.vageta.nickname);
+        expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });
+  });
+
+  describe('GET /user/:id', function(){
+    it('responds with correct user and HTTP Status 200', function(done) {
+      request.get('http://localhost:8080/user/'+seeder.users.vageta._id, function(error, response, body){
+        expect(response.body.email).to.equal(seeder.users.vageta.email);
+        expect(response.body.nickname).to.equal(seeder.users.vageta.nickname);
+        expect(response.statusCode).to.equal(200);
+        console.log(response.body);
         done();
       });
     });
@@ -93,30 +141,6 @@ describe('Vageta login session tests', function () {
 
 // Post API Tests for Seed Data ======================================= //
 describe('Post-related API tests for -existing- DB data,', function () {
-
-  describe('GET /postByTitle/:title', function(){
-    it('responds with HTTP Status 200', function(done) {
-      request('http://localhost:8080/postByTitle/' + seeder.posts[0].title, function(error, response, body){
-        expect(response.body.type).to.equal(seeder.posts[0].type);
-        expect(response.body.address).to.equal(seeder.posts[0].address);
-        expect(response.statusCode).to.equal(200);
-        postID = response.body._id;
-        done();
-      });
-    });
-  });
-
-  describe('GET /post/:id', function(){
-    it('responds with HTTP Status 200', function(done) {
-      request.get('http://localhost:8080/post/'+postID, function(error, response, body){
-        expect(response.body.title).to.equal(seeder.posts[0].title);
-        expect(response.body.type).to.equal(seeder.posts[0].type);
-        expect(response.body.address).to.equal(seeder.posts[0].address);
-        expect(response.statusCode).to.equal(200);
-        done();
-      });
-    });
-  });
 
   describe('PUT /post/:id', function(){
     it('responds with HTTP Status 200', function(done){
