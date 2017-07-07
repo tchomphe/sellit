@@ -33,6 +33,16 @@ export default class TilesContainer extends React.Component {
         });
     }
 
+    searchPost(title){
+        Request.get('/searchByTitle/' + title).then((res) => {
+            this.setState({
+                displayedPosts: res.body.docs.map((post) =>
+                    <PostTile key={post._id.toString()} title={post.title} address={post.address} />
+                    ),
+            })
+        });
+    }
+
     render(){
         return(
             <div className="app-content row center">
