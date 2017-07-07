@@ -7,7 +7,7 @@ var seedUsers = module.exports.users = {
     _id: vagetaID,
     email: 'vageta@gmail.com',
     password: 'Over 9000!',
-    username: 'Sayan Prince'
+    nickname: 'Sayan Prince'
   }
 }
 
@@ -58,7 +58,7 @@ module.exports.clean = function() {
   for (var i in seedUsers){
     User.findOneAndRemove({'_id': seedUsers[i]._id}, function(err, result){
       if (err) { console.log('Error in User seed data cleanup! --> ' + err); }
-      console.log('Cleaned: ' + seedUsers[i].username);
+      console.log('Cleaned: ' + seedUsers[i].nickname);
     });
   }
 
