@@ -71,8 +71,8 @@ describe('Session-less API tests,', function () {
   });
 });
 
-// Establish Existing User Session =================================== //
-describe('Vageta login session tests', function () {
+// Login to Existing User Session ==================================== //
+describe('Login to Vageta session;', function () {
 
   describe('GET /myAccount', function(){
     it('should redirect to / with status 400', function(done) {
@@ -140,7 +140,7 @@ describe('Vageta login session tests', function () {
 });
 
 // API Tests Requiring Session ======================================== //
-describe('Post-related API tests for -existing- DB data,', function () {
+describe('Vageta session API tests;', function () {
 
   describe('PUT /post/:id', function(){
     it('responds with HTTP Status 200', function(done){
@@ -166,10 +166,54 @@ describe('Post-related API tests for -existing- DB data,', function () {
       });
     });
   });
+
+  describe('POST /createPost', function(){
+    it('responds with HTTP Status 200', function(done) {
+      vageta
+        .post('http://localhost:8080/createPost')
+        .set('Content-Type', 'multipart/form-data')
+        .field('ownerID', seeder.users.vageta._id)
+        .field('title', 'iCapsule S')
+        .field('address', '123 Royal Way')
+        .field('type', 'smartphone')
+        .field('description', 'Alright condition!')
+        .attach('postImages', __dirname + '/image1.jpg')
+        .attach('postImages', __dirname + '/image2.jpg')
+        .end(function(error, response, body){
+          expect(response.statusCode).to.equal(200);
+          done();
+        });
+    });
+  });
+
+  describe('GET /postByTitle/:title', function(){
+    it('responds with HTTP Status 200', function(done) {
+      vageta.get('http://localhost:8080/postByTitle/iCapsule%20S', function(error, response, body){
+        postID = response.body._id;
+        expect(response.body.title).to.equal("iCapsule S");
+        expect(response.body.address).to.equal("123 Royal Way");
+        expect(response.body.description).to.equal("Alright condition!");
+        expect(response.statusCode).to.equal(200);
+        console.log(response.body);
+        done();
+      });
+    });
+  });
+
+  describe('DELETE /post/:id', function(){
+    it('responds with HTTP Status 200', function(done){
+      vageta
+        .delete('http://localhost:8080/post/'+postID)
+        .end(function(error, response, body){
+          expect(response.statusCode).to.equal(200);
+          done();
+        });
+    });
+  });
 });
 
-// API Tests for New User Creation ==================================== //
-describe('New User Creation tests', function () {
+// Create & login to New User Creation =============================== //
+describe('Create Goku session & login;', function () {
 
   describe('POST /createUser', function(){
     it('responds with HTTP Status 200', function(done) {
@@ -246,8 +290,8 @@ describe('New User Creation tests', function () {
   });
 });
 
-// Authentication & Login Session Tests ============================= //
-describe('Passportjs tests', function () {
+// API Tests Requiring Session (with New User) ======================= //
+describe('Goku session API tests;', function () {
 
   describe('GET /myAccount', function(){
     it('should redirect to / with status 400', function(done) {
@@ -336,83 +380,8 @@ describe('Passportjs tests', function () {
   });
 });
 
-// Post API Tests for New Data ======================================== //
-describe('Post-related API tests for -new- DB data,', function () {
-
-  describe('POST /createPost', function(){
-    it('responds with HTTP Status 200', function(done) {
-      //TODO: include authentication when creating, updating, and deleting a post
-      request // should be -> goku
-        .post('http://localhost:8080/createPost')
-        .set('Content-Type', 'multipart/form-data')
-        .field('ownerID', userID)
-        .field('title', 'iCapsule')
-        .field('address', 'Turtle Island')
-        .field('type', 'smartphone')
-        .field('description', 'Good condition, I managed to hold this phone twice with only minor dents!')
-        .attach('postImages', __dirname + '/image1.jpg')
-        .attach('postImages', __dirname + '/image2.jpg')
-        .end(function(error, response, body){
-          expect(response.statusCode).to.equal(200);
-          done();
-        });
-    });
-  });
-
-  describe('GET /postByTitle/:title', function(){
-    it('responds with HTTP Status 200', function(done) {
-      request('http://localhost:8080/postByTitle/iCapsule', function(error, response, body){
-        expect(response.body.title).to.equal("iCapsule");
-        expect(response.body.address).to.equal("Turtle Island");
-        expect(response.body.description).to.equal("Good condition, I managed to hold this phone twice with only minor dents!");
-        expect(response.statusCode).to.equal(200);
-        console.log(response.body);
-        postID = response.body._id;
-        done();
-      });
-    });
-  });
-
-  describe('PUT /post/:id', function(){
-    it('responds with HTTP Status 200', function(done){
-      request
-        .put('http://localhost:8080/post/'+postID)
-        .set('Content-Type', 'application/json')
-        .send('{"title":"iCapsule 4s", "address":"55959 Snake Way", "description":"..err just OK condition now."}')
-        .end(function(error, response, body){
-          expect(response.statusCode).to.equal(200);
-          done();
-        });
-    });
-  });
-
-  describe('GET /postByTitle/:title', function(){
-    it('responds with HTTP Status 200', function(done) {
-      request('http://localhost:8080/postByTitle/iCapsule%204s', function(error, response, body){
-        expect(response.body.address).to.equal("55959 Snake Way");
-        expect(response.body.description).to.equal("..err just OK condition now.");
-        expect(response.statusCode).to.equal(200);
-        console.log(response.body);
-        postID = response.body._id;
-        done();
-      });
-    });
-  });
-});
-
 // Cleanup ============================================================//
 describe('Cleanup, and DELETE API tests', function () {
-
-  describe('DELETE /post/:id', function(){
-    it('responds with HTTP Status 200', function(done){
-      request
-        .delete('http://localhost:8080/post/'+postID)
-        .end(function(error, response, body){
-          expect(response.statusCode).to.equal(200);
-          done();
-        });
-    });
-  });
 
   describe('DELETE /user/:id', function(){
     it('responds with HTTP Status 200', function(done){
