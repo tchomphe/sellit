@@ -220,6 +220,30 @@ describe('User-related API tests', function () {
         });
     });
   });
+
+  describe('GET /userByEmail/:email', function(){
+    it('responds with HTTP Status 200', function(done) {
+      request.get('http://localhost:8080/userByEmail/gokuSuperSayan@gmail.com', function(error, response, body){
+        userID = response.body._id;
+        expect(response.body.nickname).to.equal("Super Sayan Goku");
+        expect(response.body.phone).to.equal(2227770000);
+        expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });
+  });
+
+  describe('GET /user/:id', function(){
+    it('responds with HTTP Status 200', function(done) {
+      request.get('http://localhost:8080/user/'+userID, function(error, response, body){
+        expect(response.body.email).to.equal('gokuSuperSayan@gmail.com');
+        expect(response.body.nickname).to.equal("Super Sayan Goku");
+        expect(response.body.phone).to.equal(2227770000);
+        expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });
+  });
 });
 
 // Authentication & Login Session Tests ============================= //
