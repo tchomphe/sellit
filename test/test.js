@@ -169,11 +169,11 @@ describe('Post-related API tests for -existing- DB data,', function () {
 });
 
 // API Tests for New User Creation ==================================== //
-describe('User-related API tests', function () {
+describe('New User Creation tests', function () {
 
   describe('POST /createUser', function(){
     it('responds with HTTP Status 200', function(done) {
-      request
+      goku
         .post('http://localhost:8080/createUser')
         .set('Content-Type', 'multipart/form-data')
         .field('email', 'goku@gmail.com')
@@ -188,7 +188,7 @@ describe('User-related API tests', function () {
 
   describe('GET /userByEmail/:email', function(){
     it('responds with HTTP Status 200', function(done) {
-      request.get('http://localhost:8080/userByEmail/goku@gmail.com', function(error, response, body){
+      goku.get('http://localhost:8080/userByEmail/goku@gmail.com', function(error, response, body){
         userID = response.body._id;
         expect(response.body.phone).to.equal(1117770000);
         expect(response.statusCode).to.equal(200);
@@ -199,7 +199,7 @@ describe('User-related API tests', function () {
 
   describe('GET /user/:id', function(){
     it('responds with HTTP Status 200', function(done) {
-      request.get('http://localhost:8080/user/'+userID, function(error, response, body){
+      goku.get('http://localhost:8080/user/'+userID, function(error, response, body){
         expect(response.body.phone).to.equal(1117770000);
         expect(response.body.email).to.equal('goku@gmail.com');
         expect(response.statusCode).to.equal(200);
@@ -210,7 +210,7 @@ describe('User-related API tests', function () {
 
   describe('PUT /user/:id', function(){
     it('responds with HTTP Status 200', function(done){
-      request
+      goku
         .put('http://localhost:8080/user/'+userID)
         .set('Content-Type', 'application/json')
         .send('{"email":"gokuSuperSayan@gmail.com", "nickname":"Super Sayan Goku", "phone":"2227770000"}')
@@ -223,7 +223,7 @@ describe('User-related API tests', function () {
 
   describe('GET /userByEmail/:email', function(){
     it('responds with HTTP Status 200', function(done) {
-      request.get('http://localhost:8080/userByEmail/gokuSuperSayan@gmail.com', function(error, response, body){
+      goku.get('http://localhost:8080/userByEmail/gokuSuperSayan@gmail.com', function(error, response, body){
         userID = response.body._id;
         expect(response.body.nickname).to.equal("Super Sayan Goku");
         expect(response.body.phone).to.equal(2227770000);
@@ -235,7 +235,7 @@ describe('User-related API tests', function () {
 
   describe('GET /user/:id', function(){
     it('responds with HTTP Status 200', function(done) {
-      request.get('http://localhost:8080/user/'+userID, function(error, response, body){
+      goku.get('http://localhost:8080/user/'+userID, function(error, response, body){
         expect(response.body.email).to.equal('gokuSuperSayan@gmail.com');
         expect(response.body.nickname).to.equal("Super Sayan Goku");
         expect(response.body.phone).to.equal(2227770000);
