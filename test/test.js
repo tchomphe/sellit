@@ -103,7 +103,7 @@ describe('Vageta login session tests', function () {
       vageta
         .post('http://localhost:8080/login')
         .type('form')
-        .send({email: 'hercules@dbz.com', password: seeder.users.vageta.password})
+        .send({email: 'hercules@gmail.com', password: seeder.users.vageta.password})
         .end(function(error, response, body){
           //test for redirection URL, varifying login failure
           expect(response.body.error).to.equal('User Not Found!');
@@ -189,9 +189,9 @@ describe('User-related API tests', function () {
   describe('GET /userByEmail/:email', function(){
     it('responds with HTTP Status 200', function(done) {
       request.get('http://localhost:8080/userByEmail/goku@gmail.com', function(error, response, body){
-        expect(response.statusCode).to.equal(200);
-        console.log(response.body);
         userID = response.body._id;
+        expect(response.body.phone).to.equal(1117770000);
+        expect(response.statusCode).to.equal(200);
         done();
       });
     });
@@ -200,8 +200,9 @@ describe('User-related API tests', function () {
   describe('GET /user/:id', function(){
     it('responds with HTTP Status 200', function(done) {
       request.get('http://localhost:8080/user/'+userID, function(error, response, body){
+        expect(response.body.phone).to.equal(1117770000);
+        expect(response.body.email).to.equal('goku@gmail.com');
         expect(response.statusCode).to.equal(200);
-        console.log(response.body);
         done();
       });
     });
@@ -212,7 +213,7 @@ describe('User-related API tests', function () {
       request
         .put('http://localhost:8080/user/'+userID)
         .set('Content-Type', 'application/json')
-        .send('{"email":"gokuSuperSayan@dbz.com", "nickname":"Son Goku"}')
+        .send('{"email":"gokuSuperSayan@gmail.com", "nickname":"Super Sayan Goku", "phone":"2227770000"}')
         .end(function(error, response, body){
           expect(response.statusCode).to.equal(200);
           done();
@@ -239,7 +240,7 @@ describe('Passportjs tests', function () {
       goku
         .post('http://localhost:8080/login')
         .type('form')
-        .send({email: 'gokuSuperSayan@dbz.com', password: 'wrongpassword'})
+        .send({email: 'gokuSuperSayan@gmail.com', password: 'wrongpassword'})
         .end(function(error, response, body){
           //test for redirection URL, varifying login failure
           expect(response.body.error).to.equal('Invalid Password!');
@@ -253,7 +254,7 @@ describe('Passportjs tests', function () {
       goku
         .post('http://localhost:8080/login')
         .type('form')
-        .send({email: 'hercules@dbz.com', password: 'kamehameha!'})
+        .send({email: 'hercules@gmail.com', password: 'kamehameha!'})
         .end(function(error, response, body){
           //test for redirection URL, varifying login failure
           expect(response.body.error).to.equal('User Not Found!');
@@ -267,7 +268,7 @@ describe('Passportjs tests', function () {
       goku
         .post('http://localhost:8080/login')
         .type('form')
-        .send({email: 'gokuSuperSayan@dbz.com', password: 'kamehameha!'})
+        .send({email: 'gokuSuperSayan@gmail.com', password: 'kamehameha!'})
         .end(function(error, response, body){
           //test for redirection URL, varifying login success
           expect(response.statusCode).to.equal(200);
