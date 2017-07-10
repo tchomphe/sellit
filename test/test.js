@@ -237,44 +237,117 @@ describe('Vageta session API tests;', function () {
 });
 
 // Create & login to New User Creation =============================== //
-describe('Create Goku session & login;', function () {
+describe('Goku session;', function () {
 
-  describe('POST /createUser', function(){
-    it('responds with HTTP Status 200', function(done) {
-      goku
-        .post('http://localhost:8080/createUser')
-        .set('Content-Type', 'multipart/form-data')
-        .field('email', 'goku@gmail.com')
-        .field('password', 'kamehameha!')
-        .field('phone', '1117770000')
-        .end(function(error, response, body){
+  describe('create account,', function(){
+    describe('POST /createUser', function(){
+      it('responds with HTTP Status 200', function(done) {
+        goku
+          .post('http://localhost:8080/createUser')
+          .set('Content-Type', 'multipart/form-data')
+          .field('email', 'goku@gmail.com')
+          .field('password', 'kamehameha!')
+          .field('phone', '1117770000')
+          .end(function(error, response, body){
+            expect(response.statusCode).to.equal(200);
+            done();
+          });
+      });
+    });
+
+    describe('GET /userByEmail/:email', function(){
+      it('responds with HTTP Status 200', function(done) {
+        goku.get('http://localhost:8080/userByEmail/goku@gmail.com', function(error, response, body){
+          userID = response.body._id;
+          expect(response.body.phone).to.equal(1117770000);
           expect(response.statusCode).to.equal(200);
           done();
         });
+      });
     });
-  });
 
-  describe('GET /userByEmail/:email', function(){
-    it('responds with HTTP Status 200', function(done) {
-      goku.get('http://localhost:8080/userByEmail/goku@gmail.com', function(error, response, body){
-        userID = response.body._id;
-        expect(response.body.phone).to.equal(1117770000);
-        expect(response.statusCode).to.equal(200);
-        done();
+    describe('GET /user/:id', function(){
+      it('responds with HTTP Status 200', function(done) {
+        goku.get('http://localhost:8080/user/'+userID, function(error, response, body){
+          expect(response.body.phone).to.equal(1117770000);
+          expect(response.body.email).to.equal('goku@gmail.com');
+          expect(response.statusCode).to.equal(200);
+          done();
+        });
       });
     });
   });
 
-  describe('GET /user/:id', function(){
-    it('responds with HTTP Status 200', function(done) {
-      goku.get('http://localhost:8080/user/'+userID, function(error, response, body){
-        expect(response.body.phone).to.equal(1117770000);
-        expect(response.body.email).to.equal('goku@gmail.com');
-        expect(response.statusCode).to.equal(200);
-        done();
+  describe('login,', function(){
+    describe('GET /myAccount', function(){
+      it('should redirect to / with status 400', function(done) {
+        goku
+          .get('http://localhost:8080/myAccount').end(function(error, response, body){
+            expect(response.statusCode).to.equal(400);
+            done();
+          });
+      });
+    });
+
+    describe('with INVALID credentials', function() {
+      it('should respond with: Invalid Password!', function(done) {
+        goku
+          .post('http://localhost:8080/login')
+          .type('form')
+          .send({email: 'goku@gmail.com', password: 'wrongpassword'})
+          .end(function(error, response, body){
+            //test for redirection URL, varifying login failure
+            expect(response.body.error).to.equal('Invalid Password!');
+            done();
+          });
+      });
+    });
+
+    describe('with INVALID credentials', function() {
+      it('should respond with: User Not found!', function(done) {
+        goku
+          .post('http://localhost:8080/login')
+          .type('form')
+          .send({email: 'hercules@gmail.com', password: 'kamehameha!'})
+          .end(function(error, response, body){
+            //test for redirection URL, varifying login failure
+            expect(response.body.error).to.equal('User Not Found!');
+            done();
+          });
+      });
+    });
+
+    describe('with VALID credentials', function() {
+      it('should redirect to /create-post', function(done) {
+        goku
+          .post('http://localhost:8080/login')
+          .type('form')
+          .send({email: 'goku@gmail.com', password: 'kamehameha!'})
+          .end(function(error, response, body){
+            //test for redirection URL, varifying login success
+            expect(response.statusCode).to.equal(200);
+            expect(response.header.location).to.equal('/create-post');
+            done();
+          });
+      });
+    });
+
+    describe('GET /myAccount', function(){
+      it('should respond with happy message', function(done) {
+        goku
+          .get('http://localhost:8080/myAccount').end(function(error, response, body){
+            expect(response.statusCode).to.equal(200);
+            expect(response.body.message).to.equal('User is logged in!');
+            done();
+          });
       });
     });
   });
+
+});
+
+// API Tests Requiring Session (with New User) ======================= //
+describe('Goku session API tests;', function () {
 
   describe('PUT /user/:id', function(){
     it('responds with HTTP Status 200', function(done){
@@ -310,74 +383,6 @@ describe('Create Goku session & login;', function () {
         expect(response.statusCode).to.equal(200);
         done();
       });
-    });
-  });
-});
-
-// API Tests Requiring Session (with New User) ======================= //
-describe('Goku session API tests;', function () {
-
-  describe('GET /myAccount', function(){
-    it('should redirect to / with status 400', function(done) {
-      goku
-        .get('http://localhost:8080/myAccount').end(function(error, response, body){
-          expect(response.statusCode).to.equal(400);
-          done();
-        });
-    });
-  });
-
-  describe('with INVALID credentials', function() {
-    it('should respond with: Invalid Password!', function(done) {
-      goku
-        .post('http://localhost:8080/login')
-        .type('form')
-        .send({email: 'gokuSuperSayan@gmail.com', password: 'wrongpassword'})
-        .end(function(error, response, body){
-          //test for redirection URL, varifying login failure
-          expect(response.body.error).to.equal('Invalid Password!');
-          done();
-        });
-    });
-  });
-
-  describe('with INVALID credentials', function() {
-    it('should respond with: User Not found!', function(done) {
-      goku
-        .post('http://localhost:8080/login')
-        .type('form')
-        .send({email: 'hercules@gmail.com', password: 'kamehameha!'})
-        .end(function(error, response, body){
-          //test for redirection URL, varifying login failure
-          expect(response.body.error).to.equal('User Not Found!');
-          done();
-        });
-    });
-  });
-
-  describe('with VALID credentials', function() {
-    it('should redirect to /create-post', function(done) {
-      goku
-        .post('http://localhost:8080/login')
-        .type('form')
-        .send({email: 'gokuSuperSayan@gmail.com', password: 'kamehameha!'})
-        .end(function(error, response, body){
-          //test for redirection URL, varifying login success
-          expect(response.statusCode).to.equal(200);
-          expect(response.header.location).to.equal('/create-post');
-          done();
-        });
-    });
-  });
-
-  describe('GET /myAccount', function(){
-    it('should respond with happy message', function(done) {
-      goku
-        .get('http://localhost:8080/myAccount').end(function(error, response, body){
-          expect(response.statusCode).to.equal(200);
-          expect(response.body.message).to.equal('User is logged in!');
-          done();
-        });
     });
   });
 
