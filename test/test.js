@@ -74,6 +74,40 @@ describe('Session-less API tests,', function () {
 // Session-based API Tests (via Existing User) ======================= //
 describe('Session-based API tests;', function () {
 
+  describe('Invalid requests,', function (){
+    describe('POST /createPost', function(){
+      it('responds with HTTP Status 400', function(done) {
+        vageta
+          .post('http://localhost:8080/createPost')
+          .set('Content-Type', 'multipart/form-data')
+          .field('ownerID', seeder.users.vageta._id)
+          .field('title', 'iCapsule S')
+          .field('address', '123 Royal Way')
+          .field('type', 'smartphone')
+          .field('description', 'Alright condition!')
+          .end(function(error, response, body){
+            expect(response.statusCode).to.equal(400);
+            expect(response.body.message).to.equal('Please Log In.');
+            done();
+          });
+      });
+    });
+
+    describe('PUT /post/:id', function(){
+      it('responds with HTTP Status 400', function(done){
+        vageta
+          .put('http://localhost:8080/post/'+postID)
+          .set('Content-Type', 'application/json')
+          .send('{"title":"iNode 5s", "address":"123 Royal Way", "description":"Ok Condition. It works, deal with it."}')
+          .end(function(error, response, body){
+            expect(response.statusCode).to.equal(400);
+            expect(response.body.message).to.equal('Please Log In.');
+            done();
+          });
+      });
+    });
+  });
+
   describe('Vageta sign in,', function () {
     describe('GET /myAccount', function(){
       it('should redirect to / with status 400', function(done) {
@@ -140,7 +174,7 @@ describe('Session-based API tests;', function () {
     });
   });
 
-  describe('valid calls,', function () {
+  describe('Valid requests,', function () {
     describe('PUT /post/:id', function(){
       it('responds with HTTP Status 200', function(done){
         vageta
@@ -210,7 +244,6 @@ describe('Session-based API tests;', function () {
       });
     });
   });
-
 
   describe('sign out,', function(){
     describe('GET /logout', function(){
