@@ -71,145 +71,146 @@ describe('Session-less API tests,', function () {
   });
 });
 
-// Login to Existing User Session ==================================== //
-describe('Login to Vageta session;', function () {
+// Session-based API Tests (via Existing User) ======================= //
+describe('Session-based API tests;', function () {
 
-  describe('GET /myAccount', function(){
-    it('should redirect to / with status 400', function(done) {
-      vageta
-        .get('http://localhost:8080/myAccount').end(function(error, response, body){
-          expect(response.statusCode).to.equal(400);
-          done();
-        });
+  describe('Vageta sign in,', function () {
+    describe('GET /myAccount', function(){
+      it('should redirect to / with status 400', function(done) {
+        vageta
+          .get('http://localhost:8080/myAccount').end(function(error, response, body){
+            expect(response.statusCode).to.equal(400);
+            done();
+          });
+      });
     });
-  });
 
-  describe('with INVALID credentials', function() {
-    it('should respond with: Invalid Password!', function(done) {
-      vageta
-        .post('http://localhost:8080/login')
-        .type('form')
-        .send({email: seeder.users.vageta.email, password: 'wrongpassword'})
-        .end(function(error, response, body){
-          //test for redirection URL, varifying login failure
-          expect(response.body.error).to.equal('Invalid Password!');
-          done();
-        });
+    describe('with INVALID credentials', function() {
+      it('should respond with: Invalid Password!', function(done) {
+        vageta
+          .post('http://localhost:8080/login')
+          .type('form')
+          .send({email: seeder.users.vageta.email, password: 'wrongpassword'})
+          .end(function(error, response, body){
+            //test for redirection URL, varifying login failure
+            expect(response.body.error).to.equal('Invalid Password!');
+            done();
+          });
+      });
     });
-  });
 
-  describe('with INVALID credentials', function() {
-    it('should respond with: User Not found!', function(done) {
-      vageta
-        .post('http://localhost:8080/login')
-        .type('form')
-        .send({email: 'hercules@gmail.com', password: seeder.users.vageta.password})
-        .end(function(error, response, body){
-          //test for redirection URL, varifying login failure
-          expect(response.body.error).to.equal('User Not Found!');
-          done();
-        });
+    describe('with INVALID credentials', function() {
+      it('should respond with: User Not found!', function(done) {
+        vageta
+          .post('http://localhost:8080/login')
+          .type('form')
+          .send({email: 'hercules@gmail.com', password: seeder.users.vageta.password})
+          .end(function(error, response, body){
+            //test for redirection URL, varifying login failure
+            expect(response.body.error).to.equal('User Not Found!');
+            done();
+          });
+      });
     });
-  });
 
-  describe('with VALID credentials', function() {
-    it('should redirect to /create-post', function(done) {
-      vageta
-        .post('http://localhost:8080/login')
-        .type('form')
-        .send({email: seeder.users.vageta.email, password: seeder.users.vageta.password})
-        .end(function(error, response, body){
-          //test for redirection URL, varifying login success
-          expect(response.statusCode).to.equal(200);
-          expect(response.header.location).to.equal('/create-post');
-          done();
-        });
+    describe('with VALID credentials', function() {
+      it('should redirect to /create-post', function(done) {
+        vageta
+          .post('http://localhost:8080/login')
+          .type('form')
+          .send({email: seeder.users.vageta.email, password: seeder.users.vageta.password})
+          .end(function(error, response, body){
+            //test for redirection URL, varifying login success
+            expect(response.statusCode).to.equal(200);
+            expect(response.header.location).to.equal('/create-post');
+            done();
+          });
+      });
     });
-  });
 
-  describe('GET /myAccount', function(){
-    it('should respond with happy message', function(done) {
-      vageta
-        .get('http://localhost:8080/myAccount').end(function(error, response, body){
-          expect(response.statusCode).to.equal(200);
-          expect(response.body.message).to.equal('User is logged in!');
-          done();
-        });
-    });
-  });
-});
-
-// API Tests Requiring Session ======================================== //
-describe('Vageta session API tests;', function () {
-
-  describe('PUT /post/:id', function(){
-    it('responds with HTTP Status 200', function(done){
-      vageta
-        .put('http://localhost:8080/post/'+postID)
-        .set('Content-Type', 'application/json')
-        .send('{"title":"iNode 5s", "address":"123 Royal Way", "description":"Ok Condition. It works, deal with it."}')
-        .end(function(error, response, body){
-          expect(response.statusCode).to.equal(200);
-          done();
-        });
-    });
-  });
-
-  describe('GET /post/:id', function(){
-    it('responds with HTTP Status 200', function(done) {
-      vageta.get('http://localhost:8080/post/'+postID, function(error, response, body){
-        expect(response.body.title).to.equal("iNode 5s");
-        expect(response.body.address).to.equal("123 Royal Way");
-        expect(response.body.description).to.equal("Ok Condition. It works, deal with it.");
-        expect(response.statusCode).to.equal(200);
-        done();
+    describe('GET /myAccount', function(){
+      it('should respond with happy message', function(done) {
+        vageta
+          .get('http://localhost:8080/myAccount').end(function(error, response, body){
+            expect(response.statusCode).to.equal(200);
+            expect(response.body.message).to.equal('User is logged in!');
+            done();
+          });
       });
     });
   });
 
-  describe('POST /createPost', function(){
-    it('responds with HTTP Status 200', function(done) {
-      vageta
-        .post('http://localhost:8080/createPost')
-        .set('Content-Type', 'multipart/form-data')
-        .field('ownerID', seeder.users.vageta._id)
-        .field('title', 'iCapsule S')
-        .field('address', '123 Royal Way')
-        .field('type', 'smartphone')
-        .field('description', 'Alright condition!')
-        .attach('postImages', __dirname + '/image1.jpg')
-        .attach('postImages', __dirname + '/image2.jpg')
-        .end(function(error, response, body){
+  describe('valid calls,', function () {
+    describe('PUT /post/:id', function(){
+      it('responds with HTTP Status 200', function(done){
+        vageta
+          .put('http://localhost:8080/post/'+postID)
+          .set('Content-Type', 'application/json')
+          .send('{"title":"iNode 5s", "address":"123 Royal Way", "description":"Ok Condition. It works, deal with it."}')
+          .end(function(error, response, body){
+            expect(response.statusCode).to.equal(200);
+            done();
+          });
+      });
+    });
+
+    describe('GET /post/:id', function(){
+      it('responds with HTTP Status 200', function(done) {
+        vageta.get('http://localhost:8080/post/'+postID, function(error, response, body){
+          expect(response.body.title).to.equal("iNode 5s");
+          expect(response.body.address).to.equal("123 Royal Way");
+          expect(response.body.description).to.equal("Ok Condition. It works, deal with it.");
           expect(response.statusCode).to.equal(200);
           done();
         });
+      });
     });
-  });
 
-  describe('GET /postByTitle/:title', function(){
-    it('responds with HTTP Status 200', function(done) {
-      vageta.get('http://localhost:8080/postByTitle/iCapsule%20S', function(error, response, body){
-        postID = response.body._id;
-        expect(response.body.title).to.equal("iCapsule S");
-        expect(response.body.address).to.equal("123 Royal Way");
-        expect(response.body.description).to.equal("Alright condition!");
-        expect(response.statusCode).to.equal(200);
-        console.log(response.body);
-        done();
+    describe('POST /createPost', function(){
+      it('responds with HTTP Status 200', function(done) {
+        vageta
+          .post('http://localhost:8080/createPost')
+          .set('Content-Type', 'multipart/form-data')
+          .field('ownerID', seeder.users.vageta._id)
+          .field('title', 'iCapsule S')
+          .field('address', '123 Royal Way')
+          .field('type', 'smartphone')
+          .field('description', 'Alright condition!')
+          .attach('postImages', __dirname + '/image1.jpg')
+          .attach('postImages', __dirname + '/image2.jpg')
+          .end(function(error, response, body){
+            expect(response.statusCode).to.equal(200);
+            done();
+          });
+      });
+    });
+
+    describe('GET /postByTitle/:title', function(){
+      it('responds with HTTP Status 200', function(done) {
+        vageta.get('http://localhost:8080/postByTitle/iCapsule%20S', function(error, response, body){
+          postID = response.body._id;
+          expect(response.body.title).to.equal("iCapsule S");
+          expect(response.body.address).to.equal("123 Royal Way");
+          expect(response.body.description).to.equal("Alright condition!");
+          expect(response.statusCode).to.equal(200);
+          console.log(response.body);
+          done();
+        });
+      });
+    });
+
+    describe('DELETE /post/:id', function(){
+      it('responds with HTTP Status 200', function(done){
+        vageta
+          .delete('http://localhost:8080/post/'+postID)
+          .end(function(error, response, body){
+            expect(response.statusCode).to.equal(200);
+            done();
+          });
       });
     });
   });
 
-  describe('DELETE /post/:id', function(){
-    it('responds with HTTP Status 200', function(done){
-      vageta
-        .delete('http://localhost:8080/post/'+postID)
-        .end(function(error, response, body){
-          expect(response.statusCode).to.equal(200);
-          done();
-        });
-    });
-  });
 
   describe('sign out,', function(){
     describe('GET /logout', function(){
