@@ -91,7 +91,7 @@ exports.createUser = function(req, res){
 
 exports.createPost = function(req, res){
   //varify user is logged in
-  // if (req.isAuthenticated()){
+  if (req.isAuthenticated()){
     var uploadedImages = [];
     (req.files).forEach(function(image) {
       uploadedImages.push(image.path);
@@ -111,10 +111,10 @@ exports.createPost = function(req, res){
       varifyQuerySuccess(err, res, 'createPost');
       res.send('Received and processed JSON data.');
     });
-  // }
-  // else {
-  //   res.status(400).send({message: 'You must log in!'});
-  // }
+  }
+  else {
+    res.status(400).send({message: 'Please Log In.'});
+  }
 };
 
 //-------------------------- PUT requests --------------------------//
@@ -131,15 +131,20 @@ exports.updateUserInfo = function(req, res){
 };
 
 exports.updatePostInfo = function (req, res) {
-  var query = {_id: req.params.id};
-  var newObject = {$set: req.body};
-  var settings = {new: true};
+  //varify user is logged in
+  if (req.isAuthenticated()){
+    var query = {_id: req.params.id};
+    var newObject = {$set: req.body};
+    var settings = {new: true};
 
-  Post.findByIdAndUpdate(query, newObject, settings, function(err, post) {
-    varifyQuerySuccess(err, res, 'updateUserInfo');
-    res.send('Got a PUT request at /post');
-  });
-
+    Post.findByIdAndUpdate(query, newObject, settings, function(err, post) {
+      varifyQuerySuccess(err, res, 'updateUserInfo');
+      res.send('Got a PUT request at /post');
+    });
+  }
+  else {
+    res.status(400).send({message: 'Please Log In.'});
+  }
 };
 
 //-------------------------- DELETE requests --------------------------//
