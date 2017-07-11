@@ -119,15 +119,21 @@ exports.createPost = function(req, res){
 
 //-------------------------- PUT requests --------------------------//
 exports.updateUserInfo = function(req, res){
-  //define mongoose function settings
-  var query = {_id: req.params.id};
-  var newObject = {$set:req.body};
-  var settings = {new: true};
+  //varify user is logged in
+  if (req.isAuthenticated()){
+    //define mongoose function settings
+    var query = {_id: req.params.id};
+    var newObject = {$set:req.body};
+    var settings = {new: true};
 
-  User.findByIdAndUpdate(query, newObject, settings, function(err, user) {
-    varifyQuerySuccess(err, res, 'updateUserInfo');
-    res.send('Got a put request at /user');
-  });
+    User.findByIdAndUpdate(query, newObject, settings, function(err, user) {
+      varifyQuerySuccess(err, res, 'updateUserInfo');
+      res.send('Got a put request at /user');
+    });
+  }
+  else {
+    res.status(400).send({message: 'Please Log In.'});
+  }
 };
 
 exports.updatePostInfo = function (req, res) {
@@ -156,18 +162,24 @@ exports.deleteUser = function (req, res) {
 };
 
 exports.deletePost = function (req, res) {
-  // find and delete any images attachments
-  Post.findOne({'_id': req.params.id}, 'images', function(err, post){
-    if (post.images !== []){
-      (post.images).forEach(function(imageURL){
-        fs.unlinkSync(imageURL);
-      });
-    }
-  });
+  //varify user is logged in
+  if (req.isAuthenticated()){
+    // find and delete any images attachments
+    Post.findOne({'_id': req.params.id}, 'images', function(err, post){
+      if (post.images !== []){
+        (post.images).forEach(function(imageURL){
+          fs.unlinkSync(imageURL);
+        });
+      }
+    });
 
-  // delete post
-  Post.findOneAndRemove({'_id': req.params.id}, function(err, result){
-    varifyQuerySuccess(err, res, 'deletePost');
-    res.send('Got a DELETE request at /post');
-  });
+    // delete post
+    Post.findOneAndRemove({'_id': req.params.id}, function(err, result){
+      varifyQuerySuccess(err, res, 'deletePost');
+      res.send('Got a DELETE request at /post');
+    });
+  }
+  else {
+    res.status(400).send({message: 'Please Log In.'});
+  }
 };

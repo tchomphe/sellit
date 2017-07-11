@@ -96,9 +96,35 @@ describe('Session-based API tests;', function () {
     describe('PUT /post/:id', function(){
       it('responds with HTTP Status 400', function(done){
         vageta
-          .put('http://localhost:8080/post/'+postID)
+          .put('http://localhost:8080/post/'+seeder.posts[0]._id)
           .set('Content-Type', 'application/json')
           .send('{"title":"iNode 5s", "address":"123 Royal Way", "description":"Ok Condition. It works, deal with it."}')
+          .end(function(error, response, body){
+            expect(response.statusCode).to.equal(400);
+            expect(response.body.message).to.equal('Please Log In.');
+            done();
+          });
+      });
+    });
+
+    describe('DELETE /post/:id', function(){
+      it('responds with HTTP Status 400', function(done){
+        vageta
+          .delete('http://localhost:8080/post/'+seeder.posts[0]._id)
+          .end(function(error, response, body){
+            expect(response.statusCode).to.equal(400);
+            expect(response.body.message).to.equal('Please Log In.');
+            done();
+          });
+      });
+    });
+
+    describe('PUT /user/:id', function(){
+      it('responds with HTTP Status 400', function(done){
+        vageta
+          .put('http://localhost:8080/user/'+userID)
+          .set('Content-Type', 'application/json')
+          .send('{"email":"vagetaSuperSayan@gmail.com", "nickname":"Super Sayan Vageta"}')
           .end(function(error, response, body){
             expect(response.statusCode).to.equal(400);
             expect(response.body.message).to.equal('Please Log In.');
