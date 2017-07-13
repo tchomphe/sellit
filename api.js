@@ -3,7 +3,7 @@ var User = require('./config/models/user');
 var fs = require('fs');
 
 /**
- * Helper Function that varifies the success or failure of a MongoDB query
+ * [Helper Function]: Varifies the success or failure of a MongoDB query
  * @param {Error} err
  * @param {Response} res
  * @param {String} funcName
@@ -16,6 +16,22 @@ varifyQuerySuccess = function(err, res, funcName){
     else{
       res.status(200);
       console.log('MongoDB query was successful.');
+    }
+}
+
+/**
+ * [Helper Function]: Varifies that the session owner (sending the request)
+ *  is the rightful owner of the db item they are attempting to modify
+ * @param {ObjectId} reqOwnerId
+ * @param {ObjectId} itemOwnerId
+ * @param {Response} res
+ */
+varifyPostOwner = function(reqOwnerId, itemOwnerId, res){
+  if(reqOwnerId === itemOwnerId){
+      res.status(200);
+    }
+    else{
+      res.status(400);
     }
 }
 
