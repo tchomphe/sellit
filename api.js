@@ -22,17 +22,10 @@ varifyQuerySuccess = function(err, res, funcName){
 /**
  * [Helper Function]: Varifies that the session owner (sending the request)
  *  is the rightful owner of the db item they are attempting to modify
- * @param {ObjectId} reqOwnerId
- * @param {ObjectId} itemOwnerId
- * @param {Response} res
+ * @param {Request} req
  */
-varifyPostOwner = function(reqOwnerId, itemOwnerId, res){
-  if(reqOwnerId === itemOwnerId){
-      res.status(200);
-    }
-    else{
-      res.status(400);
-    }
+isRightfulOwner = function(req){
+  return (req.body._id === req.params.id);
 }
 
 //-------------------------- GET request --------------------------//
