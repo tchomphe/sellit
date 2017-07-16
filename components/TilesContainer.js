@@ -27,7 +27,7 @@ export default class TilesContainer extends React.Component {
         Request.get('/paginatePosts/1').then((res) => {
             this.setState({
                 displayedPosts: res.body.docs.map((post) =>                                        
-                    <PostTile id={post._id} title={post.title} address={post.address} />
+                    <PostTile key={post._id} id={post._id} title={post.title} address={post.address} />
                 ),
             })            
         });
@@ -37,7 +37,7 @@ export default class TilesContainer extends React.Component {
         Request.get('/searchByTitle/' + title).then((res) => {
             this.setState({
                 displayedPosts: res.body.docs.map((post) =>
-                    <PostTile id={post._id} title={post.title} address={post.address} />                  
+                    <PostTile key={post._id} id={post._id} title={post.title} address={post.address} />                  
                 ),
             })            
         });
