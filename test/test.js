@@ -96,7 +96,7 @@ describe('Session-based API tests;', function () {
     describe('PUT /post/:id', function(){
       it('responds with HTTP Status 400', function(done){
         vageta
-          .put('http://localhost:8080/post/'+seeder.posts[0]._id)
+          .put('http://localhost:8080/post/'+postID)
           .set('Content-Type', 'application/json')
           .send('{"title":"iNode 5s", "address":"123 Royal Way", "description":"Ok Condition. It works, deal with it."}')
           .end(function(error, response, body){
@@ -110,7 +110,7 @@ describe('Session-based API tests;', function () {
     describe('DELETE /post/:id', function(){
       it('responds with HTTP Status 400', function(done){
         vageta
-          .delete('http://localhost:8080/post/'+seeder.posts[0]._id)
+          .delete('http://localhost:8080/post/'+postID)
           .end(function(error, response, body){
             expect(response.statusCode).to.equal(400);
             expect(response.body.message).to.equal('Please Log In.');
