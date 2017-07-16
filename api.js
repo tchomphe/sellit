@@ -21,11 +21,22 @@ varifyQuerySuccess = function(err, res, funcName){
 
 /**
  * [Helper Function]: Varifies that the session owner (sending the request)
- *  is the rightful owner of the db item they are attempting to modify
+ *  is the rightful owner of the post they are attempting to modify
  * @param {Request} req
  */
-isRightfulOwner = function(req){
-  return (req.body._id === req.params.id);
+varifyRightfulOwner = function(req, callback){
+  //fetch the post's Owner ID from db
+  Post.findOne({'_id': req.params.id}, 'ownerID', function(err, post){
+    if (err) { console.log('ERROR in varifyRightfulOwner(): ' + err); }
+
+    //compare session owner's ID vs posts's Owner ID; session owner should be post's owner
+    if (req.user._id === post.ownerID.toString()) {
+      callback(true); //session owner is authorized to edit
+    }
+    else {
+      callback(false); //session owner is not authorized
+    }
+  });
 }
 
 //-------------------------- GET request --------------------------//
@@ -173,7 +184,7 @@ exports.deleteUser = function (req, res) {
 exports.deletePost = function (req, res) {
   //varify user is logged in
   if (req.isAuthenticated()){
-    // find and delete any images attachments
+    //find and delete any images attachments
     Post.findOne({'_id': req.params.id}, 'images', function(err, post){
       if (post.images !== []){
         (post.images).forEach(function(imageURL){
@@ -182,7 +193,7 @@ exports.deletePost = function (req, res) {
       }
     });
 
-    // delete post
+    //delete post
     Post.findOneAndRemove({'_id': req.params.id}, function(err, result){
       varifyQuerySuccess(err, res, 'deletePost');
       res.send('Got a DELETE request at /post');
