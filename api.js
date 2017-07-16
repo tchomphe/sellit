@@ -192,19 +192,26 @@ exports.deleteUser = function (req, res) {
 exports.deletePost = function (req, res) {
   //varify user is logged in
   if (req.isAuthenticated()){
-    //find and delete any images attachments
-    Post.findOne({'_id': req.params.id}, 'images', function(err, post){
-      if (post.images !== []){
-        (post.images).forEach(function(imageURL){
-          fs.unlinkSync(imageURL);
+    varifyRightfulOwner(req, function(isRightfulOwner){
+      if (isRightfulOwner){
+        //find and delete any images attachments
+        Post.findOne({'_id': req.params.id}, 'images', function(err, post){
+          if (post.images !== []){
+            (post.images).forEach(function(imageURL){
+              fs.unlinkSync(imageURL);
+            });
+          }
+        });
+
+        //delete post
+        Post.findOneAndRemove({'_id': req.params.id}, function(err, result){
+          varifyQuerySuccess(err, res, 'deletePost');
+          res.send('Got a DELETE request at /post');
         });
       }
-    });
-
-    //delete post
-    Post.findOneAndRemove({'_id': req.params.id}, function(err, result){
-      varifyQuerySuccess(err, res, 'deletePost');
-      res.send('Got a DELETE request at /post');
+      else {
+        res.status(400).send({message: 'You are not the owner of this post.'});
+      }
     });
   }
   else {
