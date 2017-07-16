@@ -159,16 +159,24 @@ exports.updateUserInfo = function(req, res){
 exports.updatePostInfo = function (req, res) {
   //varify user is logged in
   if (req.isAuthenticated()){
-    var query = {_id: req.params.id};
-    var newObject = {$set: req.body};
-    var settings = {new: true};
+    varifyRightfulOwner(req, function(isRightfulOwner){
+      if (isRightfulOwner){
+        //define mongoose function settings
+        var query = {_id: req.params.id};
+        var newObject = {$set: req.body};
+        var settings = {new: true};
 
-    Post.findByIdAndUpdate(query, newObject, settings, function(err, post) {
-      varifyQuerySuccess(err, res, 'updateUserInfo');
-      res.send('Got a PUT request at /post');
+        Post.findByIdAndUpdate(query, newObject, settings, function(err, post) {
+          varifyQuerySuccess(err, res, 'updateUserInfo');
+          res.send('Got a PUT request at /post');
+        });
+      }
+      else {
+        res.status(400).send({message: 'You are not the owner of this post.'});
+      }
     });
   }
-  else {
+  else{
     res.status(400).send({message: 'Please Log In.'});
   }
 };
