@@ -472,6 +472,18 @@ describe('Goku session API tests;', function () {
           });
       });
     });
+
+    describe('DELETE /post/:id', function(){
+      it('responds with HTTP Status 400', function(done){
+        goku
+          .delete('http://localhost:8080/post/'+postID)
+          .end(function(error, response, body){
+            expect(response.statusCode).to.equal(400);
+            expect(response.body.message).to.equal('You are not the owner of this post.');
+            done();
+          });
+      });
+    });
   });
 
   describe('GET /logout', function(){
