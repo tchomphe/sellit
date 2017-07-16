@@ -446,6 +446,34 @@ describe('Goku session API tests;', function () {
     });
   });
 
+  describe('malicious post edit requests,', function(){
+    describe('GET /postByTitle/:title', function(){
+      it('responds with correct post and HTTP Status 200', function(done) {
+        goku.get('http://localhost:8080/postByTitle/' + seeder.posts[1].title, function(error, response, body){
+          expect(response.body.type).to.equal(seeder.posts[1].type);
+          expect(response.body.address).to.equal(seeder.posts[1].address);
+          expect(response.statusCode).to.equal(200);
+          postID = response.body._id;
+          done();
+        });
+      });
+    });
+
+    describe('PUT /post/:id', function(){
+      it('responds with HTTP Status 400', function(done){
+        goku
+          .put('http://localhost:8080/post/'+postID)
+          .set('Content-Type', 'application/json')
+          .send('{"title":"Hacked Title!", "description":"Hahaha got you Vageta!! XD"}')
+          .end(function(error, response, body){
+            expect(response.statusCode).to.equal(400);
+            expect(response.body.message).to.equal('You are not the owner of this post.');
+            done();
+          });
+      });
+    });
+  });
+
   describe('GET /logout', function(){
     it('should redirect to / with status of 200', function(done) {
       goku
