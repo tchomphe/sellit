@@ -26,10 +26,10 @@ export default class TilesContainer extends React.Component {
         //send GET request to API and update state with response
         Request.get('/paginatePosts/1').then((res) => {
             this.setState({
-                displayedPosts: res.body.docs.map((post) =>
-                    <PostTile key={post._id.toString()} title={post.title} address={post.address} />
+                displayedPosts: res.body.docs.map((post) =>                                        
+                    <PostTile id={post._id} title={post.title} address={post.address} />
                 ),
-            })
+            })            
         });
     }
 
@@ -37,7 +37,7 @@ export default class TilesContainer extends React.Component {
         Request.get('/searchByTitle/' + title).then((res) => {
             this.setState({
                 displayedPosts: res.body.docs.map((post) =>
-                    <PostTile key={post._id.toString()} title={post.title} address={post.address} />
+                    <PostTile id={post._id} title={post.title} address={post.address} />                  
                 ),
             })            
         });

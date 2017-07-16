@@ -7,14 +7,16 @@ export default class PostTile extends React.Component {
             <div className="card">
                 <div className="card-image">
                     <a href="#postModal" className="waves-effect waves-light">
+                    {/*<a className="waves-effect waves-light" onClick={this.props.PostWindow}>    */}
                         <img src="https://placehold.it/350x250" alt="Card image cap" />
                     </a>
                 </div>
-                <div className="card-content">
+                <div className="card-content">                    
+                    <span className="card-title">{this.props.id}</span>
                     <span className="card-title">{this.props.title}</span>
-                    <p className="card-text"><strong>Address</strong>: {this.props.address}</p>
-                </div>
-            </div>
+                    <p className="card-text"><strong>Address</strong>: {this.props.address}</p>                    
+                </div>                
+            </div>            
         )
     }
 }
