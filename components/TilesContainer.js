@@ -52,7 +52,7 @@ export default class TilesContainer extends React.Component {
                 <LoginWindow />
                 <PostWindow />
                 {this.state.displayedPosts}
-                <a className="btn-floating btn-large waves-effect waves-light gray">
+                <br /><a className="scrollButton btn-floating btn-large waves-effect waves-light gray">
                     <i className="large material-icons">expand_more</i>
                 </a>
             </div>
