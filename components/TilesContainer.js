@@ -26,10 +26,10 @@ export default class TilesContainer extends React.Component {
         //send GET request to API and update state with response
         Request.get('/paginatePosts/1').then((res) => {
             this.setState({
-                displayedPosts: res.body.docs.map((post) =>                                        
+                displayedPosts: res.body.docs.map((post) =>
                     <PostTile key={post._id} id={post._id} title={post.title} address={post.address} />
                 ),
-            })            
+            })
         });
     }
 
@@ -37,9 +37,9 @@ export default class TilesContainer extends React.Component {
         Request.get('/searchByTitle/' + title).then((res) => {
             this.setState({
                 displayedPosts: res.body.docs.map((post) =>
-                    <PostTile key={post._id} id={post._id} title={post.title} address={post.address} />                  
+                    <PostTile key={post._id} id={post._id} title={post.title} address={post.address} />
                 ),
-            })            
+            })
         });
     }
 
@@ -48,10 +48,13 @@ export default class TilesContainer extends React.Component {
             <div className="app-content row center">
                 <NavigationHeader searchPost={this.searchPost.bind(this)} getPosts={this.getPosts.bind(this)}/>
                 <Banner />
-                {this.state.displayedPosts}
                 <RegistrationWindow />
                 <LoginWindow />
                 <PostWindow />
+                {this.state.displayedPosts}
+                <a className="btn-floating btn-large waves-effect waves-light gray">
+                    <i className="large material-icons">expand_more</i>
+                </a>
             </div>
         );
     }
