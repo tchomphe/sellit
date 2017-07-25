@@ -15,6 +15,7 @@ export default class TilesContainer extends React.Component {
         //define state variable holding data for Tiles
         this.state = {
             displayedPosts: [],
+            page: 1,
         };
     }
 
@@ -22,13 +23,20 @@ export default class TilesContainer extends React.Component {
         this.getPosts();
     }
 
-    getPosts(){
+    getPosts(e){
+        if (e) {e.preventDefault();}
+
         //send GET request to API and update state with response
-        Request.get('/paginatePosts/1').then((res) => {
-            this.setState({
-                displayedPosts: res.body.docs.map((post) =>
+        Request.get('/paginatePosts/'+this.state.page).then((res) => {
+            var oldPosts = this.state.displayedPosts;
+            var newPosts = res.body.docs.map((post) =>
                     <PostTile key={post._id} id={post._id} title={post.title} address={post.address} />
-                ),
+                );
+            var updatedPosts = oldPosts.concat(newPosts);
+
+            this.setState({
+                displayedPosts: updatedPosts,
+                page: this.state.page + 1
             })
         });
     }
@@ -52,7 +60,7 @@ export default class TilesContainer extends React.Component {
                 <LoginWindow />
                 <PostWindow />
                 {this.state.displayedPosts}
-                <br /><a className="scrollButton btn-floating btn-large waves-effect waves-light gray">
+                <br /><a onClick={(e) => (this.getPosts(e))} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
                     <i className="large material-icons">expand_more</i>
                 </a>
             </div>
