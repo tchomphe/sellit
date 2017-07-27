@@ -19,7 +19,7 @@ export default class TilesContainer extends React.Component {
         };
 
         //bind functions to this component
-        this.getPosts.bind(this);
+        this.getPosts = this.getPosts.bind(this);
     }
 
     componentWillMount(){
@@ -55,13 +55,13 @@ export default class TilesContainer extends React.Component {
     render(){
         return(
             <div className="app-content row center">
-                <NavigationHeader searchPost={this.searchPost.bind(this)} getPosts={this.getPosts.bind(this)}/>
+                <NavigationHeader searchPost={this.searchPost.bind(this)} getPosts={this.getPosts}/>
                 <Banner />
                 <RegistrationWindow />
                 <LoginWindow />
                 <PostWindow />
                 {this.state.displayedPosts}
-                <a onClick={(e) => (this.getPosts())} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
+                <a onClick={this.getPosts} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
                     <i className="large material-icons">expand_more</i>
                 </a>
             </div>
