@@ -17,15 +17,16 @@ export default class TilesContainer extends React.Component {
             displayedPosts: [],
             page: 1,
         };
+
+        //bind functions to this component
+        this.getPosts.bind(this);
     }
 
     componentWillMount(){
         this.getPosts();
     }
 
-    getPosts(e){
-        if (e) {e.preventDefault();}
-
+    getPosts(){
         //send GET request to API and update state with response
         Request.get('/paginatePosts/'+this.state.page).then((res) => {
             var oldPosts = this.state.displayedPosts;
@@ -60,7 +61,7 @@ export default class TilesContainer extends React.Component {
                 <LoginWindow />
                 <PostWindow />
                 {this.state.displayedPosts}
-                <a onClick={(e) => (this.getPosts(e))} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
+                <a onClick={(e) => (this.getPosts())} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
                     <i className="large material-icons">expand_more</i>
                 </a>
             </div>
