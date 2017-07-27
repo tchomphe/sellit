@@ -20,6 +20,7 @@ export default class TilesContainer extends React.Component {
 
         //bind functions to this component
         this.getPosts = this.getPosts.bind(this);
+        this.searchPost = this.searchPost.bind(this);
     }
 
     componentWillMount(){
@@ -55,7 +56,7 @@ export default class TilesContainer extends React.Component {
     render(){
         return(
             <div className="app-content row center">
-                <NavigationHeader searchPost={this.searchPost.bind(this)} getPosts={this.getPosts}/>
+                <NavigationHeader searchPost={this.searchPost} getPosts={this.getPosts}/>
                 <Banner />
                 <RegistrationWindow />
                 <LoginWindow />
