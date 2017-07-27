@@ -16,18 +16,13 @@ class NavigationHeader extends React.Component{
         this.props.searchPost(this.refs.search.value);
     }
 
-    handleOnClick(e){
-        e.preventDefault();
-        this.props.getPosts();
-    }
-
     render(){
         return(
             <div>
                 <nav className="left-align">
                     <div className="nav-wrapper">
                         {/*<Link to="/" className="brand-logo left" onClick={(e) => (this.handleOnClick(e))}> Toronto List</Link>*/}
-                        <a href="#!" onClick={(e) => (this.handleOnClick(e))} className="brand-logo left">Toronto list</a>
+                        <a href="#!" onClick={this.props.getPosts} className="brand-logo left">Toronto list</a>
                         <form onSubmit={(e) => (this.handleSubmit(e))} >
                             <div className="input-field">
                                 <input id="search" type="search" ref="search" required />
