@@ -22,7 +22,7 @@ class NavigationHeader extends React.Component{
                 <nav className="left-align">
                     <div className="nav-wrapper">
                         {/*<Link to="/" className="brand-logo left" onClick={(e) => (this.handleOnClick(e))}> Toronto List</Link>*/}
-                        <a href="#!" onClick={this.props.getPosts} className="brand-logo left">Toronto list</a>
+                        <a href="#!" onClick={this.props.getPosts} className="brand-logo left"><img src="./assets/img/logo.jpg" width="7%"/></a>
                         <form onSubmit={(e) => (this.handleSubmit(e))} >
                             <div className="input-field">
                                 <input id="search" type="search" ref="search" required />
