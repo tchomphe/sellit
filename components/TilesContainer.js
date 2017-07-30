@@ -21,9 +21,19 @@ export default class TilesContainer extends React.Component {
         //bind functions to this component
         this.getPosts = this.getPosts.bind(this);
         this.searchPost = this.searchPost.bind(this);
+        this.resetPosts = this.resetPosts.bind(this);
     }
 
     componentWillMount(){
+        this.getPosts();
+    }
+
+    resetPosts(){
+        //reset state variables to initial values
+        this.state.displayedPosts = [];
+        this.state.page = 1;
+
+        //render updated posts
         this.getPosts();
     }
 
