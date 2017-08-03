@@ -42,6 +42,11 @@ nav ul a {
     cursor: pointer;
 }
 
+nav .input-field label i {
+    color: rgba(0, 0, 0, 0.7);
+    transition: color .3s;
+}
+
 .z-depth-1, .card-panel, .card {
      box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0;
 }
@@ -161,8 +166,8 @@ nav ul a {
 
 /* search box color modification*/
 .input-field input[type=search]:focus {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #000000;
 }
 
 .nav-wrapper form {
