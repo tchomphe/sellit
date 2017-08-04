@@ -145,9 +145,18 @@ nav .input-field label i {
     padding: 0px;
 }
 
+.carousel {
+    height: inherit !important;
+}
+
+.carousel-item {
+    width: 700px !important;
+    top: -75px !important;
+}
+
 .postImagesSlideshow, .postLocationMap {
     background-color: turquoise;
-    height: 250px;
+    height: 350px;
 }
 
 .postContact {
