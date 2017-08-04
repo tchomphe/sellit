@@ -44,7 +44,7 @@ export default class TilesContainer extends React.Component {
         Request.get('/paginatePosts/'+this.state.page).then((res) => {
             var oldPosts = this.state.displayedPosts;
             var newPosts = res.body.docs.map((post) =>
-                    <PostTile updatePostModal={this.updatePostModal} key={post._id} id={post._id} title={post.title} address={post.address} />
+                    <PostTile updatePostModal={this.updatePostModal} post={post} key={post._id} id={post._id} title={post.title} address={post.address} />
                 );
             var updatedPosts = oldPosts.concat(newPosts);
 
@@ -59,13 +59,19 @@ export default class TilesContainer extends React.Component {
         Request.get('/searchByTitle/' + title).then((res) => {
             this.setState({
                 displayedPosts: res.body.docs.map((post) =>
-                    <PostTile updatePostModal={this.updatePostModal} key={post._id} id={post._id} title={post.title} address={post.address} />
+                    <PostTile updatePostModal={this.updatePostModal} post={post} key={post._id} id={post._id} title={post.title} address={post.address} />
                 ),
             })
         });
     }
 
-    updatePostModal(){
+    updatePostModal(post){
+        //pass information about the post the user has selected to the modal
+        this.setState({
+            postModal: <PostWindow title={post.title} price={post.price} address={post.address} description={post.description} />
+        });
+
+        //display the modal on the screen
         $('#postModal').modal('open');
     }
 
