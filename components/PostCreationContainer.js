@@ -1,7 +1,20 @@
 import React from 'react';
+import Request from 'superagent';
 
 class PostCreationContainer extends React.Component{
-    render(){
+    handleOnClick(){        
+         Request
+            .post('/createPost')
+            .type('form')
+            .send({ownerID: ownerid, title: 'Manny', address: 'Manny', type: 'shit'})
+            .end(function(err, res){
+                if (err) {
+                    console.log(err)
+                }
+                console.log('yeeeee');
+            });
+    }
+    render(){        
         return(
             <div className="row">
                 <form className="col s12 center">
