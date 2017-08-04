@@ -11,7 +11,7 @@ class PostWindow extends React.Component{
                     <div className="modal-content">
                         <div className="row">
                             <div className="col s12 postImagesSlideshow">
-                                <div className="carousel" >
+                                <div className="carousel" data-indicators="true">
                                     <a className="carousel-item" href="#one!"><img src="http://lorempixel.com/500/250/nature/3" /></a>
                                     <a className="carousel-item" href="#two!"><img src="http://lorempixel.com/500/250/nature/2" /></a>
                                     <a className="carousel-item" href="#three!"><img src="http://lorempixel.com/500/250/nature/7" /></a>
