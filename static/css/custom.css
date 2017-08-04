@@ -20,8 +20,8 @@ nav {
     position: fixed;
     z-index: 99;
     left: 0px;
-    opacity: 0.9;
-    box-shadow: 11px 3px 5px -1px #eee;
+    /* opacity: 0.9; */
+    /* box-shadow: 11px 3px 5px -1px #eee; */
 }
 
 nav .brand-logo {
@@ -30,7 +30,7 @@ nav .brand-logo {
     display: inline-block;
     font-size: 16px;
     padding: 0;
-    white-space: nowrap;
+    /* white-space: nowrap; */
 }
 
 nav ul a {
@@ -44,7 +44,7 @@ nav ul a {
 
 nav .input-field label i {
     color: rgba(0, 0, 0, 0.7);
-    transition: color .3s;
+    /* transition: color .3s; */
 }
 
 .z-depth-1, .card-panel, .card {
@@ -79,7 +79,7 @@ nav .input-field label i {
 
 .banner {
     height: 400px;
-    background-color: #fafafa;
+    background-color: #FF6900;
     /*background-image: url('/assets/img/toronto3.jpg');*/
     background-size: 100%;
 }
