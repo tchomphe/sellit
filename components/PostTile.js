@@ -12,7 +12,6 @@ export default class PostTile extends React.Component {
             <div className="card">
                 <div className="card-image">
                     <a href="#!" onClick={(e) => (this.handleSubmit(e))} className="waves-effect waves-light">
-                    {/*<a className="waves-effect waves-light" onClick={this.props.PostWindow}>    */}
                         <img src="https://placehold.it/350x250" alt="Card image cap" />
                     </a>
                 </div>

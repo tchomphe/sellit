@@ -21,7 +21,6 @@ class NavigationHeader extends React.Component{
             <div>
                 <nav className="left-align">
                     <div className="nav-wrapper">
-                        {/*<Link to="/" className="brand-logo left" onClick={(e) => (this.handleOnClick(e))}> Toronto List</Link>*/}
                         <a href="#!" onClick={this.props.resetPosts} className="brand-logo left"><img src="./assets/img/logo.png" width="7%"/></a>
                         <form onSubmit={(e) => (this.handleSubmit(e))} >
                             <div className="input-field">
