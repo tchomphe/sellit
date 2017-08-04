@@ -70,8 +70,9 @@ export default class TilesContainer extends React.Component {
                 <Banner />
                 <RegistrationWindow />
                 <LoginWindow />
-                <PostWindow />
+                <PostWindow title="TEST title" price="TEST price" address="TEST address" description="TEST description" />
                 {this.state.displayedPosts}
+                <br />
                 <a onClick={this.getPosts} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
                     <i className="large material-icons">expand_more</i>
                 </a>
