@@ -23,6 +23,7 @@ export default class TilesContainer extends React.Component {
         this.getPosts = this.getPosts.bind(this);
         this.searchPost = this.searchPost.bind(this);
         this.resetPosts = this.resetPosts.bind(this);
+        this.updatePostModal = this.updatePostModal.bind(this);
     }
 
     componentWillMount(){
@@ -43,7 +44,7 @@ export default class TilesContainer extends React.Component {
         Request.get('/paginatePosts/'+this.state.page).then((res) => {
             var oldPosts = this.state.displayedPosts;
             var newPosts = res.body.docs.map((post) =>
-                    <PostTile key={post._id} id={post._id} title={post.title} address={post.address} />
+                    <PostTile updatePostModal={this.updatePostModal} key={post._id} id={post._id} title={post.title} address={post.address} />
                 );
             var updatedPosts = oldPosts.concat(newPosts);
 
@@ -58,10 +59,14 @@ export default class TilesContainer extends React.Component {
         Request.get('/searchByTitle/' + title).then((res) => {
             this.setState({
                 displayedPosts: res.body.docs.map((post) =>
-                    <PostTile key={post._id} id={post._id} title={post.title} address={post.address} />
+                    <PostTile updatePostModal={this.updatePostModal} key={post._id} id={post._id} title={post.title} address={post.address} />
                 ),
             })
         });
+    }
+
+    updatePostModal(){
+        $('#postModal').modal('open');
     }
 
     render(){
