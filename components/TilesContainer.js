@@ -14,6 +14,7 @@ export default class TilesContainer extends React.Component {
 
         //define state variable holding data for Tiles
         this.state = {
+            postModal: <PostWindow title="TEST title" price="TEST price" address="TEST address" description="TEST description" />,
             displayedPosts: [],
             page: 1,
         };
@@ -70,7 +71,7 @@ export default class TilesContainer extends React.Component {
                 <Banner />
                 <RegistrationWindow />
                 <LoginWindow />
-                <PostWindow title="TEST title" price="TEST price" address="TEST address" description="TEST description" />
+                {this.state.postModal}
                 {this.state.displayedPosts}
                 <br />
                 <a onClick={this.getPosts} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
