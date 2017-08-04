@@ -157,6 +157,7 @@ nav .input-field label i {
 .postImagesSlideshow, .postLocationMap {
     background-color: turquoise;
     height: 350px;
+    padding: 0px !important;
 }
 
 .postContact {
