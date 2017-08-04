@@ -10,7 +10,15 @@ class PostWindow extends React.Component{
                     <FloatingBackButton />
                     <div className="modal-content">
                         <div className="row">
-                            <div className="col s12 postImagesSlideshow"></div>
+                            <div className="col s12 postImagesSlideshow">
+                                <div className="carousel" >
+                                    <a className="carousel-item" href="#one!"><img src="http://lorempixel.com/500/250/nature/3" /></a>
+                                    <a className="carousel-item" href="#two!"><img src="http://lorempixel.com/500/250/nature/2" /></a>
+                                    <a className="carousel-item" href="#three!"><img src="http://lorempixel.com/500/250/nature/7" /></a>
+                                    <a className="carousel-item" href="#four!"><img src="http://lorempixel.com/500/250/nature/4" /></a>
+                                    <a className="carousel-item" href="#five!"><img src="http://lorempixel.com/500/250/nature/5" /></a>
+                                </div>
+                            </div>
                         </div>
                         <div className="row">
                             <div className="col m8 postInformation">
