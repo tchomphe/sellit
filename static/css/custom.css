@@ -28,14 +28,14 @@ nav .brand-logo {
     position: absolute;
     color: #000;
     display: inline-block;
-    font-size: 2.1rem;
+    font-size: 16px;
     padding: 0;
     white-space: nowrap;
 }
 
 nav ul a {
     transition: background-color .3s;
-    font-size: 1rem;
+    /*font-size: 16px;*/
     color: #000;
     display: block;
     padding: 0 15px;
@@ -61,7 +61,7 @@ nav .input-field label i {
 }
 
 .card a, .card a img {
-    width: 100%;
+    width: 90%;
 }
 
 .card .card-image img {
@@ -73,7 +73,7 @@ nav .input-field label i {
 }
 
 .card .card-title {
-    font-size: 21px;
+    font-size: 16px;
     font-weight: 300;
 }
 

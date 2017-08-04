@@ -30,7 +30,7 @@ class NavigationHeader extends React.Component{
                             </div>
                         </form>
                         <ul className="right hide-on-med-and-down">
-                            <li><a href="#registerModal">Create an Account</a></li>
+                            <li><a href="#registerModal" className="waves-effect waves-light btn">Create an Account</a></li>
                             <li><a href="#loginModal" className="waves-effect waves-light btn">login to post</a></li>
                         </ul>
                     </div>
