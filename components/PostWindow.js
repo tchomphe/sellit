@@ -4,6 +4,8 @@ import PostContact from './PostContact';
 
 class PostWindow extends React.Component{
     render(){
+        var placeholderMessage = "[Not specified, contact seller]";
+
         return(
             <div>
                 <div id="postModal" className="modal">
@@ -26,11 +28,11 @@ class PostWindow extends React.Component{
                                 <br />
                                 <div className="row">
                                     <div className="col s3 right-align"><b>Price:</b></div>
-                                    <div className="col s9 left-align">{this.props.price}</div>
+                                    <div className="col s9 left-align">{this.props.price || placeholderMessage}</div>
                                     <div className="col s3 right-align"><b>Address:</b></div>
-                                    <div className="col s9 left-align">{this.props.address}</div>
+                                    <div className="col s9 left-align">{this.props.address || placeholderMessage}</div>
                                     <div className="col s3 right-align"><b>Description:</b></div>
-                                    <div className="col s9 left-align">{this.props.description}</div>
+                                    <div className="col s9 left-align">{this.props.description || placeholderMessage}</div>
                                 </div>
                             </div>
                             <div className="col m4 postContact">
