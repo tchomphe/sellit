@@ -1,6 +1,7 @@
 import React from 'react';
 import FloatingBackButton from './FloatingBackButton';
 import PostContact from './PostContact';
+import Map from './Map'
 
 class PostWindow extends React.Component{
     render(){
@@ -40,7 +41,9 @@ class PostWindow extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col s12 postLocationMap"></div>
+                            <div className="col s12 postLocationMap">
+                                 <Map /> 
+                            </div>
                         </div>
                     </div>
                 </div>
