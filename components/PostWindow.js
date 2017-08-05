@@ -6,6 +6,7 @@ import Map from './Map'
 class PostWindow extends React.Component{
     render(){
         var placeholderMessage = "[Not specified, contact seller]";
+        var initialCenter = { lng: -90.1056957, lat: 29.9717272 }
 
         return(
             <div>
@@ -41,9 +42,9 @@ class PostWindow extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col s12 postLocationMap">
-                                 <Map /> 
-                            </div>
+                            {/* <div className="col s12 postLocationMap"> */}
+                                 <Map initialCenter={initialCenter} /> 
+                            {/* </div> */}
                         </div>
                     </div>
                 </div>
