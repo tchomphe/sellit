@@ -118,7 +118,7 @@ exports.createPost = function(req, res){
     }, this);
 
     var newPost = {
-      ownerID: req.body.ownerID,
+      ownerID: req.user._id,
       title: req.body.title,
       address: req.body.address,
       type: req.body.type,
