@@ -6,7 +6,7 @@ class PostCreationContainer extends React.Component{
          Request
             .post('/createPost')
             .type('form')
-            .send({ownerID: ownerid, title: 'Manny', address: 'Manny', type: 'shit'})
+            .send({title: 'Manny', address: 'Manny', type: 'shit'})
             .end(function(err, res){
                 if (err) {
                     console.log(err)

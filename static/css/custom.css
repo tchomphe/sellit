@@ -21,7 +21,7 @@ nav {
     z-index: 99;
     left: 0px;
     /* opacity: 0.9; */
-    /* box-shadow: 11px 3px 5px -1px #eee; */
+     box-shadow: 1px 3px 5px -1px #eee; 
 }
 
 nav .brand-logo {
@@ -79,7 +79,7 @@ nav .input-field label i {
 
 .banner {
     height: 400px;
-    background-color: #FF6900;
+    background-color: #fafafa;
     /*background-image: url('/assets/img/toronto3.jpg');*/
     background-size: 100%;
 }
@@ -110,6 +110,30 @@ nav .input-field label i {
     margin-bottom: 20px;
 }
 
+.btn-floating i {
+    width: inherit;
+    display: inline-block;
+    text-align: center;
+    color: #e1e1e1;
+    font-size: 1.6rem;
+    line-height: 40px;
+}
+
+.btn-floating {
+    display: inline-block;    
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    transition: .3s;
+    cursor: pointer;
+    vertical-align: middle;
+}
 .modalButtonClose {
     position: absolute;
     right: 0px;

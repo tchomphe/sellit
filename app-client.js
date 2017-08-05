@@ -5,7 +5,7 @@ import AppRoutes from './components/AppRoutes';
 window.onload = () => {
     ReactDOM.render(<AppRoutes />, document.getElementById('container'));
 
-    // Initialize modal plugin
+    // Initialize modal plugin    
     $('.modal').modal({
         ready: function(modal, trigger){
             $('.carousel').removeClass('hide');
