@@ -21,7 +21,7 @@ nav {
     z-index: 99;
     left: 0px;
     /* opacity: 0.9; */
-     box-shadow: 1px 3px 5px -1px #eee; 
+     box-shadow: 1px 3px 5px -1px #eee;
 }
 
 nav .brand-logo {
@@ -93,12 +93,6 @@ nav .input-field label i {
 .btn {
     border-radius: 0;
 }
-.floatingMenuButton {
-    position: fixed;
-    z-index: 99;
-    top: 30px;
-    right: 30px;
-}
 
 .login-button {
     width: 100%;
@@ -120,7 +114,7 @@ nav .input-field label i {
 }
 
 .btn-floating {
-    display: inline-block;    
+    display: inline-block;
     position: relative;
     overflow: hidden;
     z-index: 1;
