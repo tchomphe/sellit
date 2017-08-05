@@ -231,7 +231,6 @@ describe('Session-based API tests;', function () {
         vageta
           .post('http://localhost:8080/createPost')
           .set('Content-Type', 'multipart/form-data')
-          .field('ownerID', seeder.users.vageta._id)
           .field('title', 'iCapsule S')
           .field('address', '123 Royal Way')
           .field('type', 'smartphone')
