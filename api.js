@@ -142,8 +142,8 @@ exports.updateUserInfo = function(req, res){
   //varify user is logged in
   if (req.isAuthenticated()){
     //define mongoose function settings
-    var query = {_id: req.params.id};
-    var newObject = {$set:req.body};
+    var query = {_id: req.user._id};
+    var newObject = {$set: req.body};
     var settings = {new: true};
 
     User.findByIdAndUpdate(query, newObject, settings, function(err, user) {

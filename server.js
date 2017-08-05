@@ -79,7 +79,7 @@ app.post('/createUser', upload.array('userImages'), api.createUser);
 app.post('/login', function(req, res, next){ authentication.handleLogin(req, res, next, passport);});
 
 // PUT requests
-app.put('/user/:id', api.updateUserInfo);
+app.put('/user', api.updateUserInfo);
 app.put('/post/:id', api.updatePostInfo);
 
 // DELETE requests

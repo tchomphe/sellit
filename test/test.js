@@ -119,10 +119,10 @@ describe('Session-based API tests;', function () {
       });
     });
 
-    describe('PUT /user/:id', function(){
+    describe('PUT /user', function(){
       it('responds with HTTP Status 400', function(done){
         vageta
-          .put('http://localhost:8080/user/'+userID)
+          .put('http://localhost:8080/user')
           .set('Content-Type', 'application/json')
           .send('{"email":"vagetaSuperSayan@gmail.com", "nickname":"Super Sayan Vageta"}')
           .end(function(error, response, body){
@@ -408,10 +408,10 @@ describe('Goku session;', function () {
 // API Tests Requiring Session (with New User) ======================= //
 describe('Goku session API tests;', function () {
 
-  describe('PUT /user/:id', function(){
+  describe('PUT /user', function(){
     it('responds with HTTP Status 200', function(done){
       goku
-        .put('http://localhost:8080/user/'+userID)
+        .put('http://localhost:8080/user')
         .set('Content-Type', 'application/json')
         .send('{"email":"gokuSuperSayan@gmail.com", "nickname":"Super Sayan Goku", "phone":"2227770000"}')
         .end(function(error, response, body){
