@@ -48,6 +48,10 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.use(expressSession({resave: false, saveUninitialized: false, secret: 'sellit, TOlist or listTO?'}));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(function(req, res, next){ // define variables to pass to client
+  res.append('authorized_user', (req.user) ? true : false);
+  next();
+})
 
 
 //----------------- CONFIGURE ROUTING -----------------//
