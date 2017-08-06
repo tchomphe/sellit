@@ -301,7 +301,7 @@ describe('Goku session;', function () {
 
   describe('create account,', function(){
     describe('POST /createUser', function(){
-      it('responds with HTTP Status 200', function(done) {
+      it('redirects to /', function(done) {
         goku
           .post('http://localhost:8080/createUser')
           .set('Content-Type', 'multipart/form-data')
@@ -309,9 +309,21 @@ describe('Goku session;', function () {
           .field('password', 'kamehameha!')
           .field('phone', '1117770000')
           .end(function(error, response, body){
-            expect(response.statusCode).to.equal(200);
+            //TODO: checking for redirect.. this is terrible PLEASE fix me!
+            expect(response.res.req.path).to.equal('/');
             done();
           });
+      });
+    });
+
+    describe('GET /logout', function(){
+    it('should redirect to /', function(done) {
+      goku
+        .get('http://localhost:8080/logout').end(function(error, response, body){
+          //TODO: checking for redirect.. this is terrible PLEASE fix me!
+          expect(response.res.req.path).to.equal('/');
+          done();
+        });
       });
     });
 

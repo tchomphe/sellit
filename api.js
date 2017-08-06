@@ -1,6 +1,8 @@
 var Post = require('./config/models/post');
 var User = require('./config/models/user');
 var fs = require('fs');
+var passport = require('passport');
+var authentication = require('./config/passport');
 
 /**
  * [Helper Function]: Varifies the success or failure of a MongoDB query
@@ -44,7 +46,7 @@ exports.paginatePosts = function(req, res){
   var query = {};
   var options = {
     page: req.params.pageNum,
-    limit: 10
+    limit: 3
   };
 
   Post.paginate(query, options, function(err, result){
@@ -105,7 +107,9 @@ exports.createUser = function(req, res){
   //create new database entry from POST request's JSON object
   User.saveNewUser(newUser, function(err, user){
     varifyQuerySuccess(err, res, 'createUser');
-    res.send('Received and processed JSON data.');
+    console.log('Received and processed JSON data. Logging in..');
+    //automatically log new user in
+    authentication.handleLogin(req, res, passport);
   });
 };
 
