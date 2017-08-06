@@ -47,7 +47,7 @@ module.exports.handleLogin = function(req, res, next, passport){
                 }
 
                 console.log('SUCCESS: ' + req.body.email + ' has been logged in.');
-                return res.redirect(200, '/create-post');
+                return res.redirect('/');
             });
         })(req, res, next);
     }
