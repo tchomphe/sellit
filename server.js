@@ -70,7 +70,7 @@ app.get('/myAccount', function(req, res){
   if (req.isAuthenticated())
     res.status(200).send({message: 'User is logged in!'});
   else
-    res.status(400).redirect('/');
+    res.redirect('/');
 });
 app.get('/logout', function(req, res){
   req.logout();
