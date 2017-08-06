@@ -51,7 +51,8 @@ export default class TilesContainer extends React.Component {
 
             this.setState({
                 displayedPosts: updatedPosts,
-                page: this.state.page + 1
+                page: this.state.page + 1,
+                authorizedUser: (res.header.authorized_user == 'true'),
             })
         });
     }
@@ -77,9 +78,10 @@ export default class TilesContainer extends React.Component {
     }
 
     render(){
+        console.log('Rendered TilesContainer ' + this.state.displayedPosts);
         return(
             <div className="app-content row center">
-                <NavigationHeader searchPost={this.searchPost} resetPosts={this.resetPosts}/>
+                <NavigationHeader authorizedUser={this.state.authorizedUser} searchPost={this.searchPost} resetPosts={this.resetPosts}/>
                 <Banner />
                 <RegistrationWindow />
                 <LoginWindow />

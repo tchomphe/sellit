@@ -18,7 +18,7 @@ class NavigationHeader extends React.Component{
 
     render(){
         var loggedInMenu = <ul className="right hide-on-med-and-down">
-                                <li class="active"><a href="#">All Posts</a></li>
+                                <li><a href="#">All Posts</a></li>
                                 <li><a href="#">My Posts</a></li>
                                 <li><a href="#">My Account</a></li>
                                 <li><a href="#registerModal" className="waves-effect waves-light btn">Logout</a></li>
@@ -28,7 +28,8 @@ class NavigationHeader extends React.Component{
                             <li><a href="#loginModal" className="waves-effect waves-light btn">login to post</a></li>
                          </ul>
 
-        var navMenu = defaultMenu;
+        //determine whether navigation menu should display a logged in menu, or not
+        var navMenu = (this.props.authorizedUser == true) ? loggedInMenu : defaultMenu;
 
         return(
             <div>
