@@ -17,6 +17,7 @@ export default class TilesContainer extends React.Component {
             postModal: <PostWindow title="TEST title" price="TEST price" address="TEST address" description="TEST description" />,
             displayedPosts: [],
             page: 1,
+            authorizedUser: false,
         };
 
         //bind functions to this component
@@ -66,7 +67,7 @@ export default class TilesContainer extends React.Component {
     }
 
     updatePostModal(post){
-        //pass information about the post the user has selected to the modal
+        //pass information about the (user-selected) post to the modal
         this.setState({
             postModal: <PostWindow title={post.title} price={post.price} address={post.address} description={post.description} />
         });
