@@ -136,7 +136,7 @@ describe('Session-based API tests;', function () {
 
   describe('Vageta sign in,', function () {
     describe('GET /myAccount', function(){
-      it('should redirect to / with status 400', function(done) {
+      it('should redirect to /', function(done) {
         vageta
           .get('http://localhost:8080/myAccount').end(function(error, response, body){
             //TODO: checking for redirect.. this is terrible PLEASE fix me!
@@ -175,7 +175,7 @@ describe('Session-based API tests;', function () {
     });
 
     describe('with VALID credentials', function() {
-      it('should redirect to /create-post', function(done) {
+      it('should redirect to /', function(done) {
         vageta
           .post('http://localhost:8080/login')
           .type('form')
@@ -273,7 +273,7 @@ describe('Session-based API tests;', function () {
 
   describe('sign out,', function(){
     describe('GET /logout', function(){
-      it('should redirect to / with status of 200', function(done) {
+      it('should redirect to /', function(done) {
         vageta
           .get('http://localhost:8080/logout').end(function(error, response, body){
             //TODO: checking for redirect.. this is terrible PLEASE fix me!
@@ -284,7 +284,7 @@ describe('Session-based API tests;', function () {
     });
 
     describe('GET /myAccount', function(){
-      it('should redirect to / with status 400', function(done) {
+      it('should redirect to /', function(done) {
         vageta
           .get('http://localhost:8080/myAccount').end(function(error, response, body){
             //TODO: checking for redirect.. this is terrible PLEASE fix me!
@@ -340,7 +340,7 @@ describe('Goku session;', function () {
 
   describe('login,', function(){
     describe('GET /myAccount', function(){
-      it('should redirect to / with status 400', function(done) {
+      it('should redirect to /', function(done) {
         goku
           .get('http://localhost:8080/myAccount').end(function(error, response, body){
             //TODO: checking for redirect.. this is terrible PLEASE fix me!
@@ -379,7 +379,7 @@ describe('Goku session;', function () {
     });
 
     describe('with VALID credentials', function() {
-      it('should redirect to /create-post', function(done) {
+      it('should redirect to /', function(done) {
         goku
           .post('http://localhost:8080/login')
           .type('form')
@@ -488,7 +488,7 @@ describe('Goku session API tests;', function () {
   });
 
   describe('GET /logout', function(){
-    it('should redirect to / with status of 200', function(done) {
+    it('should redirect to /', function(done) {
       goku
         .get('http://localhost:8080/logout').end(function(error, response, body){
           //TODO: checking for redirect.. this is terrible PLEASE fix me!
@@ -499,7 +499,7 @@ describe('Goku session API tests;', function () {
   });
 
   describe('GET /myAccount', function(){
-    it('should redirect to / with status 400', function(done) {
+    it('should redirect to /', function(done) {
       goku
         .get('http://localhost:8080/myAccount').end(function(error, response, body){
           //TODO: checking for redirect.. this is terrible PLEASE fix me!
