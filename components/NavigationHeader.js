@@ -17,6 +17,19 @@ class NavigationHeader extends React.Component{
     }
 
     render(){
+        var loggedInMenu = <ul className="right hide-on-med-and-down">
+                                <li class="active"><a href="#">All Posts</a></li>
+                                <li><a href="#">My Posts</a></li>
+                                <li><a href="#">My Account</a></li>
+                                <li><a href="#registerModal" className="waves-effect waves-light btn">Logout</a></li>
+                              </ul>
+        var defaultMenu = <ul className="right hide-on-med-and-down">
+                            <li><a href="#registerModal" className="waves-effect waves-light btn">Create an Account</a></li>
+                            <li><a href="#loginModal" className="waves-effect waves-light btn">login to post</a></li>
+                         </ul>
+
+        var navMenu = defaultMenu;
+
         return(
             <div>
                 <nav className="left-align">
@@ -28,10 +41,7 @@ class NavigationHeader extends React.Component{
                                 <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
                             </div>
                         </form>
-                        <ul className="right hide-on-med-and-down">
-                            <li><a href="#registerModal" className="waves-effect waves-light btn">Create an Account</a></li>
-                            <li><a href="#loginModal" className="waves-effect waves-light btn">login to post</a></li>
-                        </ul>
+                        {navMenu}
                     </div>
                 </nav>
             </div>
