@@ -35,7 +35,7 @@ class NavigationHeader extends React.Component{
             <div>
                 <nav className="left-align">
                     <div className="nav-wrapper">
-                        <a href="#!" onClick={this.props.resetPosts} className="brand-logo left"><img src="./assets/img/logo.png" width="7%"/></a>
+                        <a href="/" className="brand-logo left"><img src="./assets/img/logo.png" width="7%"/></a>
                         <form onSubmit={(e) => (this.handleSubmit(e))} >
                             <div className="input-field">
                                 <input id="search" type="search" ref="search" required />

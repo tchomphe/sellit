@@ -31,15 +31,6 @@ export default class TilesContainer extends React.Component {
         this.getPosts();
     }
 
-    resetPosts(){
-        //reset state variables to initial values
-        this.state.displayedPosts = [];
-        this.state.page = 1;
-
-        //render updated posts
-        this.getPosts();
-    }
-
     getPosts(){
         //send GET request to API and update state with response
         Request.get('/paginatePosts/'+this.state.page).then((res) => {
