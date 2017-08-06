@@ -27,7 +27,7 @@ module.exports.defineLocalStrategy = function(passport){
     });
 }
 
-module.exports.handleLogin = function(req, res, next, passport){
+module.exports.handleLogin = function(req, res, passport){
     console.log('Received login Request...');
     console.log(req.body);
 
@@ -49,7 +49,7 @@ module.exports.handleLogin = function(req, res, next, passport){
                 console.log('SUCCESS: ' + req.body.email + ' has been logged in.');
                 return res.redirect('/');
             });
-        })(req, res, next);
+        })(req, res);
     }
     else{
         console.log('ERROR: Body email field is null');
