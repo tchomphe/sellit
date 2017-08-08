@@ -209,17 +209,22 @@ nav .input-field label i {
     max-height: 90%;
 }
 
-.Map {
+/* .Map {
     height: 300px; 
     position: absolute;
     width: 100%;
 }
 .GMap-canvas {
-    /* top: 20px; */
     display: block;
     width: 100%;
     height: 100%;
+} */
+
+.GMap{
+    width: 100%; 
+    height: 300px;
 }
+
 .postImagesSlideshow, .postLocationMap {
     background-color: #e1e1e1;
     height: 350px;

@@ -5,8 +5,7 @@ import Map from './Map'
 
 class PostWindow extends React.Component{
     render(){
-        var placeholderMessage = "[Not specified, contact seller]";
-        var initialCenter = { lng: -90.1056957, lat: 29.9717272 }
+        var placeholderMessage = "[Not specified, contact seller]";        
 
         return(
             <div id="postModal" className="modal">
@@ -25,6 +24,7 @@ class PostWindow extends React.Component{
                     <div className="row">
                         <div className="col m8 postInformation">
                             <h5 className="center">{this.props.title}</h5>
+                            <h6 className="center">ID: {this.props.key}</h6>
                             <br />
                             <div className="row">
                                 <div className="col s3 right-align"><b>Price:</b></div>
@@ -41,7 +41,7 @@ class PostWindow extends React.Component{
                     </div>
                     <div className="row">
                         {/* <div className="col s12 postLocationMap"> */}
-                                <Map initialCenter={initialCenter} />
+                                <Map />
                         {/* </div> */}
                     </div>
                 </div>
