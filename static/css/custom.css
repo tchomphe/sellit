@@ -108,7 +108,6 @@ nav .input-field label i {
     width: inherit;
     display: inline-block;
     text-align: center;
-    color: #e1e1e1;
     font-size: 1.6rem;
     line-height: 40px;
 }
@@ -122,7 +121,7 @@ nav .input-field label i {
     height: 40px;
     line-height: 40px;
     padding: 0;
-    background-color: #FFFFFF;
+    background-color: lightcoral;
     border-radius: 50%;
     transition: .3s;
     cursor: pointer;
