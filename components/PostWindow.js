@@ -11,7 +11,6 @@ class PostWindow extends React.Component{
         return(
             <div>
                 <div id="postModal" className="modal">
-                    <FloatingBackButton />
                     <div className="modal-content">
                         <div className="row">
                             <div className="col s12 postImagesSlideshow">
@@ -43,7 +42,7 @@ class PostWindow extends React.Component{
                         </div>
                         <div className="row">
                             {/* <div className="col s12 postLocationMap"> */}
-                                 <Map initialCenter={initialCenter} /> 
+                                 <Map initialCenter={initialCenter} />
                             {/* </div> */}
                         </div>
                     </div>

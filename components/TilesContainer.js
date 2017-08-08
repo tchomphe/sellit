@@ -73,6 +73,7 @@ export default class TilesContainer extends React.Component {
             <div className="app-content row center">
                 <NavigationHeader authorizedUser={this.state.authorizedUser} searchPost={this.searchPost} />
                 <Banner />
+                <FloatingBackButton />
                 <RegistrationWindow />
                 <LoginWindow />
                 {this.state.postModal}
