@@ -56,8 +56,14 @@ app.use(function(req, res, next){ // define variables to pass to client
 
 //----------------- CONFIGURE ROUTING -----------------//
 // GET requests
-app.get(['/', '/create-post'], function(req, res){
+app.get('/', function(req, res){
   res.render('home');
+});
+app.get(['/create-post', '/my-posts', '/my-profile'], function(req, res){
+  if (req.isAuthenticated())
+    res.render('home');
+  else
+    res.redirect('/');
 });
 
 app.get('/paginatePosts/:pageNum', api.paginatePosts);
