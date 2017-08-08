@@ -1,16 +1,21 @@
 import React from 'react';
 
 class Map extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            zoom:15
-        }
-    }
+
+  constructor(props){
+    super(props);
+    this.state = {
+      zoom: 15 
+    };
+  }
+
+  static propTypes() {
+  	initialCenter: React.PropTypes.objectOf(React.PropTypes.number).isRequired
+  }
 
 	render() {
-    return <div className="map">
-      <div className='map-canvas' ref="mapCanvas">
+    return <div className="Map">      
+      <div className='GMap-canvas' ref="mapCanvas">
       </div>
     </div>
   }
@@ -18,17 +23,17 @@ class Map extends React.Component {
   componentDidMount() {
     // create the map, marker and infoWindow after the component has
     // been rendered because we need to manipulate the DOM for Google =(
-    this.map = this.createMap();
-    this.marker = this.createMarker();
-    this.infoWindow = this.createInfoWindow();
+    this.map = this.createMap()
+    this.marker = this.createMarker()
   
     // have to define google maps event listeners here too
-    // because we can't add listeners on the map until its created    
+    // because we can't add listeners on the map until its created
+    google.maps.event.addListener(this.map, 'zoom_changed', ()=> this.handleZoomChange())
   }
 
   // clean up event listeners when component unmounts
   componentDidUnMount() {
-    google.maps.event.clearListeners(map);
+    google.maps.event.clearListeners(map, 'zoom_changed')
   }
 
   createMap() {
@@ -52,10 +57,10 @@ class Map extends React.Component {
       map: this.map
     });
 	}
-
-  createInfoWindow() {
-    return new google.maps.InfoWindow({
-      map: this.map,
+  
+  handleZoomChange() {
+    this.setState({
+      zoom: this.map.getZoom()
     });
   }
 }
