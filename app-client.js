@@ -5,9 +5,10 @@ import AppRoutes from './components/AppRoutes';
 window.onload = () => {
     ReactDOM.render(<AppRoutes />, document.getElementById('container'));
 
-    // Initialize modal plugin    
+    // Initialize modal plugin
     $('.modal').modal({
         ready: function(modal, trigger){
+            $('.floatingBackButton').removeClass('hide');
             $('.carousel').removeClass('hide');
             $('.carousel').carousel({dist:0,shift:0,padding:0});
         },
@@ -15,5 +16,11 @@ window.onload = () => {
             $('.carousel').addClass('hide');
         }
     });
+
+    // Set up click handler for floating back button
+    $('.floatingBackButton').click(function(){
+        $('.floatingBackButton').addClass('hide');
+        $('.modal').modal('close');
+    })
 
 };
