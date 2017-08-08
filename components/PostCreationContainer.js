@@ -2,73 +2,57 @@ import React from 'react';
 import Request from 'superagent';
 
 class PostCreationContainer extends React.Component{
-    handleOnClick(){        
-         Request
-            .post('/createPost')
-            .type('form')
-            .send({title: 'Manny', address: 'Manny', type: 'shit'})
-            .end(function(err, res){
-                if (err) {
-                    console.log(err)
-                }
-                console.log('yeeeee');
-            });
-    }
-    render(){        
+    render(){
         return(
-            <div className="row">
-                <form className="col s12 center">
-                    <h1>Create Post</h1>
-                        <div className="row center">
-                            <div className="input-field col s12">
-                                <input id="title" type="text" className="validate" />
-                                <label htmlFor="title" data-error="wrong" data-success="right">* Title</label>
-                            </div>
-                        </div>
-                        <div className="row center">
-                            <div className="input-field col s12">
-                                <select>
-                                <option value="" disabled selected>Category</option>
-                                <option value="1">Phone</option>
-                                <option value="2">Laptop</option>
-                                <option value="3">Other</option>
-                                </select>
-                            </div>
+            <div className="row center">
+                <h1>Create Post</h1>
+                <form className="col s12 center" method="post" action="/createPost">
+                    <div className="row">
+                        <div className="input-field col s12 m6">
+                            <input id="title" name="title" type="text" className="validate" />
+                            <label htmlFor="title" data-error="wrong" data-success="right">* Title</label>
                         </div>
 
-                        <div className="row center">
-                            <div className="input-field col s12">
-                                <input id="price" type="text" className="validate" />
-                                <label htmlFor="price" data-error="wrong" data-success="right">* Price</label>
-                            </div>
+                        <div className="input-field col s12 m6">
+                            <select name="type">
+                                <option value="Phone" defaultValue>Phone</option>
+                                <option value="Laptop">Laptop</option>
+                                <option value="Case">Case</option>
+                            </select>
+                            <label>* Type</label>
                         </div>
 
-                        <div className="row center">
-                            <div className="input-field col s12">
-                                <textarea id="description" className="materialize-textarea"></textarea>
-                                <label htmlFor="description">Description</label>
-                            </div>
+                        <div className="input-field col s12 m6">
+                            <input id="price" name="price" type="text" className="validate" />
+                            <label htmlFor="price" data-error="wrong" data-success="right">Price</label>
                         </div>
 
-                        <div className="row center">
-                            <div className="input-field col s12">
-                                <input id="address" type="text" className="validate" />
-                                <label htmlFor="address" data-error="wrong" data-success="right">* Address</label>
-                            </div>
+                        <div className="input-field col s12 m6">
+                            <input id="address" name="address" type="text" className="validate" />
+                            <label htmlFor="address" data-error="wrong" data-success="right">* Address</label>
                         </div>
-                        <div className="row center">
-                            <div className="file-field input-field">
-                                <div className="btn">
-                                    <span>Pictures</span>
-                                    <input type="file" />
-                                </div>
-                                <div className="file-path-wrapper">
-                                    <input className="file-path validate" type="text" />
-                                </div>
-                            </div>
+
+                        <div className="input-field col s12">
+                            <textarea id="description" name="description" className="materialize-textarea"></textarea>
+                            <label htmlFor="description">Description</label>
                         </div>
-                        <a className="waves-effect waves-light btn-large">Create Post</a>
-                    </form>
+
+                        {/* TODO: Fix attachments section */}
+                        {/* <div className="file-field input-field">
+                            <div className="btn">
+                                <span>Pictures</span>
+                                <input type="file" />
+                            </div>
+                            <div className="file-path-wrapper">
+                                <input className="file-path validate" type="text" />
+                            </div>
+                        </div> */}
+
+                        <button className="btn-large waves-effect waves-light" type="submit" name="action">Create Post
+                            <i className="material-icons right">send</i>
+                        </button>
+                    </div>
+                </form>
             </div>
         )
     }
