@@ -1,9 +1,6 @@
 import React from 'react';
 
-class MyProfilePage extends React.Component(){
-    constructor(props){
-        super(props);
-    }
+export default class MyProfilePage extends React.Component{    
     render(){
         return(
             <div>

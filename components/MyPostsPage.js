@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class TilesContainer extends React.Component {
+export default class MyPostPage extends React.Component {
     constructor(props){
         super(props);
 
