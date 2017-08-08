@@ -5,10 +5,11 @@ import AppRoutes from './components/AppRoutes';
 window.onload = () => {
     ReactDOM.render(<AppRoutes />, document.getElementById('container'));
 
-    // Initialize all other modals
+    // Initiate Materialize elements
     $('.modal').modal();
+    $('select').material_select();
 
-    // Initialize post modals
+    // Initialize Post Modals
     $('#postModal').modal({
         ready: function(modal, trigger){
             $('.floatingBackButton').removeClass('hide');
