@@ -17,6 +17,7 @@ export default class AppRoutes extends React.Component {
           <Route exact={true} path="/" component={TilesContainer}/>
           <Route path="/create-post" component={PostCreationContainer}/>
           <Route path="/my-posts" component={MyPostsPage}/>
+          <Route path="/my-profile" component={MyProfilePage}/>
         </Layout>
       </Router>
       );
