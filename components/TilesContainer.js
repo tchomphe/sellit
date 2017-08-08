@@ -23,7 +23,6 @@ export default class TilesContainer extends React.Component {
         //bind functions to this component
         this.getPosts = this.getPosts.bind(this);
         this.searchPost = this.searchPost.bind(this);
-        this.resetPosts = this.resetPosts.bind(this);
         this.updatePostModal = this.updatePostModal.bind(this);
     }
 
@@ -72,7 +71,7 @@ export default class TilesContainer extends React.Component {
         console.log('Rendered TilesContainer ' + this.state.displayedPosts);
         return(
             <div className="app-content row center">
-                <NavigationHeader authorizedUser={this.state.authorizedUser} searchPost={this.searchPost} resetPosts={this.resetPosts}/>
+                <NavigationHeader authorizedUser={this.state.authorizedUser} searchPost={this.searchPost} />
                 <Banner />
                 <RegistrationWindow />
                 <LoginWindow />
