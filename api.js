@@ -117,9 +117,12 @@ exports.createPost = function(req, res){
   //varify user is logged in
   if (req.isAuthenticated()){
     var uploadedImages = [];
-    (req.files).forEach(function(image) {
-      uploadedImages.push(image.path);
-    }, this);
+
+    //check if there are files to be uploaded
+    if (req.files)
+      (req.files).forEach(function(image) {
+        uploadedImages.push(image.path);
+      }, this);
 
     var newPost = {
       ownerID: req.user._id,
