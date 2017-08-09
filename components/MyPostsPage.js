@@ -4,9 +4,11 @@ export default class MyPostPage extends React.Component {
     constructor(props){
         super(props);
 
-        //define state variable holding data for Tiles
+        //define state variables
         this.state = {
-            displayedPosts: [],
+            postModal: <PostWindow title="TEST title" price="TEST price" address="TEST address" description="TEST description" />,
+            displayedPosts: null,
+            authorizedUser: true,
         };
     }
 
