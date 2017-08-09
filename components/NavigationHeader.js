@@ -32,20 +32,18 @@ class NavigationHeader extends React.Component{
         var navMenu = (this.props.authorizedUser == true) ? loggedInMenu : defaultMenu;
 
         return(
-            <div>
-                <nav className="left-align">
-                    <div className="nav-wrapper">
-                        <a href="/" className="brand-logo left"><img src="./assets/img/logo_small.png" /></a>
-                        <form onSubmit={(e) => (this.handleSubmit(e))} >
-                            <div className="input-field">
-                                <input id="search" type="search" ref="search" required />
-                                <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
-                            </div>
-                        </form>
-                        {navMenu}
-                    </div>
-                </nav>
-            </div>
+            <nav className="left-align">
+                <div className="nav-wrapper">
+                    <a href="/" className="brand-logo left"><img src="./assets/img/logo_small.png" /></a>
+                    <form onSubmit={(e) => (this.handleSubmit(e))} >
+                        <div className="input-field">
+                            <input id="search" type="search" ref="search" required />
+                            <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
+                        </div>
+                    </form>
+                    {navMenu}
+                </div>
+            </nav>
         );
     }
 }
