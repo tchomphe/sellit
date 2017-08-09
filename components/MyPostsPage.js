@@ -13,7 +13,6 @@ export default class MyPostPage extends React.Component {
         this.state = {
             postModal: <PostWindow title="TEST title" price="TEST price" address="TEST address" description="TEST description" />,
             displayedPosts: null,
-            authorizedUser: true,
         };
     }
 
@@ -33,7 +32,7 @@ export default class MyPostPage extends React.Component {
     render(){
         return (
             <div className="app-content row center">
-                <NavigationHeader authorizedUser={this.state.authorizedUser} searchPost={this.searchPost} />
+                <NavigationHeader authorizedUser={true} searchPost={null} />
                 <FloatingBackButton />
                 {this.state.postModal}
                 {this.state.displayedPosts}
