@@ -67,6 +67,15 @@ exports.searchByTitle = function(req, res){
   });
 };
 
+exports.searchByOwner = function(req, res){
+  var ObjectId = require('mongodb').ObjectID;
+
+  Post.find({'ownerID': ObjectId(req.user._id)}, function(err, result){
+    console.log('User posts found.');
+    res.send(result);
+  });
+};
+
 exports.getPostByTitle = function(req, res){
   Post.findOne({'title': req.params.title}, 'title type address description date', function(err, post) {
     varifyQuerySuccess(err, res, 'getPostByTitle');
