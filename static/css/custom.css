@@ -33,6 +33,11 @@ nav .brand-logo {
     /* white-space: nowrap; */
 }
 
+.brand-logo img {
+    width: 70%;
+    padding: 15px;
+}
+
 nav ul a {
     transition: background-color .3s;
     /*font-size: 16px;*/
@@ -221,7 +226,7 @@ nav .input-field label i {
 }
 
 /* .Map {
-    height: 300px; 
+    height: 300px;
     position: absolute;
     width: 100%;
 }
@@ -232,7 +237,7 @@ nav .input-field label i {
 } */
 
 .GMap{
-    width: 100%; 
+    width: 100%;
     height: 300px;
 }
 
