@@ -1,5 +1,6 @@
 import React from 'react';
 import Request from 'superagent';
+import NavigationHeader from './NavigationHeader';
 
 export default class MyProfilePage extends React.Component{    
     constructor(props){
@@ -16,30 +17,33 @@ export default class MyProfilePage extends React.Component{
 
     render(){
         return(            
-            <div className="container">                                                    
+            <div className="container">         
+                <div className="row">                                           
+                    <NavigationHeader /> 
+                </div>           
                 <div className="row">                    
                         <h5><center><b>My Profile</b> - update your information</center></h5>                                        
                         <div className="col s6">                         
                             <div className="card-panel">
                                 <h6><b>Account Details</b></h6>
-                                <label for="nickname">Nickname (optional):</label>
-                                <input placeholder={this.state.nickname} id="nickname" type="text" class="validate" />
+                                <label htmlFor="nickname">Nickname (optional):</label>
+                                <input placeholder={this.state.nickname} id="nickname" type="text" className="validate" />
 
-                                <label for="email">Email: </label>
-                                <input placeholder={this.state.email} id="nickname" type="text" class="validate" />
+                                <label htmlFor="email">Email: </label>
+                                <input placeholder={this.state.email} id="nickname" type="text" className="validate" />
 
-                                <label for="phone">Phone Number (optional):</label>
-                                <input placeholder={this.state.phone} id="phone" type="text" class="validate" />
+                                <label htmlFor="phone">Phone Number (optional):</label>
+                                <input placeholder={this.state.phone} id="phone" type="text" className="validate" />
 
-                                <label for="newpassword">New Password:</label>
-                                <input placeholder="New Password" id="newpassword" type="password" class="validate" />
-                                <label for="confirmnewpassword">Confirm New Password:</label>
-                                <input placeholder="Confirm New Password" id="confirmnewpassword" type="password" class="validate" />
+                                <label htmlFor="newpassword">New Password:</label>
+                                <input placeholder="New Password" id="newpassword" type="password" className="validate" />
+                                <label htmlFor="confirmnewpassword">Confirm New Password:</label>
+                                <input placeholder="Confirm New Password" id="confirmnewpassword" type="password" className="validate" />
 
-                                <label for="password">*Password:</label>
-                                <input placeholder="Password" id="password" type="password" class="validate" />
+                                <label htmlFor="password">*Password:</label>
+                                <input placeholder="Password" id="password" type="password" className="validate" />
 
-                                <button class="btn waves-effect waves-light" type="submit" name="action">
+                                <button className="btn waves-effect waves-light" type="submit" name="action">
                                     Save Changes
                                 </button>
                             </div>
@@ -48,24 +52,14 @@ export default class MyProfilePage extends React.Component{
                             <div className="card-panel">
                                 <h6><b>Account Summary</b></h6>
                                 <table>
-                                    <tr>
-                                        Email: 
-                                    </tr>      
-                                    <tr>
-                                        <i>{this.state.email}</i>
-                                    </tr>
-                                    <tr>
-                                        Nickname: 
-                                    </tr>      
-                                    <tr>
-                                        <i>{this.state.nickname}</i>
-                                    </tr>
-                                    <tr>
-                                        Phone Number: 
-                                    </tr>      
-                                    <tr>
-                                        <i>{this.state.phone}</i>
-                                    </tr>                            
+                                    <tbody>
+                                    <tr><td>Email:</td></tr>      
+                                    <tr><td><i>{this.state.email}</i></td></tr>
+                                    <tr><td>Nickname:</td></tr>      
+                                    <tr><td><i>{this.state.nickname}</i></td></tr>
+                                    <tr><td>Phone Number:</td></tr>      
+                                    <tr><td><i>{this.state.phone}</i></td></tr>      
+                                </tbody>                      
                                 </table>
                             </div>
                         </div>
