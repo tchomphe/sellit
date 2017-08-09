@@ -47,8 +47,19 @@ nav .input-field label i {
     /* transition: color .3s; */
 }
 
-.z-depth-1, .card-panel, .card {
+.z-depth-1, .card {
      box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0;
+}
+
+.card-panel {
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    padding: 24px;
+    margin: .5rem 0 1rem 0;
+    border-radius: 2px;
+    background-color: #fafafa;
 }
 
 .card {
