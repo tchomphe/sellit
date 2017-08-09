@@ -20,6 +20,7 @@ nav {
     position: fixed;
     z-index: 99;
     left: 0px;
+    top: 0px;
     /* opacity: 0.9; */
      box-shadow: 1px 3px 5px -1px #eee;
 }
@@ -50,6 +51,10 @@ nav ul a {
 nav .input-field label i {
     color: rgba(0, 0, 0, 0.7);
     /* transition: color .3s; */
+}
+
+.profilePageHeader {
+    margin-top: 90px;
 }
 
 .z-depth-1, .card {
