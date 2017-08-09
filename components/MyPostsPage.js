@@ -3,6 +3,7 @@ import NavigationHeader from './NavigationHeader';
 import PostWindow from './PostWindow';
 import FloatingBackButton from './FloatingBackButton';
 import PostTile from './PostTile';
+import Request from 'superagent';
 
 export default class MyPostPage extends React.Component {
     constructor(props){
@@ -14,6 +15,19 @@ export default class MyPostPage extends React.Component {
             displayedPosts: null,
             authorizedUser: true,
         };
+    }
+
+    componentWillMount(){
+        Request.get('/searchByOwner').then((res) => {
+            console.log(res.body);
+            var userPosts = res.body.map((post) =>
+                <PostTile updatePostModal={this.updatePostModal} post={post} key={post._id} id={post._id} title={post.title} address={post.address} />
+            );
+
+            this.setState({
+                displayedPosts: userPosts,
+            });
+        });
     }
 
     render(){
