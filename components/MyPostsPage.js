@@ -1,4 +1,8 @@
 import React from 'react';
+import NavigationHeader from './NavigationHeader';
+import PostWindow from './PostWindow';
+import FloatingBackButton from './FloatingBackButton';
+import PostTile from './PostTile';
 
 export default class MyPostPage extends React.Component {
     constructor(props){
@@ -15,7 +19,10 @@ export default class MyPostPage extends React.Component {
     render(){
         return (
             <div className="app-content row center">
-
+                <NavigationHeader authorizedUser={this.state.authorizedUser} searchPost={this.searchPost} />
+                <FloatingBackButton />
+                {this.state.postModal}
+                {this.state.displayedPosts}
             </div>
         )
     }
