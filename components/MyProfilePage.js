@@ -11,8 +11,14 @@ export default class MyProfilePage extends React.Component{
             phone: "416-416-4161"
         }
     }    
-    get(){        
-
+    componentDidMount(){
+        Request.get('/userByEmail/tashi@tashi.com').then((res) => {
+            this.setState({
+                email:res.body.email,
+                nickname: res.body.nickname,
+                phone: res.body.phone
+            });
+        });
     }
 
     render(){
