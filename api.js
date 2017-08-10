@@ -106,11 +106,14 @@ exports.getUserByEmail = function(req, res){
 
 //-------------------------- POST request --------------------------//
 exports.createUser = function(req, res){
+  //validate phone number
+  var phoneOK = /^\d{3}-\d{3}-\d{4}$/.test(req.body.phone);
+
   var newUser = {
     email: req.body.email,
     password: req.body.password,
     nickname: req.body.nickname,
-    phone: req.body.phone,    
+    phone: (phoneOK) ? req.body.phone : null,
   };
 
   //create new database entry from POST request's JSON object

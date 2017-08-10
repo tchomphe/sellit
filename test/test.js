@@ -307,7 +307,7 @@ describe('Goku session;', function () {
           .set('Content-Type', 'multipart/form-data')
           .field('email', 'goku@gmail.com')
           .field('password', 'kamehameha!')
-          .field('phone', '1117770000')
+          .field('phone', '111-777-0000')
           .end(function(error, response, body){
             //TODO: checking for redirect.. this is terrible PLEASE fix me!
             expect(response.res.req.path).to.equal('/');
@@ -331,7 +331,7 @@ describe('Goku session;', function () {
       it('responds with HTTP Status 200', function(done) {
         goku.get('http://localhost:8080/userByEmail/goku@gmail.com', function(error, response, body){
           userID = response.body._id;
-          expect(response.body.phone).to.equal(1117770000);
+          expect(response.body.phone).to.equal('111-777-0000');
           expect(response.statusCode).to.equal(200);
           done();
         });
@@ -341,7 +341,7 @@ describe('Goku session;', function () {
     describe('GET /user/:id', function(){
       it('responds with HTTP Status 200', function(done) {
         goku.get('http://localhost:8080/user/'+userID, function(error, response, body){
-          expect(response.body.phone).to.equal(1117770000);
+          expect(response.body.phone).to.equal('111-777-0000');
           expect(response.body.email).to.equal('goku@gmail.com');
           expect(response.statusCode).to.equal(200);
           done();
@@ -427,7 +427,7 @@ describe('Goku session API tests;', function () {
       goku
         .put('http://localhost:8080/user')
         .set('Content-Type', 'application/json')
-        .send('{"email":"gokuSuperSayan@gmail.com", "nickname":"Super Sayan Goku", "phone":"2227770000"}')
+        .send('{"email":"gokuSuperSayan@gmail.com", "nickname":"Super Sayan Goku", "phone":"222-777-0000"}')
         .end(function(error, response, body){
           expect(response.statusCode).to.equal(200);
           done();
@@ -440,7 +440,7 @@ describe('Goku session API tests;', function () {
       goku.get('http://localhost:8080/userByEmail/gokuSuperSayan@gmail.com', function(error, response, body){
         userID = response.body._id;
         expect(response.body.nickname).to.equal("Super Sayan Goku");
-        expect(response.body.phone).to.equal(2227770000);
+        expect(response.body.phone).to.equal('222-777-0000');
         expect(response.statusCode).to.equal(200);
         done();
       });
@@ -452,7 +452,7 @@ describe('Goku session API tests;', function () {
       goku.get('http://localhost:8080/user/'+userID, function(error, response, body){
         expect(response.body.email).to.equal('gokuSuperSayan@gmail.com');
         expect(response.body.nickname).to.equal("Super Sayan Goku");
-        expect(response.body.phone).to.equal(2227770000);
+        expect(response.body.phone).to.equal('222-777-0000');
         expect(response.statusCode).to.equal(200);
         done();
       });
