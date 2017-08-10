@@ -98,7 +98,7 @@ exports.getPostByID = function(req, res){
 };
 
 exports.getUserByEmail = function(req, res){
-  User.findOne({'email': req.params.email}, 'email nickname phone', function(err, user) {
+  User.findOne({'email': req.params.email}, 'email nickname phone date', function(err, user) {
     varifyQuerySuccess(err, res, 'getUserByEmail');
     res.send(user);
   });
@@ -110,7 +110,7 @@ exports.createUser = function(req, res){
     email: req.body.email,
     password: req.body.password,
     nickname: req.body.nickname,
-    phone: req.body.phone,
+    phone: req.body.phone,    
   };
 
   //create new database entry from POST request's JSON object
