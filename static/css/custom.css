@@ -22,7 +22,7 @@ nav {
     left: 0px;
     top: 0px;
     /* opacity: 0.9; */
-     box-shadow: 1px 3px 5px -1px #eee;
+     box-shadow: 1px 3px 5px -1px #cccccc;
 }
 
 nav .brand-logo {

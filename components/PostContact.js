@@ -2,9 +2,10 @@ import React from 'react';
 
 class PostContact extends React.Component{
     render(){
-        return(
-            <form className="col s12 center">
-                <h5>Contact Poster</h5>
+        return(            
+            <form className="col s12 center">                
+                <div className="card-panel">
+                <b>Contact Poster</b>
                 <div className="row center">
                     <div className="input-field col s12">
                         <input id="email" type="email" className="validate" />
@@ -12,7 +13,7 @@ class PostContact extends React.Component{
                     </div>
                 </div>
                 <div className="row">
-                    <div className="input-field col l8 m6">
+                    <div className="input-field col s12">
                         <input id="name" type="text" className="validate" />
                         <label htmlFor="name">Name</label>
                     </div>
@@ -23,8 +24,9 @@ class PostContact extends React.Component{
                         <label htmlFor="message">Message</label>
                     </div>
                 </div>
-                <a className="waves-effect waves-light btn-large">Send Email</a>
-            </form>
+                <a href="#" className="waves-effect waves-light btn-large">Send Email</a>
+            </div>
+            </form>            
         );
     }
 }

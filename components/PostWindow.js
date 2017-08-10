@@ -22,7 +22,9 @@ class PostWindow extends React.Component{
                         </div>
                     </div>
                     <div className="row">
+                        
                         <div className="col m8 postInformation">
+                            <div className="card-panel">
                             <h5 className="center">{this.props.title}</h5>
                             <h6 className="center">ID: {this.props.key}</h6>
                             <br />
@@ -35,7 +37,8 @@ class PostWindow extends React.Component{
                                 <div className="col s9 left-align">{this.props.description || placeholderMessage}</div>
                             </div>
                         </div>
-                        <div className="col m4 postContact">
+                        </div>
+                        <div className="col m4">
                             <PostContact />
                         </div>
                     </div>
