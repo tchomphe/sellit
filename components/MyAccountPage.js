@@ -2,7 +2,7 @@ import React from 'react';
 import Request from 'superagent';
 import NavigationHeader from './NavigationHeader';
 
-export default class MyProfilePage extends React.Component{
+export default class MyAccountPage extends React.Component{
     constructor(props){
         super(props);
         this.state ={

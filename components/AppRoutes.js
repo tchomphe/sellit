@@ -7,7 +7,7 @@ import Layout from './Layout';
 import TilesContainer from './TilesContainer';
 import PostCreationContainer from './PostCreationContainer';
 import MyPostsPage from './MyPostsPage';
-import MyProfilePage from './MyProfilePage';
+import MyAccountPage from './MyAccountPage';
 // import NotFoundPage from 'NotFoundPage';
 
 export default class AppRoutes extends React.Component {
@@ -18,7 +18,7 @@ export default class AppRoutes extends React.Component {
           <Route exact={true} path="/" component={TilesContainer}/>
           <Route path="/create-post" component={PostCreationContainer}/>
           <Route path="/my-posts" component={MyPostsPage}/>
-          <Route path="/my-profile" component={MyProfilePage}/>
+          <Route path="/my-account" component={MyAccountPage}/>
         </Layout>
       </Router>
       );

@@ -59,7 +59,7 @@ app.use(function(req, res, next){ // define variables to pass to client
 app.get('/', function(req, res){
   res.render('home');
 });
-app.get(['/create-post', '/my-posts', '/my-profile'], function(req, res){
+app.get(['/create-post', '/my-posts', '/my-account'], function(req, res){
   if (req.isAuthenticated())
     res.render('home');
   else
