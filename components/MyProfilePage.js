@@ -2,7 +2,7 @@ import React from 'react';
 import Request from 'superagent';
 import NavigationHeader from './NavigationHeader';
 
-export default class MyProfilePage extends React.Component{    
+export default class MyProfilePage extends React.Component{
     constructor(props){
         super(props);
         this.state ={
@@ -10,8 +10,8 @@ export default class MyProfilePage extends React.Component{
             nickname: "Swollen Plums",
             phone: "416-416-4161"
         }
-    }    
-    componentDidMount(){
+    }
+    componentWillMount(){
         Request.get('/userByEmail/tashi@tashi.com').then((res) => {
             this.setState({
                 email:res.body.email,
@@ -22,14 +22,14 @@ export default class MyProfilePage extends React.Component{
     }
 
     render(){
-        return(            
-            <div className="container">         
-                <div className="row">                                           
-                    <NavigationHeader /> 
-                </div>           
-                <div className="row">                    
+        return(
+            <div className="container">
+                <div className="row">
+                    <NavigationHeader authorizedUser={true} searchPost={null} />
+                </div>
+                <div className="row">
                         <h5 className="profilePageHeader"><b>My Account</b> - update your information</h5>
-                        <div className="col s6">                         
+                        <div className="col s6">
                             <div className="card-panel">
                                 <h6><b>Account Details</b></h6>
                                 <label htmlFor="nickname">Nickname (optional):</label>
@@ -54,18 +54,18 @@ export default class MyProfilePage extends React.Component{
                                 </button>
                             </div>
                         </div>
-                        <div className="col s6"> 
+                        <div className="col s6">
                             <div className="card-panel">
                                 <h6><b>Account Summary</b></h6>
                                 <table>
                                     <tbody>
-                                    <tr><td>Email:</td></tr>      
+                                    <tr><td>Email:</td></tr>
                                     <tr><td><i>{this.state.email}</i></td></tr>
-                                    <tr><td>Nickname:</td></tr>      
+                                    <tr><td>Nickname:</td></tr>
                                     <tr><td><i>{this.state.nickname}</i></td></tr>
-                                    <tr><td>Phone Number:</td></tr>      
-                                    <tr><td><i>{this.state.phone}</i></td></tr>      
-                                </tbody>                      
+                                    <tr><td>Phone Number:</td></tr>
+                                    <tr><td><i>{this.state.phone}</i></td></tr>
+                                </tbody>
                                 </table>
                             </div>
                         </div>
