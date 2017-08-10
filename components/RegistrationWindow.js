@@ -24,7 +24,7 @@ class RegistrationWindow extends React.Component{
                                     <label>Name/Nickname</label>
                                 </div>
                                 <div className="input-field col l4 m6">
-                                    <input name="phone" type="tel" className="validate" />
+                                    <input name="phone" type="tel" pattern="^\d{3}\d{3}\d{4}$" className="validate" />
                                     <label>Phone</label>                                      
                                 </div>
                             </div>
