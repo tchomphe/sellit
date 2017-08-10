@@ -28,7 +28,7 @@ export default class MyProfilePage extends React.Component{
                     <NavigationHeader /> 
                 </div>           
                 <div className="row">                    
-                        <h5><center><b>My Profile</b> - update your information</center></h5>                                        
+                        <h5 className="profilePageHeader"><b>My Account</b> - update your information</h5>
                         <div className="col s6">                         
                             <div className="card-panel">
                                 <h6><b>Account Details</b></h6>

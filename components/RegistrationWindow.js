@@ -24,8 +24,8 @@ class RegistrationWindow extends React.Component{
                                     <label>Name/Nickname</label>
                                 </div>
                                 <div className="input-field col l4 m6">
-                                    <input name="phone" type="text" className="validate" />
-                                    <label>Phone</label>
+                                    <input name="phone" type="tel" className="validate" />
+                                    <label>Phone</label>                                      
                                 </div>
                             </div>
                             <button className="btn-large waves-effect waves-light" type="submit" name="action">Register
