@@ -5,11 +5,11 @@ var crypto = require('crypto');
 
 // Define User Schema
 var userSchema = new Schema({
-  email:  {type: String, required: true, unique: true, trim: true},
-  password: {type: String, required: true},
-  nickname: { type: String, trim: true},
-  phone: { type: Number },
-  date: {type: Date, default: Date.now}
+  email:  { type: String, required: true, unique: true, trim: true },
+  password: { type: String, required: true },
+  nickname: { type: String, trim: true },
+  phone: { type: String },
+  date: { type: Date, default: Date.now }
 });
 
 userSchema.methods.validPassword = function(pw){
