@@ -30,10 +30,10 @@ export default class MainPage extends React.Component {
         this.getPosts();
     }
 
-    getPosts(){
+    getPosts(searchQuery = '.*'){
         //send GET request to API and update state with response
-        Request.get('/paginatePosts/'+this.state.page).then((res) => {
-            var oldPosts = this.state.displayedPosts;
+        Request.get('/searchByTitle/' + searchQuery).then((res) => {
+            var oldPosts = [];//this.state.displayedPosts; //TODO: integrate pagination into searchByTitle
             var newPosts = res.body.docs.map((post) =>
                     <PostTile updatePostModal={this.updatePostModal} post={post} key={post._id} id={post._id} title={post.title} address={post.address} />
                 );
