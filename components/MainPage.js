@@ -8,7 +8,7 @@ import FloatingBackButton from './FloatingBackButton';
 import Banner from './Banner';
 import Request from 'superagent';
 
-export default class TilesContainer extends React.Component {
+export default class MainPage extends React.Component {
     constructor(props){
         super(props);
 
@@ -68,7 +68,7 @@ export default class TilesContainer extends React.Component {
     }
 
     render(){
-        console.log('Rendered TilesContainer ' + this.state.displayedPosts);
+        console.log('Rendered MainPage ' + this.state.displayedPosts);
         return(
             <div className="app-content row center">
                 <NavigationHeader authorizedUser={this.state.authorizedUser} searchPost={this.searchPost} />
