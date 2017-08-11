@@ -18,7 +18,7 @@ export default class PostTile extends React.Component {
                 <div className="card-content">
                     <span className="card-title">{this.props.id}</span>
                     <span className="card-title">{this.props.title}</span>
-                    <p className="card-text"><strong>Address</strong>: {this.props.address}</p>
+                    <p className="card-text"><i className="tiny material-icons">location_on</i> {this.props.address}</p>
                 </div>
             </div>
         )

@@ -76,7 +76,7 @@ nav .input-field label i {
 .card {
     width: 33%;
     display: inline-block;
-    margin: 15px;
+    /* margin: 15px; */
     /*border: 1px solid#eeeeee;*/
     border-radius: 0;
     background-color: #fafafa;
@@ -91,12 +91,20 @@ nav .input-field label i {
 }
 
 .card .card-content{
-    color: #000000;
+    color: #5a5757;
+    font-size: 13px;
 }
 
 .card .card-title {
-    font-size: 16px;
-    font-weight: 300;
+    color: #000000;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.card .card-content .card-title {
+    display: block;
+    line-height: 15px;
+    margin-bottom: 8px;
 }
 
 .banner {
