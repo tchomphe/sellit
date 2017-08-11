@@ -21,16 +21,16 @@ export default class MainPage extends React.Component {
         };
 
         //bind functions to this component
-        this.getPosts = this.getPosts.bind(this);
+        this.requestPosts = this.requestPosts.bind(this);
         this.searchPost = this.searchPost.bind(this);
         this.updatePostModal = this.updatePostModal.bind(this);
     }
 
     componentWillMount(){
-        this.getPosts();
+        this.requestPosts();
     }
 
-    getPosts(searchQuery = '.*'){
+    requestPosts(searchQuery = '.*'){
         //send GET request to API and update state with response
         Request.get('/searchByTitle/' + searchQuery).then((res) => {
             var oldPosts = [];//this.state.displayedPosts; //TODO: integrate pagination into searchByTitle
@@ -71,7 +71,7 @@ export default class MainPage extends React.Component {
         console.log('Rendered MainPage ' + this.state.displayedPosts);
         return(
             <div className="app-content row center">
-                <NavigationHeader authorizedUser={this.state.authorizedUser} searchPost={this.searchPost} />
+                <NavigationHeader authorizedUser={this.state.authorizedUser} searchPost={this.requestPosts} />
                 <Banner />
                 <FloatingBackButton />
                 <RegistrationWindow />
@@ -79,7 +79,7 @@ export default class MainPage extends React.Component {
                 {this.state.postModal}
                 {this.state.displayedPosts}
                 <br />
-                <a onClick={this.getPosts} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
+                <a onClick={this.requestPosts} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
                     <i className="large material-icons">expand_more</i>
                 </a>
             </div>
