@@ -22,7 +22,6 @@ export default class MainPage extends React.Component {
 
         //bind functions to this component
         this.requestPosts = this.requestPosts.bind(this);
-        this.searchPost = this.searchPost.bind(this);
         this.updatePostModal = this.updatePostModal.bind(this);
     }
 
@@ -43,16 +42,6 @@ export default class MainPage extends React.Component {
                 displayedPosts: updatedPosts,
                 page: this.state.page + 1,
                 authorizedUser: (res.header.authorized_user == 'true'),
-            })
-        });
-    }
-
-    searchPost(title){
-        Request.get('/searchByTitle/' + title).then((res) => {
-            this.setState({
-                displayedPosts: res.body.docs.map((post) =>
-                    <PostTile updatePostModal={this.updatePostModal} post={post} key={post._id} id={post._id} title={post.title} address={post.address} />
-                ),
             })
         });
     }
