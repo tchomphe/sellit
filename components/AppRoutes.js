@@ -11,6 +11,37 @@ import MyAccountPage from './MyAccountPage';
 // import NotFoundPage from 'NotFoundPage';
 
 export default class AppRoutes extends React.Component {
+  constructor(props){
+    super(props);
+
+    //define state variables
+    this.state = {
+        posts: [],
+        page: 1, //TODO: create logic for pagination
+        user: {
+          id: null, //TODO: decide how to populate user identification
+          authorized: false,
+        }
+    };
+
+    //bind functions to this component
+    this.requestPosts = this.requestPosts.bind(this);
+  }
+
+  requestPosts(searchQuery = '.*'){
+    //send GET request to API and update state with response
+    Request.get('/searchByTitle/' + searchQuery).then((res) => {
+        var oldPosts = [];//this.state.displayedPosts; //TODO: integrate pagination into searchByTitle
+        var newPosts = res.body.docs;
+        var updatedPosts = oldPosts.concat(newPosts);
+
+        this.setState({
+            posts: updatedPosts,
+            user: { authorized: (res.header.authorized_user == 'true') }
+        });
+    });
+  }
+
   render() {
     return (
       <Router history={hashHistory}>
