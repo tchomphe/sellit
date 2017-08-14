@@ -5,16 +5,26 @@ class LoginModal extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            err: ""
+            err: "",
+            email: "",
+            password: ""
         }
-
-        this.handleSubmit = this.handleSubmit.bind(this);        
+        this.handleSubmit = this.handleSubmit.bind(this);    
+        this.handleUserChange = this.handleUserChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    }
+    handleUserChange(event){
+        this.setState({email: event.target.value});
+        // this.setState({password: event.target.value});
+    }
+    handlePasswordChange(event){        
+        this.setState({password: event.target.value});
     }
     handleSubmit(event){
         event.preventDefault();        
         Request
             .post('/login')
-            .send({email: "tashi@tashi.com", password: "tshi"})
+            .send({email: this.state.email, password: this.state.password})
             .end((err, res) => {
                 if(err){                    
                     this.setState({err: res.body.error});
@@ -31,27 +41,19 @@ class LoginModal extends React.Component{
             <div id="loginModal" className="modal">
                 <a className="modal-action modal-close btn-large modalButtonClose">x</a>
                 <div className="modal-content">
-                    <h5>Login</h5>
-                    {/* <div id="card-alert" className="card-red lighten-5"> */}
-                        <div className="card-content red-text">
-                            {this.state.err}
-                        </div>
-                        {/* <button type="button" className="close red-text" data-dimiss="alert" aria-label="close">
-                            <span aria-hidden="true">x</span>
-                        </button>
-                    </div> */}
+                    <h5>Login</h5>                    
+                    <div className="card-content red-text">
+                        {this.state.err}
+                    </div>            
                     <form className="row center" onSubmit={this.handleSubmit}>
                         <div className="input-field col s12">
-                            <input id="email" type="email" name="email" ref="email" className="validate" />
+                            <input type="email" className="validate" value={this.state.email} onChange={this.handleUserChange} />
                             <label htmlFor="email" data-error="wrong" data-success="right">Email</label>
                         </div>
                         <div className="input-field col l12">
-                            <input id="password" type="password" name="password" ref="password" className="validate" />
+                            <input type="password" className="validate" value={this.state.password} onChange={this.handlePasswordChange} />
                             <label htmlFor="password">Password</label>
-                        </div>
-                        <div className="input-field col l12">
-                            <label htmlFor="error">{}</label>
-                        </div>                        
+                        </div>             
                         <button className="btn-large waves-effect waves-light" type="submit" name="action">Login
                             <i className="material-icons right">send</i>
                         </button>
