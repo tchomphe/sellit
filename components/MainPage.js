@@ -12,14 +12,13 @@ export default class MainPage extends React.Component {
     constructor(props){
         super(props);
 
-        //bind functions to this component
-        this.updatePostModal = this.updatePostModal.bind(this);
-
-        //define state variable holding data for <PostTile>'s and <PostModal>
+        //define state variable holding data for <PostModal>
         this.state = {
             postModal: <PostModal title="" price="" address="" description="" />,
-            postTiles: [],
         };
+
+        //bind function to this component
+        this.updatePostModal = this.updatePostModal.bind(this);
     }
 
     updatePostModal(post){
@@ -33,11 +32,8 @@ export default class MainPage extends React.Component {
     }
 
     render(){
-        if (this.state.postTiles.length !== this.props.posts.length)
-            this.setState({
-                postTiles: this.props.posts.map((post) =>
-                    <PostTile updatePostModal={this.updatePostModal} post={post} key={post._id} id={post._id} title={post.title} address={post.address} />),
-            });
+        var postTiles = this.props.posts.map((post) =>
+            <PostTile updatePostModal={this.updatePostModal} post={post} key={post._id} id={post._id} title={post.title} address={post.address} />);
 
         console.log('MainPage rendering... posts: ' + this.props.posts);
         return(
@@ -48,7 +44,7 @@ export default class MainPage extends React.Component {
                 <RegistrationModal />
                 <LoginModal />
                 {this.state.postModal}
-                {this.state.postTiles}
+                {postTiles}
                 <br />
                 <a onClick={this.props.requestPosts} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
                     <i className="large material-icons">expand_more</i>
