@@ -1,6 +1,6 @@
 import React from 'react';
 
-class LoginWindow extends React.Component{
+class LoginModal extends React.Component{
     render(){
         return(
             <div id="loginModal" className="modal">
@@ -25,4 +25,4 @@ class LoginWindow extends React.Component{
         )
     }
 }
-export default LoginWindow;
+export default LoginModal;
