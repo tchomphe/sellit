@@ -2,7 +2,7 @@ import React from 'react';
 import PostTile from './PostTile';
 import NavigationHeader from './NavigationHeader';
 import RegistrationWindow from './RegistrationWindow';
-import LoginWindow from './LoginWindow';
+import LoginModal from './LoginModal';
 import PostWindow from './PostWindow';
 import FloatingBackButton from './FloatingBackButton';
 import Banner from './Banner';
@@ -64,7 +64,7 @@ export default class MainPage extends React.Component {
                 <Banner />
                 <FloatingBackButton />
                 <RegistrationWindow />
-                <LoginWindow />
+                <LoginModal />
                 {this.state.postModal}
                 {this.state.displayedPosts}
                 <br />
