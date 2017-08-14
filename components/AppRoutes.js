@@ -54,7 +54,7 @@ export default class AppRoutes extends React.Component {
     return (
       <Router history={hashHistory}>
         <Layout>
-          <Route exact={true} path="/" render={() => (<MainPage posts={this.state.posts} />)} />
+          <Route exact={true} path="/" render={() => (<MainPage posts={this.state.posts} authorization={this.state.user.authorized} />)} />
           <Route path="/create-post" component={PostCreationContainer}/>
           <Route path="/my-posts" component={MyPostsPage}/>
           <Route path="/my-account" component={MyAccountPage}/>

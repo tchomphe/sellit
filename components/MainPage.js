@@ -42,7 +42,7 @@ export default class MainPage extends React.Component {
         console.log('MainPage rendering... posts: ' + this.props.posts);
         return(
             <div className="app-content row center">
-                <NavigationHeader authorizedUser={this.state.authorizedUser} searchPost={this.props.requestPosts} />
+                <NavigationHeader authorizedUser={this.props.authorization} searchPost={this.props.requestPosts} />
                 <Banner />
                 <FloatingBackButton />
                 <RegistrationModal />
