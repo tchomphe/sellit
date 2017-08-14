@@ -14,35 +14,12 @@ export default class MainPage extends React.Component {
 
         //bind functions to this component
         this.updatePostModal = this.updatePostModal.bind(this);
-        this.requestPosts = this.requestPosts.bind(this);
 
         //define state variable holding data for <PostTile>'s and <PostModal>
         this.state = {
             postModal: <PostModal title="" price="" address="" description="" />,
-            postTiles: this.props.posts.map((post) =>
-                <PostTile updatePostModal={this.updatePostModal} post={post} key={post._id} id={post._id} title={post.title} address={post.address} />),
+            postTiles: [],
         };
-    }
-
-    componentWillMount(){
-
-    }
-
-    requestPosts(searchQuery = '.*'){
-        //send GET request to API and update state with response
-        Request.get('/searchByTitle/' + searchQuery).then((res) => {
-            var oldPosts = [];//this.state.displayedPosts; //TODO: integrate pagination into searchByTitle
-            var newPosts = res.body.docs.map((post) =>
-                    <PostTile updatePostModal={this.updatePostModal} post={post} key={post._id} id={post._id} title={post.title} address={post.address} />
-                );
-            var updatedPosts = oldPosts.concat(newPosts);
-
-            this.setState({
-                displayedPosts: updatedPosts,
-                page: this.state.page + 1,
-                authorizedUser: (res.header.authorized_user == 'true'),
-            })
-        });
     }
 
     updatePostModal(post){
@@ -56,10 +33,16 @@ export default class MainPage extends React.Component {
     }
 
     render(){
-        console.log('Rendered MainPage ' + this.state.postTiles);
+        if (this.state.postTiles.length !== this.props.posts.length)
+            this.setState({
+                postTiles: this.props.posts.map((post) =>
+                    <PostTile updatePostModal={this.updatePostModal} post={post} key={post._id} id={post._id} title={post.title} address={post.address} />),
+            });
+
+        console.log('MainPage rendering... posts: ' + this.props.posts);
         return(
             <div className="app-content row center">
-                <NavigationHeader authorizedUser={this.state.authorizedUser} searchPost={this.requestPosts} />
+                <NavigationHeader authorizedUser={this.state.authorizedUser} searchPost={this.props.requestPosts} />
                 <Banner />
                 <FloatingBackButton />
                 <RegistrationModal />
@@ -67,7 +50,7 @@ export default class MainPage extends React.Component {
                 {this.state.postModal}
                 {this.state.postTiles}
                 <br />
-                <a onClick={this.requestPosts} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
+                <a onClick={this.props.requestPosts} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
                     <i className="large material-icons">expand_more</i>
                 </a>
             </div>
