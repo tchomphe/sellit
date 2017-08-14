@@ -14,16 +14,15 @@ class LoginModal extends React.Component{
         event.preventDefault();        
         Request
             .post('/login')
-            .send({email: "tashi@tashi.com", password: "tashi"})
+            .send({email: "tashi@tashi.com", password: "tshi"})
             .end((err, res) => {
                 if(err){                    
                     this.setState({err: res.body.error});
-                    alert(JSON.stringify(this.state.err));
+                    // alert(JSON.stringify(this.state.err));
 
                 } else {
                     this.setState({err: ""});
-                    // $('#loginModal').modal('close');         
-                    alert("yay");           
+                    $('#loginModal').modal('close');                                        
                 }
             });
     }
@@ -33,6 +32,14 @@ class LoginModal extends React.Component{
                 <a className="modal-action modal-close btn-large modalButtonClose">x</a>
                 <div className="modal-content">
                     <h5>Login</h5>
+                    {/* <div id="card-alert" className="card-red lighten-5"> */}
+                        <div className="card-content red-text">
+                            {this.state.err}
+                        </div>
+                        {/* <button type="button" className="close red-text" data-dimiss="alert" aria-label="close">
+                            <span aria-hidden="true">x</span>
+                        </button>
+                    </div> */}
                     <form className="row center" onSubmit={this.handleSubmit}>
                         <div className="input-field col s12">
                             <input id="email" type="email" name="email" ref="email" className="validate" />
