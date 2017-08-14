@@ -12,21 +12,20 @@ export default class MainPage extends React.Component {
     constructor(props){
         super(props);
 
-        //define state variable holding data for Tiles
-        this.state = {
-            postModal: <PostModal title="TEST title" price="TEST price" address="TEST address" description="TEST description" />,
-            displayedPosts: [],
-            page: 1,
-            authorizedUser: false,
-        };
-
         //bind functions to this component
-        this.requestPosts = this.requestPosts.bind(this);
         this.updatePostModal = this.updatePostModal.bind(this);
+        this.requestPosts = this.requestPosts.bind(this);
+
+        //define state variable holding data for <PostTile>'s and <PostModal>
+        this.state = {
+            postModal: <PostModal title="" price="" address="" description="" />,
+            postTiles: this.props.posts.map((post) =>
+                <PostTile updatePostModal={this.updatePostModal} post={post} key={post._id} id={post._id} title={post.title} address={post.address} />),
+        };
     }
 
     componentWillMount(){
-        this.requestPosts();
+
     }
 
     requestPosts(searchQuery = '.*'){
@@ -57,7 +56,7 @@ export default class MainPage extends React.Component {
     }
 
     render(){
-        console.log('Rendered MainPage ' + this.state.displayedPosts);
+        console.log('Rendered MainPage ' + this.state.postTiles);
         return(
             <div className="app-content row center">
                 <NavigationHeader authorizedUser={this.state.authorizedUser} searchPost={this.requestPosts} />
@@ -66,7 +65,7 @@ export default class MainPage extends React.Component {
                 <RegistrationModal />
                 <LoginModal />
                 {this.state.postModal}
-                {this.state.displayedPosts}
+                {this.state.postTiles}
                 <br />
                 <a onClick={this.requestPosts} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
                     <i className="large material-icons">expand_more</i>

@@ -10,6 +10,8 @@ import MyPostsPage from './MyPostsPage';
 import MyAccountPage from './MyAccountPage';
 // import NotFoundPage from 'NotFoundPage';
 
+import Request from 'superagent';
+
 export default class AppRoutes extends React.Component {
   constructor(props){
     super(props);
@@ -26,6 +28,11 @@ export default class AppRoutes extends React.Component {
 
     //bind functions to this component
     this.requestPosts = this.requestPosts.bind(this);
+  }
+
+  componentWillMount(){
+    this.requestPosts();
+    console.log('Finished initial population');
   }
 
   requestPosts(searchQuery = '.*'){
@@ -46,7 +53,7 @@ export default class AppRoutes extends React.Component {
     return (
       <Router history={hashHistory}>
         <Layout>
-          <Route exact={true} path="/" component={MainPage}/>
+          <Route exact={true} path="/" component={() => (<MainPage posts={this.state.posts} />)} />
           <Route path="/create-post" component={PostCreationContainer}/>
           <Route path="/my-posts" component={MyPostsPage}/>
           <Route path="/my-account" component={MyAccountPage}/>
