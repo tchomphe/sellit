@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class RegistrationWindow extends React.Component{
+class RegistrationModal extends React.Component{
     render(){                
         return(
             <div id="registerModal" className="modal">
@@ -51,4 +51,4 @@ class RegistrationWindow extends React.Component{
     }
 }
 
-export default RegistrationWindow;
+export default RegistrationModal;

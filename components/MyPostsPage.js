@@ -1,6 +1,6 @@
 import React from 'react';
 import NavigationHeader from './NavigationHeader';
-import PostWindow from './PostWindow';
+import PostModal from './PostModal';
 import FloatingBackButton from './FloatingBackButton';
 import PostTile from './PostTile';
 import Request from 'superagent';
@@ -11,7 +11,7 @@ export default class MyPostPage extends React.Component {
 
         //define state variables
         this.state = {
-            postModal: <PostWindow title="TEST title" price="TEST price" address="TEST address" description="TEST description" />,
+            postModal: <PostModal title="TEST title" price="TEST price" address="TEST address" description="TEST description" />,
             displayedPosts: null,
         };
     }

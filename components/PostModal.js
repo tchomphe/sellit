@@ -3,7 +3,7 @@ import FloatingBackButton from './FloatingBackButton';
 import PostContact from './PostContact';
 import Map from './Map'
 
-class PostWindow extends React.Component{
+class PostModal extends React.Component{
     render(){
         var placeholderMessage = "[Not specified, contact seller]";        
 
@@ -53,4 +53,4 @@ class PostWindow extends React.Component{
     }
 }
 
-export default PostWindow;
+export default PostModal;

@@ -1,9 +1,9 @@
 import React from 'react';
 import PostTile from './PostTile';
 import NavigationHeader from './NavigationHeader';
-import RegistrationWindow from './RegistrationWindow';
+import RegistrationModal from './RegistrationModal';
 import LoginModal from './LoginModal';
-import PostWindow from './PostWindow';
+import PostModal from './PostModal';
 import FloatingBackButton from './FloatingBackButton';
 import Banner from './Banner';
 import Request from 'superagent';
@@ -14,7 +14,7 @@ export default class MainPage extends React.Component {
 
         //define state variable holding data for Tiles
         this.state = {
-            postModal: <PostWindow title="TEST title" price="TEST price" address="TEST address" description="TEST description" />,
+            postModal: <PostModal title="TEST title" price="TEST price" address="TEST address" description="TEST description" />,
             displayedPosts: [],
             page: 1,
             authorizedUser: false,
@@ -49,7 +49,7 @@ export default class MainPage extends React.Component {
     updatePostModal(post){
         //pass information about the (user-selected) post to the modal
         this.setState({
-            postModal: <PostWindow title={post.title} price={post.price} address={post.address} description={post.description} />
+            postModal: <PostModal title={post.title} price={post.price} address={post.address} description={post.description} />
         });
 
         //display the modal on the screen
@@ -63,7 +63,7 @@ export default class MainPage extends React.Component {
                 <NavigationHeader authorizedUser={this.state.authorizedUser} searchPost={this.requestPosts} />
                 <Banner />
                 <FloatingBackButton />
-                <RegistrationWindow />
+                <RegistrationModal />
                 <LoginModal />
                 {this.state.postModal}
                 {this.state.displayedPosts}
