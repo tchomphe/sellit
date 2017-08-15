@@ -256,6 +256,7 @@ nav .input-field label i {
 .modal {
     border-radius: 0px;
     max-height: 90%;
+    width: 35%;
 }
 
 /* .Map {
