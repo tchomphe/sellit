@@ -18,7 +18,9 @@ class NavigationHeader extends React.Component{
         if (window.location.pathname != '/')
             this.props.history.push('/');
 
-        this.props.searchPost(this.refs.search.value);
+        //check if the search query is undefined
+        var query = (this.refs.search.value == '') ? undefined : this.refs.search.value;
+        this.props.searchPost(query);
     }
 
     render(){
