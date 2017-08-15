@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class NavigationHeader extends React.Component{
     constructor(props){
@@ -18,9 +18,9 @@ class NavigationHeader extends React.Component{
 
     render(){
         var loggedInMenu =  <ul className="right hide-on-med-and-down">
-                                <li><a href="/">All Posts</a></li>
-                                <li><a href="/my-posts">My Posts</a></li>
-                                <li><a href="/my-account">My Account</a></li>
+                                <li><Link to="/">All Posts</Link></li>
+                                <li><Link to="/my-posts">My Posts</Link></li>
+                                <li><Link to="/my-account">My Account</Link></li>
                                 <li><a href="/logout" className="waves-effect waves-light btn">Logout</a></li>
                             </ul>;
         var defaultMenu =   <ul className="right hide-on-med-and-down">
@@ -34,7 +34,7 @@ class NavigationHeader extends React.Component{
         return(
             <nav className="left-align">
                 <div className="nav-wrapper">
-                    <a href="/" className="brand-logo left"><img src="./assets/img/logo_small.png" /></a>
+                    <Link to="/" className="brand-logo left"><img src="./assets/img/logo_small.png" /></Link>
                     <form onSubmit={(e) => (this.handleSubmit(e))} >
                         <div className="input-field">
                             <input id="search" type="search" ref="search" required />
