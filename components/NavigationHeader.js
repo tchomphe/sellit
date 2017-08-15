@@ -28,6 +28,7 @@ class NavigationHeader extends React.Component{
                                 <li><Link to="/">All Posts</Link></li>
                                 <li><Link to="/my-posts">My Posts</Link></li>
                                 <li><Link to="/my-account">My Account</Link></li>
+                                <li><Link to="/create-post">Create Post</Link></li>
                                 <li><a href="/logout" className="waves-effect waves-light btn">Logout</a></li>
                             </ul>;
         var defaultMenu =   <ul className="right hide-on-med-and-down">
