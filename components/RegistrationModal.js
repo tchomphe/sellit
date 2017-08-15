@@ -2,8 +2,29 @@ import React from 'react';
 
 
 class RegistrationModal extends React.Component{
+    constructor(props){
+        super(props);
+    }
+    componentDidMount(){
+        $("#password").on("focusout", function (e) {
+            if ($(this).val() != $("#confirm_password").val()) {
+                $("#confirm_password").removeClass("valid").addClass("invalid");
+            } else {
+                $("#confirm_password").removeClass("invalid").addClass("valid");
+            }
+        });
+
+        $("#confirm_password").on("keyup", function (e) {
+            if ($("#password").val() != $(this).val()) {
+                $(this).removeClass("valid").addClass("invalid");
+            } else {
+                $(this).removeClass("invalid").addClass("valid");
+            }
+        });
+    }
     render(){                
         return(
+
             <div id="registerModal" className="modal">
                 <a className="modal-action modal-close btn-large modalButtonClose">x</a>
                 <div className="modal-content">
@@ -19,12 +40,12 @@ class RegistrationModal extends React.Component{
                                 </div>
                                 <div className="row">
                                     <div className="input-field col s6">
-                                        <input name="password" ref="password" type="password" className="validate" />
+                                        <input id="password" name="password" ref="password" type="password" className="validate" />
                                         <label >* Password</label>                                        
                                     </div>
                                     <div className="input-field col s6">
-                                        <input name="confirm_password" ref="confirm_password" type="password" className="validate" />
-                                        <label htmlFor="confirm_password" data-error="wrong" data-success="right">* Confirm Password</label>                                        
+                                        <input id="confirm_password" name="confirm_password" ref="confirm_password" type="password" className="validate" />
+                                        <label htmlFor="confirm_password" data-error="Mismatch" data-success="Match">* Confirm Password</label>                                        
                                     </div>
                                 </div>
                                 <div className="row">
