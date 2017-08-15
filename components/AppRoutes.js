@@ -10,6 +10,7 @@ import MyPostsPage from './MyPostsPage';
 import MyAccountPage from './MyAccountPage';
 // import NotFoundPage from 'NotFoundPage';
 
+import NavigationHeader from './NavigationHeader';
 import Request from 'superagent';
 
 export default class AppRoutes extends React.Component {
@@ -54,6 +55,7 @@ export default class AppRoutes extends React.Component {
     return (
       <Router history={hashHistory}>
         <Layout>
+          <NavigationHeader authorizedUser={this.state.user.authorized} searchPost={this.requestPosts} />
           <Route exact={true} path="/" render={() => (<MainPage posts={this.state.posts} authorization={this.state.user.authorized} />)} />
           <Route path="/create-post" component={PostCreationContainer}/>
           <Route path="/my-posts" component={MyPostsPage}/>
