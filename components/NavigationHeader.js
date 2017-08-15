@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class NavigationHeader extends React.Component{
     constructor(props){
@@ -13,6 +13,11 @@ class NavigationHeader extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
+
+        //redirect to MainPage, if necessary
+        if (window.location.pathname != '/')
+            this.props.history.push('/');
+
         this.props.searchPost(this.refs.search.value);
     }
 
@@ -37,7 +42,7 @@ class NavigationHeader extends React.Component{
                     <Link to="/" className="brand-logo left"><img src="./assets/img/logo_small.png" /></Link>
                     <form onSubmit={(e) => (this.handleSubmit(e))} >
                         <div className="input-field">
-                            <input id="search" type="search" ref="search" required />
+                            <input id="search" type="search" ref="search" />
                             <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
                         </div>
                     </form>
@@ -48,4 +53,4 @@ class NavigationHeader extends React.Component{
     }
 }
 
-export default NavigationHeader;
+export default withRouter(NavigationHeader);
