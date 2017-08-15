@@ -1,5 +1,4 @@
 import React from 'react';
-import NavigationHeader from './NavigationHeader';
 import PostModal from './PostModal';
 import FloatingBackButton from './FloatingBackButton';
 import PostTile from './PostTile';
@@ -32,7 +31,6 @@ export default class MyPostPage extends React.Component {
     render(){
         return (
             <div className="app-content row center">
-                <NavigationHeader authorizedUser={true} searchPost={null} />
                 <h4 className="profilePageHeader">My Posts</h4>
                 {this.state.displayedPosts}
                 <FloatingBackButton />

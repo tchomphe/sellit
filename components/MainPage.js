@@ -1,12 +1,10 @@
 import React from 'react';
+import Banner from './Banner';
 import PostTile from './PostTile';
-import NavigationHeader from './NavigationHeader';
 import RegistrationModal from './RegistrationModal';
 import LoginModal from './LoginModal';
 import PostModal from './PostModal';
 import FloatingBackButton from './FloatingBackButton';
-import Banner from './Banner';
-import Request from 'superagent';
 
 export default class MainPage extends React.Component {
     constructor(props){
@@ -38,17 +36,17 @@ export default class MainPage extends React.Component {
         console.log('MainPage rendering... posts: ' + this.props.posts);
         return(
             <div className="app-content row center">
-                <NavigationHeader authorizedUser={this.props.authorization} searchPost={this.props.requestPosts} />
                 <Banner />
-                <FloatingBackButton />
-                <RegistrationModal />
-                <LoginModal />
-                {this.state.postModal}
                 {postTiles}
                 <br />
                 <a onClick={this.props.requestPosts} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
                     <i className="large material-icons">expand_more</i>
                 </a>
+
+                <FloatingBackButton />
+                {this.state.postModal}
+                <RegistrationModal />
+                <LoginModal />
             </div>
         );
     }
