@@ -1,7 +1,7 @@
 import React from 'react';
 import PostModal from './PostModal';
 import FloatingBackButton from './FloatingBackButton';
-import PostTile from './PostTile';
+import InteractivePostTile from './InteractivePostTile';
 import Request from 'superagent';
 
 export default class MyPostPage extends React.Component {
@@ -19,7 +19,7 @@ export default class MyPostPage extends React.Component {
         Request.get('/searchByOwner').then((res) => {
             console.log(res.body);
             var userPosts = res.body.map((post) =>
-                <PostTile updatePostModal={this.updatePostModal} post={post} key={post._id} id={post._id} title={post.title} address={post.address} />
+                <InteractivePostTile updatePostModal={this.updatePostModal} post={post} key={post._id} id={post._id} title={post.title} address={post.address} />
             );
 
             this.setState({

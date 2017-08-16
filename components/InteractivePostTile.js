@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class PostTile extends React.Component {
+export default class InteractivePostTile extends React.Component {
     handleSubmit(e){
         e.preventDefault();
         this.props.updatePostModal(this.props.post);
@@ -10,6 +10,9 @@ export default class PostTile extends React.Component {
     render(){
         return(
             <div className="card">
+                <a className="waves-effect waves-light btn-large blue"><i className="material-icons right">edit</i>EDIT</a>
+                <a className="waves-effect waves-light btn-large red"><i className="material-icons right">delete</i>DELETE</a>
+
                 <div className="card-image">
                     <a href="#!" onClick={(e) => (this.handleSubmit(e))} className="waves-effect waves-light">
                         <img src="https://placehold.it/350x250" alt="Card image cap" />
@@ -24,7 +27,7 @@ export default class PostTile extends React.Component {
     }
 }
 
-PostTile.propTypes = {
+InteractivePostTile.propTypes = {
     post: PropTypes.object.isRequired,
     updatePostModal: PropTypes.func.isRequired,
 }
