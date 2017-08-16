@@ -73,10 +73,10 @@ export default class AppRoutes extends React.Component {
         <Layout>
           <NavigationHeader authorizedUser={this.state.user.authorized} searchPost={this.requestPosts} />
 
-          <Route exact={true} path="/" render={() => (<MainPage posts={this.state.posts} authorization={this.state.user.authorized} />)} />
-          <Route path="/create-post" component={PostCreationContainer}/>
-          <Route path="/my-posts" component={MyPostsPage}/>
-          <Route path="/my-account" component={MyAccountPage}/>
+          <Route exact={true} path="/" render={() => (<MainPage posts={this.state.posts} />)} />
+          <Route path="/create-post" component={PostCreationContainer} />
+          <Route path="/my-posts" component={MyPostsPage} />
+          <Route path="/my-account" render={() => (<MyAccountPage user={this.state.user} />)} />
 
           <RegistrationModal />
           <LoginModal handleLogin={this.saveUser} />

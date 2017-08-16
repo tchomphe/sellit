@@ -2,24 +2,6 @@ import React from 'react';
 import Request from 'superagent';
 
 export default class MyAccountPage extends React.Component{
-    constructor(props){
-        super(props);
-        this.state ={
-            email: "swollen@plums.com",
-            nickname: "Swollen Plums",
-            phone: "416-416-4161"
-        }
-    }
-    componentWillMount(){
-        Request.get('/userByEmail/tashi@tashi.com').then((res) => {
-            this.setState({
-                email:res.body.email,
-                nickname: res.body.nickname,
-                phone: res.body.phone
-            });
-        });
-    }
-
     render(){
         return(
             <div className="container">
@@ -29,13 +11,13 @@ export default class MyAccountPage extends React.Component{
                         <div className="card-panel">
                             <h6><b>Account Details</b></h6>
                             <label htmlFor="nickname">Nickname (optional):</label>
-                            <input placeholder={this.state.nickname} id="nickname" type="text" className="validate" />
+                            <input placeholder={this.props.user.nickname} id="nickname" type="text" className="validate" />
 
                             <label htmlFor="email">Email: </label>
-                            <input placeholder={this.state.email} id="nickname" type="text" className="validate" />
+                            <input placeholder={this.props.user.email} id="nickname" type="text" className="validate" />
 
                             <label htmlFor="phone">Phone Number (optional):</label>
-                            <input placeholder={this.state.phone} id="phone" type="text" className="validate" />
+                            <input placeholder={this.props.user.phone} id="phone" type="text" className="validate" />
 
                             <label htmlFor="newpassword">New Password:</label>
                             <input placeholder="New Password" id="newpassword" type="password" className="validate" />
@@ -56,11 +38,11 @@ export default class MyAccountPage extends React.Component{
                             <table>
                                 <tbody>
                                 <tr><td>Email:</td></tr>
-                                <tr><td><i>{this.state.email}</i></td></tr>
+                                <tr><td><i>{this.props.user.email}</i></td></tr>
                                 <tr><td>Nickname:</td></tr>
-                                <tr><td><i>{this.state.nickname}</i></td></tr>
+                                <tr><td><i>{this.props.user.nickname}</i></td></tr>
                                 <tr><td>Phone Number:</td></tr>
-                                <tr><td><i>{this.state.phone}</i></td></tr>
+                                <tr><td><i>{this.props.user.phone}</i></td></tr>
                             </tbody>
                             </table>
                         </div>
