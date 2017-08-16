@@ -21,18 +21,19 @@ export default class AppRoutes extends React.Component {
 
     //define state variables
     this.state = {
-        posts: [],
-        page: 1, //TODO: create logic for pagination
-        user: {
-          email: null, //TODO: decide how to populate user identification
-          nickname: null,
-          phone: null,
-          authorized: false,
-        }
+      posts: [],
+      page: 1, //TODO: create logic for pagination
+      user: {
+        email: null, //TODO: decide how to populate user identification
+        nickname: null,
+        phone: null,
+        authorized: false,
+      }
     };
 
     //bind functions to this component
     this.requestPosts = this.requestPosts.bind(this);
+    this.saveUser = this.saveUser.bind(this);
   }
 
   componentWillMount(){
@@ -43,14 +44,25 @@ export default class AppRoutes extends React.Component {
   requestPosts(searchQuery = '.*'){
     //send GET request to API and update state with response
     Request.get('/searchByTitle/' + searchQuery).then((res) => {
-        var oldPosts = [];//this.state.displayedPosts; //TODO: integrate pagination into searchByTitle
-        var newPosts = res.body.docs;
-        var updatedPosts = oldPosts.concat(newPosts);
+      var oldPosts = [];//this.state.displayedPosts; //TODO: integrate pagination into searchByTitle
+      var newPosts = res.body.docs;
+      var updatedPosts = oldPosts.concat(newPosts);
 
-        this.setState({
-            posts: updatedPosts,
-            user: { authorized: (res.header.authorized_user == 'true') }
-        });
+      this.setState({
+        posts: updatedPosts,
+        user: { authorized: (res.header.authorized_user == 'true') }
+      });
+    });
+  }
+
+  saveUser(authorizedUser){
+    this.setState({
+      user: {
+        email: authorizedUser.email,
+        nickname: (authorizedUser.nickname == 'null') ? '' : authorizedUser.nickname,
+        phone: (authorizedUser.phone == 'null') ? '' : authorizedUser.phone,
+        authorized: true,
+      }
     });
   }
 
@@ -67,7 +79,7 @@ export default class AppRoutes extends React.Component {
           <Route path="/my-account" component={MyAccountPage}/>
 
           <RegistrationModal />
-          <LoginModal />
+          <LoginModal handleLogin={this.saveUser} />
         </Layout>
       </Router>
       );

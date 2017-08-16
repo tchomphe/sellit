@@ -1,5 +1,5 @@
 import React from 'react';
-import Request from 'superagent'; 
+import Request from 'superagent';
 
 class LoginModal extends React.Component{
     constructor(props){
@@ -9,7 +9,7 @@ class LoginModal extends React.Component{
             email: "",
             password: ""
         }
-        this.handleSubmit = this.handleSubmit.bind(this);    
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleUserChange = this.handleUserChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
     }
@@ -17,22 +17,23 @@ class LoginModal extends React.Component{
         this.setState({email: event.target.value});
         // this.setState({password: event.target.value});
     }
-    handlePasswordChange(event){        
+    handlePasswordChange(event){
         this.setState({password: event.target.value});
     }
     handleSubmit(event){
-        event.preventDefault();        
+        event.preventDefault();
         Request
             .post('/login')
             .send({email: this.state.email, password: this.state.password})
             .end((err, res) => {
-                if(err){                    
+                if(err){
                     this.setState({err: res.body.error});
                     // alert(JSON.stringify(this.state.err));
 
                 } else {
                     this.setState({err: ""});
-                    $('#loginModal').modal('close');                                        
+                    $('#loginModal').modal('close');
+                    this.props.handleLogin(res.header.user);
                 }
             });
     }
@@ -41,10 +42,10 @@ class LoginModal extends React.Component{
             <div id="loginModal" className="modal">
                 <a className="modal-action modal-close btn-large modalButtonClose">x</a>
                 <div className="modal-content">
-                    <h5>Login</h5>                    
+                    <h5>Login</h5>
                     <div className="card-content red-text">
                         {this.state.err}
-                    </div>            
+                    </div>
                     <form className="row center" onSubmit={this.handleSubmit}>
                         <div className="input-field col s12">
                             <input type="email" className="validate" value={this.state.email} onChange={this.handleUserChange} />
@@ -53,7 +54,7 @@ class LoginModal extends React.Component{
                         <div className="input-field col l12">
                             <input type="password" className="validate" value={this.state.password} onChange={this.handlePasswordChange} />
                             <label htmlFor="password">Password</label>
-                        </div>             
+                        </div>
                         <button className="btn-large waves-effect waves-light" type="submit" name="action">Login
                             <i className="material-icons right">send</i>
                         </button>

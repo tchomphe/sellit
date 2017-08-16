@@ -47,7 +47,7 @@ module.exports.handleLogin = function(req, res, passport){
                 }
 
                 console.log('SUCCESS: ' + req.body.email + ' has been logged in.');
-                return res.redirect('/');
+                return res.append('user', [user.email, user.nickname, user.phone]).send();
             });
         })(req, res);
     }
