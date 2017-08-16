@@ -33,7 +33,15 @@ class LoginModal extends React.Component{
                 } else {
                     this.setState({err: ""});
                     $('#loginModal').modal('close');
-                    this.props.handleLogin(res.header.user);
+
+                    //create user object and pass it to prop
+                    let userArr = res.header.user.split(', ');
+                    let userObj = {
+                        email: userArr.shift(),
+                        nickname: userArr.shift(),
+                        phone: userArr.shift(),
+                    };
+                    this.props.handleLogin(userObj);
                 }
             });
     }
