@@ -16,9 +16,8 @@ export default class PostTile extends React.Component {
                     </a>
                 </div>
                 <div className="card-content">
-                    <span className="card-title">{this.props.id}</span>
-                    <span className="card-title">{this.props.title}</span>
-                    <p className="card-text"><i className="tiny material-icons">location_on</i> {this.props.address}</p>
+                    <span className="card-title">{this.props.post.title}</span>
+                    <p className="card-text"><i className="tiny material-icons">location_on</i> {this.props.post.address}</p>
                 </div>
             </div>
         )
@@ -26,6 +25,6 @@ export default class PostTile extends React.Component {
 }
 
 PostTile.propTypes = {
-    title: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired,
+    post: PropTypes.object.isRequired,
+    updatePostModal: PropTypes.func.isRequired,
 }

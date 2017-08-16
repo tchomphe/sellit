@@ -31,7 +31,7 @@ export default class MainPage extends React.Component {
 
     render(){
         var postTiles = this.props.posts.map((post) =>
-            <PostTile updatePostModal={this.updatePostModal} post={post} key={post._id} id={post._id} title={post.title} address={post.address} />);
+            <PostTile updatePostModal={this.updatePostModal} post={post} />);
 
         console.log('MainPage rendering... posts: ' + this.props.posts);
         return(
