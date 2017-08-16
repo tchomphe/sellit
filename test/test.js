@@ -175,15 +175,16 @@ describe('Session-based API tests;', function () {
     });
 
     describe('with VALID credentials', function() {
-      it('should redirect to /', function(done) {
+      it('should respond with basic user info', function(done) {
         vageta
           .post('http://localhost:8080/login')
           .type('form')
           .send({email: seeder.users.vageta.email, password: seeder.users.vageta.password})
           .end(function(error, response, body){
-            //test for redirection URL, varifying login success
-            //TODO: checking for redirect.. this is terrible PLEASE fix me!
-            expect(response.res.req.path).to.equal('/');
+            //test for the basic user info in the response header
+            expect(response.header.user).to.equal(
+              seeder.users.vageta.email + ', ' +
+              seeder.users.vageta.nickname + ', undefined');
             done();
           });
       });
@@ -309,8 +310,8 @@ describe('Goku session;', function () {
           .field('password', 'kamehameha!')
           .field('phone', '111-777-0000')
           .end(function(error, response, body){
-            //TODO: checking for redirect.. this is terrible PLEASE fix me!
-            expect(response.res.req.path).to.equal('/');
+            //test for the basic user info in the response header
+            expect(response.header.user).to.equal('goku@gmail.com, undefined, 111-777-0000');
             done();
           });
       });
@@ -397,9 +398,8 @@ describe('Goku session;', function () {
           .type('form')
           .send({email: 'goku@gmail.com', password: 'kamehameha!'})
           .end(function(error, response, body){
-            //test for redirection URL, varifying login success
-            //TODO: checking for redirect.. this is terrible PLEASE fix me!
-            expect(response.res.req.path).to.equal('/');
+            //test for the basic user info in the response header
+            expect(response.header.user).to.equal('goku@gmail.com, undefined, 111-777-0000');
             done();
           });
       });
