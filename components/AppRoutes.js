@@ -10,6 +10,8 @@ import MyPostsPage from './MyPostsPage';
 import MyAccountPage from './MyAccountPage';
 // import NotFoundPage from 'NotFoundPage';
 
+import RegistrationModal from './RegistrationModal';
+import LoginModal from './LoginModal';
 import NavigationHeader from './NavigationHeader';
 import Request from 'superagent';
 
@@ -22,7 +24,9 @@ export default class AppRoutes extends React.Component {
         posts: [],
         page: 1, //TODO: create logic for pagination
         user: {
-          id: null, //TODO: decide how to populate user identification
+          email: null, //TODO: decide how to populate user identification
+          nickname: null,
+          phone: null,
           authorized: false,
         }
     };
@@ -56,10 +60,14 @@ export default class AppRoutes extends React.Component {
       <Router history={hashHistory}>
         <Layout>
           <NavigationHeader authorizedUser={this.state.user.authorized} searchPost={this.requestPosts} />
+
           <Route exact={true} path="/" render={() => (<MainPage posts={this.state.posts} authorization={this.state.user.authorized} />)} />
           <Route path="/create-post" component={PostCreationContainer}/>
           <Route path="/my-posts" component={MyPostsPage}/>
           <Route path="/my-account" component={MyAccountPage}/>
+
+          <RegistrationModal />
+          <LoginModal />
         </Layout>
       </Router>
       );

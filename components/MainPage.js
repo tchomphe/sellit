@@ -1,8 +1,6 @@
 import React from 'react';
 import Banner from './Banner';
 import PostTile from './PostTile';
-import RegistrationModal from './RegistrationModal';
-import LoginModal from './LoginModal';
 import PostModal from './PostModal';
 import FloatingBackButton from './FloatingBackButton';
 
@@ -45,8 +43,6 @@ export default class MainPage extends React.Component {
 
                 <FloatingBackButton />
                 {this.state.postModal}
-                <RegistrationModal />
-                <LoginModal />
             </div>
         );
     }
