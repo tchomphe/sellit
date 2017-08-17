@@ -1,7 +1,55 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Request from 'superagent';
 
 export default class MyAccountPage extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+            err: "",
+            email: "",
+            password: "",
+            nickname: "",
+            phone: "",
+        }
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleNicknameChange = this.handleNicknameChange.bind(this);
+        this.handlePhoneChange = this.handlePhoneChange.bind(this);
+    }
+    handleEmailChange(event){
+        this.setState({email: event.target.value});
+    }
+    handlePasswordChange(event){
+        this.setState({password: event.target.value});
+    }
+    handleNicknameChange(event){
+        this.setState({email: event.target.value});
+    }
+    handlePhoneChange(event){
+        this.setState({email: event.target.value});
+    }
+    handleSubmit(event){
+        event.preventDefault();
+        Request
+            .put('/user')
+            .send({
+                email: this.state.email,
+                password: this.state.password,
+                nickname: this.state.nickname,
+                phone: this.state.phone,})
+            .end((err, res) => {
+                if(err){
+                    this.setState({err: res.body.error});
+                    // alert(JSON.stringify(this.state.err));
+                } else {
+                    //reset error
+                    this.setState({err: ""});
+                    //display success message
+                }
+            });
+    }
     render(){
         return(
             <div className="container">
