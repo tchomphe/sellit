@@ -1,5 +1,6 @@
 import React from 'react';
 import PostModal from './PostModal';
+import PostEditModal from './PostEditModal';
 import FloatingBackButton from './FloatingBackButton';
 import InteractivePostTile from './InteractivePostTile';
 import Request from 'superagent';
@@ -10,7 +11,7 @@ export default class MyPostPage extends React.Component {
 
         //define state variables
         this.state = {
-            postModal: <PostModal title="" price="" address="" description="" />,
+            postModal: <PostEditModal title="" price="" address="" description="" />,
             displayedPosts: null,
         };
 
@@ -33,11 +34,11 @@ export default class MyPostPage extends React.Component {
     updatePostModal(post){
         //pass information about the (user-selected) post to the modal
         this.setState({
-            postModal: <PostModal title={post.title} price={post.price} address={post.address} description={post.description} />
+            postModal: <PostEditModal title={post.title} price={post.price} address={post.address} description={post.description} />
         });
 
         //display the modal on the screen
-        $('#postModal').modal('open');
+        $('#postEditModal').modal('open');
     }
 
     render(){
@@ -45,8 +46,8 @@ export default class MyPostPage extends React.Component {
             <div className="app-content row center">
                 <h4 className="profilePageHeader">My Posts</h4>
                 {this.state.displayedPosts}
-                <FloatingBackButton />
-                {this.state.postModal}
+                <FloatingBackButton />                
+                {this.state.postModal}                
             </div>
         )
     }
