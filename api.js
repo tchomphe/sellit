@@ -158,10 +158,18 @@ exports.createPost = function(req, res){
 exports.updateUserInfo = function(req, res){
   //varify user is logged in
   if (req.isAuthenticated()){
+    //TODO: varify password a second time, for additional security before account changes
+
     //define mongoose function settings
     var query = {_id: req.user._id};
-    var newObject = {$set: req.body};
     var settings = {new: true};
+
+    //create newObject, made up of changes to account info, disregarding empty fields
+    var newObject = {};
+    for (let field in req.body){
+        if (req.body[field] != "")
+          newObject[field] = req.body[field];
+    }
 
     User.findByIdAndUpdate(query, newObject, settings, function(err, user) {
       varifyQuerySuccess(err, res, 'updateUserInfo');
