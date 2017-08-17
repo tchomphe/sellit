@@ -29,7 +29,7 @@ class PostEditModal extends React.Component{
         
         Request            
             .put('/post/' + this.props.pid)
-            .send({title: this.state.title, price: this.state.price, address: this.state.price, description: this.state.description})
+            .send({title: this.state.title, price: this.state.price, address: this.state.address, description: this.state.description})
             .end((err, res) => {
                 if(err){
                     this.setState({err: res.body.error});                    
