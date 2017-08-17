@@ -15,14 +15,15 @@ export default class MyPostPage extends React.Component {
             displayedPosts: null,
         };
 
-        this.updatePostModal = this.updatePostModal.bind(this);
+        this.updatePostEditModal = this.updatePostEditModal.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentWillMount(){
         Request.get('/searchByOwner').then((res) => {
             console.log(res.body);
             var userPosts = res.body.map((post) =>
-                <InteractivePostTile updatePostModal={this.updatePostModal} post={post} />
+                <InteractivePostTile handleDelete={this.handleDelete} updatePostEditModal={this.updatePostEditModal} post={post} />
             );
 
             this.setState({
@@ -31,7 +32,7 @@ export default class MyPostPage extends React.Component {
         });
     }
 
-    updatePostModal(post){
+    updatePostEditModal(post){
         //pass information about the (user-selected) post to the modal
         this.setState({
             postModal: <PostEditModal pid={post._id} title={post.title} price={post.price} address={post.address} description={post.description} />
@@ -39,6 +40,21 @@ export default class MyPostPage extends React.Component {
 
         //display the modal on the screen
         $('#postEditModal').modal('open');
+    }
+
+    handleDelete(post){                
+        Request
+            .delete('/post/' + post._id)
+            .end((err, res)=>{
+                if(err){
+                    this.setState({err: res.body.err}); 
+                }
+                else {
+                     this.setState({err: ""});
+                      Materialize.toast('Delete successful!', 4000) 
+                }
+            });
+        
     }
 
     render(){

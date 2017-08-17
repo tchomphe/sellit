@@ -25,8 +25,7 @@ class PostEditModal extends React.Component{
             [name]: value
         });
     }
-    handleSubmit(event){   
-        
+    handleSubmit(event){           
         Request            
             .put('/post/' + this.props.pid)
             .send({title: this.state.title, price: this.state.price, address: this.state.address, description: this.state.description})
@@ -35,7 +34,7 @@ class PostEditModal extends React.Component{
                     this.setState({err: res.body.error});                    
                 } else {
                     this.setState({err: ""});
-                      Materialize.toast('Update successful!', 4000) // 4000 is the duration of the toast
+                      Materialize.toast('Update successful!', 4000) 
                     $('#postEditModal').modal('close');
                 }
             });    
