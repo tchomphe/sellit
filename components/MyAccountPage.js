@@ -1,5 +1,5 @@
 import React from 'react';
-import Request from 'superagent';
+import PropTypes from 'prop-types';
 
 export default class MyAccountPage extends React.Component{
     render(){
@@ -51,4 +51,8 @@ export default class MyAccountPage extends React.Component{
             </div>
         )
     }
+}
+
+MyAccountPage.propTypes = {
+    user: PropTypes.object.isRequired,
 }
