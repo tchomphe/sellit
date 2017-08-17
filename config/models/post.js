@@ -15,7 +15,7 @@ var postSchema = new Schema({
 });
 
 //create text indexes for text search queries
-postSchema.index({title: 'text', address: 'text', type: 'text'});
+postSchema.index({title: 'text'});
 
 //plug in pagination
 postSchema.plugin(mongoosePaginate);
