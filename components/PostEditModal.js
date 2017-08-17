@@ -18,8 +18,8 @@ class PostEditModal extends React.Component{
     }
     handleInputChange(event){
         const target = event.target;
-        const value = target.value;
         const name = target.name;
+        const value = target.value;        
 
         this.setState({
             [name]: value
@@ -35,6 +35,7 @@ class PostEditModal extends React.Component{
                     this.setState({err: res.body.error});                    
                 } else {
                     this.setState({err: ""});
+                      Materialize.toast('Update successful!', 4000) // 4000 is the duration of the toast
                     $('#postEditModal').modal('close');
                 }
             });    
