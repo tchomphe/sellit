@@ -21,7 +21,7 @@ var storage = multer.diskStorage({
     cb(null, './static/uploads')
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname)
+    cb(null, Date.now()+ '_' +file.originalname)
   },
   limits : {fileSize: 1000000, files:5},
 });
