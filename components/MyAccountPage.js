@@ -13,22 +13,10 @@ export default class MyAccountPage extends React.Component{
             phone: "",
         }
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.handlePasswordChange = this.handlePasswordChange.bind(this);
-        this.handleNicknameChange = this.handleNicknameChange.bind(this);
-        this.handlePhoneChange = this.handlePhoneChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
-    handleEmailChange(event){
-        this.setState({email: event.target.value});
-    }
-    handlePasswordChange(event){
-        this.setState({password: event.target.value});
-    }
-    handleNicknameChange(event){
-        this.setState({email: event.target.value});
-    }
-    handlePhoneChange(event){
-        this.setState({email: event.target.value});
+    handleInputChange(event){
+        this.setState({ [event.target.name]: event.target.value });
     }
     handleSubmit(event){
         event.preventDefault();
@@ -47,6 +35,7 @@ export default class MyAccountPage extends React.Component{
                     //reset error
                     this.setState({err: ""});
                     //display success message
+                    //Materialize.toast('User information updated', 4000);
                 }
             });
     }
@@ -59,21 +48,21 @@ export default class MyAccountPage extends React.Component{
                         <div className="card-panel">
                             <h6><b>Account Details</b></h6>
                             <label htmlFor="nickname">Nickname (optional):</label>
-                            <input placeholder={this.props.user.nickname} id="nickname" type="text" className="validate" />
+                            <input placeholder={this.props.user.nickname} name="nickname" type="text" className="validate" onChange={this.handleInputChange} />
 
                             <label htmlFor="email">Email: </label>
-                            <input placeholder={this.props.user.email} id="nickname" type="text" className="validate" />
+                            <input placeholder={this.props.user.email} name="email" type="text" className="validate" onChange={this.handleInputChange} />
 
                             <label htmlFor="phone">Phone Number (optional):</label>
-                            <input placeholder={this.props.user.phone} id="phone" type="text" className="validate" />
+                            <input placeholder={this.props.user.phone} name="phone" type="text" className="validate" onChange={this.handleInputChange} />
 
                             <label htmlFor="newpassword">New Password:</label>
-                            <input placeholder="New Password" id="newpassword" type="password" className="validate" />
+                            <input placeholder="New Password" name="newpassword" type="password" className="validate" />
                             <label htmlFor="confirmnewpassword">Confirm New Password:</label>
-                            <input placeholder="Confirm New Password" id="confirmnewpassword" type="password" className="validate" />
+                            <input placeholder="Confirm New Password" name="confirmnewpassword" type="password" className="validate" />
 
                             <label htmlFor="password">*Password:</label>
-                            <input placeholder="Password" id="password" type="password" className="validate" />
+                            <input placeholder="Password" name="password" type="password" className="validate" />
 
                             <button className="btn waves-effect waves-light" type="submit" name="action">
                                 Save Changes
