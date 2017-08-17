@@ -5,9 +5,8 @@ import AppRoutes from './components/AppRoutes';
 window.onload = () => {
     ReactDOM.render(<AppRoutes />, document.getElementById('container'));
 
-    // Initiate Materialize elements
+    // Initiate Materialize Modal
     $('.modal').modal();
-    $('select').material_select();
 
     // Initialize Post Modals
     $('#postModal').modal({

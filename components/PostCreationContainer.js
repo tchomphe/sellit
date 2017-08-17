@@ -2,10 +2,14 @@ import React from 'react';
 import Request from 'superagent';
 
 class PostCreationContainer extends React.Component{
+    componentDidMount(){
+        // Initialize the Materialize select
+        $('select').material_select();
+    }
     render(){
         return(
             <div className="contatiner">
-                <h6 className="profilePageHeader">Create-Post</h6>                            
+                <h6 className="profilePageHeader">Create-Post</h6>
                 <form method="post" action="/createPost" encType="multipart/form-data">
                 <div className="row">
                     <div className="col s6">
@@ -25,7 +29,7 @@ class PostCreationContainer extends React.Component{
                             <option value="Laptop">Laptop</option>
                             <option value="Case">Case</option>
                             <option value="Other">Other</option>
-                        </select>                        
+                        </select>
                     </div>
                     <div className="col s6">
                         <label>Price</label>
@@ -38,7 +42,7 @@ class PostCreationContainer extends React.Component{
                         <input type="text" name="description" />
                     </div>
                 </div>
-                <div className="row">                    
+                <div className="row">
                     <div className="col s12 file-field input-field">
                         <div className="btn">
                             <span>Browse</span>
@@ -47,14 +51,14 @@ class PostCreationContainer extends React.Component{
                         <div className="file-path-wrapper">
                             <input className="file-path validate" type="text" placeholder="Upload multiple files" />
                         </div>
-                    </div>                        
-                </div>            
+                    </div>
+                </div>
                 <div className="row center">
-                    <div className="s12">                
+                    <div className="s12">
                         <button className="btn waves-effect waves-light" type="submit" name="action">Create</button>
                     </div>
-                </div>            
-                </form>                
+                </div>
+                </form>
             </div>
         )
     }
