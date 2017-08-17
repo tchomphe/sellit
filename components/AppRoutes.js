@@ -43,7 +43,7 @@ export default class AppRoutes extends React.Component {
 
   requestPosts(searchQuery = 'all posts'){
     //send GET request to API and update state with response
-    Request.get('/searchByTitle/' + searchQuery).then((res) => {
+    Request.get('/searchPosts/' + searchQuery).then((res) => {
       var oldPosts = [];//this.state.displayedPosts; //TODO: integrate pagination into searchByTitle
       var newPosts = res.body.docs;
       var updatedPosts = oldPosts.concat(newPosts);
