@@ -10,22 +10,34 @@ export default class MyPostPage extends React.Component {
 
         //define state variables
         this.state = {
-            postModal: <PostModal title="TEST title" price="TEST price" address="TEST address" description="TEST description" />,
+            postModal: <PostModal title="" price="" address="" description="" />,
             displayedPosts: null,
         };
+
+        this.updatePostModal = this.updatePostModal.bind(this);
     }
 
     componentWillMount(){
         Request.get('/searchByOwner').then((res) => {
             console.log(res.body);
             var userPosts = res.body.map((post) =>
-                <InteractivePostTile updatePostModal={this.updatePostModal} post={post} key={post._id} id={post._id} title={post.title} address={post.address} />
+                <InteractivePostTile updatePostModal={this.updatePostModal} post={post} />
             );
 
             this.setState({
                 displayedPosts: userPosts,
             });
         });
+    }
+
+    updatePostModal(post){
+        //pass information about the (user-selected) post to the modal
+        this.setState({
+            postModal: <PostModal title={post.title} price={post.price} address={post.address} description={post.description} />
+        });
+
+        //display the modal on the screen
+        $('#postModal').modal('open');
     }
 
     render(){
