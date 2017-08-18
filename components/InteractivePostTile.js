@@ -41,5 +41,5 @@ export default class InteractivePostTile extends React.Component {
 
 InteractivePostTile.propTypes = {
     post: PropTypes.object.isRequired,
-    updatePostModal: PropTypes.func.isRequired,
+    updatePostEditModal: PropTypes.func.isRequired,
 }
