@@ -54,31 +54,44 @@ export default class MyAccountPage extends React.Component{
                     <h5 className="profilePageHeader"><b>My Account</b> - update your information</h5>
                     <div className="col s6">
                         <div className="card-panel">
-                            <h6><b>Account Details</b></h6>
+                            <h6><b>Account Details</b></h6><br />
                             <div className="card-content red-text">
                                 {this.state.err}
                             </div>
                             <form method="post" onSubmit={this.handleSubmit} >
-                                <label htmlFor="nickname">Nickname (optional):</label>
-                                <input placeholder={this.props.user.nickname} name="nickname" type="text" className="validate" onChange={this.handleInputChange} />
-
-                                <label htmlFor="email">Email: </label>
-                                <input placeholder={this.props.user.email} name="email" type="text" className="validate" onChange={this.handleInputChange} />
-
-                                <label htmlFor="phone">Phone Number (optional):</label>
-                                <input placeholder={this.props.user.phone} name="phone" type="text" className="validate" onChange={this.handleInputChange} />
-
-                                <label htmlFor="newpassword">New Password:</label>
-                                <input placeholder="New Password" name="newPassword" type="password" className="validate" onChange={this.handleInputChange} />
-                                <label htmlFor="confirmnewpassword">Confirm New Password:</label>
-                                <input placeholder="Confirm New Password" name="confirmNewPassword" type="password" className="validate" onChange={this.handleInputChange} />
-
-                                <label htmlFor="password">*Password:</label>
-                                <input placeholder="Password" name="password" type="password" className="validate" />
-
-                                <button className="btn waves-effect waves-light" type="submit" name="action">
-                                    Save Changes
-                                </button>
+                                <div class="row">
+                                    <div className="input-field">
+                                        <label htmlFor="first_name" className="active">First Name</label>
+                                        <input placeholder="Placeholder" id="first_name" type="text" className="validate" />
+                                    </div>
+                                    <div className="input-field">
+                                        <label htmlFor="nickname" className="active">Nickname (optional):</label>
+                                        <input placeholder={this.props.user.nickname} name="nickname" type="text" className="validate" onChange={this.handleInputChange} />
+                                    </div>
+                                    <div className="input-field">
+                                        <label htmlFor="email" className="active">Email: </label>
+                                        <input placeholder={this.props.user.email} name="email" type="text" className="validate" onChange={this.handleInputChange} />
+                                    </div>
+                                    <div className="input-field">
+                                        <label htmlFor="phone" className="active">Phone Number (optional):</label>
+                                        <input placeholder={this.props.user.phone} name="phone" type="text" className="validate" onChange={this.handleInputChange} />
+                                    </div>
+                                    <div className="input-field" className="active">
+                                        <label htmlFor="newpassword">New Password:</label>
+                                        <input name="newPassword" type="password" className="validate" onChange={this.handleInputChange} />
+                                    </div>
+                                    <div className="input-field" className="active">
+                                        <label htmlFor="confirmnewpassword">Confirm New Password:</label>
+                                        <input name="confirmNewPassword" type="password" className="validate" onChange={this.handleInputChange} />
+                                    </div>
+                                    <div className="input-field" className="active">
+                                        <label htmlFor="password">*Password:</label>
+                                        <input placeholder="Current Password" name="password" type="password" className="validate" />
+                                    </div>
+                                    <button className="btn waves-effect waves-light" type="submit" name="action">
+                                        Save Changes
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>
