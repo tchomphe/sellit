@@ -60,13 +60,13 @@ export default class MyAccountPage extends React.Component{
                                 {this.state.err}
                             </div>
                             <form method="post" onSubmit={this.handleSubmit} >
-                                <div class="row">
-                                    <InputField labelText="Nickname (optional):" id="nickname" placeholder={this.props.user.nickname} onChange={this.handleInputChange} />
-                                    <InputField labelText="Email:" id="email" type="email" placeholder={this.props.user.email} onChange={this.handleInputChange} />
+                                <div className="row">
+                                    <InputField labelText="Nickname (optional)" id="nickname" placeholder={this.props.user.nickname} onChange={this.handleInputChange} />
+                                    <InputField labelText="Email" id="email" type="email" placeholder={this.props.user.email} onChange={this.handleInputChange} />
                                     <InputField labelText="Phone Number (optional):" id="phone" placeholder={this.props.user.phone} onChange={this.handleInputChange} />
-                                    <InputField labelText="New Password:" fieldClass="col s6" id="newPassword" type="password" onChange={this.handleInputChange} />
-                                    <InputField labelText="Confirm New Password:" fieldClass="col s6" id="confirmNewPassword" type="password" onChange={this.handleInputChange} />
-                                    <InputField labelText="*Password:" id="password" type="password" onChange={this.handleInputChange} />
+                                    <InputField labelText="New Password" fieldClass="col s6" id="newPassword" type="password" onChange={this.handleInputChange} />
+                                    <InputField labelText="Confirm New Password" fieldClass="col s6" id="confirmNewPassword" type="password" onChange={this.handleInputChange} />
+                                    <InputField labelText="* Password" id="password" type="password" onChange={this.handleInputChange} />
                                     <button className="btn waves-effect waves-light" type="submit" name="action">
                                         Save Changes
                                     </button>
