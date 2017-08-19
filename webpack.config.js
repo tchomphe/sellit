@@ -24,8 +24,8 @@ var config = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     }),
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
+    // new webpack.optimize.DedupePlugin(), //removed from webpack, look into a replacement
     // new webpack.optimize.UglifyJsPlugin({
     //   compress: { warnings: false },
     //   mangle: true,
