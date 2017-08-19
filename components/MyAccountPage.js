@@ -1,4 +1,5 @@
 import React from 'react';
+import InputField from './InputField';
 import PropTypes from 'prop-types';
 import Request from 'superagent';
 
@@ -60,34 +61,12 @@ export default class MyAccountPage extends React.Component{
                             </div>
                             <form method="post" onSubmit={this.handleSubmit} >
                                 <div class="row">
-                                    <div className="input-field">
-                                        <label htmlFor="first_name" className="active">First Name</label>
-                                        <input placeholder="Placeholder" id="first_name" type="text" className="validate" />
-                                    </div>
-                                    <div className="input-field">
-                                        <label htmlFor="nickname" className="active">Nickname (optional):</label>
-                                        <input placeholder={this.props.user.nickname} name="nickname" type="text" className="validate" onChange={this.handleInputChange} />
-                                    </div>
-                                    <div className="input-field">
-                                        <label htmlFor="email" className="active">Email: </label>
-                                        <input placeholder={this.props.user.email} name="email" type="text" className="validate" onChange={this.handleInputChange} />
-                                    </div>
-                                    <div className="input-field">
-                                        <label htmlFor="phone" className="active">Phone Number (optional):</label>
-                                        <input placeholder={this.props.user.phone} name="phone" type="text" className="validate" onChange={this.handleInputChange} />
-                                    </div>
-                                    <div className="input-field" className="active">
-                                        <label htmlFor="newpassword">New Password:</label>
-                                        <input name="newPassword" type="password" className="validate" onChange={this.handleInputChange} />
-                                    </div>
-                                    <div className="input-field" className="active">
-                                        <label htmlFor="confirmnewpassword">Confirm New Password:</label>
-                                        <input name="confirmNewPassword" type="password" className="validate" onChange={this.handleInputChange} />
-                                    </div>
-                                    <div className="input-field" className="active">
-                                        <label htmlFor="password">*Password:</label>
-                                        <input placeholder="Current Password" name="password" type="password" className="validate" />
-                                    </div>
+                                    <InputField labelText="Nickname (optional):" id="nickname" placeholder={this.props.user.nickname} onChange={this.handleInputChange} />
+                                    <InputField labelText="Email:" id="email" type="email" placeholder={this.props.user.email} onChange={this.handleInputChange} />
+                                    <InputField labelText="Phone Number (optional):" id="phone" placeholder={this.props.user.phone} onChange={this.handleInputChange} />
+                                    <InputField labelText="New Password:" fieldClass="col s6" id="newPassword" type="password" onChange={this.handleInputChange} />
+                                    <InputField labelText="Confirm New Password:" fieldClass="col s6" id="confirmNewPassword" type="password" onChange={this.handleInputChange} />
+                                    <InputField labelText="*Password:" id="password" type="password" onChange={this.handleInputChange} />
                                     <button className="btn waves-effect waves-light" type="submit" name="action">
                                         Save Changes
                                     </button>
