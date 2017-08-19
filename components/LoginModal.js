@@ -1,4 +1,5 @@
 import React from 'react';
+import InputField from './InputField';
 import Request from 'superagent';
 
 class LoginModal extends React.Component{
@@ -55,14 +56,10 @@ class LoginModal extends React.Component{
                         {this.state.err}
                     </div>
                     <form className="row center" onSubmit={this.handleSubmit}>
-                        <div className="input-field col s12">
-                            <input type="email" className="validate" value={this.state.email} onChange={this.handleUserChange} />
-                            <label htmlFor="email" data-error="wrong" data-success="right">Email</label>
-                        </div>
-                        <div className="input-field col l12">
-                            <input type="password" className="validate" value={this.state.password} onChange={this.handlePasswordChange} />
-                            <label htmlFor="password">Password</label>
-                        </div>
+                        <InputField labelText="Email" labelSuccess="right" labelError="wrong"
+                            id="email" type="email" onChange={this.handleUserChange} />
+                        <InputField labelText="Password"
+                            id="password" type="password" onChange={this.handlePasswordChange} />
                         <button className="btn-large waves-effect waves-light" type="submit" name="action">Login
                             <i className="material-icons right">send</i>
                         </button>
