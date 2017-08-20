@@ -25,17 +25,27 @@ class PostCreationContainer extends React.Component{
     handleSubmit(event){
         event.preventDefault();
 
+        //Create formData object and populate it with values in state
+        var formData = new FormData();
+        formData.append('title', this.state.title);
+        formData.append('address', this.state.address);
+        formData.append('price', this.state.price);
+        formData.append('description', this.state.description);
+
         //Materialize select can't handle onChange.. so we have to grab value directly
-        var selectType = $('select').val();
+        formData.append('type', $('select').val());
+
+        //Finally, attach all files for uploading
+        var images = document.getElementById('postImages').files;
+        for (var key in images) {
+            //if item is a File object, append to formData
+            if (images.hasOwnProperty(key) && images[key] instanceof File)
+                formData.append(key, images[key]);
+        }
+
         Request
             .post('/createPost')
-            .type('form')
-            .send({
-                title: this.state.title,
-                type: selectType,
-                address: this.state.address,
-                price: this.state.price,
-                description: this.state.description,}) //TODO: add file attachments
+            .send(formData)
             .end((err, res) => {
                 if(err){
                     this.setState({err: res.body.error});
@@ -70,7 +80,7 @@ class PostCreationContainer extends React.Component{
                     <div className="col s12 file-field input-field">
                         <div className="btn">
                             <span>Browse</span>
-                            <input type="file" name="postImages" multiple/>
+                            <input id="postImages" type="file" name="postImages" multiple/>
                         </div>
                         <div className="file-path-wrapper">
                             <input className="file-path validate" type="text" placeholder="Upload multiple files" />
