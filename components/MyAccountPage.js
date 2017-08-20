@@ -8,12 +8,12 @@ export default class MyAccountPage extends React.Component{
         super(props);
         this.state={
             err: "",
-            email: "",
+            email: "", //TODO:
+            nickname: "", //TODO: consider setting these three as values (currently placeholder)
+            phone: "",  //TODO:
             password: "",
             newPassword: "",
             confirmNewPassword: "",
-            nickname: "",
-            phone: "",
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -29,10 +29,10 @@ export default class MyAccountPage extends React.Component{
                 .put('/user')
                 .send({
                     email: this.state.email,
-                    password: this.state.password,
-                    newPassword: this.state.newPassword,
                     nickname: this.state.nickname,
-                    phone: this.state.phone,})
+                    phone: this.state.phone,
+                    password: this.state.password,
+                    newPassword: this.state.newPassword,})
                 .end((err, res) => {
                     if(err){
                         this.setState({err: res.body.error});
