@@ -15,6 +15,7 @@ var logger = require('morgan');
 
 // Define multer settings (for multi-form file uploading) //
 // TODO: move multer settings into config/ folder
+// TODO: test file limitations
 var multer = require('multer');
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -85,8 +86,8 @@ app.get('/logout', function(req, res){
 });
 
 // POST requests
-app.post('/createPost', upload.array('postImages'), api.createPost);
-app.post('/createUser', upload.array('userImages'), api.createUser);
+app.post('/createPost', upload.any(), api.createPost);
+app.post('/createUser', upload.any(), api.createUser);
 app.post('/login', function(req, res){ authentication.handleLogin(req, res, passport);});
 
 // PUT requests
