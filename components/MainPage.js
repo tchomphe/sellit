@@ -17,6 +17,28 @@ export default class MainPage extends React.Component {
         this.updatePostModal = this.updatePostModal.bind(this);
     }
 
+    componentDidMount(){
+        // Initialize Post Modals
+        $('.modal').modal();
+        $('#postModal').modal({
+            ready: function(modal, trigger){
+                $('.floatingBackButton').removeClass('hide');
+                $('.carousel').removeClass('hide');
+                $('.carousel').carousel({dist:0,shift:0,padding:0});
+            },
+            complete: function(modal, trigger){
+                $('.floatingBackButton').addClass('hide');
+                $('.carousel').addClass('hide');
+            }
+        });
+
+        // Set up click handler for floating back button
+        $('.floatingBackButton').click(function(){
+            $('.floatingBackButton').addClass('hide');
+            $('.modal').modal('close');
+        });
+    }
+
     updatePostModal(post){
         //pass information about the (user-selected) post to the modal
         this.setState({
