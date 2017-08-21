@@ -3,6 +3,7 @@ import Banner from './Banner';
 import PostTile from './PostTile';
 import PostModal from './PostModal';
 import FloatingBackButton from './FloatingBackButton';
+import Request from 'superagent';
 
 export default class MainPage extends React.Component {
     constructor(props){
@@ -11,6 +12,7 @@ export default class MainPage extends React.Component {
         //define state variable holding data for <PostModal>
         this.state = {
             postModal: <PostModal title="" price="" address="" description="" />,
+            email: "",
         };
 
         //bind function to this component
@@ -40,10 +42,19 @@ export default class MainPage extends React.Component {
     }
 
     updatePostModal(post){
-        //pass information about the (user-selected) post to the modal
-        this.setState({
-            postModal: <PostModal title={post.title} price={post.price} address={post.address} description={post.description} />
-        });
+        // console.log(post);
+        Request
+            .get('user/' + post.ownerID)
+            .end((err, res)=>{
+                if(err){
+                    console.log("Error: " + err);
+                }
+                else{
+                    this.setState({
+                        postModal: <PostModal title={post.title} price={post.price} address={post.address} description={post.description} email={res.body.email}/>
+                    });                                        
+                }
+            });        
 
         //display the modal on the screen
         $('#postModal').modal('open');

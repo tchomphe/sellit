@@ -35,6 +35,8 @@ class PostModal extends React.Component{
                                 <div className="col s9 left-align">{this.props.address || placeholderMessage}</div>
                                 <div className="col s3 right-align"><b>Description:</b></div>
                                 <div className="col s9 left-align">{this.props.description || placeholderMessage}</div>
+                                <div className="col s3 right-align"><b>Owner Email:</b></div>
+                                <div className="col s9 left-align">{this.props.email || placeholderMessage}</div>
                             </div>
                         </div>
                         </div>
