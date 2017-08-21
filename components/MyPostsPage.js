@@ -19,6 +19,7 @@ export default class MyPostPage extends React.Component {
 
         this.requestUserPosts = this.requestUserPosts.bind(this);
         this.updatePostEditModal = this.updatePostEditModal.bind(this);
+        this.updatePostModal = this.updatePostModal.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
 
@@ -29,12 +30,29 @@ export default class MyPostPage extends React.Component {
     componentDidMount(){
         // Initiate Materialize Modal
         $('.modal').modal();
+        $('#postModal').modal({
+            ready: function(modal, trigger){
+                $('.floatingBackButton').removeClass('hide');
+                $('.carousel').removeClass('hide');
+                $('.carousel').carousel({dist:0,shift:0,padding:0});
+            },
+            complete: function(modal, trigger){
+                $('.floatingBackButton').addClass('hide');
+                $('.carousel').addClass('hide');
+            }
+        });
+
+        // Set up click handler for floating back button
+        $('.floatingBackButton').click(function(){
+            $('.floatingBackButton').addClass('hide');
+            $('.modal').modal('close');
+        });
     }
 
     requestUserPosts(){
         Request.get('/searchByOwner').then((res) => {
             var userPosts = res.body.map((post) =>
-                <InteractivePostTile handleDelete={this.handleDelete} updatePostEditModal={this.updatePostEditModal} updatePostModal={this.updatePostEditModal} post={post} />
+                <InteractivePostTile handleDelete={this.handleDelete} updatePostEditModal={this.updatePostEditModal} updatePostModal={this.updatePostModal} post={post} />
             );
 
             this.setState({
@@ -52,6 +70,16 @@ export default class MyPostPage extends React.Component {
 
         //display the modal on the screen
         $('#postEditModal').modal('open');
+    }
+
+    updatePostModal(post){
+        //pass information about the (user-selected) post to the modal
+        this.setState({
+            postModal: <PostModal title={post.title} price={post.price} address={post.address} description={post.description} />
+        });
+
+        //display the modal on the screen
+        $('#postModal').modal('open');
     }
 
     handleDelete(post){
