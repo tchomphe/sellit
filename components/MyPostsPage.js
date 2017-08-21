@@ -11,7 +11,8 @@ export default class MyPostPage extends React.Component {
 
         //define state variables
         this.state = {
-            postModal: <PostEditModal title="" price="" address="" description="" />,
+            postEditModal: <PostEditModal title="" price="" address="" description="" />,
+            postModal: <PostModal title="" price="" address="" description="" />,
             displayedPosts: null,
             err: "",
         };
@@ -25,10 +26,15 @@ export default class MyPostPage extends React.Component {
         this.requestUserPosts();
     }
 
+    componentDidMount(){
+        // Initiate Materialize Modal
+        $('.modal').modal();
+    }
+
     requestUserPosts(){
         Request.get('/searchByOwner').then((res) => {
             var userPosts = res.body.map((post) =>
-                <InteractivePostTile handleDelete={this.handleDelete} updatePostEditModal={this.updatePostEditModal} post={post} />
+                <InteractivePostTile handleDelete={this.handleDelete} updatePostEditModal={this.updatePostEditModal} updatePostModal={this.updatePostEditModal} post={post} />
             );
 
             this.setState({
@@ -41,7 +47,7 @@ export default class MyPostPage extends React.Component {
     updatePostEditModal(post){
         //pass information about the (user-selected) post to the modal
         this.setState({
-            postModal: <PostEditModal pid={post._id} title={post.title} price={post.price} address={post.address} description={post.description} />
+            postEditModal: <PostEditModal pid={post._id} title={post.title} price={post.price} address={post.address} description={post.description} />
         });
 
         //display the modal on the screen
@@ -68,6 +74,7 @@ export default class MyPostPage extends React.Component {
                 <h4 className="profilePageHeader">My Posts</h4>
                 {this.state.displayedPosts}
                 <FloatingBackButton />
+                {this.state.postEditModal}
                 {this.state.postModal}
             </div>
         )
