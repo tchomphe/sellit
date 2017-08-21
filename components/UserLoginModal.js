@@ -2,7 +2,7 @@ import React from 'react';
 import InputField from './InputField';
 import Request from 'superagent';
 
-class LoginModal extends React.Component{
+class UserLoginModal extends React.Component{
     constructor(props){
         super(props);
         this.state={
@@ -33,7 +33,7 @@ class LoginModal extends React.Component{
 
                 } else {
                     this.setState({err: ""});
-                    $('#loginModal').modal('close');
+                    $('#userLoginModal').modal('close');
 
                     //create user object and pass it to prop
                     let userArr = res.header.user.split(', ');
@@ -48,7 +48,7 @@ class LoginModal extends React.Component{
     }
     render(){
         return(
-            <div id="loginModal" className="modal">
+            <div id="userLoginModal" className="modal">
                 <a className="modal-action modal-close btn-large modalButtonClose">x</a>
                 <div className="modal-content">
                     <h5>Login</h5>
@@ -69,4 +69,4 @@ class LoginModal extends React.Component{
         )
     }
 }
-export default LoginModal;
+export default UserLoginModal;

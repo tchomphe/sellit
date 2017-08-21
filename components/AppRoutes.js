@@ -11,7 +11,7 @@ import MyAccountPage from './MyAccountPage';
 // import NotFoundPage from 'NotFoundPage';
 
 import RegistrationModal from './RegistrationModal';
-import LoginModal from './LoginModal';
+import UserLoginModal from './UserLoginModal';
 import NavigationHeader from './NavigationHeader';
 import Request from 'superagent';
 
@@ -79,7 +79,7 @@ export default class AppRoutes extends React.Component {
           <Route path="/my-account" render={() => (<MyAccountPage user={this.state.user} />)} />
 
           <RegistrationModal />
-          <LoginModal handleLogin={this.saveUser} />
+          <UserLoginModal handleLogin={this.saveUser} />
         </Layout>
       </Router>
       );
