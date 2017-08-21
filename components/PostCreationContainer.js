@@ -1,6 +1,7 @@
 import React from 'react';
 import InputField from './InputField';
 import Request from 'superagent';
+import { withRouter } from 'react-router-dom';
 
 class PostCreationContainer extends React.Component{
     constructor(props){
@@ -50,8 +51,8 @@ class PostCreationContainer extends React.Component{
                 if(err){
                     this.setState({err: res.body.error});
                 } else {
-                    this.setState({err: ""});
                     Materialize.toast('Post has been created!', 4000)
+                    this.props.history.push('/my-posts');
                 }
             });
     }
@@ -96,6 +97,5 @@ class PostCreationContainer extends React.Component{
             </div>
         )
     }
-
 }
-export default PostCreationContainer;
+export default withRouter(PostCreationContainer);
