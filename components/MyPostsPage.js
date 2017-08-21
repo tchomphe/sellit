@@ -13,21 +13,27 @@ export default class MyPostPage extends React.Component {
         this.state = {
             postModal: <PostEditModal title="" price="" address="" description="" />,
             displayedPosts: null,
+            err: "",
         };
 
+        this.requestUserPosts = this.requestUserPosts.bind(this);
         this.updatePostEditModal = this.updatePostEditModal.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentWillMount(){
+        this.requestUserPosts();
+    }
+
+    requestUserPosts(){
         Request.get('/searchByOwner').then((res) => {
-            console.log(res.body);
             var userPosts = res.body.map((post) =>
                 <InteractivePostTile handleDelete={this.handleDelete} updatePostEditModal={this.updatePostEditModal} post={post} />
             );
 
             this.setState({
                 displayedPosts: userPosts,
+                err: "",
             });
         });
     }
@@ -42,19 +48,18 @@ export default class MyPostPage extends React.Component {
         $('#postEditModal').modal('open');
     }
 
-    handleDelete(post){                
+    handleDelete(post){
         Request
             .delete('/post/' + post._id)
             .end((err, res)=>{
                 if(err){
-                    this.setState({err: res.body.err}); 
+                    this.setState({err: res.body.err});
                 }
                 else {
-                     this.setState({err: ""});
-                      Materialize.toast('Delete successful!', 4000) 
+                    this.requestUserPosts();
+                    Materialize.toast('Delete successful!', 4000)
                 }
             });
-        
     }
 
     render(){
@@ -62,8 +67,8 @@ export default class MyPostPage extends React.Component {
             <div className="app-content row center">
                 <h4 className="profilePageHeader">My Posts</h4>
                 {this.state.displayedPosts}
-                <FloatingBackButton />                
-                {this.state.postModal}                
+                <FloatingBackButton />
+                {this.state.postModal}
             </div>
         )
     }
