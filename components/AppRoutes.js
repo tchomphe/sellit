@@ -10,7 +10,7 @@ import MyPostsPage from './MyPostsPage';
 import MyAccountPage from './MyAccountPage';
 // import NotFoundPage from 'NotFoundPage';
 
-import RegistrationModal from './RegistrationModal';
+import UserRegistrationModal from './UserRegistrationModal';
 import UserLoginModal from './UserLoginModal';
 import NavigationHeader from './NavigationHeader';
 import Request from 'superagent';
@@ -78,7 +78,7 @@ export default class AppRoutes extends React.Component {
           <Route path="/my-posts" component={MyPostsPage} />
           <Route path="/my-account" render={() => (<MyAccountPage user={this.state.user} />)} />
 
-          <RegistrationModal />
+          <UserRegistrationModal />
           <UserLoginModal handleLogin={this.saveUser} />
         </Layout>
       </Router>

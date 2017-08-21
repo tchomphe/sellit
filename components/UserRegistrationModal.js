@@ -1,7 +1,7 @@
 import React from 'react';
 import InputField from './InputField';
 
-class RegistrationModal extends React.Component{
+class UserRegistrationModal extends React.Component{
     constructor(props){
         super(props);
     }
@@ -25,7 +25,7 @@ class RegistrationModal extends React.Component{
     render(){
         return(
 
-            <div id="registerModal" className="modal">
+            <div id="userRegistrationModal" className="modal">
                 <a className="modal-action modal-close btn-large modalButtonClose">x</a>
                 <div className="modal-content">
                         <div className="row">
@@ -55,4 +55,4 @@ class RegistrationModal extends React.Component{
     }
 }
 
-export default RegistrationModal;
+export default UserRegistrationModal;
