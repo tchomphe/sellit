@@ -14,39 +14,39 @@ class PostEditModal extends React.Component{
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        
+
     }
     handleInputChange(event){
         const target = event.target;
         const name = target.name;
-        const value = target.value;        
+        const value = target.value;
 
         this.setState({
             [name]: value
         });
     }
-    handleSubmit(event){           
-        Request            
+    handleSubmit(event){
+        Request
             .put('/post/' + this.props.pid)
             .send({title: this.state.title, price: this.state.price, address: this.state.address, description: this.state.description})
             .end((err, res) => {
                 if(err){
-                    this.setState({err: res.body.error});                    
+                    this.setState({err: res.body.error});
                 } else {
                     this.setState({err: ""});
-                      Materialize.toast('Update successful!', 4000) 
+                      Materialize.toast('Update successful!', 4000)
                     $('#postEditModal').modal('close');
                 }
-            });    
-            event.preventDefault(); 
+            });
+            event.preventDefault();
     }
-    render(){        
+    render(){
         return(
             <div id="postEditModal" className="modal">
-                <div className="modal-content">                        
+                <div className="modal-content">
                     <div className="card-panel">
                         {/* <form method="post" action="/createPost" encType="multipart/form-data"> */}
-                        <form onSubmit={this.handleSubmit}>                            
+                        <form onSubmit={this.handleSubmit}>
                             <div className="row">
                                 <label htmlFor="title">Title:</label>
                                 <input placeholder={this.props.title} name="title" value={this.state.title} type="text" className="validate" onChange={this.handleInputChange} />
@@ -76,13 +76,13 @@ class PostEditModal extends React.Component{
                             </div> */}
                             <div className="row">
                                 <div className="s12">
-                                     <button className="btn waves-effect waves-light" type="submit" value="Submit">Update</button> 
+                                     <button className="btn waves-effect waves-light" type="submit" value="Submit">Update</button>
                                     {/* <input type="submit" value="Submit" /> */}
 
                                 </div>
                             </div>
                         </form>
-                    </div>                                            
+                    </div>
                 </div>
             </div>
         );
