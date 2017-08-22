@@ -131,12 +131,13 @@ exports.createPost = function(req, res){
 
     //check if there are files to be uploaded
     if (req.files){
-      //save the first image as the thumbnail
-      thumbnail = req.files[0].path;
-
+      //save all uploaded images, replacing private directory with public path
       (req.files).forEach(function(image) {
-        uploadedImages.push(image.path);
+        uploadedImages.push(image.path.replace('static/', 'assets/'));
       }, this);
+
+      //save the first image as the thumbnail
+      thumbnail = uploadedImages[0];
     }
 
     var newPost = {
@@ -229,7 +230,9 @@ exports.deletePost = function (req, res) {
         Post.findOne({'_id': req.params.id}, 'images', function(err, post){
           if (post.images !== []){
             (post.images).forEach(function(imageURL){
-              fs.unlinkSync(imageURL);
+              //replace public path with private directory
+              var localImageURL = imageURL.replace('assets/', 'static/');
+              fs.unlinkSync(localImageURL);
             });
           }
         });
