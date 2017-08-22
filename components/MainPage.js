@@ -33,12 +33,6 @@ export default class MainPage extends React.Component {
                 $('.carousel').addClass('hide');
             }
         });
-
-        // Set up click handler for floating back button
-        $('.floatingBackButton').click(function(){
-            $('.floatingBackButton').addClass('hide');
-            $('.modal').modal('close');
-        });
     }
 
     updatePostModal(post){
@@ -52,12 +46,17 @@ export default class MainPage extends React.Component {
                 else{
                     this.setState({
                         postModal: <PostModal title={post.title} price={post.price} address={post.address} description={post.description} email={res.body.email}/>
-                    });                                        
+                    });
                 }
-            });        
+            });
 
         //display the modal on the screen
         $('#postModal').modal('open');
+    }
+
+    handleCloseModal(){
+        $('.floatingBackButton').addClass('hide');
+        $('.modal').modal('close');
     }
 
     render(){
@@ -74,7 +73,7 @@ export default class MainPage extends React.Component {
                     <i className="large material-icons">expand_more</i>
                 </a>
 
-                <FloatingBackButton />
+                <FloatingBackButton closeModal={this.handleCloseModal} />
                 {this.state.postModal}
             </div>
         );
