@@ -26,6 +26,8 @@ export default class InteractivePostTile extends React.Component {
     }
 
     render(){
+        var thumbnailImage = (this.props.post.thumbnail) ? this.props.post.thumbnail : "https://placehold.it/350x250";
+
         return(
             <div className="card">
                 <a onClick={(e) => (this.handleEdit(e))} className="waves-effect waves-light btn-large blue"><i className="material-icons right">edit</i>EDIT</a>
@@ -33,7 +35,7 @@ export default class InteractivePostTile extends React.Component {
 
                 <div className="card-image">
                     <a href="#!" onClick={(e) => (this.handlePreview(e))} className="waves-effect waves-light">
-                        <img src="https://placehold.it/350x250" alt="Card image cap" />
+                        <img src={thumbnailImage} alt="Card image cap" />
                     </a>
                 </div>
                 <div className="card-content">
