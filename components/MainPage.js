@@ -20,7 +20,7 @@ export default class MainPage extends React.Component {
     }
 
     componentDidMount(){
-        // Initialize Post Modals
+        //initialize Post Modals
         $('.modal').modal();
         $('#postModal').modal({
             ready: function(modal, trigger){
@@ -33,10 +33,12 @@ export default class MainPage extends React.Component {
                 $('.carousel').addClass('hide');
             }
         });
+
+        //send request to update post listings
+        this.props.updatePosts();
     }
 
     updatePostModal(post){
-        // console.log(post);
         Request
             .get('user/' + post.ownerID)
             .end((err, res)=>{

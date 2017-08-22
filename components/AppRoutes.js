@@ -36,11 +36,6 @@ export default class AppRoutes extends React.Component {
     this.saveUser = this.saveUser.bind(this);
   }
 
-  componentWillMount(){
-    this.requestPosts();
-    console.log('Finished initial population');
-  }
-
   requestPosts(searchQuery = 'all posts'){
     //send GET request to API and update state with response
     Request.get('/searchPosts/' + searchQuery).then((res) => {
@@ -73,7 +68,7 @@ export default class AppRoutes extends React.Component {
         <Layout>
           <NavigationHeader authorizedUser={this.state.user.authorized} searchPost={this.requestPosts} />
 
-          <Route exact={true} path="/" render={() => (<MainPage posts={this.state.posts} />)} />
+          <Route exact={true} path="/" render={() => (<MainPage posts={this.state.posts} updatePosts={this.requestPosts} />)} />
           <Route path="/create-post" component={PostCreationContainer} />
           <Route path="/my-posts" component={MyPostsPage} />
           <Route path="/my-account" render={() => (<MyAccountPage user={this.state.user} />)} />
