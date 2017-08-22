@@ -11,6 +11,7 @@ var postSchema = new Schema({
   type: {type: String, required: true, trim: true},
   date: { type: Date, default: Date.now },
   description: {type: String, trim: true},
+  thumbnail: {type: String, trim: true},
   images:[],
 });
 

@@ -127,12 +127,17 @@ exports.createPost = function(req, res){
   //varify user is logged in
   if (req.isAuthenticated()){
     var uploadedImages = [];
+    var thumbnail = null;
 
     //check if there are files to be uploaded
-    if (req.files)
+    if (req.files){
+      //save the first image as the thumbnail
+      thumbnail = req.files[0].path;
+
       (req.files).forEach(function(image) {
         uploadedImages.push(image.path);
       }, this);
+    }
 
     var newPost = {
       ownerID: req.user._id,
@@ -140,6 +145,7 @@ exports.createPost = function(req, res){
       address: req.body.address,
       type: req.body.type,
       description: req.body.description,
+      thumbnail: thumbnail,
       images: uploadedImages
     };
 
