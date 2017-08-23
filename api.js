@@ -102,6 +102,13 @@ exports.getUserByEmail = function(req, res){
   });
 };
 
+exports.varifyAuthentication = function(req, res){
+  if (req.isAuthenticated())
+    res.append('user', [req.user.email, req.user.nickname, req.user.phone]).send();
+  else
+    res.send(null);
+}
+
 //-------------------------- POST request --------------------------//
 exports.createUser = function(req, res){
   //validate phone number

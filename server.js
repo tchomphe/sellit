@@ -74,6 +74,7 @@ app.get('/searchPosts/:searchText', api.searchPosts);
 app.get('/searchByOwner', api.searchByOwner);
 app.get('/postByTitle/:title', api.getPostByTitle);
 app.get('/userByEmail/:email', api.getUserByEmail);
+app.get('/varifyAuthentication', api.varifyAuthentication);
 app.get('/myAccount', function(req, res){
   if (req.isAuthenticated())
     res.status(200).send({message: 'User is logged in!'});
