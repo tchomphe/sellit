@@ -36,6 +36,19 @@ export default class AppRoutes extends React.Component {
     this.saveUser = this.saveUser.bind(this);
   }
 
+  componentWillMount(){
+    Request.get('/varifyAuthentication').then((res) => {
+      console.log('USER: ' + JSON.stringify(res.header.user));
+      if(res.header.user){
+        //parse user data into array, and then save as object
+        let userArr = res.header.user.split(', ');
+        this.setState({
+          user: { email: userArr.shift(), nickname: userArr.shift(), phone: userArr.shift(), authorized: true }
+        });
+      }
+    });
+  }
+
   requestPosts(searchQuery = 'all posts'){
     //send GET request to API and update state with response
     Request.get('/searchPosts/' + searchQuery).then((res) => {
@@ -45,7 +58,6 @@ export default class AppRoutes extends React.Component {
 
       this.setState({
         posts: updatedPosts,
-        user: { authorized: (res.header.authorized_user == 'true') }
       });
     });
   }
@@ -63,6 +75,7 @@ export default class AppRoutes extends React.Component {
 
   render() {
     console.log('AppRoutes rendering... posts: ' + this.state.posts);
+    console.log('User: ' + JSON.stringify(this.state.user));
     return (
       <Router history={hashHistory}>
         <Layout>
@@ -77,6 +90,6 @@ export default class AppRoutes extends React.Component {
           <UserLoginModal handleLogin={this.saveUser} />
         </Layout>
       </Router>
-      );
-    }
+    );
+  }
 }
