@@ -1,5 +1,5 @@
 import React from 'react';
-import FloatingBackButton from './FloatingBackButton';
+import InputField from './InputField';
 import Request from 'superagent';
 
 class PostEditModal extends React.Component{
@@ -14,8 +14,8 @@ class PostEditModal extends React.Component{
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
     }
+
     handleInputChange(event){
         const target = event.target;
         const name = target.name;
@@ -25,6 +25,7 @@ class PostEditModal extends React.Component{
             [name]: value
         });
     }
+
     handleSubmit(event){
         Request
             .put('/post/' + this.props.pid)
@@ -40,6 +41,7 @@ class PostEditModal extends React.Component{
             });
             event.preventDefault();
     }
+
     render(){
         return(
             <div id="postEditModal" className="modal">
@@ -47,22 +49,14 @@ class PostEditModal extends React.Component{
                     <div className="card-panel">
                         {/* <form method="post" action="/createPost" encType="multipart/form-data"> */}
                         <form onSubmit={this.handleSubmit}>
-                            <div className="row">
-                                <label htmlFor="title">Title:</label>
-                                <input placeholder={this.props.title} name="title" value={this.state.title} type="text" className="validate" onChange={this.handleInputChange} />
-                            </div>
-                            <div className="row">
-                                <label htmlFor="price">Price:</label>
-                                <input placeholder={this.props.price} name="price" value={this.state.price} type="text" className="validate" onChange={this.handleInputChange} />
-                            </div>
-                            <div className="row">
-                                <label htmlFor="address">Address:</label>
-                                <input placeholder={this.props.address} name="address" value={this.state.address} type="text" className="validate" onChange={this.handleInputChange} />
-                            </div>
-                            <div className="row">
-                                <label htmlFor="description">Description:</label>
-                                <input placeholder={this.props.description} name="description" value={this.state.description} type="text" className="validate" onChange={this.handleInputChange} />
-                            </div>
+                            <InputField labelText="Title"
+                                id="title" placeholder={this.props.title} required="required" onChange={this.handleInputChange} />
+                            <InputField labelText="Price"
+                                id="price" placeholder={this.props.price} onChange={this.handleInputChange} />
+                            <InputField labelText="Address"
+                                id="address" placeholder={this.props.address} onChange={this.handleInputChange} />
+                            <InputField labelText="Description"
+                                id="description" placeholder={this.props.description} onChange={this.handleInputChange} />
                             {/* <div className="row">
                                 <div className="col s12 file-field input-field">
                                     <div className="btn">
@@ -77,8 +71,6 @@ class PostEditModal extends React.Component{
                             <div className="row">
                                 <div className="s12">
                                      <button className="btn waves-effect waves-light" type="submit" value="Submit">Update</button>
-                                    {/* <input type="submit" value="Submit" /> */}
-
                                 </div>
                             </div>
                         </form>
