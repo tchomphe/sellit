@@ -11,8 +11,8 @@ body {
     margin: 0px;
 }
 
-nav {
-    color: #fff;
+ nav {
+    color: #000;
     background-color: #ffffff;
     width: 100%;
     height: 56px;
@@ -21,36 +21,38 @@ nav {
     z-index: 99;
     left: 0px;
     top: 0px;
-    /* opacity: 0.9; */
+    
      box-shadow: 1px 3px 5px -1px #cccccc;
 }
 
 nav .brand-logo {
     position: absolute;
-    color: #000;
+     color: #000; 
     display: inline-block;
     font-size: 16px;
     padding: 0;
-    /* white-space: nowrap; */
-}
+    
+} 
 
 .brand-logo img {
     width: 70%;
     padding: 15px;
 }
 
-nav ul a {
+ nav ul a {
     transition: background-color .3s;
-    /*font-size: 16px;*/
+    
     color: #000;
     display: block;
     padding: 0 15px;
     cursor: pointer;
-}
+} 
 
-nav .input-field label i {
+ nav .input-field label i {
     color: rgba(0, 0, 0, 0.7);
-    /* transition: color .3s; */
+} 
+nav .input-field label.active i {
+    color: #151313;
 }
 
 .profilePageHeader {
@@ -241,10 +243,10 @@ nav .input-field label i {
 }
 
 /* search box color modification*/
-.input-field input[type=search]:focus {
+  .input-field input[type=search]:focus {
     background-color: #ffffff;
     color: #000000;
-}
+}  
 
 .nav-wrapper form {
     display: inline-block;
