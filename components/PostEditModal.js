@@ -7,28 +7,33 @@ class PostEditModal extends React.Component{
         super(props);
         this.state={
             err:"",
+            id:"",
             title:"",
             address:"",
             price:"",
-            description:""
+            description:"",
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleInputChange(event){
-        const target = event.target;
-        const name = target.name;
-        const value = target.value;
-
+    componentWillReceiveProps(nextProps){
         this.setState({
-            [name]: value
-        });
+            id: nextProps.post._id,
+            title: nextProps.post.title,
+            address: nextProps.post.address,
+            price: nextProps.post.price,
+            description: nextProps.post.description,
+        })
+    }
+
+    handleInputChange(event){
+        this.setState({ [event.target.name]: event.target.value });
     }
 
     handleSubmit(event){
         Request
-            .put('/post/' + this.props.pid)
+            .put('/post/' + this.state.id)
             .send({title: this.state.title, price: this.state.price, address: this.state.address, description: this.state.description})
             .end((err, res) => {
                 if(err){
@@ -47,16 +52,15 @@ class PostEditModal extends React.Component{
             <div id="postEditModal" className="modal">
                 <div className="modal-content">
                     <div className="card-panel">
-                        {/* <form method="post" action="/createPost" encType="multipart/form-data"> */}
                         <form onSubmit={this.handleSubmit}>
                             <InputField labelText="Title"
-                                id="title" placeholder={this.props.title} required="required" onChange={this.handleInputChange} />
+                                id="title" value={this.state.title} required="required" onChange={this.handleInputChange} />
                             <InputField labelText="Price"
-                                id="price" placeholder={this.props.price} onChange={this.handleInputChange} />
+                                id="price" value={this.state.price} onChange={this.handleInputChange} />
                             <InputField labelText="Address"
-                                id="address" placeholder={this.props.address} onChange={this.handleInputChange} />
+                                id="address" value={this.state.address} onChange={this.handleInputChange} />
                             <InputField labelText="Description"
-                                id="description" placeholder={this.props.description} onChange={this.handleInputChange} />
+                                id="description" value={this.state.description} onChange={this.handleInputChange} />
                             {/* <div className="row">
                                 <div className="col s12 file-field input-field">
                                     <div className="btn">

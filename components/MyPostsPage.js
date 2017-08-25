@@ -11,7 +11,7 @@ export default class MyPostPage extends React.Component {
 
         //define state variables
         this.state = {
-            postEditModal: <PostEditModal title="" price="" address="" description="" />,
+            postEditModal: <PostEditModal post="" />,
             postModal: <PostModal title="" price="" address="" description="" />,
             displayedPosts: null,
             err: "",
@@ -65,7 +65,7 @@ export default class MyPostPage extends React.Component {
     updatePostEditModal(post){
         //pass information about the (user-selected) post to the modal
         this.setState({
-            postEditModal: <PostEditModal pid={post._id} title={post.title} price={post.price} address={post.address} description={post.description} />
+            postEditModal: <PostEditModal post={post} />
         });
 
         //display the modal on the screen
