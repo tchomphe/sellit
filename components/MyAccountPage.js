@@ -8,9 +8,9 @@ export default class MyAccountPage extends React.Component{
         super(props);
         this.state={
             err: "",
-            email: "", //TODO:
-            nickname: "", //TODO: consider setting these three as values (currently placeholder)
-            phone: "",  //TODO:
+            email: this.props.user.email,
+            nickname: this.props.user.nickname,
+            phone: this.props.user.phone,
             password: "",
             newPassword: "",
             confirmNewPassword: "",
@@ -36,7 +36,6 @@ export default class MyAccountPage extends React.Component{
                 .end((err, res) => {
                     if(err){
                         this.setState({err: res.body.error});
-                        // alert(JSON.stringify(this.state.err));
                     } else {
                         //reset error
                         this.setState({err: ""});
@@ -49,6 +48,8 @@ export default class MyAccountPage extends React.Component{
             Materialize.toast('Passwords do not match!', 4000);
     }
     render(){
+        console.log('MyAccountPage rendering... User: ' + JSON.stringify(this.props.user));
+
         return(
             <div className="container">
                 <div className="row">
@@ -61,9 +62,9 @@ export default class MyAccountPage extends React.Component{
                             </div>
                             <form method="post" onSubmit={this.handleSubmit} >
                                 <div className="row">
-                                    <InputField labelText="Nickname (optional)" id="nickname" placeholder={this.props.user.nickname} onChange={this.handleInputChange} />
-                                    <InputField labelText="Email" id="email" type="email" placeholder={this.props.user.email} onChange={this.handleInputChange} />
-                                    <InputField labelText="Phone Number (optional):" id="phone" placeholder={this.props.user.phone} onChange={this.handleInputChange} />
+                                    <InputField labelText="Nickname (optional)" id="nickname" value={this.state.nickname} onChange={this.handleInputChange} />
+                                    <InputField labelText="Email" id="email" type="email" value={this.state.email} onChange={this.handleInputChange} />
+                                    <InputField labelText="Phone Number (optional):" id="phone" value={this.state.phone} onChange={this.handleInputChange} />
                                     <InputField labelText="New Password" fieldClass="col s6" id="newPassword" type="password" onChange={this.handleInputChange} />
                                     <InputField labelText="Confirm New Password" fieldClass="col s6" id="confirmNewPassword" type="password" onChange={this.handleInputChange} />
                                     <InputField labelText="* Password" id="password" type="password" onChange={this.handleInputChange} />
