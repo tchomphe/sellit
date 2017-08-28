@@ -17,6 +17,11 @@ class PostEditModal extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount(){
+        // Initialize the Materialize select
+        $('select').material_select();
+    }
+
     componentWillReceiveProps(nextProps){
         this.setState({
             id: nextProps.post._id,
@@ -32,19 +37,7 @@ class PostEditModal extends React.Component{
     }
 
     handleSubmit(event){
-        Request
-            .put('/post/' + this.state.id)
-            .send({title: this.state.title, price: this.state.price, address: this.state.address, description: this.state.description})
-            .end((err, res) => {
-                if(err){
-                    this.setState({err: res.body.error});
-                } else {
-                    this.setState({err: ""});
-                      Materialize.toast('Update successful!', 4000)
-                    $('#postEditModal').modal('close');
-                }
-            });
-            event.preventDefault();
+        event.preventDefault();
     }
 
     render(){
@@ -55,8 +48,17 @@ class PostEditModal extends React.Component{
                         <form onSubmit={this.handleSubmit}>
                             <InputField labelText="Title"
                                 id="title" value={this.state.title} required="required" onChange={this.handleInputChange} />
-                            <InputField labelText="Price"
+                            <InputField fieldClass="col s6" labelText="Price"
                                 id="price" value={this.state.price} onChange={this.handleInputChange} />
+                            <div className="input-field col s6">
+                                <select id="type" name="type" required="required" >
+                                    <option value="Phone" defaultValue>Phone</option>
+                                    <option value="Laptop">Laptop</option>
+                                    <option value="Case">Case</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <label>* Type</label>
+                            </div>
                             <InputField labelText="Address"
                                 id="address" value={this.state.address} onChange={this.handleInputChange} />
                             <InputField labelText="Description"
