@@ -38,6 +38,27 @@ class PostEditModal extends React.Component{
 
     handleSubmit(event){
         event.preventDefault();
+
+        //Create formData object and populate it with values in form
+        var formData = new FormData(document.querySelector('#postEditForm'));
+        var formDataObj = {};
+        for(var pair of formData.entries()) {
+            formDataObj[pair[0]] = pair[1];
+            console.log(formDataObj);
+         }
+
+        Request
+            .put('/post/' + this.state.id)
+            .send(formDataObj)
+            .end((err, res) => {
+                if(err){
+                    this.setState({err: res.body.error});
+                } else {
+                    this.setState({err: ""});
+                    Materialize.toast('Update successful!', 4000);
+                    $('#postEditModal').modal('close');
+                }
+            });
     }
 
     render(){
@@ -45,7 +66,7 @@ class PostEditModal extends React.Component{
             <div id="postEditModal" className="modal">
                 <div className="modal-content">
                     <div className="card-panel">
-                        <form onSubmit={this.handleSubmit}>
+                        <form id="postEditForm" onSubmit={this.handleSubmit}>
                             <InputField labelText="Title"
                                 id="title" value={this.state.title} required="required" onChange={this.handleInputChange} />
                             <InputField fieldClass="col s6" labelText="Price"
