@@ -13,7 +13,7 @@ export default class MyPostPage extends React.Component {
         this.state = {
             postEditModal: <PostEditModal post="" />,
             postModal: <PostModal title="" price="" address="" description="" />,
-            displayedPosts: null,
+            postTiles: null,
             err: "",
         };
 
@@ -51,12 +51,12 @@ export default class MyPostPage extends React.Component {
 
     requestUserPosts(){
         Request.get('/searchByOwner').then((res) => {
-            var userPosts = res.body.map((post) =>
-                <InteractivePostTile handleDelete={this.handleDelete} updatePostEditModal={this.updatePostEditModal} updatePostModal={this.updatePostModal} post={post} />
+            var userPosts = res.body.map((post, index) =>
+                <InteractivePostTile key={index} handleDelete={this.handleDelete} updatePostEditModal={this.updatePostEditModal} updatePostModal={this.updatePostModal} post={post} />
             );
 
             this.setState({
-                displayedPosts: userPosts,
+                postTiles: userPosts,
                 err: "",
             });
         });
@@ -100,7 +100,7 @@ export default class MyPostPage extends React.Component {
         return (
             <div className="app-content row center">
                 <h4 className="profilePageHeader">My Posts</h4>
-                {this.state.displayedPosts}
+                {this.state.postTiles}
                 <FloatingBackButton />
                 {this.state.postEditModal}
                 {this.state.postModal}
