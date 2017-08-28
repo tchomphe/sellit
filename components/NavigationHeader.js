@@ -43,11 +43,11 @@ class NavigationHeader extends React.Component{
             <nav className="left-align">
                 <div className="nav-wrapper">
                     <Link to="/" className="brand-logo left"><img src="./assets/img/logo_small.png" /></Link>
-                    <form onSubmit={(e) => (this.handleSubmit(e))} >
-                        <div className="input-field">
+                    <form onSubmit={(e) => (this.handleSubmit(e))} >                         
+                         <div className="input-field">
                             <input id="search" type="search" ref="search" />
                             <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
-                        </div>
+                        </div> 
                     </form>
                     {navMenu}
                 </div>

@@ -100,10 +100,10 @@ app.post('/send', function(req, res, next){
     }
   });
   var mailOptions = {
-    from: 'Test Sender <jtran6520@gmail.com>',
-    from: 'Test Sender <jtran6520@gmail.com>',
-    subject: 'new subject',
-    text: 'body message '
+    from: 'Sender <zlatko.gantchev@gmail.com>',
+    to: 'Receiver <tashi.chomphel@gmail.com>',
+    subject: 'this is subject',
+    text: 'this is body message'
   }
   transporter.sendMail(mailOptions, function(err, info){
     if(err){
