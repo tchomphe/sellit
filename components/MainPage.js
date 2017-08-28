@@ -47,7 +47,12 @@ export default class MainPage extends React.Component {
                 }
                 else{
                     this.setState({
-                        postModal: <PostModal title={post.title} price={post.price} address={post.address} description={post.description} email={res.body.email}/>
+                        postModal: <PostModal
+                                        title={post.title}
+                                        price={post.price}
+                                        address={post.address}
+                                        description={post.description}
+                                        email={res.body.email} />
                     });
                 }
             });
