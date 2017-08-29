@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import GoogleMapReact from 'google-map-react';
 import Request from 'superagent';
  
 class Map extends Component {
