@@ -75,7 +75,13 @@ export default class MyPostPage extends React.Component {
     updatePostModal(post){
         //pass information about the (user-selected) post to the modal
         this.setState({
-            postModal: <PostModal title={post.title} price={post.price} address={post.address} description={post.description} />
+            postModal: <PostModal
+                title={post.title}
+                price={post.price}
+                address={post.address}
+                description={post.description}
+                thumbnail={post.thumbnail}
+                images={post.images} />
         });
 
         //display the modal on the screen
