@@ -64,7 +64,7 @@ module.exports.clean = function() {
 
   // clean seed posts
   seedPosts.forEach(function(seedPost) {
-    User.findOneAndRemove({'ownerID': seedPost.ownerID}, function(err, result){
+    Post.findOneAndRemove({'ownerID': seedPost.ownerID}, function(err, result){
       if (err) { console.log('Error in Posts seed data cleanup! --> ' + err); }
       console.log('Cleaned: ' + seedPost.title);
     })
