@@ -52,6 +52,8 @@ export default class MainPage extends React.Component {
                                         price={post.price}
                                         address={post.address}
                                         description={post.description}
+                                        thumbnail={post.thumbnail}
+                                        images={post.images}
                                         email={res.body.email} />
                     });
                 }
