@@ -75,14 +75,19 @@ export default class MainPage extends React.Component {
     }
 
     render(){
+        console.log('MainPage rendering... posts: ' + this.props.posts);
+
+        //fetch posts and place them within PostTile's
         var postTiles = this.props.posts.map((post, index) =>
             <PostTile key={index} updatePostModal={this.updatePostModal} post={post} />);
 
-        console.log('MainPage rendering... posts: ' + this.props.posts);
-
-        var paginationButton = <a onClick={this.handlePagination} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
-                                    <i className="material-icons">expand_more</i></a>
-
+        //determine if pagination button is needed, or if we've reached the end of all posts
+        var paginationButton = null;
+        if (this.props.page == 0)
+            paginationButton = <h4>Reached end of posts.</h4>;
+        else
+            paginationButton = <a onClick={this.handlePagination} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
+                                    <i className="material-icons">expand_more</i></a>;
         return(
             <div className="app-content row center">
                 <Banner />

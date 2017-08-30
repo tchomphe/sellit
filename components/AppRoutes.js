@@ -56,9 +56,12 @@ export default class AppRoutes extends React.Component {
       var newPosts = res.body.docs;
       var updatedPosts = oldPosts.concat(newPosts);
 
+      //if last page of results were encountered, set nextPage to 0
+      var nextPage = (newPosts.length == 0) ? 0 : currentPage + 1;
+
       this.setState({
         posts: updatedPosts,
-        page: currentPage + 1,
+        page: nextPage,
       });
     });
   }
