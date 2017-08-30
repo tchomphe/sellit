@@ -70,7 +70,7 @@ app.get(['/create-post', '/my-posts', '/my-account'], function(req, res){
 app.get('/paginatePosts/:pageNum', api.paginatePosts);
 app.get('/post/:id', api.getPostByID);
 app.get('/user/:id', api.getUserByID);
-app.get('/searchPosts/:searchText', api.searchPosts);
+app.get('/searchPosts/:searchText/:page', api.searchPosts);
 app.get('/searchByOwner', api.searchByOwner);
 app.get('/postByTitle/:title', api.getPostByTitle);
 app.get('/userByEmail/:email', api.getUserByEmail);

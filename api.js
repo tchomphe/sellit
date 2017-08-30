@@ -57,9 +57,9 @@ exports.paginatePosts = function(req, res){
 
 exports.searchPosts = function(req, res){
   //define query; search for all posts by default, otherwise take text
-  var query = (req.params.searchText == 'all posts') ? {} : { $text: { $search: req.params.searchText } };
+  var query = (req.params.searchText == 'all_posts') ? {} : { $text: { $search: req.params.searchText } };
 
-  Post.paginate(query, {limit:10}, function(err, result){
+  Post.paginate(query, {page:req.params.page, limit:6}, function(err, result){
     console.log('Pagination success.');
     res.send(result);
   });
@@ -204,6 +204,7 @@ exports.updatePostInfo = function (req, res) {
         var query = {_id: req.params.id};
         var newObject = {$set: req.body};
         var settings = {new: true};
+        console.log(req.body);
 
         Post.findByIdAndUpdate(query, newObject, settings, function(err, post) {
           varifyQuerySuccess(err, res, 'updateUserInfo');
