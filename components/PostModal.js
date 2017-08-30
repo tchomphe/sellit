@@ -63,9 +63,11 @@ class PostModal extends React.Component{
                         </div>
                     </div>
                     <div className="row">
+                        <div className="col m4 card-panel">
                         {/* <div className="col s12 postLocationMap"> */}
                                 <Map address={this.props.address}/>
                         {/* </div> */}
+                        </div>
                     </div>
                 </div>
             </div>

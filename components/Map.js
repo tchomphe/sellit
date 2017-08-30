@@ -37,6 +37,7 @@ class Map extends Component {
     var glink = "https://maps.googleapis.com/maps/api/staticmap?center="+this.state.lat+","+this.state.lng+"&zoom=15&size=400x400&maptype=roadmap&markers=color:red%7Clabel:C%7C"+this.state.lat+','+this.state.lng+"&key=AIzaSyBcxF_7FH1aEC4g6CGCvq7WPz1LCisZt3A";
     return (
       <div>         
+        <p>Google Map Location</p>
         <img src={glink} />    
         <p>this.props.address: {this.props.address}</p>
         <p>this.state.address: {this.state.address}</p>
