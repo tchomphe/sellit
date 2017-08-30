@@ -73,14 +73,16 @@ export default class MainPage extends React.Component {
             <PostTile key={index} updatePostModal={this.updatePostModal} post={post} />);
 
         console.log('MainPage rendering... posts: ' + this.props.posts);
+
+        var paginationButton = <a onClick={this.props.updatePosts} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
+                                    <i className="material-icons">expand_more</i></a>
+
         return(
             <div className="app-content row center">
                 <Banner />
                 {postTiles}
                 <br />
-                <a onClick={this.props.requestPosts} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
-                    <i className="large material-icons">expand_more</i>
-                </a>
+                {paginationButton}
 
                 <FloatingBackButton closeModal={this.handleCloseModal} />
                 {this.state.postModal}
