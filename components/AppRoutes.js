@@ -49,15 +49,16 @@ export default class AppRoutes extends React.Component {
     });
   }
 
-  requestPosts(searchQuery = 'all_posts', page = 1){
+  requestPosts(searchQuery = 'all_posts', currentPage = 1){
     //send GET request to API and update state with response
-    Request.get('/searchPosts/' + searchQuery + '/' + page).then((res) => {
-      var oldPosts = [];//this.state.displayedPosts; //TODO: integrate pagination into searchByTitle
+    Request.get('/searchPosts/' + searchQuery + '/' + currentPage).then((res) => {
+      var oldPosts = this.state.posts;
       var newPosts = res.body.docs;
       var updatedPosts = oldPosts.concat(newPosts);
 
       this.setState({
         posts: updatedPosts,
+        page: currentPage + 1,
       });
     });
   }
@@ -81,10 +82,12 @@ export default class AppRoutes extends React.Component {
         <Layout>
           <NavigationHeader authorizedUser={this.state.user.authorized} searchPost={this.requestPosts} />
 
-          <Route exact={true} path="/" render={() => (<MainPage posts={this.state.posts} updatePosts={this.requestPosts} />)} />
+          <Route exact={true} path="/" render={() => (
+            <MainPage posts={this.state.posts} updatePosts={this.requestPosts} page={this.state.page} />)} />
           <Route path="/create-post" component={PostCreationContainer} />
           <Route path="/my-posts" component={MyPostsPage} />
-          <Route path="/my-account" render={() => (<MyAccountPage user={this.state.user} />)} />
+          <Route path="/my-account" render={() => (
+            <MyAccountPage user={this.state.user} />)} />
 
           <UserRegistrationModal />
           <UserLoginModal handleLogin={this.saveUser} />

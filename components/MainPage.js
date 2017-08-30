@@ -66,7 +66,7 @@ export default class MainPage extends React.Component {
 
     handlePagination(e){
         e.preventDefault();
-        this.props.updatePosts('all_posts', 2);
+        this.props.updatePosts('all_posts', this.props.page);
     }
 
     handleCloseModal(){
