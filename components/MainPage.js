@@ -17,6 +17,7 @@ export default class MainPage extends React.Component {
 
         //bind function to this component
         this.updatePostModal = this.updatePostModal.bind(this);
+        this.handlePagination = this.handlePagination.bind(this);
     }
 
     componentDidMount(){
@@ -63,6 +64,11 @@ export default class MainPage extends React.Component {
         $('#postModal').modal('open');
     }
 
+    handlePagination(e){
+        e.preventDefault();
+        this.props.updatePosts('all_posts', 2);
+    }
+
     handleCloseModal(){
         $('.floatingBackButton').addClass('hide');
         $('.modal').modal('close');
@@ -74,7 +80,7 @@ export default class MainPage extends React.Component {
 
         console.log('MainPage rendering... posts: ' + this.props.posts);
 
-        var paginationButton = <a onClick={this.props.updatePosts} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
+        var paginationButton = <a onClick={this.handlePagination} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
                                     <i className="material-icons">expand_more</i></a>
 
         return(

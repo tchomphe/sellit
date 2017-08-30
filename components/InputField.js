@@ -32,5 +32,5 @@ export default class InputField extends React.Component{
 
 InputField.propTypes = {
     id: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
+    // onChange: PropTypes.func.isRequired,
 }
