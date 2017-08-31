@@ -23,10 +23,6 @@ export default class MyPostPage extends React.Component {
         this.handleDelete = this.handleDelete.bind(this);
     }
 
-    componentWillMount(){
-        this.requestUserPosts();
-    }
-
     componentDidMount(){
         // Initiate Materialize Modal
         $('.modal').modal();
@@ -47,6 +43,9 @@ export default class MyPostPage extends React.Component {
             $('.floatingBackButton').addClass('hide');
             $('.modal').modal('close');
         });
+
+        // Populate PostTile's with current user's posts
+        this.requestUserPosts();
     }
 
     requestUserPosts(){
