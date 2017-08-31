@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, hashHistory } from 'react-router-dom';
 import Layout from './Layout';
 import MainPage from './MainPage';
 import PostCreationContainer from './PostCreationContainer';
+import SearchResultsPage from './SearchResultsPage';
 import MyPostsPage from './MyPostsPage';
 import MyAccountPage from './MyAccountPage';
 // import NotFoundPage from 'NotFoundPage';
@@ -88,6 +89,7 @@ export default class AppRoutes extends React.Component {
 
           <Route exact={true} path="/" render={() => (
             <MainPage posts={this.state.posts} updatePosts={this.requestPosts} page={this.state.page} />)} />
+          <Route path="/search/:query" component={SearchResultsPage} />
           <Route path="/create-post" component={PostCreationContainer} />
           <Route path="/my-posts" component={MyPostsPage} />
           <Route path="/my-account" render={() => (
