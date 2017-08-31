@@ -22,9 +22,9 @@ export default class AppRoutes extends React.Component {
     //define state variables
     this.state = {
       posts: [],
-      page: 1, //TODO: create logic for pagination
+      page: 1,
       user: {
-        email: null, //TODO: decide how to populate user identification
+        email: null,
         nickname: null,
         phone: null,
         authorized: false,
@@ -36,11 +36,12 @@ export default class AppRoutes extends React.Component {
     this.saveUser = this.saveUser.bind(this);
   }
 
-  componentWillMount(){
+  componentDidMount(){
+    //varify if the current user is authenticated
     Request.get('/varifyAuthentication').then((res) => {
       console.log('USER: ' + JSON.stringify(res.header.user));
       if(res.header.user){
-        //parse user data into array, and then save as object
+        //parse user data into array, and then save as object in the state
         let userArr = res.header.user.split(', ');
         this.setState({
           user: { email: userArr.shift(), nickname: userArr.shift(), phone: userArr.shift(), authorized: true }
