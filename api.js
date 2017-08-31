@@ -56,8 +56,8 @@ exports.paginatePosts = function(req, res){
 };
 
 exports.searchPosts = function(req, res){
-  //define query; search for all posts by default, otherwise take text
-  var query = (req.params.searchText == 'all_posts') ? {} : { $text: { $search: req.params.searchText } };
+  //define query; search for all posts by default
+  var query = { $text: { $search: req.params.searchText } };
 
   Post.paginate(query, {page:req.params.page, limit:6}, function(err, result){
     console.log('Pagination success.');
