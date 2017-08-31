@@ -11,8 +11,9 @@ export default class MainPage extends React.Component {
 
         //define state variable holding data for <PostModal>
         this.state = {
+            posts: [],
+            page: 1,
             postModal: <PostModal title="" price="" address="" description="" />,
-            email: "",
         };
 
         //bind function to this component
@@ -35,8 +36,24 @@ export default class MainPage extends React.Component {
             }
         });
 
-        //send request to update post listings
-        this.props.updatePosts();
+        //send request to initialize post listings
+        this.requestAllPosts(1);
+    }
+
+    requestAllPosts(currentPage){
+        Request.get('/paginatePosts/' + currentPage).then((res) => {
+            var oldPosts = this.state.posts;
+            var newPosts = res.body.docs;
+            var updatedPosts = oldPosts.concat(newPosts);
+
+            //determine nextPage, if last page of results were encountered, set nextPage to 0
+            var nextPage = (newPosts.length == 0) ? 0 : currentPage + 1;
+
+            this.setState({
+              posts: updatedPosts,
+              page: nextPage,
+            });
+        });
     }
 
     updatePostModal(post){
@@ -66,7 +83,7 @@ export default class MainPage extends React.Component {
 
     handlePagination(e){
         e.preventDefault();
-        this.props.updatePosts('all_posts', this.props.page);
+        this.requestAllPosts(this.state.page);
     }
 
     handleCloseModal(){
@@ -75,19 +92,20 @@ export default class MainPage extends React.Component {
     }
 
     render(){
-        console.log('MainPage rendering... posts: ' + this.props.posts);
+        console.log('MainPage rendering... posts: ' + JSON.stringify(this.state.posts));
 
         //fetch posts and place them within PostTile's
-        var postTiles = this.props.posts.map((post, index) =>
+        var postTiles = this.state.posts.map((post, index) =>
             <PostTile key={index} updatePostModal={this.updatePostModal} post={post} />);
 
         //determine if pagination button is needed, or if we've reached the end of all posts
         var paginationButton = null;
-        if (this.props.page == 0)
+        if (this.state.page == 0)
             paginationButton = <h4>Reached end of posts.</h4>;
         else
             paginationButton = <a onClick={this.handlePagination} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
                                     <i className="material-icons">expand_more</i></a>;
+
         return(
             <div className="app-content row center">
                 <Banner />
