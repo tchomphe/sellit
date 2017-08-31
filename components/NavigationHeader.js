@@ -25,21 +25,30 @@ class NavigationHeader extends React.Component{
 
     render(){
         var loggedInMenu =  <ul className="right hide-on-med-and-down">
-                                <li><Link to="/">All Posts</Link></li>
-                                <li><Link to="/my-posts">My Posts</Link></li>
-                                <li><Link to="/my-account">My Account</Link></li>
-                                <li><Link to="/create-post">Create Post</Link></li>
-                                <li><a href="/logout" className="waves-effect waves-light btn">Logout</a></li>
+                                <li><i className="large material-icons">list</i></li>
+                                <li><Link to="/">ALL POST</Link></li>
+                                <li><i className="large material-icons">list</i></li>
+                                <li><Link to="/my-posts">MY POST</Link></li>
+                                <li><i className="large material-icons">account_circle</i></li>
+                                <li><Link to="/my-account">MY ACCOUNT</Link></li>
+                                <li><i className="large material-icons">create</i></li>
+                                <li><Link to="/create-post">CREATE POST</Link></li>
+                                <li><i className="large material-icons">exit_to_app</i></li>
+                                <li><a href="/logout">LOGOUT</a></li>
                             </ul>;
         var defaultMenu =   <ul className="right hide-on-med-and-down">
-                                <li><a href="#userRegistrationModal" className="waves-effect waves-light btn">Create an Account</a></li>
-                                <li><a href="#userLoginModal" className="waves-effect waves-light btn">Login to Post</a></li>
+                                <li><i className="large material-icons">assignment</i></li>
+                                <li><a href="#userRegistrationModal">SIGN UP</a></li>
+                                <li><i className="large material-icons">exit_to_app</i></li>
+                                <li><a href="#userLoginModal">LOGIN</a></li>
+                                <li><a href="#" id="searchtoggl"><i className="material-icons">search</i></a></li>
+                                
                             </ul>;
 
         //determine whether navigation menu should display a logged in menu, or not
         var navMenu = (this.props.authorizedUser == true) ? loggedInMenu : defaultMenu;
 
-        return(
+        return(            
             <nav className="left-align">
                 <div className="nav-wrapper">
                     <Link to="/" className="brand-logo left"><img src="./assets/img/logo_small.png" /></Link>
@@ -51,7 +60,7 @@ class NavigationHeader extends React.Component{
                     </form>
                     {navMenu}
                 </div>
-            </nav>
+            </nav>            
         );
     }
 }

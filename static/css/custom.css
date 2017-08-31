@@ -12,22 +12,21 @@ body {
 }
 
  nav {
-    color: #000;
-    background-color: #ffffff;
+    /* color: #000; */
+    background-color: #000000;
     width: 100%;
     height: 56px;
     line-height: 56px;
     position: fixed;
-    z-index: 99;
+    z-index: 99; 
     left: 0px;
-    top: 0px;
-    
-     box-shadow: 1px 3px 5px -1px #cccccc;
+    top: 0px;    
+    box-shadow: 0px 0px 0px 0px;
 }
 
 nav .brand-logo {
     position: absolute;
-     color: #000; 
+    color: #ffffff; 
     display: inline-block;
     font-size: 16px;
     padding: 0;
@@ -40,24 +39,66 @@ nav .brand-logo {
 }
 
  nav ul a {
-    transition: background-color .3s;
-    
-    color: #000;
+    /* transition: background-color .3s;     */
+    color: #ffffff;
     display: block;
-    padding: 0 15px;
+    padding-left: 5px;
+    margin-right: 15px;
     cursor: pointer;
 } 
 
- nav .input-field label i {
-    color: rgba(0, 0, 0, 0.7);
+nav .input-field label i {
+    color: #ffffff;
 } 
 nav .input-field label.active i {
-    color: #151313;
+    color: #ffffff;
 }
-
+nav .nav-wrapper i{
+    line-height: 55px;
+}
 .profilePageHeader {
     margin-top: 90px;
     margin-left: 15px;
+}
+
+/** hidden search field **/
+#searchbar {
+  display: none;
+  float: left;
+  width: 100%;
+  height: 62px;
+  border-top: 1px solid #d8d8d8;
+  padding-left: 25px;
+  padding-right: 10px;
+  z-index: 9999;
+  background: #fff;
+  -webkit-box-shadow: -1px 2px 2px rgba(0,0,0,0.2);
+  -moz-box-shadow: -1px 2px 2px rgba(0,0,0,0.2);
+  box-shadow: -1px 2px 2px rgba(0,0,0,0.2);
+}
+
+#s {
+  display: block;
+  width: 88%;
+  border: 0;
+  outline: none;
+  padding: 0;
+  height: 60px;
+  line-height: 60px;
+  font-size: 3.0em;
+  font-weight: bold;
+  color: #676767;
+}
+
+#searchsubmit {
+  display: block;
+  float: right;
+  margin-top: 6px;
+  background: none;
+  color: #717171;
+  border: 0;
+  outline: none;
+  cursor: pointer;
 }
 
 .z-depth-1, .card {
