@@ -103,6 +103,8 @@ export default class MyPostPage extends React.Component {
     }
 
     render(){
+        console.log('MyPostsPage rendering... ');
+
         return (
             <div className="app-content row center">
                 <h4 className="profilePageHeader">My Posts</h4>

@@ -48,7 +48,7 @@ export default class MyAccountPage extends React.Component{
             Materialize.toast('Passwords do not match!', 4000);
     }
     render(){
-        console.log('MyAccountPage rendering... User: ' + JSON.stringify(this.props.user));
+        console.log('MyAccountPage rendering... ');
 
         return(
             <div className="container">

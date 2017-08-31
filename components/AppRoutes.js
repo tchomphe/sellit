@@ -56,7 +56,7 @@ export default class AppRoutes extends React.Component {
       var newPosts = res.body.docs;
       var updatedPosts = oldPosts.concat(newPosts);
 
-      //if last page of results were encountered, set nextPage to 0
+      //determine nextPage, if last page of results were encountered, set nextPage to 0
       var nextPage = (newPosts.length == 0) ? 0 : currentPage + 1;
 
       this.setState({
@@ -78,8 +78,8 @@ export default class AppRoutes extends React.Component {
   }
 
   render() {
-    console.log('AppRoutes rendering... posts: ' + this.state.posts);
-    console.log('User: ' + JSON.stringify(this.state.user));
+    console.log('AppRoutes rendering... ');
+
     return (
       <Router history={hashHistory}>
         <Layout>

@@ -57,6 +57,8 @@ class PostCreationContainer extends React.Component{
             });
     }
     render(){
+        console.log('PostCreationContainer rendering... ');
+
         return(
             <div className="contatiner">
                 <h6 className="profilePageHeader">Create-Post</h6>
