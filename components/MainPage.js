@@ -92,7 +92,7 @@ export default class MainPage extends React.Component {
     }
 
     render(){
-        console.log('MainPage rendering... posts: ' + JSON.stringify(this.state.posts));
+        console.log('MainPage rendering... posts: ');
 
         //fetch posts and place them within PostTile's
         var postTiles = this.state.posts.map((post, index) =>
