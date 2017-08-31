@@ -8,7 +8,6 @@ export default class PostTile extends React.Component {
     }
 
     render(){
-        console.log('post: ' + JSON.stringify(this.props.post));
         var thumbnailImage = (this.props.post.thumbnail) ? this.props.post.thumbnail : "https://placehold.it/350x250";
 
         return(
