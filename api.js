@@ -140,7 +140,7 @@ exports.createPost = function(req, res){
     if (req.files){
       //save all uploaded images, replacing private directory with public path
       (req.files).forEach(function(image) {
-        uploadedImages.push(image.path.replace('static/', 'assets/'));
+        uploadedImages.push(image.path.replace('static/', '/assets/'));
       }, this);
 
       //save the first image as the thumbnail
@@ -239,7 +239,7 @@ exports.deletePost = function (req, res) {
           if (post.images !== []){
             (post.images).forEach(function(imageURL){
               //replace public path with private directory
-              var localImageURL = imageURL.replace('assets/', 'static/');
+              var localImageURL = imageURL.replace('/assets/', 'static/');
               fs.unlinkSync(localImageURL);
             });
           }
