@@ -8,16 +8,24 @@ class NavigationHeader extends React.Component{
 
         this.state={
             searchedPosts: [],
+            customSearchBar: "custom_search_invisible",
         }
     }
-
+    handleOnClick(){        
+        // this.setState({customSearchBar: 'custom_search'});
+        if (this.state.customSearchBar === "custom_search_invisible"){
+            this.setState({customSearchBar: "custom_search"});
+        } else {
+            this.setState({customSearchBar: "custom_search_invisible"});
+        }
+    }
     handleSubmit(e){
         e.preventDefault();
 
         //TODO: pass more variables, ex: /?query=121&type=Bob
         //redirect to SearchResults and pass the query
         this.props.history.push('/search/' + this.refs.search.value);
-}
+    }
 
     render(){
         var loggedInMenu =  <ul className="right hide-on-med-and-down">
@@ -37,8 +45,7 @@ class NavigationHeader extends React.Component{
                                 <li><a href="#userRegistrationModal">SIGN UP</a></li>
                                 <li><i className="large material-icons">exit_to_app</i></li>
                                 <li><a href="#userLoginModal">LOGIN</a></li>
-                                <li><a href="#" id="searchtoggl"><i className="material-icons">search</i></a></li>
-
+                                <li><a onClick={this.handleOnClick.bind(this)}><i className="material-icons">search</i></a></li>
                             </ul>;
 
         //determine whether navigation menu should display a logged in menu, or not
@@ -48,13 +55,18 @@ class NavigationHeader extends React.Component{
             <nav className="left-align">
                 <div className="nav-wrapper">
                     <Link to="/" className="brand-logo left"><img src="./assets/img/logo_small.png" /></Link>
-                    <form onSubmit={(e) => (this.handleSubmit(e))} >
+                    {/* <form onSubmit={(e) => (this.handleSubmit(e))} >
                          <div className="input-field">
                             <input id="search" type="search" ref="search" />
                             <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
                         </div>
-                    </form>
+                    </form> */}
                     {navMenu}
+                </div>
+                <div className={this.state.customSearchBar}>
+                    <form>
+                        <input type="search" placeholder="Search..." />
+                    </form>
                 </div>
             </nav>
         );
