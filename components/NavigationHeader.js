@@ -10,6 +10,7 @@ class NavigationHeader extends React.Component{
             searchedPosts: [],
             customSearchBar: "custom_search_invisible",
         }
+        this.handleOnClick = this.handleOnClick.bind(this);
     }
     handleOnClick(){        
         // this.setState({customSearchBar: 'custom_search'});
@@ -39,13 +40,14 @@ class NavigationHeader extends React.Component{
                                 <li><Link to="/create-post">CREATE POST</Link></li>
                                 <li><i className="large material-icons">exit_to_app</i></li>
                                 <li><a href="/logout">LOGOUT</a></li>
+                                <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
                             </ul>;
         var defaultMenu =   <ul className="right hide-on-med-and-down">
                                 <li><i className="large material-icons">assignment</i></li>
                                 <li><a href="#userRegistrationModal">SIGN UP</a></li>
                                 <li><i className="large material-icons">exit_to_app</i></li>
                                 <li><a href="#userLoginModal">LOGIN</a></li>
-                                <li><a onClick={this.handleOnClick.bind(this)}><i className="material-icons">search</i></a></li>
+                                <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
                             </ul>;
 
         //determine whether navigation menu should display a logged in menu, or not
@@ -64,8 +66,8 @@ class NavigationHeader extends React.Component{
                     {navMenu}
                 </div>
                 <div className={this.state.customSearchBar}>
-                    <form>
-                        <input type="search" placeholder="Search..." />
+                    <form onSubmit={(e) => (this.handleSubmit(e))}>
+                        <input id="search" type="search" ref="search" placeholder="Search..." />
                     </form>
                 </div>
             </nav>
