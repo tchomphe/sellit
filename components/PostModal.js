@@ -33,42 +33,42 @@ class PostModal extends React.Component{
             <div id="postModal" className="modal">
                 <div className="modal-content">
                     <div className="row">
-                        <div className="col s12 postImagesSlideshow">
+                        <div className="col s6 postImagesSlideshow">
                             <div className="carousel" data-indicators="true">
                                 {postImagesHTML}
                             </div>
                         </div>
-                    </div>
-                    <div className="row">
-
-                        <div className="col m8 postInformation">
-                            <div className="card-panel">
-                            <h5 className="center">{this.props.title}</h5>
-                            <h6 className="center">ID: {this.props.key}</h6>
-                            <br />
-                            <div className="row">
-                                <div className="col s3 right-align"><b>Price:</b></div>
-                                <div className="col s9 left-align">{this.props.price || placeholderMessage}</div>
-                                <div className="col s3 right-align"><b>Address:</b></div>
-                                <div className="col s9 left-align">{this.props.address || placeholderMessage}</div>
-                                <div className="col s3 right-align"><b>Description:</b></div>
-                                <div className="col s9 left-align">{this.props.description || placeholderMessage}</div>
-                                <div className="col s3 right-align"><b>Owner Email:</b></div>
-                                <div className="col s9 left-align">{this.props.email || placeholderMessage}</div>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="col m4">
+                        <div className="col s6">
                             <PostContact receiver={this.props.email}/>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col m4 card-panel">
-                        {/* <div className="col s12 postLocationMap"> */}
-                                <Map address={this.props.address}/>
+                        <div className="col s6">
+                            <h5 className="center">{this.props.title}</h5>                            
+                            <strong>{this.props.price || placeholderMessage}</strong>
+                            <Map address={this.props.address}/>                            
+                            <i className="tiny material-icons">location_on</i><strong>{this.props.address || placeholderMessage}</strong>
+                        </div>
+                        <div className="col s6 postInformation">
+                            {/* <div className="card-panel"> */}
+                                {/* <h6 className="center">{this.props.title}</h6>
+                                <h6 className="center">ID: {this.props.key}</h6> */}
+                                <br />
+                                <div className="row">
+                                    <h5>Description</h5>                                    
+                                    <div className="col s9 left-align">{this.props.description || placeholderMessage}</div>                                    
+                                </div>
                         {/* </div> */}
                         </div>
+                        {/* <div className="col m4">
+                            <PostContact receiver={this.props.email}/>
+                        </div> */}
                     </div>
+                    {/* <div className="row">
+                        <div className="col m4 card-panel">                        
+                                <Map address={this.props.address}/>                        
+                        </div>
+                    </div> */}
                 </div>
             </div>
         );

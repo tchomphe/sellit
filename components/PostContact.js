@@ -41,30 +41,31 @@ class PostContact extends React.Component{
     render(){
         return(            
             <form className="col s12 center" onSubmit={this.handleSubmit}> 
-                <div className="card-panel">
-                <b>Contact Poster</b>{this.props.receiver}                
-                <div className="row center">
-                    <div className="input-field col s12">
-                        <input name="sender_email" value={this.state.sender_email} type="email" className="validate" onChange={this.handleInputChange} />
-                        <label htmlFor="email" data-error="wrong" data-success="right">* Email</label>
+                {/* <div className="card-panel"> */}
+                    <h5>Contact Poster</h5>
+                    {/* {this.props.receiver} */}
+                    <div className="row center">
+                        <div className="input-field col s12">
+                            <input name="sender_email" value={this.state.sender_email} type="email" className="validate" onChange={this.handleInputChange} />
+                            <label htmlFor="email" data-error="wrong" data-success="right">* Email</label>
+                        </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="input-field col s12">
-                        <input name="sender_name" value={this.state.sender_name} type="text" className="validate" onChange={this.handleInputChange} />
-                        <label htmlFor="name">Name</label>
+                    <div className="row">
+                        <div className="input-field col s12">
+                            <input name="sender_name" value={this.state.sender_name} type="text" className="validate" onChange={this.handleInputChange} />
+                            <label htmlFor="name">Name</label>
+                        </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="input-field col s12">
-                        <textarea name="message" value={this.state.message} className="materialize-textarea" onChange={this.handleInputChange} />
-                        <label htmlFor="message">Message</label>
+                    <div className="row">
+                        <div className="input-field col s12">
+                            <textarea name="message" value={this.state.message} className="materialize-textarea" onChange={this.handleInputChange} />
+                            <label htmlFor="message">Message</label>
+                        </div>
                     </div>
-                </div>
-                <input type="hidden" name="receiver_email" value={this.props.receiver} onChange={this.handleInputChange} />
-                <button type="submit"> submit </button>
-                {/* <a href="#" className="waves-effect waves-light btn-large" type="submit" >Send Email</a> */}
-            </div>
+                    <input type="hidden" name="receiver_email" value={this.props.receiver} onChange={this.handleInputChange} />
+                    <button type="submit"> submit </button>
+                    {/* <a href="#" className="waves-effect waves-light btn-large" type="submit" >Send Email</a> */}
+            {/* </div> */}
             </form>            
         );
     }
