@@ -33,7 +33,6 @@ export default class AppRoutes extends React.Component {
     };
 
     //bind functions to this component
-    this.requestPosts = this.requestPosts.bind(this);
     this.saveUser = this.saveUser.bind(this);
   }
 
@@ -48,23 +47,6 @@ export default class AppRoutes extends React.Component {
           user: { email: userArr.shift(), nickname: userArr.shift(), phone: userArr.shift(), authorized: true }
         });
       }
-    });
-  }
-
-  requestPosts(searchQuery = 'all_posts', currentPage = 1){
-    //send GET request to API and update state with response
-    Request.get('/searchPosts/' + searchQuery + '/' + currentPage).then((res) => {
-      var oldPosts = this.state.posts;
-      var newPosts = res.body.docs;
-      var updatedPosts = oldPosts.concat(newPosts);
-
-      //determine nextPage, if last page of results were encountered, set nextPage to 0
-      var nextPage = (newPosts.length == 0) ? 0 : currentPage + 1;
-
-      this.setState({
-        posts: updatedPosts,
-        page: nextPage,
-      });
     });
   }
 
@@ -85,10 +67,10 @@ export default class AppRoutes extends React.Component {
     return (
       <Router history={hashHistory}>
         <Layout>
-          <NavigationHeader authorizedUser={this.state.user.authorized} searchPost={this.requestPosts} />
+          <NavigationHeader authorizedUser={this.state.user.authorized} />
 
           <Route exact={true} path="/" render={() => (
-            <MainPage posts={this.state.posts} updatePosts={this.requestPosts} page={this.state.page} />)} />
+            <MainPage posts={this.state.posts} page={this.state.page} />)} />
           <Route path="/search/:query" component={SearchResultsPage} />
           <Route path="/create-post" component={PostCreationContainer} />
           <Route path="/my-posts" component={MyPostsPage} />
