@@ -49,27 +49,16 @@ class PostModal extends React.Component{
                             <Map address={this.props.address}/>                            
                             <i className="tiny material-icons">location_on</i><strong>{this.props.address || placeholderMessage}</strong>
                         </div>
-                        <div className="col s6 postInformation">
-                            {/* <div className="card-panel"> */}
-                                {/* <h6 className="center">{this.props.title}</h6>
-                                <h6 className="center">ID: {this.props.key}</h6> */}
-                                <br />
-                                <div className="row">
-                                    <h5>Description</h5>                                    
-                                    <div className="col s9 left-align">{this.props.description || placeholderMessage}</div>                                    
-                                </div>
-                        {/* </div> */}
-                        </div>
-                        {/* <div className="col m4">
-                            <PostContact receiver={this.props.email}/>
-                        </div> */}
+                        <div className="col s6">                            
+                            <h5>Description</h5>
+                            <div className="col s9 left-align">{this.props.description || placeholderMessage}</div>
+                        </div>                        
+                    </div>                    
+                    <div className="modal-footer right-align">
+                        <strong>Posted on: September, 1st, 2012</strong>
                     </div>
-                    {/* <div className="row">
-                        <div className="col m4 card-panel">                        
-                                <Map address={this.props.address}/>                        
-                        </div>
-                    </div> */}
-                </div>
+                </div>                
+
             </div>
         );
     }

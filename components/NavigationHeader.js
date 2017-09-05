@@ -67,7 +67,7 @@ class NavigationHeader extends React.Component{
                 </div>
                 <div className={this.state.customSearchBar}>
                     <form onSubmit={(e) => (this.handleSubmit(e))}>
-                        <input id="search" type="search" ref="search" placeholder="Search..." />
+                        <input id="search" type="search" className="search_bar" ref="search" placeholder="Search..." />
                     </form>
                 </div>
             </nav>

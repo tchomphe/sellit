@@ -71,8 +71,15 @@ nav .input-field{
     margin-left: 15px;
 }
 
+/* Input field bottom border on focus */
+ input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #26a69a;
+    box-shadow: 0 1px 0 0 #26a69a;
+} 
+
 .custom_search_invisible {
-    display:none;
+    visibility: hidden;
+    /* display:none; */
     all: default;
     position: fixed;
     top: 56px;
@@ -83,6 +90,7 @@ nav .input-field{
 }
 
 .custom_search {
+    visibility: visible;
     all: default;
     position: fixed;
     top: 56px;
@@ -250,11 +258,17 @@ nav .input-field{
 
 #postModal {
     width: 70%;
-    height: 90%;
+    /* height: 95%; */
     /* max-height: 100%; */
     border-radius: 2px;
     top: 10px !important;
 }
+
+ .modal .modal-footer{
+    background-color: #000000;
+    color: #ffffff;         
+    padding-top: 15px;
+} 
 
 #postModal .modal-content {
     padding: 0px;
@@ -275,11 +289,11 @@ nav .input-field{
     padding: 0px !important;
 }
 
-.postContact {
-    background-color: lightgreen;
-    width: 150px;
-    height: 400px;
-}
+/* .postContact {
+     background-color: lightgreen; 
+     width: 150px; 
+     height: 400px; 
+} */
 
 #navigationModal .modal-content {
     padding: 30px 40px;
