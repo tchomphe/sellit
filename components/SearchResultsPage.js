@@ -19,6 +19,15 @@ export default class SearchResultsPage extends React.Component{
         this.searchPosts = this.searchPosts.bind(this);
         this.handlePagination = this.handlePagination.bind(this);
     }
+    componentWillReceiveProps(nextProps){
+        this.searchPosts(nextProps.match.params.query, 1);
+        // alert(nextProps);
+        // console.log(nextProps);        
+        // alert("Component will receive props!");
+        // this.setState({
+        //     query: this.nextProps.query,
+        // });
+    }
 
     componentDidMount(){
         //initialize Post Modals
@@ -41,7 +50,8 @@ export default class SearchResultsPage extends React.Component{
 
     searchPosts(query, currentPage){
         Request.get('/searchPosts/' + query + '/' + currentPage).then((res) => {
-            var oldPosts = this.state.posts;
+            
+            var oldPosts = (currentPage=1) ? []:this.state.posts;
             var newPosts = res.body.docs;
             var updatedPosts = oldPosts.concat(newPosts);
 
