@@ -39,6 +39,20 @@ nav .brand-logo {
     padding: 15px;
 }
 
+.dropdown-content {
+  background-color: #FFFFFF;
+  margin: 0;
+  display: none;
+  min-width: 300px; /* Changed this to accomodate content width */
+  max-height: auto;
+	margin-left: -1px; /* Add this to keep dropdown in line with edge of navbar */
+  overflow: hidden; /* Changed this from overflow-y:auto; to overflow:hidden; */
+  opacity: 0;
+  position: absolute;
+  white-space: nowrap;
+  z-index: 1;
+  will-change: width, height;
+}
  nav ul a {
     /* transition: background-color .3s;     */
     color: #ffffff;
@@ -78,25 +92,25 @@ nav .input-field{
 } 
 
 .custom_search_invisible {
-    visibility: hidden;
-    /* display:none; */
+    /* visibility: hidden; */
+    display:none; 
     all: default;
     position: fixed;
     top: 56px;
     left: 0px;
     width: 100%;
-    height: 56px;
+    height: 70px;
     background-color: rgba(0, 0, 0, 0.7);
 }
 
 .custom_search {
-    visibility: visible;
+    /* visibility: visible; */    
     all: default;
     position: fixed;
     top: 56px;
     left: 0px;
     width: 100%;
-    height: 56px;
+    height: 70px;
     background-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -107,12 +121,13 @@ nav .input-field{
     width: 100%;
     color: #fff;
     background: rgba(0, 0, 0, 0);
-    font-size: 20px;
-    font-weight: 300;
+    font-size: 30px;
+    font-weight: 400;
     text-align: center;
     border: 0px;
     margin: 0px auto;
     outline: none;
+    border-bottom: 0px;
 }
 
 .z-depth-1, .card {

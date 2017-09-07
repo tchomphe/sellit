@@ -45,7 +45,7 @@ class Map extends Component {
           });          
         }
       });
-    var glink = "https://maps.googleapis.com/maps/api/staticmap?center="+this.state.lat+","+this.state.lng+"&zoom=15&size=250x250&maptype=roadmap&markers=color:red%7Clabel:C%7C"+this.state.lat+','+this.state.lng+"&key=AIzaSyBcxF_7FH1aEC4g6CGCvq7WPz1LCisZt3A";
+    var glink = "https://maps.googleapis.com/maps/api/staticmap?center="+this.state.lat+","+this.state.lng+"&zoom=15&size=200x200&maptype=roadmap&markers=color:red%7Clabel:C%7C"+this.state.lat+','+this.state.lng+"&key=AIzaSyBcxF_7FH1aEC4g6CGCvq7WPz1LCisZt3A";
     return (
       <div>         
          {/* <p>Google Map Location</p>  */}

@@ -68,13 +68,14 @@ class PostCreationContainer extends React.Component{
                     <InputField fieldClass="col s6" labelText="* Title"
                         id="title" onChange={this.handleInputChange} required="required" />
                     <div className="input-field col s6">
-                        <select id="type" name="type" required="required" >
-                            <option value="Phone" defaultValue>Phone</option>
+                         <select id="type" name="type" required="required" >
+                            <option value = "" disabled selected></option>
+                            <option value="Phone">Phone</option>
                             <option value="Laptop">Laptop</option>
                             <option value="Case">Case</option>
                             <option value="Other">Other</option>
                         </select>
-                        <label>* Type</label>
+                        <label>* Type</label>                                                                   
                     </div>
                     <InputField fieldClass="col s6" labelText="* Address"
                         id="address" onChange={this.handleInputChange} required="required" />
