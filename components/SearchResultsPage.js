@@ -29,8 +29,8 @@ export default class SearchResultsPage extends React.Component{
 
     searchPosts(query, currentPage){
         Request.get('/searchPosts/' + query + '/' + currentPage).then((res) => {
-
-            var oldPosts = (currentPage=1) ? []:this.state.posts;
+            //check if current page is 1, if so, reset results -- otherwise, continue pagination
+            var oldPosts = (currentPage == 1) ? [] : this.state.posts;
             var newPosts = res.body.docs;
             var updatedPosts = oldPosts.concat(newPosts);
 
