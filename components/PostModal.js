@@ -28,9 +28,8 @@ class PostModal extends React.Component{
             postImagesHTML.push(<a className="carousel-item" href="#one!"><img src="https://unsplash.it/500/250/?image=0&blur" /></a>);
         }
 
-
         return(
-            <div id="postModal" className="modal">
+            <div id={this.props.modalID} className="modal postModal">
                 <div className="modal-content">
                     <div className="row">
                         <div className="col s6 postImagesSlideshow">
@@ -44,20 +43,20 @@ class PostModal extends React.Component{
                     </div>
                     <div className="row">
                         <div className="col s6">
-                            <h5 className="center">{this.props.title}</h5>                            
+                            <h5 className="center">{this.props.title}</h5>
                             <strong>{this.props.price || placeholderMessage}</strong>
-                            <Map address={this.props.address}/>                            
+                            <Map address={this.props.address}/>
                             <i className="tiny material-icons">location_on</i><strong>{this.props.address || placeholderMessage}</strong>
                         </div>
-                        <div className="col s6">                            
+                        <div className="col s6">
                             <h5>Description</h5>
                             <div className="col s9 left-align">{this.props.description || placeholderMessage}</div>
-                        </div>                        
-                    </div>                    
+                        </div>
+                    </div>
                     <div className="modal-footer right-align">
                         <strong>Posted on: September, 1st, 2012</strong>
                     </div>
-                </div>                
+                </div>
 
             </div>
         );

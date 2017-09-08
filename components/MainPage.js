@@ -1,8 +1,6 @@
 import React from 'react';
 import Banner from './Banner';
 import PostTile from './PostTile';
-import PostModal from './PostModal';
-import FloatingBackButton from './FloatingBackButton';
 import Request from 'superagent';
 
 export default class MainPage extends React.Component {
@@ -13,29 +11,13 @@ export default class MainPage extends React.Component {
         this.state = {
             posts: [],
             page: 1,
-            postModal: <PostModal title="" price="" address="" description="" />,
         };
 
         //bind function to this component
-        this.updatePostModal = this.updatePostModal.bind(this);
         this.handlePagination = this.handlePagination.bind(this);
     }
 
     componentDidMount(){
-        //initialize Post Modals
-        $('.modal').modal();
-        $('#postModal').modal({
-            ready: function(modal, trigger){
-                $('.floatingBackButton').removeClass('hide');
-                $('.carousel').removeClass('hide');
-                $('.carousel').carousel({dist:0,shift:0,padding:0});
-            },
-            complete: function(modal, trigger){
-                $('.floatingBackButton').addClass('hide');
-                $('.carousel').addClass('hide');
-            }
-        });
-
         //send request to initialize post listings
         this.requestAllPosts(1);
     }
@@ -56,31 +38,6 @@ export default class MainPage extends React.Component {
         });
     }
 
-    updatePostModal(post){
-        Request
-            .get('user/' + post.ownerID)
-            .end((err, res)=>{
-                if(err){
-                    console.log("Error: " + err);
-                }
-                else{
-                    this.setState({
-                        postModal: <PostModal
-                            title={post.title}
-                            price={post.price}
-                            address={post.address}
-                            description={post.description}
-                            thumbnail={post.thumbnail}
-                            images={post.images}
-                            email={res.body.email} />
-                    });
-                }
-            });
-
-        //display the modal on the screen
-        $('#postModal').modal('open');
-    }
-
     handlePagination(e){
         e.preventDefault();
         this.requestAllPosts(this.state.page);
@@ -96,7 +53,7 @@ export default class MainPage extends React.Component {
 
         //fetch posts and place them within PostTile's
         var postTiles = this.state.posts.map((post, index) =>
-            <PostTile key={index} updatePostModal={this.updatePostModal} post={post} />);
+            <PostTile key={index} postModalID={'postModal'+index} post={post} />);
 
         //determine if pagination button is needed, or if we've reached the end of all posts
         var paginationButton = null;
@@ -112,9 +69,6 @@ export default class MainPage extends React.Component {
                 {postTiles}
                 <br />
                 {paginationButton}
-
-                <FloatingBackButton closeModal={this.handleCloseModal} />
-                {this.state.postModal}
             </div>
         );
     }

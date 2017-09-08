@@ -1,10 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import PostModal from './PostModal';
 
 export default class PostTile extends React.Component {
+    componentDidMount(){
+        //initialize Post Modals.. again TODO: figure out if it's possible to instantiate all modals from one place
+        $('.modal').modal();
+        $('.postModal').modal({
+            ready: function(modal, trigger){
+                $('.carousel').removeClass('hide');
+                $('.carousel').carousel({dist:0,shift:0,padding:0});
+            },
+            complete: function(modal, trigger){
+                $('.carousel').addClass('hide');
+            }
+        });
+    }
     handleSubmit(e){
         e.preventDefault();
-        this.props.updatePostModal(this.props.post);
+        $('#'+this.props.postModalID).modal('open');
     }
 
     render(){
@@ -21,6 +35,14 @@ export default class PostTile extends React.Component {
                     <span className="card-title">{this.props.post.title}</span>
                     <p className="card-text"><i className="tiny material-icons">location_on</i> {this.props.post.address}</p>
                 </div>
+                <PostModal
+                        modalID={this.props.postModalID}
+                        title={this.props.post.title}
+                        price={this.props.post.price}
+                        address={this.props.post.address}
+                        description={this.props.post.description}
+                        images={this.props.post.images}
+                        email={'placeholder@placehoder.email'} />
             </div>
         )
     }
@@ -28,5 +50,5 @@ export default class PostTile extends React.Component {
 
 PostTile.propTypes = {
     post: PropTypes.object.isRequired,
-    updatePostModal: PropTypes.func.isRequired,
+    postModalID: PropTypes.string.isRequired,
 }
