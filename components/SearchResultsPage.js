@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PostTile from './PostTile';
-import PostModal from './PostModal';
 import Request from 'superagent';
 
 export default class SearchResultsPage extends React.Component{
@@ -12,7 +11,6 @@ export default class SearchResultsPage extends React.Component{
             query: this.props.match.params.query,
             posts: [],
             page: 1,
-            postModal: <PostModal title="" price="" address="" description="" />,
         };
 
         //bind function to this component
@@ -20,37 +18,18 @@ export default class SearchResultsPage extends React.Component{
         this.handlePagination = this.handlePagination.bind(this);
     }
     componentWillReceiveProps(nextProps){
+        //update search results for each new query
         this.searchPosts(nextProps.match.params.query, 1);
-        // alert(nextProps);
-        // console.log(nextProps);        
-        // alert("Component will receive props!");
-        // this.setState({
-        //     query: this.nextProps.query,
-        // });
     }
 
     componentDidMount(){
-        //initialize Post Modals
-        $('.modal').modal();
-        $('#postModal').modal({
-            ready: function(modal, trigger){
-                $('.floatingBackButton').removeClass('hide');
-                $('.carousel').removeClass('hide');
-                $('.carousel').carousel({dist:0,shift:0,padding:0});
-            },
-            complete: function(modal, trigger){
-                $('.floatingBackButton').addClass('hide');
-                $('.carousel').addClass('hide');
-            }
-        });
-
         //send request to initialize post listings
         this.searchPosts(this.state.query, this.state.page);
     }
 
     searchPosts(query, currentPage){
         Request.get('/searchPosts/' + query + '/' + currentPage).then((res) => {
-            
+
             var oldPosts = (currentPage=1) ? []:this.state.posts;
             var newPosts = res.body.docs;
             var updatedPosts = oldPosts.concat(newPosts);
@@ -65,10 +44,6 @@ export default class SearchResultsPage extends React.Component{
         });
     }
 
-    updatePostModal(){
-        //TODO: create and update modal
-    }
-
     handlePagination(e){
         e.preventDefault();
         this.searchPosts(this.state.query, this.state.page);
@@ -79,7 +54,7 @@ export default class SearchResultsPage extends React.Component{
 
         //fetch posts and place them within PostTile's
         var postTiles = this.state.posts.map((post, index) =>
-            <PostTile key={index} updatePostModal={this.updatePostModal} post={post} />);
+            <PostTile key={index} postModalID={'postModal'+index} post={post} />);
 
         //determine if pagination button is needed, or if we've reached the end of all posts
         var paginationButton = null;
@@ -95,7 +70,6 @@ export default class SearchResultsPage extends React.Component{
                 {postTiles}
                 <br />
                 {paginationButton}
-                {this.state.postModal}
             </div>
         )
     }
