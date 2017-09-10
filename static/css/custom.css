@@ -288,18 +288,18 @@ nav .input-field{
     top: 10px !important;
 }
 
- .modal .modal-footer{
+.postModal .modal-content {
+    padding: 0px;
+}
+
+.modal .modal-footer{
     background-color: #000000;
     color: #ffffff;         
     padding-top: 15px;
 } 
 
-.postModal .modal-content {
-    padding: 0px;
-}
-
-.modal .modal-content {
-    padding: 0px;
+.modal-content {
+    padding: 10px 30px;
 }
 
 .carousel {
