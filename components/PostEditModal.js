@@ -97,7 +97,7 @@ class PostEditModal extends React.Component{
                             </div> */}
                             <div className="row">
                                 <div className="s12">
-                                     <button className="btn waves-effect waves-light" type="submit" value="Submit">Update</button>
+                                     <button className="btn waves-effect blue white-text darken-text-2" type="submit" value="Submit">Update</button>
                                 </div>
                             </div>
                         </form>
