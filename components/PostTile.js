@@ -20,7 +20,14 @@ export default class PostTile extends React.Component {
         e.preventDefault();
         $('#'+this.props.postModalID).modal('open');
     }
+    nextPost(e){
+        i = i + 1; // increase i by one
+        i = i % arr.length; // if we've gone too high, start from `0` again
+        return arr[i];
+    }
+    prevPost(e){
 
+    }
     render(){
         var thumbnailImage = (this.props.post.thumbnail) ? this.props.post.thumbnail : "https://placehold.it/350x250";
 
@@ -36,6 +43,7 @@ export default class PostTile extends React.Component {
                     <p className="card-text"><i className="tiny material-icons">location_on</i> {this.props.post.address}</p>
                 </div>
                 <PostModal
+                        nextPostId={this.props.nextPostId}
                         modalID={this.props.postModalID}
                         title={this.props.post.title}
                         price={this.props.post.price}

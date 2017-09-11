@@ -52,8 +52,8 @@ export default class MainPage extends React.Component {
         console.log('MainPage rendering... posts: ');
 
         //fetch posts and place them within PostTile's
-        var postTiles = this.state.posts.map((post, index) =>
-            <PostTile key={index} postModalID={'postModal'+index} post={post} />);
+        var postTiles = this.state.posts.map((post, index) =>            
+            <PostTile key={index} postModalID={'postModal'+index} post={post} nextPostId={'postModal'+(index+1)} />);
 
         //determine if pagination button is needed, or if we've reached the end of all posts
         var paginationButton = null;

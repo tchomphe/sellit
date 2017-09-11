@@ -4,6 +4,12 @@ import PostContact from './PostContact';
 import Map from './Map'
 
 class PostModal extends React.Component{
+    nextPost(e){
+        e.preventDefault();  
+        $('#'+this.props.modalID).modal('close');
+        $('#'+this.props.nextPostId).modal('open');
+        // alert(`Next Post ${this.props.nextPostId}`);
+    }
     render(){
         var placeholderMessage = "[Not specified, contact seller]";
 
@@ -51,9 +57,14 @@ class PostModal extends React.Component{
                         <div className="col s6">
                             <h5>Description</h5>
                             <div className="col s9 left-align">{this.props.description || placeholderMessage}</div>
+                            <br />
+                            <strong>Next post ID: {this.props.nextPostId}</strong>
                         </div>
                     </div>
                     <div className="modal-footer right-align">
+                        <button className="btn waves-effect blue white-text darken-text-2" onClick={(e)=>(this.nextPost(e))}>
+                            Next Post
+                        </button>
                         <strong>Posted on: September, 1st, 2012</strong>
                     </div>
                 </div>
