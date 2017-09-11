@@ -7,8 +7,21 @@ class PostModal extends React.Component{
     nextPost(e){
         e.preventDefault();  
         $('#'+this.props.modalID).modal('close');
-        $('#'+this.props.nextPostId).modal('open');
+        $('#postModal'+this.props.nextPostId).modal('open');
         // alert(`Next Post ${this.props.nextPostId}`);
+    }
+    prevPost(e){
+        e.preventDefault();  
+        // alert('this.props.modalID & this.props.nextPostId:  '+ this.props.modalID +' '+this.props.nextPostId);
+        if((this.props.nextPostId) === 1){            
+            $('#'+this.props.modalID).modal('close');            
+        } else {
+            // alert('this.props.nextPostId !=== 1');
+            // var prevModalId = this.props.nextPostId - 1;
+            // var prevModalId = this.props.nextPostId-1;
+            $('#'+this.props.modalID).modal('close');
+            $('#postModal'+this.props.prevPostId).modal('open');            
+        }        
     }
     render(){
         var placeholderMessage = "[Not specified, contact seller]";
@@ -64,6 +77,9 @@ class PostModal extends React.Component{
                     <div className="modal-footer right-align">
                         <button className="btn waves-effect blue white-text darken-text-2" onClick={(e)=>(this.nextPost(e))}>
                             Next Post
+                        </button>
+                        <button className="btn waves-effect blue white-text darken-text-2" onClick={(e)=>(this.prevPost(e))}>
+                            Previous Post
                         </button>
                         <strong>Posted on: September, 1st, 2012</strong>
                     </div>
