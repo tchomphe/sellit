@@ -51,21 +51,24 @@ export default class SearchResultsPage extends React.Component{
 
     render(){
         console.log('SearchResultsPage rendering... posts: ');
-
+        var searchResult = true;
+        var postTiles;
         //fetch posts and place them within PostTile's
-        // if((this.state.posts).length == 0){ 
-        //     alert("Post empty");
-        //     console.log(this.state.posts);
-        // } else {
-        //     alert("Post not empty");
-        //     console.log(this.state.posts);
-        // }
-        var postTiles = ((this.state.posts).length == 0) ? (
-            "No search results"
-        ) : (
-            this.state.posts.map((post, index) =>
+        if((this.state.posts).length == 0){ 
+            postTiles = <h5>Sorry, we didn't find any result.</h5>;
+            searchResult = false;
+        } else {
+            postTiles = this.state.posts.map((post, index) =>
             <PostTile key={index} postModalID={'postModal'+index} post={post} />)
-        );
+        }
+        
+        // var postTiles = ((this.state.posts).length == 0) ? (
+        //     <h5>Sorry, we didn't find any result.</h5>
+        //     // searchResult = null
+        // ) : (
+        //     this.state.posts.map((post, index) =>
+        //     <PostTile key={index} postModalID={'postModal'+index} post={post} />)
+        // );
         
         //determine if pagination button is needed, or if we've reached the end of all posts
         var paginationButton = null;
@@ -80,7 +83,8 @@ export default class SearchResultsPage extends React.Component{
                 <br /><br /><br /><br />
                 {postTiles}
                 <br />
-                {paginationButton}
+                {/* {paginationButton} */}
+                {(searchResult) ? paginationButton : null}
             </div>
         )
     }
