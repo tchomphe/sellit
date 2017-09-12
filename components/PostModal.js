@@ -7,21 +7,17 @@ class PostModal extends React.Component{
     nextPost(e){
         e.preventDefault();  
         $('#'+this.props.modalID).modal('close');
-        $('#postModal'+this.props.nextPostId).modal('open');
-        // alert(`Next Post ${this.props.nextPostId}`);
+        $('#postModal'+this.props.nextPostId).modal('open');        
     }
     prevPost(e){
         e.preventDefault();  
-        // alert('this.props.modalID & this.props.nextPostId:  '+ this.props.modalID +' '+this.props.nextPostId);
-        if((this.props.nextPostId) === 1){            
-            $('#'+this.props.modalID).modal('close');            
-        } else {
-            // alert('this.props.nextPostId !=== 1');
-            // var prevModalId = this.props.nextPostId - 1;
-            // var prevModalId = this.props.nextPostId-1;
-            $('#'+this.props.modalID).modal('close');
-            $('#postModal'+this.props.prevPostId).modal('open');            
-        }        
+        // If nextPostId is 1, can't move back since you are on the first modal else move back.
+        ((this.props.nextPostId) === 1) ? (
+            $('#'+this.props.modalID).modal('close')
+        ) : (
+            $('#'+this.props.modalID).modal('close'),
+            $('#postModal'+this.props.prevPostId).modal('open')
+        );
     }
     render(){
         var placeholderMessage = "[Not specified, contact seller]";
