@@ -53,9 +53,20 @@ export default class SearchResultsPage extends React.Component{
         console.log('SearchResultsPage rendering... posts: ');
 
         //fetch posts and place them within PostTile's
-        var postTiles = this.state.posts.map((post, index) =>
-            <PostTile key={index} postModalID={'postModal'+index} post={post} />);
-
+        // if((this.state.posts).length == 0){ 
+        //     alert("Post empty");
+        //     console.log(this.state.posts);
+        // } else {
+        //     alert("Post not empty");
+        //     console.log(this.state.posts);
+        // }
+        var postTiles = ((this.state.posts).length == 0) ? (
+            "No search results"
+        ) : (
+            this.state.posts.map((post, index) =>
+            <PostTile key={index} postModalID={'postModal'+index} post={post} />)
+        );
+        
         //determine if pagination button is needed, or if we've reached the end of all posts
         var paginationButton = null;
         if (this.state.page == 0)
