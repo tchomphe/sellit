@@ -4,6 +4,11 @@ import PostContact from './PostContact';
 import Map from './Map'
 
 class PostModal extends React.Component{
+    constructor(props){
+        super(props);
+        this.nextPost = this.nextPost.bind(this);
+        this.prevPost = this.prevPost.bind(this);
+    }
     nextPost(e){
         e.preventDefault();  
         $('#'+this.props.modalID).modal('close');
@@ -19,7 +24,21 @@ class PostModal extends React.Component{
             $('#postModal'+this.props.prevPostId).modal('open')
         );
     }
-    render(){
+    componentDidMount(){
+        $("body").keydown(function(e) {
+            if(e.keyCode == 37) { // left
+                console.log("Left key pressed!");
+                // this.prevPost(e);                
+                // alert('Left');                
+            }            
+            else if(e.keyCode == 39) { // right
+                console.log("Right key pressed!");
+                // this.nextPost(e);                
+                // alert('Right');
+              };            
+          });
+    }
+    render(){        
         var placeholderMessage = "[Not specified, contact seller]";
 
         var postImages = this.props.images;
