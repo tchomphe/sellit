@@ -36,14 +36,14 @@ export default class InteractivePostTile extends React.Component {
     }
 
     handleDelete(e){
-        e.preventDefault();
+        e.preventDefault();                        
         this.props.handleDelete(this.props.post);
     }
 
-    render(){
+    render(){        
         var thumbnailImage = (this.props.post.thumbnail) ? this.props.post.thumbnail : "https://placehold.it/350x250";
 
-        return(
+        return(            
             <div className="card">
                 <a onClick={(e) => (this.handleEdit(e))} className="waves-effect waves-light btn-large blue"><i className="material-icons right">edit</i>EDIT</a>
                 <a onClick={(e) => (this.handleDelete(e))} className="waves-effect waves-light btn-large red"><i className="material-icons right">delete</i>DELETE</a>
@@ -58,14 +58,16 @@ export default class InteractivePostTile extends React.Component {
                     <p className="card-text"><i className="tiny material-icons">location_on</i> {this.props.post.address}</p>
                 </div>
                 <PostModal
+                    prevPostId={this.props.prevPostId}
+                    nextPostId={this.props.nextPostId}
                     modalID={this.props.postModalID}
                     title={this.props.post.title}
                     price={this.props.post.price}
                     address={this.props.post.address}
                     description={this.props.post.description}
                     images={this.props.post.images}
-                    email={'placeholder@placehoder.email'} />
-            </div>
+                    email={'placeholder@placehoder.email'} />                    
+            </div>                        
         )
     }
 }

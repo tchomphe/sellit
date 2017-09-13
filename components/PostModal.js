@@ -68,6 +68,8 @@ class PostModal extends React.Component{
                             <div className="col s9 left-align">{this.props.description || placeholderMessage}</div>
                             <br />
                             <strong>Next post ID: {this.props.nextPostId}</strong>
+                            <br />
+                            <strong>this.props.modalID: {this.props.modalID}</strong>
                         </div>
                     </div>
                     <div className="modal-footer right-align">

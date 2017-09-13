@@ -38,6 +38,8 @@ export default class MyPostPage extends React.Component {
         Request.get('/searchByOwner').then((res) => {
             var userPosts = res.body.map((post, index) =>
                 <InteractivePostTile
+                    nextPostId={(index+1)} 
+                    prevPostId={(index-1)}
                     key={index}
                     handleDelete={this.handleDelete}
                     updatePostEditModal={this.updatePostEditModal}
