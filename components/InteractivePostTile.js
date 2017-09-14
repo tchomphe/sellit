@@ -22,7 +22,7 @@ export default class InteractivePostTile extends React.Component {
             complete: function(modal, trigger){
                 $('.carousel').addClass('hide');
             }
-        });
+        });                            
     }
 
     handlePreview(e){
@@ -36,7 +36,11 @@ export default class InteractivePostTile extends React.Component {
     }
 
     handleDelete(e){
-        e.preventDefault();                        
+        e.preventDefault();         
+        $('#modalDelete').modal('open');        
+    }
+    deletePost(e){
+        e.preventDefault();
         this.props.handleDelete(this.props.post);
     }
 
@@ -55,8 +59,23 @@ export default class InteractivePostTile extends React.Component {
                 </div>
                 <div className="card-content">
                     <span className="card-title">{this.props.post.title}</span>
-                    <p className="card-text"><i className="tiny material-icons">location_on</i> {this.props.post.address}</p>
+                    <p className="card-text"><i className="tiny material-icons">location_on</i> {this.props.post.address}</p>                
                 </div>
+                <div id="modalDelete" className="modal">
+                    <div className="modal-content">
+                        <h5>Confirm Delete</h5>                        
+                    
+                    
+                        <a href="#!" className="modal-action modal-close waves-effect waves-red btn-flat ">Disagree</a>
+                        <a onClick={(e)=>(this.deletePost(e))} href="#!" className="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+                    </div>
+                </div>
+                {/* <div id="modalDelete" className="modal">
+                    <div className="modal-content">
+                        <h4>Modal Header</h4>
+                        <p>A bunch of text</p>
+                    </div>            
+                </div> */}
                 <PostModal
                     prevPostId={this.props.prevPostId}
                     nextPostId={this.props.nextPostId}
