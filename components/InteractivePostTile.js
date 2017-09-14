@@ -66,8 +66,8 @@ export default class InteractivePostTile extends React.Component {
                         <h5>Confirm Delete</h5>                        
                     
                     
-                        <a href="#!" className="modal-action modal-close waves-effect waves-red btn-flat ">Disagree</a>
-                        <a onClick={(e)=>(this.deletePost(e))} href="#!" className="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+                        <a href="#!" className="modal-action modal-close waves-effect waves-red btn-flat ">Cancel</a>
+                        <a onClick={(e)=>(this.deletePost(e))} href="#!" className="modal-action modal-close waves-effect waves-green btn-flat ">Delete</a>
                     </div>
                 </div>
                 {/* <div id="modalDelete" className="modal">
