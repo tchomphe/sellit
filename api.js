@@ -74,6 +74,24 @@ exports.searchByOwner = function(req, res){
   });
 };
 
+exports.searchByOwnerEmail = function(req, res){
+  var ObjectId = require('mongodb').ObjectID;
+
+  User.findOne({'email': req.params.email}, function(err, result){
+    varifyQuerySuccess(err, res, 'searchByOwnerEmail');
+
+    if (result == null){
+      res.status(400).send({message: 'Email address not found'});
+    } else{
+      //search for all posts owned by the user
+      Post.find({'ownerID': ObjectId(result._id)}, function(err, result){
+        res.send(result);
+      });
+    }
+  });
+
+};
+
 exports.getPostByTitle = function(req, res){
   Post.findOne({'title': req.params.title}, 'title type address description date', function(err, post) {
     varifyQuerySuccess(err, res, 'getPostByTitle');

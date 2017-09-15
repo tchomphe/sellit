@@ -72,6 +72,7 @@ app.get('/post/:id', api.getPostByID);
 app.get('/user/:id', api.getUserByID);
 app.get('/searchPosts/:searchText/:page', api.searchPosts);
 app.get('/searchByOwner', api.searchByOwner);
+app.get('/searchByOwnerEmail/:email', api.searchByOwnerEmail);
 app.get('/postByTitle/:title', api.getPostByTitle);
 app.get('/userByEmail/:email', api.getUserByEmail);
 app.get('/varifyAuthentication', api.varifyAuthentication);
