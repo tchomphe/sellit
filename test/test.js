@@ -69,6 +69,31 @@ describe('Session-less API tests,', function () {
       });
     });
   });
+
+  describe('GET /searchByOwnerEmail/:email', function(){
+    it('responds with HTTP Status 400: Email address not found', function(done) {
+      request('http://localhost:8080/searchByOwnerEmail/random@email.com', function(error, response, body){
+        expect(response.statusCode).to.equal(400);
+        expect(response.body.message).to.equal('Email address not found');
+        done();
+      });
+    });
+  });
+
+  describe('GET /searchByOwnerEmail/:email', function(){
+    it('responds with posts owned by Vageta', function(done) {
+      request('http://localhost:8080/searchByOwnerEmail/' + seeder.users.vageta.email, function(error, response, body){
+        expect(response.body[0].title).to.equal(seeder.posts[0].title);
+        expect(response.body[0].type).to.equal(seeder.posts[0].type);
+        expect(response.body[0].address).to.equal(seeder.posts[0].address);
+        expect(response.body[1].title).to.equal(seeder.posts[1].title);
+        expect(response.body[1].type).to.equal(seeder.posts[1].type);
+        expect(response.body[1].address).to.equal(seeder.posts[1].address);
+        expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });
+  });
 });
 
 // Session-based API Tests (via Existing User) ======================= //
