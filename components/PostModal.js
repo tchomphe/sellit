@@ -2,6 +2,7 @@ import React from 'react';
 import FloatingBackButton from './FloatingBackButton';
 import PostContact from './PostContact';
 import Map from './Map'
+import { Link, withRouter } from 'react-router-dom';
 
 class PostModal extends React.Component{
     constructor(props){
@@ -32,13 +33,13 @@ class PostModal extends React.Component{
                 // alert('Left');                
             }            
             else if(e.keyCode == 39) { // right
-                console.log("Right key pressed!");
-                // this.nextPost(e);                
+                console.log("Right key pressed!");                                
+                // this.nextPost(e);   
                 // alert('Right');
               };            
           });
     }
-    render(){        
+    render(){                
         var placeholderMessage = "[Not specified, contact seller]";
 
         var postImages = this.props.images;
@@ -98,6 +99,7 @@ class PostModal extends React.Component{
                         <button className="btn waves-effect blue white-text darken-text-2" onClick={(e)=>(this.prevPost(e))}>
                             Previous Post
                         </button>
+                        <li><Link to="/user-posts">View this user's others posts</Link></li>
                         <strong>Posted on: September, 1st, 2012</strong>
                     </div>
                 </div>
