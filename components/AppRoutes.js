@@ -8,6 +8,7 @@ import MainPage from './MainPage';
 import PostCreationContainer from './PostCreationContainer';
 import SearchResultsPage from './SearchResultsPage';
 import MyPostsPage from './MyPostsPage';
+import UserPostPage from './UserPostPage';
 import MyAccountPage from './MyAccountPage';
 // import NotFoundPage from 'NotFoundPage';
 
@@ -74,6 +75,7 @@ export default class AppRoutes extends React.Component {
           <Route path="/search/:query" component={SearchResultsPage} />
           <Route path="/create-post" component={PostCreationContainer} />
           <Route path="/my-posts" component={MyPostsPage} />
+          <Route path="/user-posts" component={UserPostPage} />
           <Route path="/my-account" render={() => (
             <MyAccountPage user={this.state.user} />)} />
 
