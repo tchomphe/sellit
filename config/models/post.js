@@ -5,6 +5,7 @@ var mongoosePaginate = require('mongoose-paginate');
 
 //define Post Schema
 var postSchema = new Schema({
+  email:  { type: String, required: true, trim: true },
   ownerID: {type: ObjectId, ref: 'user', required: true},
   date: {type: Date, default: Date.now},
   title:  {type: String, required: true, trim: true},
