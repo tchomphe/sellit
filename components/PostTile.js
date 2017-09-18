@@ -44,7 +44,7 @@ export default class PostTile extends React.Component {
                         address={this.props.post.address}
                         description={this.props.post.description}
                         images={this.props.post.images}
-                        email={'placeholder@placehoder.email'} />
+                        email={this.props.post.email} />
             </div>
         )
     }
