@@ -7,22 +7,20 @@ import { Link, withRouter } from 'react-router-dom';
 class UserPostPage extends React.Component{    
     constructor(props){
         super(props);
-        this.state = {
-            email: null,
+        this.state = {            
             postTiles: null
         }
     }
     componentDidMount(){        
         // Initiate Materialize Modal
-        $('.modal').modal();
-
+        $('.modal').modal();        
+        
         // Populate PostTile's with current user's posts
-        this.requestUserPosts();
+        this.requestUserPosts();        
     }
 
     requestUserPosts(){
-        // Request.get('/searchByOwnerEmail/' + this.props.email).then((res) => {
-        Request.get('/searchByOwnerEmail/tashi.chomphel@gmail.com').then((res) => {
+        Request.get('/searchByOwnerEmail/' + this.props.match.params.email).then((res) => {        
             var userPosts = res.body.map((post,index) => 
                 <PostTile
                     nextPostId={(index+1)} 
@@ -39,12 +37,12 @@ class UserPostPage extends React.Component{
     }
 
     render(){
-        console.log('UserPostPage rendering ...');
+        console.log('UserPostPage rendering ...');                
         return(
             <div className="app-content row center">
                 <h4 className="profilePageHeader">All User's Posts</h4>
                 {this.state.postTiles}
-                {/* <p>this.props.params.email: {this.props.match.params.email}</p> */}                
+                <p>this.props.params.email: {this.props.match.params.email}</p>                
             </div>
         )
     }
