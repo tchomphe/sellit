@@ -163,6 +163,7 @@ exports.createPost = function(req, res){
     }
 
     var newPost = {
+      email: req.user.email,
       ownerID: req.user._id,
       title: req.body.title,
       address: req.body.address,
