@@ -90,6 +90,8 @@ class PostModal extends React.Component{
                             <strong>Next post ID: {this.props.nextPostId}</strong>
                             <br />
                             <strong>this.props.modalID: {this.props.modalID}</strong>
+                            <br />
+                            <strong>this.props.email: {this.props.email}</strong>
                         </div>
                     </div>
                     <div className="modal-footer right-align">
@@ -99,7 +101,7 @@ class PostModal extends React.Component{
                         <button className="btn waves-effect blue white-text darken-text-2" onClick={(e)=>(this.prevPost(e))}>
                             Previous Post
                         </button>
-                        <li><Link to="/user-posts">View this user's others posts</Link></li>
+                        <li><Link to={"/user-posts/"+this.props.email}>View this user's others posts</Link></li>
                         <strong>Posted on: September, 1st, 2012</strong>
                     </div>
                 </div>

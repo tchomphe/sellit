@@ -75,7 +75,7 @@ export default class AppRoutes extends React.Component {
           <Route path="/search/:query" component={SearchResultsPage} />
           <Route path="/create-post" component={PostCreationContainer} />
           <Route path="/my-posts" component={MyPostsPage} />
-          <Route path="/user-posts" component={UserPostPage} />
+          <Route path="/user-posts/:email" component={UserPostPage} />
           <Route path="/my-account" render={() => (
             <MyAccountPage user={this.state.user} />)} />
 
