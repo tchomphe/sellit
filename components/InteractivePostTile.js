@@ -85,6 +85,7 @@ export default class InteractivePostTile extends React.Component {
                     address={this.props.post.address}
                     description={this.props.post.description}
                     images={this.props.post.images}
+                    ownerId={this.props.post.ownerID}
                     email={'placeholder@placehoder.email'} />                    
             </div>                        
         )
