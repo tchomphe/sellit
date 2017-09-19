@@ -9,7 +9,8 @@ class PostContact extends React.Component{
             sender_name:"",
             message:"",
             receiver_email:"",
-            err: ""
+            err: "",
+            ownerId: ""
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,7 +29,7 @@ class PostContact extends React.Component{
         event.preventDefault();
         Request
             .post('/send')
-            .send({ownerId: "595019e0174a3c04ef15c900"})
+            .send({ownerId: this.props.ownerId})
             // .send({ownerId: this.props.ownderId, sender_email: this.state.sender_email, sender_name: this.state.sender_name, message: this.state.message, receiver_email: this.state.receiver_email})
             .end((err, res) => {
                 if(err){
@@ -63,6 +64,7 @@ class PostContact extends React.Component{
                             <label htmlFor="message">Message</label>
                         </div>
                     </div>
+                    <h5>ownerId: {this.props.ownerId}</h5>
                     <input type="hidden" name="receiver_email" value={this.props.receiver} onChange={this.handleInputChange} />
                     <button type="submit"> submit </button>
                     {/* <a href="#" className="waves-effect waves-light btn-large" type="submit" >Send Email</a> */}
