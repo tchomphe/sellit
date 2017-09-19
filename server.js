@@ -12,7 +12,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var path = require('path');
 var logger = require('morgan');
-var nodemailer = require('nodemailer');
+// var nodemailer = require('nodemailer');
 // Define multer settings (for multi-form file uploading) //
 // TODO: move multer settings into config/ folder
 // TODO: test file limitations
@@ -91,31 +91,7 @@ app.get('/logout', function(req, res){
 app.post('/createPost', upload.any(), api.createPost);
 app.post('/createUser', upload.any(), api.createUser);
 app.post('/login', function(req, res){ authentication.handleLogin(req, res, passport);});
-app.post('/send', function(req, res, next){
-  console.log('received send request!');
-  var transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-      user: 'jtran6520@gmail.com',
-      pass: 'Netgain6'
-    }
-  });
-  var mailOptions = {
-    from: 'Sender <zlatko.gantchev@gmail.com>',
-    to: 'Receiver <tashi.chomphel@gmail.com>',
-    subject: 'this is subject',
-    text: 'this is body message'
-  }
-  transporter.sendMail(mailOptions, function(err, info){
-    if(err){
-      console.log(err);
-      res.redirect('/');
-    } else {
-      console.log('message sent!');
-      res.redirect('/');
-    }
-  });
-});
+app.post('/send', api.send);
 
 // PUT requests
 app.put('/user', api.updateUserInfo);

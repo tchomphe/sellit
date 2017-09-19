@@ -4,6 +4,7 @@ var User = require('./config/models/user');
 var fs = require('fs');
 var passport = require('passport');
 var authentication = require('./config/passport');
+var nodemailer = require('nodemailer');
 
 /**
  * [Helper Function]: Varifies the success or failure of a MongoDB query
@@ -179,6 +180,40 @@ exports.createPost = function(req, res){
     res.status(400).send({message: 'Please Log In.'});
   }
 };
+
+exports.send = function(req, res, next){  
+    console.log('received send request!');
+    console.log('req.params.ownerId: '+ req.body.ownerId);
+        
+    User.findOne({'_id': req.body.ownerId}, 'email nickname phone date', function(err, user){
+      varifyQuerySuccess(err, res, 'send');
+      console.log('user.email: '+ user.email);
+      // res.send(user);
+      var transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          user: 'jtran6520@gmail.com',
+          pass: 'Netgain6'
+        }
+      });
+      var mailOptions = {
+        from: 'Sender <zlatko.gantchev@gmail.com>',
+        to: user.email,
+        subject: 'this is subject',
+        text: 'this is body message'
+      }
+      transporter.sendMail(mailOptions, function(err, info){
+        if(err){
+          console.log(err);
+          res.redirect('/');
+        } else {
+          console.log('message sent!');
+          res.redirect('/');
+        }
+      });
+      
+      });    
+}
 
 //-------------------------- PUT requests --------------------------//
 exports.updateUserInfo = function(req, res){
