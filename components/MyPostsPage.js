@@ -35,10 +35,10 @@ export default class MyPostPage extends React.Component {
     }
 
     requestUserPosts(){
-        Request.get('/searchByOwner').then((res) => {
+        Request.get('/postsByOwner').then((res) => {
             var userPosts = res.body.map((post, index) =>
                 <InteractivePostTile
-                    nextPostId={(index+1)} 
+                    nextPostId={(index+1)}
                     prevPostId={(index-1)}
                     key={index}
                     handleDelete={this.handleDelete}
