@@ -1,6 +1,5 @@
 var Post = require('./config/models/post');
 var User = require('./config/models/user');
-var ObjectId = require('mongodb').ObjectID; // for mongodb _id's
 var fs = require('fs');
 var passport = require('passport');
 var authentication = require('./config/passport');
@@ -67,6 +66,7 @@ exports.searchPosts = function(req, res){
 };
 
 exports.searchByOwner = function(req, res){
+  var ObjectId = require('mongodb').ObjectID; // for mongodb _id's
   Post.find({'ownerID': ObjectId(req.user._id)}, function(err, result){
     console.log('User posts found.');
     res.send(result);
@@ -74,6 +74,7 @@ exports.searchByOwner = function(req, res){
 };
 
 exports.searchByOwnerEmail = function(req, res){
+  var ObjectId = require('mongodb').ObjectID; // for mongodb _id's
   User.findOne({'email': req.params.email}, function(err, result){
     varifyQuerySuccess(err, res, 'searchByOwnerEmail');
 
@@ -163,7 +164,6 @@ exports.createPost = function(req, res){
     }
 
     var newPost = {
-      email: req.user.email,
       ownerID: req.user._id,
       title: req.body.title,
       address: req.body.address,
