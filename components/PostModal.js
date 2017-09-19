@@ -73,7 +73,7 @@ class PostModal extends React.Component{
                             </div>
                         </div>
                         <div className="col s6">
-                            <PostContact receiver={this.props.email}/>
+                            <PostContact ownderId={this.props.ownderId}/>
                         </div>
                     </div>
                     <div className="row">
