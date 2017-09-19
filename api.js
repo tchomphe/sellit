@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 var Post = require('./config/models/post');
 var User = require('./config/models/user');
 var fs = require('fs');
@@ -67,8 +68,7 @@ exports.searchPosts = function(req, res){
 
 exports.postsByAuthenticatedOwner = function(req, res){
   if (req.isAuthenticated()){
-    var ObjectId = require('mongodb').ObjectID; // for mongodb _id's
-    Post.find({'ownerID': ObjectId(req.user._id)}, function(err, result){
+    Post.find({'ownerID': mongoose.Types.ObjectId(req.user._id)}, function(err, result){
       console.log('User posts found.');
       res.send(result);
     });
@@ -79,8 +79,7 @@ exports.postsByAuthenticatedOwner = function(req, res){
 };
 
 exports.postsByOwnerID = function(req, res){
-  var ObjectId = require('mongodb').ObjectID; // for mongodb _id's
-  Post.find({'ownerID': ObjectId(req.params.id)}, function(err, result){
+  Post.find({'ownerID': mongoose.Types.ObjectId(req.params.id)}, function(err, result){
     console.log('User posts found.');
     res.send(result);
   });
