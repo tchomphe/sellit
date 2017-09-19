@@ -65,27 +65,24 @@ exports.searchPosts = function(req, res){
   });
 };
 
-exports.searchByOwner = function(req, res){
-  var ObjectId = require('mongodb').ObjectID; // for mongodb _id's
-  Post.find({'ownerID': ObjectId(req.user._id)}, function(err, result){
-    console.log('User posts found.');
-    res.send(result);
-  });
+exports.postsByAuthenticatedOwner = function(req, res){
+  if (req.isAuthenticated()){
+    var ObjectId = require('mongodb').ObjectID; // for mongodb _id's
+    Post.find({'ownerID': ObjectId(req.user._id)}, function(err, result){
+      console.log('User posts found.');
+      res.send(result);
+    });
+  }
+  else {
+    res.status(400).send({message: 'Please Log In.'});
+  }
 };
 
-exports.searchByOwnerEmail = function(req, res){
+exports.postsByOwnerID = function(req, res){
   var ObjectId = require('mongodb').ObjectID; // for mongodb _id's
-  User.findOne({'email': req.params.email}, function(err, result){
-    varifyQuerySuccess(err, res, 'searchByOwnerEmail');
-
-    if (result == null){
-      res.status(400).send({message: 'Email address not found'});
-    } else{
-      //search for all posts owned by the user
-      Post.find({'ownerID': ObjectId(result._id)}, function(err, result){
-        res.send(result);
-      });
-    }
+  Post.find({'ownerID': ObjectId(req.params.id)}, function(err, result){
+    console.log('User posts found.');
+    res.send(result);
   });
 
 };
