@@ -20,7 +20,7 @@ class UserPostPage extends React.Component{
     }
 
     requestUserPosts(){
-        Request.get('/searchByOwnerEmail/' + this.props.match.params.email).then((res) => {        
+        Request.get('/postsByOwner/' + this.props.match.params.ownerId).then((res) => {        
             var userPosts = res.body.map((post,index) => 
                 <PostTile
                     nextPostId={(index+1)} 
@@ -42,7 +42,7 @@ class UserPostPage extends React.Component{
             <div className="app-content row center">
                 <h4 className="profilePageHeader">All User's Posts</h4>
                 {this.state.postTiles}
-                <p>this.props.params.email: {this.props.match.params.email}</p>                
+                <p>this.props.params.ownerId: {this.props.match.params.ownerId}</p>                
             </div>
         )
     }
