@@ -101,7 +101,7 @@ class PostModal extends React.Component{
                         <button className="btn waves-effect blue white-text darken-text-2" onClick={(e)=>(this.prevPost(e))}>
                             Previous Post
                         </button>
-                        <li><Link to={"/user-posts/"+this.props.email}>View this user's others posts</Link></li>
+                        <li><Link to={"/user-posts/"+this.props.ownerId}>View this user's others posts</Link></li>
                         <strong>Posted on: September, 1st, 2012</strong>
                     </div>
                 </div>
