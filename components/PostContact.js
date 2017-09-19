@@ -25,9 +25,11 @@ class PostContact extends React.Component{
         });
     }
     handleSubmit(event){
+        event.preventDefault();
         Request
             .post('/send')
-            .send({sender_email: this.state.sender_email, sender_name: this.state.sender_name, message: this.state.message, receiver_email: this.state.receiver_email})
+            .send({ownerId: "595019e0174a3c04ef15c900"})
+            // .send({ownerId: this.props.ownderId, sender_email: this.state.sender_email, sender_name: this.state.sender_name, message: this.state.message, receiver_email: this.state.receiver_email})
             .end((err, res) => {
                 if(err){
                     this.setState({err: res.body.error});
@@ -35,8 +37,7 @@ class PostContact extends React.Component{
                     this.setState({err: ""});
                     // Materialize.toast('Message sent!', 4000)                    
                 }
-            });
-            event.preventDefault();
+            });            
     }
     render(){
         return(            
