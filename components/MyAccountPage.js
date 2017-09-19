@@ -22,30 +22,34 @@ export default class MyAccountPage extends React.Component{
         this.setState({ [event.target.name]: event.target.value });
     }
     handleSubmit(event){
-        event.preventDefault();
-
-        if (this.state.newPassword == this.state.confirmNewPassword){
-            Request
-                .put('/user')
-                .send({
-                    email: this.state.email,
-                    nickname: this.state.nickname,
-                    phone: this.state.phone,
-                    password: this.state.password,
-                    newPassword: this.state.newPassword,})
-                .end((err, res) => {
-                    if(err){
-                        this.setState({err: res.body.error});
-                    } else {
-                        //reset error
-                        this.setState({err: ""});
-                        //display success message
-                        Materialize.toast('Account information updated!', 4000);
-                    }
-                });
+        event.preventDefault();        
+        if(this.state.password !== ""){
+            if (this.state.newPassword == this.state.confirmNewPassword){
+                Request
+                    .put('/user')
+                    .send({
+                        email: this.state.email,
+                        nickname: this.state.nickname,
+                        phone: this.state.phone,
+                        password: this.state.password,
+                        newPassword: this.state.newPassword,})
+                    .end((err, res) => {
+                        if(err){
+                            this.setState({err: res.body.error});
+                        } else {
+                            //reset error
+                            this.setState({err: ""});
+                            //display success message
+                            Materialize.toast('Account information updated!', 4000);
+                        }
+                    });
+            }
+            else {
+                Materialize.toast('Passwords do not match!', 4000);
+            }
+        } else {
+            Materialize.toast('Enter password to update!', 4000);
         }
-        else
-            Materialize.toast('Passwords do not match!', 4000);
     }
     render(){
         console.log('MyAccountPage rendering... ');
