@@ -60,7 +60,7 @@ class PostCreationContainer extends React.Component{
         console.log('PostCreationContainer rendering... ');
 
         return(
-            <div className="contatiner">
+            <div className="container">
                 <h6 className="profilePageHeader">Create-Post</h6>
                 <div className="card-content red-text">{this.state.err}</div>
                 <form onSubmit={this.handleSubmit} >
@@ -75,7 +75,7 @@ class PostCreationContainer extends React.Component{
                             <option value="Case">Case</option>
                             <option value="Other">Other</option>
                         </select>
-                        <label>* Type</label>                                                                   
+                        <label>* Type</label>
                     </div>
                     <InputField fieldClass="col s6" labelText="* Address"
                         id="address" onChange={this.handleInputChange} required="required" />
