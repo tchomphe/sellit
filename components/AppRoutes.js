@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { BrowserRouter as Router, Route, hashHistory } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, hashHistory } from 'react-router-dom';
 
 import Layout from './Layout';
 import MainPage from './MainPage';
@@ -10,7 +10,7 @@ import SearchResultsPage from './SearchResultsPage';
 import MyPostsPage from './MyPostsPage';
 import UserPostPage from './UserPostPage';
 import MyAccountPage from './MyAccountPage';
-// import NotFoundPage from 'NotFoundPage';
+import NotFoundPage from './NotFoundPage';
 
 import UserRegistrationModal from './UserRegistrationModal';
 import UserLoginModal from './UserLoginModal';
@@ -70,14 +70,17 @@ export default class AppRoutes extends React.Component {
         <Layout>
           <NavigationHeader authorizedUser={this.state.user.authorized} />
 
-          <Route exact={true} path="/" render={() => (
-            <MainPage posts={this.state.posts} page={this.state.page} />)} />
-          <Route path="/search/:query" component={SearchResultsPage} />
-          <Route path="/create-post" component={PostCreationContainer} />
-          <Route path="/my-posts" component={MyPostsPage} />
-          <Route path="/user-posts/:ownerId" component={UserPostPage} />
-          <Route path="/my-account" render={() => (
-            <MyAccountPage user={this.state.user} />)} />
+          <Switch>
+            <Route exact={true} path="/" render={() => (
+              <MainPage posts={this.state.posts} page={this.state.page} />)} />
+            <Route path="/search/:query" component={SearchResultsPage} />
+            <Route path="/create-post" component={PostCreationContainer} />
+            <Route path="/my-posts" component={MyPostsPage} />
+            <Route path="/user-posts/:ownerId" component={UserPostPage} />
+            <Route path="/my-account" render={() => (
+              <MyAccountPage user={this.state.user} />)} />
+            <Route component={NotFoundPage} />
+          </Switch>
 
           <UserRegistrationModal />
           <UserLoginModal handleLogin={this.saveUser} />
