@@ -12,7 +12,7 @@ class NavigationHeader extends React.Component{
         }
         this.handleOnClick = this.handleOnClick.bind(this);
     }
-    handleOnClick(){        
+    handleOnClick(){
         // this.setState({customSearchBar: 'custom_search'});
         if (this.state.customSearchBar === "custom_search_invisible"){
             this.setState({customSearchBar: "custom_search"});
@@ -56,7 +56,7 @@ class NavigationHeader extends React.Component{
         return(
             <nav className="left-align">
                 <div className="nav-wrapper">
-                    <Link to="/" className="brand-logo left"><img src="./assets/img/logo_small.png" /></Link>
+                    <Link to="/" className="brand-logo left"><img src="/assets/img/logo_small.png" /></Link>
                     {/* <form onSubmit={(e) => (this.handleSubmit(e))} >
                          <div className="input-field">
                             <input id="search" type="search" ref="search" />
