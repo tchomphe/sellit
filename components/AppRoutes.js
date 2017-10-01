@@ -71,7 +71,7 @@ export default class AppRoutes extends React.Component {
           <NavigationHeader authorizedUser={this.state.user.authorized} />
 
           <Switch>
-            <Route exact={true} path="/" render={() => (
+            <Route path="/" exact={true} render={() => (
               <MainPage posts={this.state.posts} page={this.state.page} />)} />
             <Route path="/search/:query" component={SearchResultsPage} />
             <Route path="/create-post" component={PostCreationContainer} />
