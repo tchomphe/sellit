@@ -86,6 +86,9 @@ app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
+app.get('*', function(req, res){
+  res.render('home');
+});
 
 // POST requests
 app.post('/createPost', upload.any(), api.createPost);
