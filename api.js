@@ -48,6 +48,7 @@ exports.paginatePosts = function(req, res){
   var query = {};
   var options = {
     page: req.params.pageNum,
+    sort: { date: -1 },
     limit: 3
   };
 
@@ -60,8 +61,13 @@ exports.paginatePosts = function(req, res){
 exports.searchPosts = function(req, res){
   //define query; search for all posts by default
   var query = { $text: { $search: req.params.searchText } };
+  var options = {
+    page: req.params.page,
+    sort: { date: -1 },
+    limit: 6
+  }
 
-  Post.paginate(query, {page:req.params.page, limit:6}, function(err, result){
+  Post.paginate(query, options, function(err, result){
     console.log('Pagination success.');
     res.send(result);
   });
@@ -69,7 +75,10 @@ exports.searchPosts = function(req, res){
 
 exports.postsByAuthenticatedOwner = function(req, res){
   if (req.isAuthenticated()){
-    Post.find({'ownerID': mongoose.Types.ObjectId(req.user._id)}, function(err, result){
+    var query = { 'ownerID': mongoose.Types.ObjectId(req.user._id) };
+    var sortOptions = { date: -1 };
+
+    Post.find(query, null, {sort: sortOptions}, function(err, result){
       console.log('User posts found.');
       res.send(result);
     });
@@ -80,7 +89,10 @@ exports.postsByAuthenticatedOwner = function(req, res){
 };
 
 exports.postsByOwnerID = function(req, res){
-  Post.find({'ownerID': mongoose.Types.ObjectId(req.params.id)}, function(err, result){
+  var query = { 'ownerID': mongoose.Types.ObjectId(req.params.id) };
+  var sortOptions = { date: -1 };
+
+  Post.find(query, null, {sort: sortOptions}, function(err, result){
     console.log('User posts found.');
     res.send(result);
   });
@@ -181,10 +193,10 @@ exports.createPost = function(req, res){
   }
 };
 
-exports.send = function(req, res, next){  
+exports.send = function(req, res, next){
     console.log('received send request!');
     console.log('req.params.ownerId: '+ req.body.ownerId);
-        
+
     User.findOne({'_id': req.body.ownerId}, 'email nickname phone date', function(err, user){
       varifyQuerySuccess(err, res, 'send');
       console.log('user.email: '+ user.email);
@@ -211,8 +223,8 @@ exports.send = function(req, res, next){
           res.redirect('/');
         }
       });
-      
-      });    
+
+      });
 }
 
 //-------------------------- PUT requests --------------------------//
