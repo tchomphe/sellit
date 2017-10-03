@@ -90,6 +90,10 @@ app.get('*', function(req, res){
   res.render('home');
 });
 
+app.get('/reset/:token', api.getReset);
+app.post('/forgot', api.sendResetEmail);
+// app.post('/reset/:token', api.postReset);
+
 // POST requests
 app.post('/createPost', upload.any(), api.createPost);
 app.post('/createUser', upload.any(), api.createUser);
