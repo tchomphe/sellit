@@ -5,9 +5,13 @@ import { Link, withRouter } from 'react-router-dom';
 class Forgot extends React.Component{
     constructor(props){
         super(props);
+        this.state = {
+            username: ""
+        }
     }
-    forgotPassword(e){
-        e.preventDefault();
+    onSubmit(e){
+        e.preventDefault();        
+        const username = this.refs.username.value;
         Request
             .post('/forgot')
             .send({email: "tashi.chomphel@gmail.com"})
@@ -15,16 +19,17 @@ class Forgot extends React.Component{
                 if(err) {
                     alert('Error!');
                 } else {
-                    alert('An email reset link has been sent to tashi.chomphel@gmail.com.');
+                    alert(`An email reset link has been sent to ${username}.`);                    
                 }
             });
     }
-    render(){
+    render(){        
         return(
-            <div>
-                <button className="btn-large waves-effect waves-light" onClick={(e)=>(this.forgotPassword(e))}>
-                    Send confirmation<i className="material-icons right">send</i>
-                </button>
+            <div className = "row">
+                <form className="col s12" onSubmit={e => this.onSubmit(e)} >                    
+                    <label>Username: <input name="username" type="text" ref="username" placeholder="Enter your username"/></label>
+                    <button className = "btn-large waves-effect waves-light" type="submit"> Send confirmation </button>
+                </form>                
             </div>
         )
     }
