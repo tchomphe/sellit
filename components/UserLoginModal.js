@@ -1,6 +1,7 @@
 import React from 'react';
 import InputField from './InputField';
 import Request from 'superagent';
+import { Link, withRouter } from 'react-router-dom';
 
 class UserLoginModal extends React.Component{
     constructor(props){
@@ -64,6 +65,7 @@ class UserLoginModal extends React.Component{
                             <i className="material-icons right">send</i>
                         </button>
                     </form>
+                    <Link to="/forgot">Forgot Password</Link>                    
                 </div>
             </div>
         )
