@@ -9,7 +9,9 @@ var userSchema = new Schema({
   password: { type: String, required: true },
   nickname: { type: String, trim: true },
   phone: { type: String },
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  resetPasswordToken: String,
+  resetPasswordExpires: Date
 });
 
 userSchema.methods.validPassword = function(pw){
