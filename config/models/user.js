@@ -21,6 +21,11 @@ userSchema.methods.validPassword = function(pw){
 // Create & export User Model
 var User = module.exports = mongoose.model('User', userSchema);
 
+// A password encrypting method for resetting to a new password.
+module.exports.encryptPassword = function(pw){
+  return crypto.createHmac('sha256', pw).update('saltyy:[').digest('hex');
+}
+
 module.exports.saveNewUser = function(newUser, callback){
   // Create hash for user's password
   newUser.password = crypto.createHmac('sha256', newUser.password)
