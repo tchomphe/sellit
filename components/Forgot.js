@@ -14,7 +14,7 @@ class Forgot extends React.Component{
         const username = this.refs.username.value;
         Request
             .post('/forgot')
-            .send({email: "tashi.chomphel@gmail.com"})
+            .send({email: username})
             .end(function(err, res){
                 if(err) {
                     alert('Error!');
