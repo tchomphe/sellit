@@ -295,6 +295,49 @@ exports.sendResetEmail = function(req, res, next){
     res.redirect('/');
   });
 }
+exports.postReset = function(req, res){
+  async.waterfall([
+    function(done){
+      User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() }}, function(err, user){
+        if(!user){
+          console.log('Password reset token is invalid or has expired.');
+          return res.redirect('/');
+        }
+        user.password = User.encryptPassword(req.body.password);
+        // console.log(`encrypted password: ${user.password}`);
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpires = undefined;
+        user.save(function(err){
+          req.login(user, function(err){
+            done(err, user);
+          });
+        });
+      });
+    },
+    function(user, done){
+      var transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          user: 'jtran6520@gmail.com',
+          pass: 'Netgain6'
+        }
+      });
+      var mailOptions = {
+        to: user.email,
+        from: 'admin@dtolist.ca',
+        subject: 'Your password has been changed',
+        text: 'Hello,\n\n' +
+          'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+      };
+      transporter.sendMail(mailOptions, function(err){
+        console.log('Your password has been changed.');
+        done(err);
+      });
+    }
+  ], function(err){
+    res.render('home');
+  });
+}
 
 //-------------------------- PUT requests --------------------------//
 exports.updateUserInfo = function(req, res){

@@ -92,7 +92,7 @@ app.get('*', function(req, res){
 
 app.get('/reset/:token', api.getReset);
 app.post('/forgot', api.sendResetEmail);
-// app.post('/reset/:token', api.postReset);
+app.post('/reset/:token', api.postReset);
 
 // POST requests
 app.post('/createPost', upload.any(), api.createPost);
