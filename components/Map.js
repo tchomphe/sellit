@@ -17,14 +17,12 @@ class Map extends Component {
     componentDidMount(){
     var filtered_address = (this.props.address).replace(/\s/g, "+");
     Request
-      .get("https://maps.googleapis.com/maps/api/geocode/json?address="+filtered_address.toString()+"&key=AIzaSyD86X7QJpRthF_OfvzcftUNlPg1kzg6sKo")
-      // .get('https://maps.googleapis.com/maps/api/geocode/json?address=96+Jameson+Ave,+Toronto+ON&key=AIzaSyD86X7QJpRthF_OfvzcftUNlPg1kzg6sKo')
+      .get("https://maps.googleapis.com/maps/api/geocode/json?address="+filtered_address.toString()+"&key=AIzaSyD86X7QJpRthF_OfvzcftUNlPg1kzg6sKo")      
       .end((err, res) => {
         if(err){
-          // console.log('error!')
+          console.log('error!')
         }
-        else{          
-          //
+        else {                    
           this.setState({
             lat: res.body.results[0].geometry.location.lat,
             lng: res.body.results[0].geometry.location.lng,
@@ -36,8 +34,7 @@ class Map extends Component {
   render() {    
     var glink = "https://maps.googleapis.com/maps/api/staticmap?center="+this.state.lat+","+this.state.lng+"&zoom=15&size=200x200&maptype=roadmap&markers=color:red%7Clabel:C%7C"+this.state.lat+','+this.state.lng+"&key=AIzaSyBcxF_7FH1aEC4g6CGCvq7WPz1LCisZt3A";
     return (
-      <div>         
-         {/* <p>Google Map Location</p>  */}
+      <div>                 
         <img src={glink} />    
         {/* <p>this.props.address: {this.props.address}</p>
         <p>this.state.address: {this.state.address}</p>
@@ -47,5 +44,4 @@ class Map extends Component {
     );
   }
 }
-
 export default Map;
