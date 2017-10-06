@@ -42,7 +42,8 @@ class NavigationHeader extends React.Component{
                                 <li><a href="/logout">LOGOUT</a></li>
                                 <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
                             </ul>;
-        var defaultMenu =   <ul className="right hide-on-med-and-down">
+        var defaultMenu =   <ul className="right hide-on-med-and-down">                                
+                                <li><Link to="/posts/Phone">Phones</Link></li>                                
                                 <li><i className="large material-icons">assignment</i></li>
                                 <li><a href="#userRegistrationModal">SIGN UP</a></li>
                                 <li><i className="large material-icons">exit_to_app</i></li>

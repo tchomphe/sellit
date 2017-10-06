@@ -13,6 +13,7 @@ import MyAccountPage from './MyAccountPage';
 import NotFoundPage from './NotFoundPage';
 import Forgot from './Forgot';
 import Reset from './Reset';
+import PostTypePage from './PostTypePage'
 
 import UserRegistrationModal from './UserRegistrationModal';
 import UserLoginModal from './UserLoginModal';
@@ -80,7 +81,8 @@ export default class AppRoutes extends React.Component {
             <Route path="/my-posts" component={MyPostsPage} />
             <Route path="/user-posts/:ownerId" component={UserPostPage} />
             <Route path="/forgot" component={Forgot} />            
-            <Route path="/reset/:token" component={Reset} />          
+            <Route path="/reset/:token" component={Reset} />  
+            <Route path="/posts/:type" component={PostTypePage} />        
             <Route path="/my-account" render={() => (
               <MyAccountPage user={this.state.user} />)} />
             <Route component={NotFoundPage} />
