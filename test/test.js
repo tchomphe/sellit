@@ -13,6 +13,15 @@ seeder.upload();
 
 // Session-less API Tests ============================================ //
 describe('Session-less API tests,', function () {
+  
+  describe('GET /post/:type', function(){
+    it('responds with HTTP status 200', function(done){
+      request('http://localhost:8080/post/' + seeder.posts[0].type, function(error, response, body){
+        expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });
+  });
 
   describe('GET /', function(){
     it('responds with HTTP Status 200', function(done) {
