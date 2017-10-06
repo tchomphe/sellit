@@ -67,6 +67,7 @@ app.get(['/create-post', '/my-posts', '/my-account'], function(req, res){
     res.redirect('/');
 });
 
+app.get('/post/:type', api.getPostByType)
 app.get('/paginatePosts/:pageNum', api.paginatePosts);
 app.get('/post/:id', api.getPostByID);
 app.get('/user/:id', api.getUserByID);

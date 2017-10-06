@@ -60,6 +60,17 @@ exports.paginatePosts = function(req, res){
   });
 };
 
+exports.getPostByType = function(req, res){
+  var query = {'type': req.params.type};
+  var options = {    
+    sort: {date: -1},
+    limit: 6
+  }
+  Post.paginate(query, options,function(err, result){
+    console.log('Category pagination success.');
+    res.send(result);
+  });
+}
 exports.searchPosts = function(req, res){
   //define query; search for all posts by default
   var query = { $text: { $search: req.params.searchText } };
