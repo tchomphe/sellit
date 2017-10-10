@@ -12,9 +12,6 @@ class UserRegistrationModal extends React.Component{
         }
         this.handleInputChange = this.handleInputChange.bind(this);
     }
-    handleInputChange(event){
-        this.setState({ [event.target.name]: event.target.value });
-    }
     componentDidMount(){
         $("#password").on("focusout", function (e) {
             if ($(this).val() != $("#confirm_password").val()) {
@@ -31,6 +28,13 @@ class UserRegistrationModal extends React.Component{
                 $(this).removeClass("invalid").addClass("valid");
             }
         });
+    }
+    handleInputChange(event){
+        this.setState({ [event.target.name]: event.target.value });
+    }
+    handleSubmit(event){
+        event.preventDefault();
+        //create superagent request
     }
     render(){
         console.log("Rendering UserRegistrationModal");
