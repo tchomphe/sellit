@@ -54,14 +54,17 @@ class UserRegistrationModal extends React.Component{
 
                     //create user object and pass it to prop
                     let userArr = res.header.user.split(', ');
-                    console.log = "userArr: " + userArr;
+                    let userObj = {
+                        email: userArr.shift(),
+                        nickname: userArr.shift(),
+                        phone: userArr.shift(),
+                    };
+                    this.props.handleLogin(userObj);
                 }
             });
     }
     render(){
-        console.log("Rendering UserRegistrationModal");
         return(
-
             <div id="userRegistrationModal" className="modal">
                 <a className="modal-action modal-close btn-large modalButtonClose">x</a>
                 <div className="modal-content">
