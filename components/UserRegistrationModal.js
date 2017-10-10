@@ -4,6 +4,16 @@ import InputField from './InputField';
 class UserRegistrationModal extends React.Component{
     constructor(props){
         super(props);
+        this.state={
+            email: "",
+            password: "",
+            nickname: "",
+            phone: "",
+        }
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
+    handleInputChange(event){
+        this.setState({ [event.target.name]: event.target.value });
     }
     componentDidMount(){
         $("#password").on("focusout", function (e) {
@@ -23,6 +33,7 @@ class UserRegistrationModal extends React.Component{
         });
     }
     render(){
+        console.log("Rendering UserRegistrationModal");
         return(
 
             <div id="userRegistrationModal" className="modal">
@@ -33,15 +44,15 @@ class UserRegistrationModal extends React.Component{
                         <form className="col s12 center" method="post" action="/createUser" >
                             <div className="row">
                                 <InputField labelText="* Email" labelSuccess="right" labelError="not a valid email address"
-                                    id="email" type="email" required="required" />
+                                    id="email" type="email" onChange={this.handleInputChange} required="required" />
                                 <InputField fieldClass="col s6" labelText="* Password"
-                                    id="password" type="password" required="required" />
+                                    id="password" type="password" onChange={this.handleInputChange} required="required" />
                                 <InputField fieldClass="col s6" labelText="* Confirm Password" labelSuccess="match" labelError="mismatch"
                                     id="confirm_password" type="password" required="required" />
                                 <InputField labelText="Name/Nickname"
-                                    id="nickname" />
+                                    id="nickname" onChange={this.handleInputChange} />
                                 <InputField labelText="Phone"
-                                    id="phone" />
+                                    id="phone" onChange={this.handleInputChange} />
                                 {/* <input name="phone" type="tel" pattern="^\d{3}\d{3}\d{4}$" className="validate" /> */}
                             </div>
                             <button className="btn-large waves-effect waves-light" type="submit" name="action">Register
