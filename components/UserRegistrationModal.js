@@ -1,16 +1,18 @@
 import React from 'react';
 import InputField from './InputField';
+import Request from 'superagent';
 
 class UserRegistrationModal extends React.Component{
     constructor(props){
         super(props);
-        this.state={
+        this.state = {
             email: "",
             password: "",
             nickname: "",
             phone: "",
         }
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount(){
         $("#password").on("focusout", function (e) {
@@ -34,7 +36,27 @@ class UserRegistrationModal extends React.Component{
     }
     handleSubmit(event){
         event.preventDefault();
-        //create superagent request
+        Request
+            .post('/createUser')
+            .send({
+                email: this.state.email,
+                password: this.state.password,
+                nickname: this.state.nickname,
+                phone: this.state.phone })
+            .end((err, res) => {
+                if(err){
+                    this.setState({err: res.body.error});
+                    // alert(JSON.stringify(this.state.err));
+
+                } else {
+                    this.setState({err: ""});
+                    $('#userRegistrationModal').modal('close');
+
+                    //create user object and pass it to prop
+                    let userArr = res.header.user.split(', ');
+                    console.log = "userArr: " + userArr;
+                }
+            });
     }
     render(){
         console.log("Rendering UserRegistrationModal");
@@ -45,7 +67,7 @@ class UserRegistrationModal extends React.Component{
                 <div className="modal-content">
                         <div className="row">
                         <h5>Create Account</h5>
-                        <form className="col s12 center" method="post" action="/createUser" >
+                        <form className="col s12 center" onSubmit={this.handleSubmit} >
                             <div className="row">
                                 <InputField labelText="* Email" labelSuccess="right" labelError="not a valid email address"
                                     id="email" type="email" onChange={this.handleInputChange} required="required" />
