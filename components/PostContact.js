@@ -29,7 +29,12 @@ class PostContact extends React.Component{
         event.preventDefault();
         Request
             .post('/send')
-            .send({ownerId: this.props.ownerId})
+            .send({
+                ownerId: this.props.ownerId,
+                sender_name: this.state.sender_name,
+                sender_email: this.state.sender_email,
+                message: this.state.message                
+            });
             // .send({ownerId: this.props.ownderId, sender_email: this.state.sender_email, sender_name: this.state.sender_name, message: this.state.message, receiver_email: this.state.receiver_email})
             .end((err, res) => {
                 if(err){
