@@ -8,6 +8,9 @@ var nodemailer = require('nodemailer');
 var async = require('async');
 var crypto = require('crypto');
 
+var sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 /**
  * [Helper Function]: Varifies the success or failure of a MongoDB query
  * @param {Error} err
@@ -226,36 +229,26 @@ exports.createPost = function(req, res){
 
 exports.send = function(req, res, next){
     console.log('received send request!');
-    console.log('req.params.ownerId: '+ req.body.ownerId);
+    console.log('req.body.ownerId: '+ req.body.ownerId);
 
     User.findOne({'_id': req.body.ownerId}, 'email nickname phone date', function(err, user){
       varifyQuerySuccess(err, res, 'send');
       console.log('user.email: '+ user.email);
-      // res.send(user);
-      var transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-          user: 'jtran6520@gmail.com',
-          pass: 'Netgain6'
-        }
-      });
-      var mailOptions = {
-        from: 'Sender <zlatko.gantchev@gmail.com>',
-        to: user.email,
-        subject: 'this is subject',
-        text: 'this is body message'
-      }
-      transporter.sendMail(mailOptions, function(err, info){
-        if(err){
-          console.log(err);
-          res.redirect('/');
+      const msg = {
+        to: `${user.email}`,
+        from: `${req.body.sender_email}`,
+        subject: 'Sending with SendGrid is Fun',
+        text: `${req.body.message}`,
+        // html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+      };
+      sgMail.send(msg, (error, result) => {
+        if (error) {
+          console.log(`Error: ${err}`);
         } else {
-          console.log('message sent!');
-          res.redirect('/');
+          console.log('Email successfully sent.');                   
         }
       });
-
-      });
+    });
 }
 
 exports.sendResetEmail = function(req, res, next){
@@ -281,25 +274,22 @@ exports.sendResetEmail = function(req, res, next){
       });
     },
     function(token, user, done){
-      var transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-          user: 'jtran6520@gmail.com',
-          pass: 'Netgain6'
-        }
-      });
-      var mailOptions = {
-        to: user.email,
-        from: 'passwordreset@demo.com',
-        subject: 'Node.js Password Reset',
+      const msg = {
+        to: `${user.email}`,
+        from: `admin@tolist.ca`,
+        subject: 'Tolist password reset',
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-          'http://' + req.headers.host + '/reset/' + token + '\n\n' +
-          'If you did not request this, please ignore this email and your password will remain unchanged.\n'
-      }
-      transporter.sendMail(mailOptions, function(err){
-        console.log('An email has been sent to ' + user.email);
-        done(err, 'done');
+        'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+        'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+        'If you did not request this, please ignore this email and your password will remain unchanged.\n'        
+      };
+      sgMail.send(msg, (error, result) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email successfully sent.');
+          done(error, 'done');
+        }
       });
     }
   ], function(err){
@@ -327,23 +317,20 @@ exports.postReset = function(req, res){
       });
     },
     function(user, done){
-      var transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-          user: 'jtran6520@gmail.com',
-          pass: 'Netgain6'
-        }
-      });
-      var mailOptions = {
-        to: user.email,
-        from: 'admin@dtolist.ca',
+      const msg = {
+        to: `${user.email}`,
+        from: `admin@tolist.ca`,
         subject: 'Your password has been changed',
         text: 'Hello,\n\n' +
-          'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+        'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n',
       };
-      transporter.sendMail(mailOptions, function(err){
-        console.log('Your password has been changed.');
-        done(err);
+      sgMail.send(msg, (error, result) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email successfully sent.');
+          done(error, 'done');          
+        }
       });
     }
   ], function(err){
