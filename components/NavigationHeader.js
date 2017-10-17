@@ -11,7 +11,7 @@ class NavigationHeader extends React.Component{
             customSearchBar: "custom_search_invisible",
         }
         this.handleOnClick = this.handleOnClick.bind(this);
-    }
+    }    
     handleOnClick(){
         // this.setState({customSearchBar: 'custom_search'});
         if (this.state.customSearchBar === "custom_search_invisible"){
@@ -28,8 +28,8 @@ class NavigationHeader extends React.Component{
         this.props.history.push('/search/' + this.refs.search.value);
     }
 
-    render(){
-        var loggedInMenu =  <ul className="right hide-on-med-and-down">
+    render(){        
+        var loggedInMenu =  <ul className="right hide-on-med-and-down">                            
                                 <li><i className="large material-icons">list</i></li>
                                 <li><Link to="/">ALL POST</Link></li>
                                 <li><i className="large material-icons">list</i></li>
@@ -43,7 +43,8 @@ class NavigationHeader extends React.Component{
                                 <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
                             </ul>;
         var defaultMenu =   <ul className="right hide-on-med-and-down">                                
-                                <li><Link to="/posts/Phone">Phones</Link></li>                                
+                                <li><Link to="/posts/Phone">Phones</Link></li>
+                                <li><Link to="/posts/Laptop">Laptops</Link></li>                                
                                 <li><i className="large material-icons">assignment</i></li>
                                 <li><a href="#userRegistrationModal">SIGN UP</a></li>
                                 <li><i className="large material-icons">exit_to_app</i></li>
@@ -54,8 +55,8 @@ class NavigationHeader extends React.Component{
         //determine whether navigation menu should display a logged in menu, or not
         var navMenu = (this.props.authorizedUser == true) ? loggedInMenu : defaultMenu;
 
-        return(
-            <nav className="left-align">
+        return(            
+            <nav className="left-align">                
                 <div className="nav-wrapper">
                     <Link to="/" className="brand-logo left"><img src="/assets/img/logo_small.png" /></Link>
                     {/* <form onSubmit={(e) => (this.handleSubmit(e))} >
