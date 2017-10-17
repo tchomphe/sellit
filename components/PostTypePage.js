@@ -18,25 +18,25 @@ class PostTypePage extends React.Component{
         // Populate PostTile's with current user's posts
         this.requestUserPosts();        
     }
-
-    requestUserPosts(){
-        Request.get('/posts/' + this.props.match.params.type).then((res) => {        
-        // Request.get('/posts/Phone').then((res) => {        
-            var userPosts = res.body.map((post,index) => 
+    componentWillReceiveProps(){
+        this.requestUserPosts();
+    }
+    
+    requestUserPosts(){        
+        Request.get('/posts/' + this.props.match.params.type).then((res) => {
+            var userPosts = res.body.map((post,index) =>
                 <PostTile
-                    nextPostId={(index+1)} 
+                    nextPostId={(index+1)}
                     prevPostId={(index-1)}
-                    key={index}                                        
+                    key={index}                             
                     postModalID={'postModal'+index}
-                    post={post} />    
+                    post={post} />
                 );
-
                 this.setState({
                     postTiles: userPosts
                 });
         });
     }
-
     render(){
         console.log('UserPostPage rendering ...');                
         return(
