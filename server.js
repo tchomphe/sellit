@@ -31,10 +31,15 @@ var upload = multer({ storage: storage })
 
 //-------- CONFIGURE DB, VIEW ENGINE, & AUTH  --------//
 // TODO: update db name to final site's name
+var uri = 'mongodb://admin:password@ds013172.mlab.com:13172/tolist';
 mongoose.Promise = global.Promise; // promises set up; mongoose's are deprecated
-mongoose.connect('mongodb://127.0.0.1/tolist', {  // connect to the database
-  useMongoClient: true,
+// mongoose.connect('mongodb://127.0.0.1/tolist', {  // connect to the database
+//   useMongoClient: true,
+// });
+mongoose.connect(uri, {  // connect to the database
+useMongoClient: true,
 });
+
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'})); // set up view engine
 app.set('view engine', 'handlebars');
