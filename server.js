@@ -32,7 +32,7 @@ var upload = multer({ storage: storage })
 //-------- CONFIGURE DB, VIEW ENGINE, & AUTH  --------//
 // TODO: update db name to final site's name
 mongoose.Promise = global.Promise; // promises set up; mongoose's are deprecated
-mongoose.connect('mongodb://127.0.0.1/sellit'); // connect to the database
+mongoose.connect('mongodb://127.0.0.1/tolist'); // connect to the database
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'})); // set up view engine
 app.set('view engine', 'handlebars');
