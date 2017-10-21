@@ -117,6 +117,6 @@ app.delete('/user/:id', api.deleteUser);
 app.delete('/post/:id', api.deletePost);
 
 // Start up server
-app.listen(8080, function(){
+app.listen((process.env.PORT || 8080), function(){
   console.log('Server running on port: 8080');
 });
