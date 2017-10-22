@@ -65,12 +65,12 @@ exports.paginatePosts = function(req, res){
 
 exports.getPostByType = function(req, res){
   var query = {'type': req.params.type};
-  var options = { date: -1    
+  var options = { date: -1
     // sort: {date: -1},
     // limit: 6
   }
   // Post.paginate(query, options,function(err, result){
-  Post.find(query, null, {sort: options}, function(err, result){  
+  Post.find(query, null, {sort: options}, function(err, result){
     console.log('Category pagination success.');
     res.send(result);
   });
@@ -243,9 +243,9 @@ exports.send = function(req, res, next){
       };
       sgMail.send(msg, (error, result) => {
         if (error) {
-          console.log(`Error: ${err}`);
+          console.log(`Error: ${error}`);
         } else {
-          console.log('Email successfully sent.');                   
+          console.log('Email successfully sent.');
         }
       });
     });
@@ -281,7 +281,7 @@ exports.sendResetEmail = function(req, res, next){
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
         'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
         'http://' + req.headers.host + '/reset/' + token + '\n\n' +
-        'If you did not request this, please ignore this email and your password will remain unchanged.\n'        
+        'If you did not request this, please ignore this email and your password will remain unchanged.\n'
       };
       sgMail.send(msg, (error, result) => {
         if (error) {
@@ -329,7 +329,7 @@ exports.postReset = function(req, res){
           console.log(error);
         } else {
           console.log('Email successfully sent.');
-          done(error, 'done');          
+          done(error, 'done');
         }
       });
     }
