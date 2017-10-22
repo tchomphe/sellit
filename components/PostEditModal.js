@@ -67,7 +67,7 @@ class PostEditModal extends React.Component{
         //map all post images into HTML elements
         var postImages = "";
         if (this.state.pictures)
-            postImages = this.state.pictures.map((pictureURL, index) => <img src={pictureURL} alt="Post Picture" />);
+            postImages = this.state.pictures.map((pictureURL, index) => <img className="form-items-gallery-picture" src={pictureURL} alt="Post Picture" />);
 
         return(
             <div id="postEditModal" className="modal">
@@ -94,7 +94,7 @@ class PostEditModal extends React.Component{
                                     <InputField labelText="Description"
                                         id="description" value={this.state.description} onChange={this.handleInputChange} />
                                 </div>
-                                <div className="form-items-pictures col s6">
+                                <div className="form-items-gallery col s6">
                                     <h5>Pictures</h5>
                                     <div className="col s12 file-field input-field">
                                         <div className="btn">

@@ -316,6 +316,10 @@ nav .input-field{
     padding: 0px !important;
 }
 
+.form-items-gallery-picture {
+    max-width: 200px;
+}
+
 /* .postContact {
      background-color: lightgreen;
      width: 150px;
