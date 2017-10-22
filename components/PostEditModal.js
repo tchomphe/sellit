@@ -65,43 +65,47 @@ class PostEditModal extends React.Component{
         return(
             <div id="postEditModal" className="modal">
                 <div className="modal-content">
-                    <div className="card-panel">
-                        <form id="postEditForm" onSubmit={this.handleSubmit}>
-                            <InputField labelText="Title"
-                                id="title" value={this.state.title} required="required" onChange={this.handleInputChange} />
-                            <InputField fieldClass="col s6" labelText="Price"
-                                id="price" value={this.state.price} onChange={this.handleInputChange} />
-                            <div className="input-field col s6">
-                                <select id="type" name="type" required="required" >
-                                    <option value="Phone" defaultValue>Phone</option>
-                                    <option value="Laptop">Laptop</option>
-                                    <option value="Case">Case</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                                <label>* Type</label>
-                            </div>
-                            <InputField labelText="Address"
-                                id="address" value={this.state.address} onChange={this.handleInputChange} />
-                            <InputField labelText="Description"
-                                id="description" value={this.state.description} onChange={this.handleInputChange} />
-                            {/* <div className="row">
-                                <div className="col s12 file-field input-field">
-                                    <div className="btn">
-                                        <span>Browse</span>
-                                        <input type="file" name="postImages" multiple/>
+                    <form id="postEditForm" onSubmit={this.handleSubmit}>
+                        <div className="card-panel">
+                            <div className="row">
+                                <div className="form-items-info col s6">
+                                    <InputField labelText="Title"
+                                        id="title" value={this.state.title} required="required" onChange={this.handleInputChange} />
+                                    <InputField fieldClass="col s6" labelText="Price"
+                                        id="price" value={this.state.price} onChange={this.handleInputChange} />
+                                    <div className="input-field col s6">
+                                        <select id="type" name="type" required="required" >
+                                            <option value="Phone" defaultValue>Phone</option>
+                                            <option value="Laptop">Laptop</option>
+                                            <option value="Case">Case</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                        <label>* Type</label>
                                     </div>
-                                    <div className="file-path-wrapper">
-                                        <input className="file-path validate" type="text" placeholder="Upload new pictures" />
+                                    <InputField labelText="Address"
+                                        id="address" value={this.state.address} onChange={this.handleInputChange} />
+                                    <InputField labelText="Description"
+                                        id="description" value={this.state.description} onChange={this.handleInputChange} />
+                                </div>
+                                <div className="form-items-pictures col s6">
+                                    <div className="col s12 file-field input-field">
+                                        <div className="btn">
+                                            <span>Browse</span>
+                                            <input type="file" name="postImages" multiple/>
+                                        </div>
+                                        <div className="file-path-wrapper">
+                                            <input className="file-path validate" type="text" placeholder="Upload new pictures" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div> */}
+                            </div>
                             <div className="row">
                                 <div className="s12">
-                                     <button className="btn waves-effect blue white-text darken-text-2" type="submit" value="Submit">Update</button>
+                                    <button className="btn waves-effect blue white-text darken-text-2" type="submit" value="Submit">Update</button>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         );

@@ -19,20 +19,20 @@ body {
     height: 56px;
     line-height: 56px;
     position: fixed;
-    z-index: 99; 
+    z-index: 99;
     left: 0px;
-    top: 0px;    
+    top: 0px;
     box-shadow: 0px 0px 0px 0px;
 }
 
 nav .brand-logo {
     position: absolute;
-    color: #ffffff; 
+    color: #ffffff;
     display: inline-block;
     font-size: 16px;
     padding: 0;
-    
-} 
+
+}
 
 .brand-logo img {
     width: 70%;
@@ -60,16 +60,16 @@ nav .brand-logo {
     padding-left: 5px;
     margin-right: 15px;
     cursor: pointer;
-} 
-@media only screen and (min-width: 601px){ 
+}
+@media only screen and (min-width: 601px){
     nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
-        height: 56px;        
+        height: 56px;
     }
 }
 
 nav .input-field label i {
     color: #ffffff;
-} 
+}
 nav .input-field label.active i {
     color: #ffffff;
 }
@@ -89,11 +89,11 @@ nav .input-field{
  input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
     border-bottom: 1px solid #26a69a;
     box-shadow: 0 1px 0 0 #26a69a;
-} 
+}
 
 .custom_search_invisible {
     /* visibility: hidden; */
-    display:none; 
+    display:none;
     /* all: default;
     position: fixed;
     top: 56px;
@@ -104,7 +104,7 @@ nav .input-field{
 }
 
 .custom_search {
-    /* visibility: visible; */    
+    /* visibility: visible; */
     display:block;
     all: default;
     position: fixed;
@@ -123,8 +123,8 @@ nav .input-field{
     color: #fff;
     font-size: 35px;
     font-weight: 400;
-    text-align: left;    
-    padding-left: 10px;    
+    text-align: left;
+    padding-left: 10px;
     /* background: rgba(0, 0, 0, 0); */
     /* border: 0px; */
     /* margin: 0px auto */
@@ -272,7 +272,6 @@ nav .input-field{
 .modal {
     border-radius: 0px;
     max-height: 90%;
-    width: 35%;
 }
 
 .modalButtonClose:hover {
@@ -294,9 +293,9 @@ nav .input-field{
 
 .modal .modal-footer{
     background-color: #000000;
-    color: #ffffff;         
+    color: #ffffff;
     padding-top: 15px;
-} 
+}
 
 .modal-content {
     padding: 10px 30px;
@@ -318,9 +317,9 @@ nav .input-field{
 }
 
 /* .postContact {
-     background-color: lightgreen; 
-     width: 150px; 
-     height: 400px; 
+     background-color: lightgreen;
+     width: 150px;
+     height: 400px;
 } */
 
 #navigationModal .modal-content {
@@ -331,7 +330,7 @@ nav .input-field{
   .input-field input[type=search]:focus {
     background-color: #ffffff;
     color: #000000;
-}  
+}
 
 .nav-wrapper form {
     display: inline-block;
