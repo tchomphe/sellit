@@ -76,6 +76,7 @@ class PostEditModal extends React.Component{
                         <div className="card-panel">
                             <div className="row">
                                 <div className="form-items-info col s6">
+                                    <h5>Post Info</h5>
                                     <InputField labelText="Title"
                                         id="title" value={this.state.title} required="required" onChange={this.handleInputChange} />
                                     <InputField fieldClass="col s6" labelText="Price"
