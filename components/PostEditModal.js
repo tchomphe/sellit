@@ -12,6 +12,7 @@ class PostEditModal extends React.Component{
             address:"",
             price:"",
             description:"",
+            pictures: "",
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,6 +30,7 @@ class PostEditModal extends React.Component{
             address: nextProps.post.address,
             price: nextProps.post.price,
             description: nextProps.post.description,
+            pictures: nextProps.post.images,
         })
     }
 
@@ -62,6 +64,11 @@ class PostEditModal extends React.Component{
     }
 
     render(){
+        //map all post images into HTML elements
+        var postImages = "";
+        if (this.state.pictures)
+            postImages = this.state.pictures.map((pictureURL, index) => <img src={pictureURL} alt="Post Picture" />);
+
         return(
             <div id="postEditModal" className="modal">
                 <div className="modal-content">
@@ -88,6 +95,7 @@ class PostEditModal extends React.Component{
                                         id="description" value={this.state.description} onChange={this.handleInputChange} />
                                 </div>
                                 <div className="form-items-pictures col s6">
+                                    <h5>Pictures</h5>
                                     <div className="col s12 file-field input-field">
                                         <div className="btn">
                                             <span>Browse</span>
@@ -97,6 +105,7 @@ class PostEditModal extends React.Component{
                                             <input className="file-path validate" type="text" placeholder="Upload new pictures" />
                                         </div>
                                     </div>
+                                    {postImages}
                                 </div>
                             </div>
                             <div className="row">
