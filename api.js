@@ -351,8 +351,12 @@ exports.updateUserInfo = function(req, res){
     //create newObject, made up of changes to account info, disregarding empty fields
     var newObject = {};
     for (let field in req.body){
-        if (req.body[field] != "")
+        if (req.body[field] != ""){
+            if(field === "password"){
+              newObject[field] = User.encryptPassword(req.body[field]);              
+            }
           newObject[field] = req.body[field];
+        }
     }
 
     User.findByIdAndUpdate(query, newObject, settings, function(err, user) {
