@@ -180,7 +180,7 @@ exports.createUser = function(req, res){
     phone: (phoneOK) ? req.body.phone : null,
   };
   User.findOne({ email: req.body.email }, function (err, user) {    
-    return res.status(400).send({ msg: 'The email address you have entered is already associated with another account.' });        
+    if(user){return res.status(400).send({ msg: 'The email address you have entered is already associated with another account.' });}
     //create new database entry from POST request's JSON object
     User.saveNewUser(newUser, function(err, user){
       varifyQuerySuccess(err, res, 'createUser');
