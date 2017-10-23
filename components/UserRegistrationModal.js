@@ -10,6 +10,7 @@ class UserRegistrationModal extends React.Component{
             password: "",
             nickname: "",
             phone: "",
+            err: ""
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -45,8 +46,7 @@ class UserRegistrationModal extends React.Component{
                 phone: this.state.phone })
             .end((err, res) => {
                 if(err){
-                    this.setState({err: res.body.error});
-                    // alert(JSON.stringify(this.state.err));
+                    this.setState({err: res.body.msg});                                        
 
                 } else {
                     this.setState({err: ""});
@@ -70,6 +70,7 @@ class UserRegistrationModal extends React.Component{
                 <div className="modal-content">
                         <div className="row">
                         <h5>Create Account</h5>
+                        <b>{this.state.err}</b>
                         <form className="col s12 center" onSubmit={this.handleSubmit} >
                             <div className="row">
                                 <InputField labelText="* Email" labelSuccess="right" labelError="not a valid email address"

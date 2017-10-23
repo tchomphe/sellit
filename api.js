@@ -179,13 +179,15 @@ exports.createUser = function(req, res){
     nickname: req.body.nickname,
     phone: (phoneOK) ? req.body.phone : null,
   };
-
-  //create new database entry from POST request's JSON object
-  User.saveNewUser(newUser, function(err, user){
-    varifyQuerySuccess(err, res, 'createUser');
-    console.log('Received and processed JSON data. Logging in..');
-    //automatically log new user in
-    authentication.handleLogin(req, res, passport);
+  User.findOne({ email: req.body.email }, function (err, user) {    
+    return res.status(400).send({ msg: 'The email address you have entered is already associated with another account.' });        
+    //create new database entry from POST request's JSON object
+    User.saveNewUser(newUser, function(err, user){
+      varifyQuerySuccess(err, res, 'createUser');
+      console.log('Received and processed JSON data. Logging in..');
+      //automatically log new user in
+      authentication.handleLogin(req, res, passport);
+    });
   });
 };
 
