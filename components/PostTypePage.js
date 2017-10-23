@@ -8,7 +8,8 @@ class PostTypePage extends React.Component{
     constructor(props){
         super(props);
         this.state = {            
-            postTiles: null
+            postTiles: [],
+            category: ""
         }
     }
     componentDidMount(){        
@@ -18,31 +19,36 @@ class PostTypePage extends React.Component{
         // Populate PostTile's with current user's posts
         this.requestUserPosts();        
     }
-    componentWillReceiveProps(){
-        this.requestUserPosts();
+    componentWillReceiveProps(nextProps){
+            console.log(`Recieved props! nextProps: ${nextProps.match.params.type}`);
+            this.requestUserPosts(nextProps);
     }
     
-    requestUserPosts(){        
-        Request.get('/posts/' + this.props.match.params.type).then((res) => {
-            var userPosts = res.body.map((post,index) =>
-                <PostTile
-                    nextPostId={(index+1)}
-                    prevPostId={(index-1)}
-                    key={index}                             
-                    postModalID={'postModal'+index}
-                    post={post} />
-                );
-                this.setState({
-                    postTiles: userPosts
-                });
+    requestUserPosts(nextProps){
+        // Since componentWillReceiveProps don't run on first render, setting the url default to this.props.match.params.type. Else
+        // use the props received. This also avoids double clicking category link to render.
+        var url = (nextProps) ? nextProps.match.params.type : this.props.match.params.type;             
+        Request.get('/posts/' + url).then((res) => {
+        var userPosts = res.body.map((post,index) =>
+            <PostTile
+                nextPostId={(index+1)}
+                prevPostId={(index-1)}
+                key={index}                             
+                postModalID={'postModal'+index}
+                post={post} />
+            );                
+            this.setState({
+                postTiles: userPosts,
+                category: this.props.match.params.type
+            }, () => {console.log('setState executed!')});
         });
-    }
+    }    
     render(){
-        console.log('UserPostPage rendering ...');                
+        console.log('UserPostPage rendering ...');        
         return(
             <div className="app-content row center">
-                <h4 className="profilePageHeader">All Phones</h4>
-                {this.state.postTiles}
+                <h4 className="profilePageHeader">{this.state.category}</h4>
+                {this.state.postTiles}                
                 <p>this.props.params.type: {this.props.match.params.type}</p>                
             </div>
         )
