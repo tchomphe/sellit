@@ -389,10 +389,22 @@ exports.updatePostInfo = function (req, res) {
 
         //define mongoose function settings
         var query = {_id: req.params.id};
-        var newObject = {$set: req.body};
+        var newObject ={
+          $set: {
+            title: req.body.title,
+            price: isNaN(req.body.price) ? 0 : req.body.price, //default to 0 if undefined, to avoid mongo error
+            address: req.body.address,
+            type: req.body.type,
+            description: req.body.description,
+          },
+          $push: {
+            images: { $each: uploadedImages }
+          }
+        };
         var settings = {new: true};
         console.log(req.body);
 
+        //save updated post settings
         Post.findByIdAndUpdate(query, newObject, settings, function(err, post) {
           varifyQuerySuccess(err, res, 'updateUserInfo');
           res.send('Got a PUT request at /post');
