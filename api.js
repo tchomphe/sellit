@@ -179,7 +179,7 @@ exports.createUser = function(req, res){
     nickname: req.body.nickname,
     phone: (phoneOK) ? req.body.phone : null,
   };
-  User.findOne({ email: req.body.email }, function (err, user) {    
+  User.findOne({ email: req.body.email }, function (err, user) {
     if(user){return res.status(400).send({ msg: 'The email address you have entered is already associated with another account.' });}
     //create new database entry from POST request's JSON object
     User.saveNewUser(newUser, function(err, user){
@@ -355,7 +355,7 @@ exports.updateUserInfo = function(req, res){
     for (let field in req.body){
         if (req.body[field] != ""){
             if(field === "password"){
-              newObject[field] = User.encryptPassword(req.body[field]);              
+              newObject[field] = User.encryptPassword(req.body[field]);
             }
           newObject[field] = req.body[field];
         }
@@ -376,6 +376,17 @@ exports.updatePostInfo = function (req, res) {
   if (req.isAuthenticated()){
     varifyRightfulOwner(req, function(isRightfulOwner){
       if (isRightfulOwner){
+        //define variable to hold newly uploaded images
+        var uploadedImages = [];
+
+        //check if there are files to be uploaded
+        if (req.files){
+          //push URL of newly uploaded images to variable (replacing *private directory* with *public path*)
+          (req.files).forEach(function(image) {
+            uploadedImages.push(image.path.replace('static/', '/assets/'));
+          }, this);
+        }
+
         //define mongoose function settings
         var query = {_id: req.params.id};
         var newObject = {$set: req.body};
