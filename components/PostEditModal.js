@@ -41,17 +41,27 @@ class PostEditModal extends React.Component{
     handleSubmit(event){
         event.preventDefault();
 
-        //Create formData object and populate it with values in form
-        var formData = new FormData(document.querySelector('#postEditForm'));
-        var formDataObj = {};
-        for(var pair of formData.entries()) {
-            formDataObj[pair[0]] = pair[1];
-            console.log(formDataObj);
-         }
+        //Create formData object and populate it with values in state
+        var formData = new FormData();
+        formData.append('title', this.state.title);
+        formData.append('address', this.state.address);
+        formData.append('price', this.state.price);
+        formData.append('description', this.state.description);
+
+        //Materialize select can't handle onChange.. so we have to grab value directly
+        formData.append('type', $('select').val());
+
+        //Finally, attach all files for uploading
+        var images = document.getElementById('postImages').files;
+        for (var key in images) {
+            //if item is a File object, append to formData
+            if (images.hasOwnProperty(key) && images[key] instanceof File)
+                formData.append(key, images[key]);
+        }
 
         Request
             .put('/post/' + this.state.id)
-            .send(formDataObj)
+            .send(formData)
             .end((err, res) => {
                 if(err){
                     this.setState({err: res.body.error});
