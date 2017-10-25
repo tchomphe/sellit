@@ -66,32 +66,31 @@ class UserRegistrationModal extends React.Component{
     render(){
         return(
             <div id="userRegistrationModal" className="modal">
-                <a className="modal-action modal-close btn-large modalButtonClose">x</a>
-                <div className="modal-content">
+                <a className="modal-action modal-close modalButtonClose"><i className="material-icons">close</i></a>
+                <div className="modal-content">                    
+                    <h5>Sign up</h5>
+                    <b>{this.state.err}</b>                       
+                    <form className="col s12" onSubmit={this.handleSubmit} >
                         <div className="row">
-                        <h5>Create Account</h5>
-                        <b>{this.state.err}</b>
-                        <form className="col s12 center" onSubmit={this.handleSubmit} >
-                            <div className="row">
-                                <InputField labelText="* Email" labelSuccess="right" labelError="not a valid email address"
-                                    id="email" type="email" onChange={this.handleInputChange} required="required" />
-                                <InputField fieldClass="col s6" labelText="* Password"
-                                    id="password" type="password" onChange={this.handleInputChange} required="required" />
-                                <InputField fieldClass="col s6" labelText="* Confirm Password" labelSuccess="match" labelError="mismatch"
-                                    id="confirm_password" type="password" required="required" />
-                                <InputField labelText="Name/Nickname"
-                                    id="nickname" onChange={this.handleInputChange} />
-                                <InputField labelText="Phone"
-                                    id="phone" onChange={this.handleInputChange} />
-                                {/* <input name="phone" type="tel" pattern="^\d{3}\d{3}\d{4}$" className="validate" /> */}
-                            </div>
-                            <button className="btn-large blue waves-effect waves-light" type="submit" name="action">Register
-                                {/* <i className="material-icons right">send</i> */}
-                            </button>
-                        </form>
-                    </div>
+                            <InputField labelText="* Email" labelSuccess="right" labelError="Enter a valid email address"
+                                id="email" type="email" onChange={this.handleInputChange} required="required" />
+                            <InputField fieldClass="col s6" labelText="* Password"
+                                id="password" type="password" onChange={this.handleInputChange} required="required" />
+                            <InputField fieldClass="col s6" labelText="* Confirm Password" labelSuccess="match" labelError="mismatch"
+                                id="confirm_password" type="password" required="required" />
+                            <InputField labelText="Name/Nickname"
+                                id="nickname" onChange={this.handleInputChange} />
+                            <InputField labelText="Phone"
+                                id="phone" onChange={this.handleInputChange} />
+                            {/* <input name="phone" type="tel" pattern="^\d{3}\d{3}\d{4}$" className="validate" /> */}
+                        </div>
+                        <div className="row">
+                            {/* <a className="modal-action modal-close btn red waves-effect waves-light" type="submit" name="action">Cancel</a> */}
+                            <button className="btn blue waves-effect waves-light" type="submit" name="action">Register</button>
+                        </div>
+                    </form>
                 </div>
-            </div>
+                </div>            
         );
     }
 }

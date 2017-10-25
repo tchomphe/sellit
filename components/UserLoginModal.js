@@ -15,6 +15,9 @@ class UserLoginModal extends React.Component{
         this.handleUserChange = this.handleUserChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
     }
+    componentDidMount(){
+        // $('.tooltipped').tooltip({delay: 50});        
+    }
     handleUserChange(event){
         this.setState({email: event.target.value});
         // this.setState({password: event.target.value});
@@ -30,6 +33,7 @@ class UserLoginModal extends React.Component{
             .end((err, res) => {
                 if(err){
                     this.setState({err: res.body.error});
+                    // Materialize.toast(`${res.body.error}`, 5000) // 4000 is the duration of the toast                    
                     // alert(JSON.stringify(this.state.err));
 
                 } else {
@@ -47,25 +51,27 @@ class UserLoginModal extends React.Component{
                 }
             });
     }
+    close(event){
+        event.preventDefault();
+        $('#userLoginModal').modal('close');        
+    }
     render(){
         return(
             <div id="userLoginModal" className="modal">
-                <a className="modal-action modal-close btn-large modalButtonClose">x</a>
+                <a className="modal-action modal-close modalButtonClose"><i className="material-icons">close</i></a>
                 <div className="modal-content">
-                    <h5>Login</h5>
+                    <h5>Sign in</h5>
                     <div className="card-content red-text">
                         {this.state.err}
                     </div>
-                    <form className="row center" onSubmit={this.handleSubmit}>
-                        <InputField labelText="Email" labelSuccess="right" labelError="wrong"
+                    <form className="row" onSubmit={this.handleSubmit}>
+                        <InputField labelText="Email" labelSuccess={(this.state.err != "") ? this.state.err : ""} labelError={(this.state.err != "") ? this.state.err : "Invalid"}
                             id="email" type="email" onChange={this.handleUserChange} />
                         <InputField labelText="Password"
-                            id="password" type="password" onChange={this.handlePasswordChange} />                        
-                        <button className="btn-large blue waves-effect waves-light" type="submit" name="action">Login
-                            <i className="material-icons right">send</i>
-                        </button>
+                            id="password" type="password" onChange={this.handlePasswordChange} />                                                
+                        <button className="btn blue waves-effect waves-light" type="submit" name="action">Sign in</button>                        
                     </form>
-                    <Link to="/forgot">Forgot Password</Link>                    
+                    <Link to="/forgot" onClick={this.close}>Forgot Password?</Link>                    
                 </div>
             </div>
         )

@@ -12,8 +12,16 @@ body {
     max-width: 100%;
 }
 
-#container .container .row {
+/* #container .container .row {
     margin: 0px;
+} */
+
+.side-nav .collapsible-header {
+    padding-left: 32px;
+}
+
+.side-nav .collapsible-body li {
+    padding-left: 52px;
 }
 
 .side-nav li:hover {
@@ -26,7 +34,7 @@ nav {
     z-index: 99;
     left: 0px;
     top: 0px;
-    box-shadow: 0px 0px 0px 0px;
+    /* box-shadow: 0px 0px 0px 0px; */
 }
 
 /* .side-nav {    
@@ -52,6 +60,7 @@ nav {
 
 nav ul li:hover {    
     background-color: #363649;
+    /* background-color: none;  */
 }
 
 nav .brand-logo {
@@ -68,24 +77,24 @@ nav .brand-logo {
     padding: 15px;
 }
 
-.dropdown-content {
+.dropdown-content {    
     background-color: #FFFFFF;  
-    margin: 0;
-    display: none;
+    /* margin: 0; */
+    /* display: none; */
     min-width: 300px; /* Changed this to accomodate content width */
     max-height: auto;
     margin-left: -1px; /* Add this to keep dropdown in line with edge of navbar */
     overflow: hidden; /* Changed this from overflow-y:auto; to overflow:hidden; */
-    opacity: 0;
+    /* opacity: 0; */
     position: absolute;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     z-index: 1;
     will-change: width, height;
 }
 
 .dropdown-content li>a, .dropdown-content li>span {
     font-size: 16px;
-    color: #333;
+    color: #000;
     display: block;
     line-height: 22px;
     padding: 14px 16px;
@@ -122,19 +131,24 @@ nav .input-field{
     margin-left: 15px;
 }
  /* label color */
- .input-field label {
+ /* .input-field label {
     color: #000;
-  }
+  } */
 
 /* data-sucess color */
 input:not([type]).valid+label:after, input:not([type]):focus.valid+label:after, input[type=text].valid+label:after, input[type=text]:focus.valid+label:after, input[type=password].valid+label:after, input[type=password]:focus.valid+label:after, input[type=email].valid+label:after, input[type=email]:focus.valid+label:after, input[type=url].valid+label:after, input[type=url]:focus.valid+label:after, input[type=time].valid+label:after, input[type=time]:focus.valid+label:after, input[type=date].valid+label:after, input[type=date]:focus.valid+label:after, input[type=datetime].valid+label:after, input[type=datetime]:focus.valid+label:after, input[type=datetime-local].valid+label:after, input[type=datetime-local]:focus.valid+label:after, input[type=tel].valid+label:after, input[type=tel]:focus.valid+label:after, input[type=number].valid+label:after, input[type=number]:focus.valid+label:after, input[type=search].valid+label:after, input[type=search]:focus.valid+label:after, textarea.materialize-textarea.valid+label:after, textarea.materialize-textarea:focus.valid+label:after {
     content: attr(data-success);
-    color: #42A5F5;
+    color: #F44336;
     opacity: 1;
 }
 
 /* email */ 
 .input-field input[type=email]:focus + label {
+    color: #42A5F5;
+}
+
+/* email */ 
+.input-field input[type=text]:focus + label {
     color: #42A5F5;
 }
 
@@ -145,13 +159,18 @@ input:not([type]).valid+label:after, input:not([type]):focus.valid+label:after, 
 
 /* valid color */
 .input-field input[type=email].valid {
-    border-bottom: 1px solid #555;
-    box-shadow: 0 1px 0 0 #eee;
+    border-bottom: 1px solid #9e9e9e;
+    /* box-shadow: 0 1px 0 0 #9e9e9e; */
+    box-shadow: none;
+}
+.input-field input[type=text].valid {
+    border-bottom: 1px solid #9e9e9e;
+    box-shadow: none;
 }
 
 .input-field input[type=password].valid {
-    border-bottom: 1px solid #555;
-    box-shadow: 0 1px 0 0 #eee;
+    border-bottom: 1px solid #9e9e9e;
+    box-shadow: none;
 }
 
 /* invalid color */
@@ -161,26 +180,26 @@ input:not([type]).valid+label:after, input:not([type]):focus.valid+label:after, 
 } */
 
 /* label focus color */
-.input-field input[type=text]:focus + label {
+/* .input-field input[type=text]:focus + label {
     color: #4285f4;
-}
+} */
 
 /* label underline focus color */
-.input-field input[type=text]:focus {
+/* .input-field input[type=text]:focus {
     border-bottom: 1px solid #4285f4;
     box-shadow: 0 1px 0 0 #4285f4;
-}
+} */
 
 /* valid color */
-.input-field input[type=text].valid {
+/* .input-field input[type=text].valid {
     border-bottom: 1px solid #4285f4;
     box-shadow: 0 1px 0 0 #4285f4;
-}
+} */
 /* invalid color */
-.input-field input[type=text].invalid {
+/* .input-field input[type=text].invalid {
     border-bottom: 1px solid #000;
     box-shadow: 0 1px 0 0 #000;
-}
+} */
 /* icon prefix focus color */
 .input-field .prefix.active {
     color: #4285f4;
@@ -320,18 +339,15 @@ select:-webkit-autofill:focus {
     background-color: #2199e8;
     color: #fefefe;
 }
-
+button {
+    margin-left: 10px;
+}
 .btn {
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 .btn-large{
-    border-radius: 5px;
-}
-
-.login-button {
-    width: 100%;
-    font-size: 17px;
+    border-radius: 3px;
 }
 
 .scrollButton {
@@ -367,17 +383,10 @@ select:-webkit-autofill:focus {
     right: 0px;
     top: 0px;
     height: 45px;
-    padding: 8px 22px 0px 24px;
-    color: #42A5F5;
-    line-height: 26px;
-    font-size: 22px;
-    text-transform: none;
-    /*border: 1px solid #ffffff;*/
-    border-radius: 0px 0px 0px 0px;
-    border-right: none;
-    border-top: none;
-    box-shadow: none;
-    background-color: inherit;
+    padding: 15px 10px 0px 0px;
+    color: #000;
+    line-height: 10px;    
+    text-transform: none;    
 }
 
 /* set modal window's height and width */
@@ -387,7 +396,7 @@ select:-webkit-autofill:focus {
 }
 
 .modalButtonClose:hover {
-    background-color: #e1e1e1;
+    /* background-color: #e1e1e1; */
     box-shadow: none;
 }
 

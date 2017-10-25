@@ -14,7 +14,8 @@ class NavigationHeader extends React.Component{
 
     componentDidMount(){
         $(".button-collapse").sideNav(); 
-        $(".dropdown-button").dropdown();         
+        $(".dropdown-button").dropdown();    
+        $('.collapsible').collapsible();        
     }
 
     handleOnClick(){        
@@ -58,6 +59,20 @@ class NavigationHeader extends React.Component{
                                     <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
                                 </ul>
                                 <ul className="side-nav" id="mobile-demo">
+                                    <li><img src="/static/img/logo_small.png"/></li>
+                                    <ul className="collapsible collapsible-accordion">
+                                        <li>
+                                            <a className="collapsible-header waves-effect">Category 
+                                                {/* <i className="material-icons light-blue-text">expand_more</i>                                                 */}
+                                            </a>
+                                            <div className="collapsible-body">
+                                                <ul>
+                                                    <li><Link to="/posts/Phone">Phones</Link></li>
+                                                    <li><Link to="/posts/Laptop">Laptop</Link></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
                                     {/* <li><i className="large material-icons">list</i></li> */}
                                     <li><Link to="/">All posts</Link></li>
                                     {/* <li><i className="large material-icons">list</i></li> */}
@@ -72,30 +87,42 @@ class NavigationHeader extends React.Component{
                                 </ul>
                             </div>;
         var defaultMenu =   <div>
-                                {/* <!-- Dropdown Structure --> */}
-                                <ul id="dropdown1" className="dropdown-content" styles={{position: 'absolute', top: '64px', left: '661.547px', opacity: '1', display: 'block'}}>
+                                {/* <!-- Dropdown Structure --> */} 
+                                <ul id="dropdown1" className="dropdown-content">
                                     <li><Link to="/posts/Phone">Phones</Link></li>
                                     <li><Link to="/posts/Laptop">Laptops</Link></li>                                    
-                                </ul>
+                                </ul>                                
                                 <ul className="right hide-on-med-and-down">                                                                    
-                                    {/* <!-- Dropdown Trigger --> */}                                    
+                                    {/* <!-- Dropdown Trigger --> */}
                                     <li><a className="dropdown-button" href="#!" data-activates="dropdown1">Category</a></li>
-                                    {/* <li><i className="material-icons">arrow_drop_down</i></li> */}
+                                    {/* <li><i className="small material-icons">arrow_drop_down</i></li> */}
                                     {/* <li><i className="large material-icons">assignment</i></li> */}
                                     <li><a href="#userRegistrationModal">Sign up</a></li>
                                     {/* <li><i className="large material-icons">exit_to_app</i></li> */}
                                     <li><a href="#userLoginModal">Sign in</a></li>
-                                    <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
+                                    <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>                                    
                                 </ul>
-                                <ul className="side-nav" id="mobile-demo">
-                                    <li><Link to="/posts/Phone">Phones</Link></li>
-                                    <li><Link to="/posts/Laptop">Laptop</Link></li>                                
+                                <ul className="side-nav" id="mobile-demo">                                    
+                                    <li><img src="/static/img/logo_small.png"/></li>
+                                    <ul className="collapsible collapsible-accordion">
+                                        <li>
+                                            <a className="collapsible-header waves-effect">Category 
+                                                {/* <i className="material-icons light-blue-text">expand_more</i>                                                 */}
+                                            </a>
+                                            <div className="collapsible-body">
+                                                <ul>
+                                                    <li><Link to="/posts/Phone">Phones</Link></li>
+                                                    <li><Link to="/posts/Laptop">Laptop</Link></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
                                     {/* <li><i className="large material-icons">assignment</i></li> */}
                                     <li><a href="#userRegistrationModal">Sign up</a></li>
                                     {/* <li><i className="large material-icons">exit_to_app</i></li> */}
                                     <li><a href="#userLoginModal">Sign in</a></li>
-                                    <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
-                                </ul>
+                                    <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>                                    
+                                </ul>                                                                                                    
                             </div>;
 
 
