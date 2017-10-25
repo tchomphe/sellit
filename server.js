@@ -108,7 +108,7 @@ app.post('/send', api.send);
 
 // PUT requests
 app.put('/user', api.updateUserInfo);
-app.put('/post/:id', api.updatePostInfo);
+app.put('/post/:id', upload.any(), api.updatePostInfo);
 
 // DELETE requests
 app.delete('/user/:id', api.deleteUser);
