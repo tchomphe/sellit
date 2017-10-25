@@ -65,9 +65,9 @@ class PostEditModal extends React.Component{
 
     render(){
         //map all post images into HTML elements
-        var postImages = "";
+        var postImagesHTML = "";
         if (this.state.pictures)
-            postImages = this.state.pictures.map((pictureURL, index) => <img className="form-items-gallery-picture" src={pictureURL} alt="Post Picture" />);
+            postImagesHTML = this.state.pictures.map((pictureURL, index) => <img className="form-items-gallery-picture" src={pictureURL} alt="Post Picture" />);
 
         return(
             <div id="postEditModal" className="modal">
@@ -100,13 +100,13 @@ class PostEditModal extends React.Component{
                                     <div className="col s12 file-field input-field">
                                         <div className="btn">
                                             <span>Browse</span>
-                                            <input type="file" name="postImages" multiple/>
+                                            <input id="postImages" type="file" name="postImages" multiple/>
                                         </div>
                                         <div className="file-path-wrapper">
                                             <input className="file-path validate" type="text" placeholder="Upload new pictures" />
                                         </div>
                                     </div>
-                                    {postImages}
+                                    {postImagesHTML}
                                 </div>
                             </div>
                             <div className="row">
