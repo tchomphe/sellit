@@ -212,6 +212,7 @@ exports.createPost = function(req, res){
       ownerID: req.user._id,
       title: req.body.title,
       address: req.body.address,
+      price: isNaN(req.body.price) ? 0 : req.body.price, //default to 0 if undefined, to avoid mongo error
       type: req.body.type,
       description: req.body.description,
       thumbnail: thumbnail,
