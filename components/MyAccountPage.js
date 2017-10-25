@@ -72,7 +72,7 @@ export default class MyAccountPage extends React.Component{
                                     <InputField labelText="New Password" fieldClass="col s6" id="newPassword" type="password" onChange={this.handleInputChange} />
                                     <InputField labelText="Confirm New Password" fieldClass="col s6" id="confirmNewPassword" type="password" onChange={this.handleInputChange} />
                                     <InputField labelText="* Password" id="password" type="password" onChange={this.handleInputChange} />
-                                    <button className="btn waves-effect blue white-text darken-text-2" type="submit" name="action">
+                                    <button className="btn-large waves-effect blue white-text darken-text-2" type="submit" name="action">
                                         Save Changes
                                     </button>
                                 </div>

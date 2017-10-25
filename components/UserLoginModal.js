@@ -60,8 +60,8 @@ class UserLoginModal extends React.Component{
                         <InputField labelText="Email" labelSuccess="right" labelError="wrong"
                             id="email" type="email" onChange={this.handleUserChange} />
                         <InputField labelText="Password"
-                            id="password" type="password" onChange={this.handlePasswordChange} />
-                        <button className="btn-large waves-effect waves-light" type="submit" name="action">Login
+                            id="password" type="password" onChange={this.handlePasswordChange} />                        
+                        <button className="btn-large blue waves-effect waves-light" type="submit" name="action">Login
                             <i className="material-icons right">send</i>
                         </button>
                     </form>

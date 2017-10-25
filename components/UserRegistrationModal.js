@@ -85,7 +85,7 @@ class UserRegistrationModal extends React.Component{
                                     id="phone" onChange={this.handleInputChange} />
                                 {/* <input name="phone" type="tel" pattern="^\d{3}\d{3}\d{4}$" className="validate" /> */}
                             </div>
-                            <button className="btn-large waves-effect waves-light" type="submit" name="action">Register
+                            <button className="btn-large blue waves-effect waves-light" type="submit" name="action">Register
                                 {/* <i className="material-icons right">send</i> */}
                             </button>
                         </form>

@@ -5,74 +5,118 @@ import { Link, withRouter } from 'react-router-dom';
 class NavigationHeader extends React.Component{
     constructor(props){
         super(props);
-
         this.state={
             searchedPosts: [],
             customSearchBar: "custom_search_invisible",
         }
         this.handleOnClick = this.handleOnClick.bind(this);
-    }    
-    handleOnClick(){
-        // this.setState({customSearchBar: 'custom_search'});
+    }
+
+    componentDidMount(){
+        $(".button-collapse").sideNav(); 
+        $(".dropdown-button").dropdown();         
+    }
+
+    handleOnClick(){        
         if (this.state.customSearchBar === "custom_search_invisible"){
             this.setState({customSearchBar: "custom_search"});
         } else {
             this.setState({customSearchBar: "custom_search_invisible"});
         }
+        $('.button-collapse').sideNav('hide');
+        
+
     }
+
     handleSubmit(e){
         e.preventDefault();
-
         //TODO: pass more variables, ex: /?query=121&type=Bob
         //redirect to SearchResults and pass the query
         this.props.history.push('/search/' + this.refs.search.value);
     }
 
     render(){        
-        var loggedInMenu =  <ul className="right hide-on-med-and-down">                            
-                                <li><i className="large material-icons">list</i></li>
-                                <li><Link to="/">ALL POST</Link></li>
-                                <li><i className="large material-icons">list</i></li>
-                                <li><Link to="/my-posts">MY POST</Link></li>
-                                <li><i className="large material-icons">account_circle</i></li>
-                                <li><Link to="/my-account">MY ACCOUNT</Link></li>
-                                <li><i className="large material-icons">create</i></li>
-                                <li><Link to="/create-post">CREATE POST</Link></li>
-                                <li><i className="large material-icons">exit_to_app</i></li>
-                                <li><a href="/logout">LOGOUT</a></li>
-                                <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
-                            </ul>;
-        var defaultMenu =   <ul className="right hide-on-med-and-down">                                
-                                <li><Link to="/posts/Phone">Phones</Link></li>
-                                <li><Link to="/posts/Laptop">Laptops</Link></li>                                
-                                <li><i className="large material-icons">assignment</i></li>
-                                <li><a href="#userRegistrationModal">SIGN UP</a></li>
-                                <li><i className="large material-icons">exit_to_app</i></li>
-                                <li><a href="#userLoginModal">LOGIN</a></li>
-                                <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
-                            </ul>;
+        var loggedInMenu =  <div>
+                                {/* <!-- Dropdown Structure --> */}
+                                <ul id="dropdown1" className="dropdown-content">
+                                    <li><Link to="/posts/Phone">Phones</Link></li>
+                                    <li><Link to="/posts/Laptop">Laptops</Link></li>                                    
+                                </ul>
+                                <ul className="right hide-on-med-and-down">                                                                    
+                                    {/* <!-- Dropdown Trigger --> */}          
+                                    <li><a className="dropdown-button" href="#!" data-activates="dropdown1">Category</a></li>                          
+                                    {/* <li><i className="large material-icons">list</i></li> */}
+                                    <li><Link to="/">All posts</Link></li>
+                                    {/* <li><i className="large material-icons">list</i></li> */}
+                                    <li><Link to="/my-posts">My posts</Link></li>
+                                    {/* <li><i className="large material-icons">account_circle</i></li> */}
+                                    <li><Link to="/my-account">My account</Link></li>
+                                    {/* <li><i className="large material-icons">create</i></li> */}
+                                    <li><Link to="/create-post">Create post</Link></li>
+                                    {/* <li><i className="large material-icons">exit_to_app</i></li> */}
+                                    <li><a href="/logout">Logout</a></li>
+                                    <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
+                                </ul>
+                                <ul className="side-nav" id="mobile-demo">
+                                    {/* <li><i className="large material-icons">list</i></li> */}
+                                    <li><Link to="/">All posts</Link></li>
+                                    {/* <li><i className="large material-icons">list</i></li> */}
+                                    <li><Link to="/my-posts">My posts</Link></li>
+                                    {/* <li><i className="large material-icons">account_circle</i></li> */}
+                                    <li><Link to="/my-account">My account</Link></li>
+                                    {/* <li><i className="large material-icons">create</i></li> */}
+                                    <li><Link to="/create-post">Create post</Link></li>
+                                    {/* <li><i className="large material-icons">exit_to_app</i></li> */}
+                                    <li><a href="/logout">Logout</a></li>
+                                    <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
+                                </ul>
+                            </div>;
+        var defaultMenu =   <div>
+                                {/* <!-- Dropdown Structure --> */}
+                                <ul id="dropdown1" className="dropdown-content" styles={{position: 'absolute', top: '64px', left: '661.547px', opacity: '1', display: 'block'}}>
+                                    <li><Link to="/posts/Phone">Phones</Link></li>
+                                    <li><Link to="/posts/Laptop">Laptops</Link></li>                                    
+                                </ul>
+                                <ul className="right hide-on-med-and-down">                                                                    
+                                    {/* <!-- Dropdown Trigger --> */}                                    
+                                    <li><a className="dropdown-button" href="#!" data-activates="dropdown1">Category</a></li>
+                                    {/* <li><i className="material-icons">arrow_drop_down</i></li> */}
+                                    {/* <li><i className="large material-icons">assignment</i></li> */}
+                                    <li><a href="#userRegistrationModal">Sign up</a></li>
+                                    {/* <li><i className="large material-icons">exit_to_app</i></li> */}
+                                    <li><a href="#userLoginModal">Sign in</a></li>
+                                    <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
+                                </ul>
+                                <ul className="side-nav" id="mobile-demo">
+                                    <li><Link to="/posts/Phone">Phones</Link></li>
+                                    <li><Link to="/posts/Laptop">Laptop</Link></li>                                
+                                    {/* <li><i className="large material-icons">assignment</i></li> */}
+                                    <li><a href="#userRegistrationModal">Sign up</a></li>
+                                    {/* <li><i className="large material-icons">exit_to_app</i></li> */}
+                                    <li><a href="#userLoginModal">Sign in</a></li>
+                                    <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
+                                </ul>
+                            </div>;
+
 
         //determine whether navigation menu should display a logged in menu, or not
         var navMenu = (this.props.authorizedUser == true) ? loggedInMenu : defaultMenu;
 
-        return(            
-            <nav className="left-align">                
-                <div className="nav-wrapper">
-                    <Link to="/" className="brand-logo left"><img src="/assets/img/logo_small.png" /></Link>
-                    {/* <form onSubmit={(e) => (this.handleSubmit(e))} >
-                         <div className="input-field">
-                            <input id="search" type="search" ref="search" />
-                            <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
-                        </div>
-                    </form> */}
-                    {navMenu}
+        return(
+            <div className="navbar-fixed">
+            <nav>
+                <div className="nav-wrapper">                    
+                    <Link to="/" className="brand-logo">Tolist</Link>
+                    <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
+                    {navMenu}  
                 </div>
                 <div className={this.state.customSearchBar}>
                     <form onSubmit={(e) => (this.handleSubmit(e))}>
                         <input id="search" type="search" ref="search" className="search_bar" placeholder=" " />
                     </form>
-                </div>
-            </nav>
+                </div>                            
+          </nav>          
+          </div>            
         );
     }
 }

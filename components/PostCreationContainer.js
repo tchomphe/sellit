@@ -93,7 +93,7 @@ class PostCreationContainer extends React.Component{
                 </div>
                 <div className="row center">
                     <div className="s12">
-                        <button className="btn waves-effect blue white-text darken-text-2" type="submit" name="action">Create</button>
+                        <button className="btn-large waves-effect blue white-text darken-text-2" type="submit" name="action">Create</button>
                     </div>
                 </div>
                 </form>
