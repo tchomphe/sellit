@@ -71,7 +71,7 @@ class UserLoginModal extends React.Component{
                             id="password" type="password" onChange={this.handlePasswordChange} />                                                
                         <button className="btn blue waves-effect waves-light" type="submit" name="action">Sign in</button>                        
                     </form>
-                    <Link to="/forgot" onClick={this.close}>Forgot Password?</Link>                    
+                    <Link to="/forgot">Forgot Password?</Link>                    
                 </div>
             </div>
         )

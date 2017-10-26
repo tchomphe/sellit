@@ -25,12 +25,16 @@ class Forgot extends React.Component{
     }
     render(){        
         return(
-            <div className = "row">
-                <form className="col s12" onSubmit={e => this.onSubmit(e)} >                    
-                    <label>Username: <input name="username" type="text" ref="username" placeholder="Enter your username"/></label>
-                    <button className = "btn-large waves-effect waves-light" type="submit"> Send confirmation </button>
-                </form>                
-            </div>
+            // <div className="col s6">
+                <div className="card-panel" style={{width: '50%'}}>
+                    <div className = "row">
+                        <form onSubmit={(e) => this.onSubmit(e)} >                    
+                            <label>Email: <input name="username" type="text" ref="username" placeholder="Enter your username"/></label>
+                            <button className="btn blue waves-effect waves-light" type="submit">Send confirmation</button>
+                        </form>                
+                    </div>
+                </div>
+            // </div>
         )
     }
 }

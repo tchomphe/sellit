@@ -60,7 +60,7 @@ export default class MainPage extends React.Component {
         if (this.state.page == 0)
             paginationButton = <h4>Reached end of posts.</h4>;
         else
-            paginationButton = <a onClick={this.handlePagination} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
+            paginationButton = <a onClick={this.handlePagination} className="btn-floating waves-effect waves-light blue">
                                     <i className="material-icons">expand_more</i></a>;
 
         return(

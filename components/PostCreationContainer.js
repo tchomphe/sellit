@@ -60,10 +60,10 @@ class PostCreationContainer extends React.Component{
         console.log('PostCreationContainer rendering... ');
 
         return(
-            <div className="container">
-                <h6 className="profilePageHeader">Create-Post</h6>
-                <div className="card-content red-text">{this.state.err}</div>
+            <div className="container">                
                 <form onSubmit={this.handleSubmit} >
+                <h5 className="profilePageHeader">Create-post</h5>
+                <div className="card-content red-text">{this.state.err}</div>
                 <div className="row">
                     <InputField fieldClass="col s6" labelText="* Title"
                         id="title" onChange={this.handleInputChange} required="required" />
@@ -93,7 +93,7 @@ class PostCreationContainer extends React.Component{
                 </div>
                 <div className="row center">
                     <div className="s12">
-                        <button className="btn-large waves-effect blue white-text darken-text-2" type="submit" name="action">Create</button>
+                        <button className="btn waves-effect blue white-text darken-text-2" type="submit" name="action">Create</button>
                     </div>
                 </div>
                 </form>

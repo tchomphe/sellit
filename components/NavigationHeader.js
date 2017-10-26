@@ -18,9 +18,11 @@ class NavigationHeader extends React.Component{
         $('.collapsible').collapsible();        
     }
 
-    handleOnClick(){        
+    handleOnClick(){
         if (this.state.customSearchBar === "custom_search_invisible"){
             this.setState({customSearchBar: "custom_search"});
+            $("#search").addClass("active");   
+            
         } else {
             this.setState({customSearchBar: "custom_search_invisible"});
         }
@@ -103,11 +105,11 @@ class NavigationHeader extends React.Component{
                                     <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>                                    
                                 </ul>
                                 <ul className="side-nav" id="mobile-demo">                                    
-                                    <li><img src="/static/img/logo_small.png"/></li>
+                                    <li><img src="/static/img/logo_small.png"/></li>                                        
                                     <ul className="collapsible collapsible-accordion">
                                         <li>
                                             <a className="collapsible-header waves-effect">Category 
-                                                {/* <i className="material-icons light-blue-text">expand_more</i>                                                 */}
+                                            {/* <i className="material-icons light-blue-text">expand_more</i>                                                 */}
                                             </a>
                                             <div className="collapsible-body">
                                                 <ul>
@@ -139,7 +141,7 @@ class NavigationHeader extends React.Component{
                 </div>
                 <div className={this.state.customSearchBar}>
                     <form onSubmit={(e) => (this.handleSubmit(e))}>
-                        <input id="search" type="search" ref="search" className="search_bar" placeholder=" " />
+                        <input id="search" type="search" ref="search" className="search_bar" style={{'border-bottom': 'none', 'box-shadow': 'none'}} placeholder="" />
                     </form>
                 </div>                            
           </nav>          

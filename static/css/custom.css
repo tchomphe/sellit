@@ -8,7 +8,7 @@ body {
 }
 
 #container .container {
-    width: 100%;
+    width: 95%;
     max-width: 100%;
 }
 
@@ -16,20 +16,24 @@ body {
     margin: 0px;
 } */
 
-.side-nav .collapsible-header {
+/* .side-nav .collapsible-header {
     padding-left: 32px;
-}
+} */
 
-.side-nav .collapsible-body li {
-    padding-left: 52px;
+/* .side-nav .collapsible-body li {
+    padding-left: 50px;
+} */
+
+.side-nav li a {
+    padding-left: 17px;
 }
 
 .side-nav li:hover {
-    background-color: #eee;    
+    background-color: #E6E6E6;
 }
 
 nav {    
-    background-color: #000;
+    background-color: #232323;
     width: 100%;
     z-index: 99;
     left: 0px;
@@ -92,6 +96,10 @@ nav .brand-logo {
     will-change: width, height;
 }
 
+.dropdown-content :active {
+    top: 50px;
+}
+
 .dropdown-content li>a, .dropdown-content li>span {
     font-size: 16px;
     color: #000;
@@ -128,7 +136,7 @@ nav .input-field{
 
 .profilePageHeader {
     margin-top: 90px;
-    margin-left: 15px;
+    /* margin-left: 15px; */
 }
  /* label color */
  /* .input-field label {
@@ -259,15 +267,11 @@ select:-webkit-autofill:focus {
     padding-left: 10px;
 }
 
-.z-depth-1, .card {
-     box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0;
-}
-
 .card-panel {
     -webkit-transition: -webkit-box-shadow .25s;
     transition: -webkit-box-shadow .25s;
     transition: box-shadow .25s;
-    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;    
     padding: 24px;
     margin: .5rem 0 1rem 0;
     border-radius: 2px;
@@ -276,37 +280,39 @@ select:-webkit-autofill:focus {
 
 .card {
     width: 33%;
-    display: inline-block;
-    /* margin: 15px; */
-    /*border: 1px solid#eeeeee;*/
-    border-radius: 0;
+    display: inline-block;   
+    /* border-radius: 0; */
     background-color: #fafafa;
+}
+
+.z-depth-1, .card {
+    box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0;
 }
 
 .card a, .card a img {
     width: 75%;
 }
 
-.card .card-image img {
+/* .card .card-image img {
      border-radius: 0 0 0 0;
-}
+} */
 
-.card .card-content{
+/* .card .card-content{
     color: #5a5757;
     font-size: 13px;
-}
+} */
 
-.card .card-title {
+/* .card .card-title {
     color: #000000;
     font-size: 14px;
     font-weight: 400;
-}
+} */
 
-.card .card-content .card-title {
+/* .card .card-content .card-title {
     display: block;
     line-height: 15px;
     margin-bottom: 8px;
-}
+} */
 
 .banner {
     height: 400px;
@@ -322,7 +328,7 @@ select:-webkit-autofill:focus {
     left: 30px;
 }
 
-.btn-blue {
+/* .btn-blue {
     display: inline-block;
     text-align: center;
     line-height: 1;
@@ -338,7 +344,7 @@ select:-webkit-autofill:focus {
     font-size: 0.9rem;
     background-color: #2199e8;
     color: #fefefe;
-}
+} */
 button {
     margin-left: 10px;
 }
@@ -372,12 +378,13 @@ button {
     height: 40px;
     line-height: 40px;
     padding: 0;
-    background-color: lightcoral;
+    background-color: #4285f4;
     border-radius: 50%;
     transition: .3s;
     cursor: pointer;
     vertical-align: middle;
 }
+
 .modalButtonClose {
     position: absolute;
     right: 0px;
