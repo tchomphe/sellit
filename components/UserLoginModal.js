@@ -23,10 +23,11 @@ class UserLoginModal extends React.Component{
         this.setState({ [event.target.name]: event.target.value });
     }
 
-    // close(event){
-    //     event.preventDefault();
-    //     $('#userLoginModal').modal('close');
-    // }
+    close(){
+        event.preventDefault();
+        $('#userLoginModal').modal('close');
+        this.props.history.push('/forgot')
+    }
 
     handleSubmit(event){
         event.preventDefault();
@@ -72,11 +73,10 @@ class UserLoginModal extends React.Component{
                             id="password" type="password" onChange={this.handleInputChange} required="" aria-required="true" />
                         <button className="btn blue waves-effect waves-light" type="submit" name="action">Sign in</button>
                     </form>
-                    <Link to="/forgot">Forgot Password?</Link>                    
+                    <Link onClick={this.close} to="/forgot">Forgot Password?</Link>                    
                 </div>
-
             </div>
         )
     }
 }
-export default UserLoginModal;
+export default withRouter(UserLoginModal);

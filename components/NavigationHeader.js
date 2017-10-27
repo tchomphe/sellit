@@ -27,8 +27,6 @@ class NavigationHeader extends React.Component{
             this.setState({customSearchBar: "custom_search_invisible"});
         }
         $('.button-collapse').sideNav('hide');
-        
-
     }
 
     handleSubmit(e){
@@ -126,8 +124,6 @@ class NavigationHeader extends React.Component{
                                     <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>                                    
                                 </ul>                                                                                                    
                             </div>;
-
-
         //determine whether navigation menu should display a logged in menu, or not
         var navMenu = (this.props.authorizedUser == true) ? loggedInMenu : defaultMenu;
 
@@ -149,5 +145,4 @@ class NavigationHeader extends React.Component{
         );
     }
 }
-
 export default withRouter(NavigationHeader);

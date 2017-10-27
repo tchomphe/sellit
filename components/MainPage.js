@@ -20,6 +20,7 @@ export default class MainPage extends React.Component {
     componentDidMount(){
         //send request to initialize post listings
         this.requestAllPosts(1);
+        $('.modal').modal();
     }
 
     requestAllPosts(currentPage){

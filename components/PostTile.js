@@ -32,7 +32,7 @@ export default class PostTile extends React.Component {
                     </a>
                 </div>
                 <div className="card-content">
-                    <span className="card-title">{this.props.post.title}</span>
+                    <span className="card-title truncate">{this.props.post.title}</span>
                     <p className="card-text"><i className="tiny material-icons">location_on</i> {this.props.post.address}</p>
                 </div>
                 <PostModal

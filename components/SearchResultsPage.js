@@ -25,6 +25,7 @@ export default class SearchResultsPage extends React.Component{
     componentDidMount(){
         //send request to initialize post listings
         this.searchPosts(this.state.query, this.state.page);
+        $('.modal').modal();
     }
 
     searchPosts(query, currentPage){
