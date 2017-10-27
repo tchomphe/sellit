@@ -15,17 +15,12 @@ class Reset extends React.Component{
     }
 
     componentDidMount(){
+        $('.modal').modal();                
         $('.tooltipped').tooltip({delay: 50});        
     }
 
     handleInputChange(event){
-        const target = event.target;
-        const name = target.name;
-        const value = target.value;
-
-        this.setState({
-            [name]: value
-        });
+        this.setState({ [event.target.name]: event.target.value });
     }
 
     onSubmit(e){
@@ -43,8 +38,7 @@ class Reset extends React.Component{
                 }
             });            
         } else {
-            alert(`Password don't match`);
-            return;
+            $("#resetContainer #confirmPassword").removeClass("valid").addClass("invalid");
         }        
     }
 
@@ -52,15 +46,20 @@ class Reset extends React.Component{
         return(
             <div className="col s12 m7 center">
                 <div className="card large">
-                    <span className="card-title">Reset your password</span>
-                    <div className="card-content left-align">
-                        <form className="col s12" onSubmit={e => this.onSubmit(e)} >                    
-                            <label>New password: <input name="password" type="password" ref="password" value={this.state.password} onChange={this.handleInputChange} placeholder="Enter your new password"/></label>
-                            <label>Confirm new password: <input name="confirmPassword" type="password" ref="confirmPassword" value={this.state.confirmPassword} onChange={this.handleInputChange} placeholder="Confirm your new password"/></label>
-                            <div className="card-action right-align">
-                                <button className = "btn blue waves-effect waves-light" type="submit"> Reset </button>
-                            </div>
-                        </form>
+                    <div id="resetContainer" className="container">                    
+                        <div className="card-content left-align">                    
+                            <form className="col s12" onSubmit={e => this.onSubmit(e)} >
+                                <span className="card-title">Reset your password</span>
+                                <p>Enter your new password:</p>
+                                <InputField labelText="Enter new password"
+                                    id="password" type="password" onChange={this.handleInputChange} required="" aria-required="true" />
+                                <InputField labelText="Re-enter new password" labelSuccess="" labelError={(this.state.err)?this.state.err:"Password do not match!"}
+                                    id="confirmPassword" type="password" onChange={this.handleInputChange} required="" aria-required="true" />    
+                                <div className="card-action right-align">
+                                    <button className="btn blue waves-effect waves-light" type="submit">Reset</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
