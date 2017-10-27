@@ -66,9 +66,10 @@ class PostEditModal extends React.Component{
                 if(err){
                     this.setState({err: res.body.error});
                 } else {
-                    this.setState({err: ""});
+                    //if MyPostPage is not rerendered, run -> this.setState({err: ""});
                     Materialize.toast('Update successful!', 4000);
                     $('#postEditModal').modal('close');
+                    this.props.rerenderMyPostsPage();
                 }
             });
     }

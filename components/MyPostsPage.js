@@ -57,7 +57,7 @@ export default class MyPostPage extends React.Component {
     updatePostEditModal(post){
         //pass information about the (user-selected) post to the modal
         this.setState({
-            postEditModal: <PostEditModal post={post} />
+            postEditModal: <PostEditModal post={post} rerenderMyPostsPage={this.requestUserPosts} />
         });
 
         //display the modal on the screen
