@@ -36,15 +36,15 @@ export default class MyPostPage extends React.Component {
 
     requestUserPosts(){
         Request.get('/postsByOwner').then((res) => {
-            var userPosts = res.body.map((post, index) =>
+            var userPosts = res.body.map((currentPost, index) =>
                 <InteractivePostTile
                     nextPostId={(index+1)}
                     prevPostId={(index-1)}
                     key={index}
-                    handleDelete={this.handleDelete}
+                    deletePost={this.handleDelete}
                     updatePostEditModal={this.updatePostEditModal}
                     postModalID={'postModal'+index}
-                    post={post} />
+                    post={currentPost} />
             );
 
             this.setState({
@@ -65,6 +65,7 @@ export default class MyPostPage extends React.Component {
     }
 
     handleDelete(post){
+        console.log(post._id);
         Request
             .delete('/post/' + post._id)
             .end((err, res)=>{
