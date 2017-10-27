@@ -11,8 +11,8 @@ module.exports.defineLocalStrategy = function(passport){
     function(username, password, done){
         User.findOne({ email:username }, function(err, user){
             if(err) { return done(err); }
-            if(!user) { return done(new Error('User Not Found!'), false); }
-            if(!user.validPassword(password)) { return done(new Error('Invalid Password!'), false); }
+            if(!user) { return done(new Error('Email does not exist!'), false); }
+            if(!user.validPassword(password)) { return done(new Error('Password is not valid!'), false); }
 
             return done(null, user);
         });
