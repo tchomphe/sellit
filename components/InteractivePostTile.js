@@ -64,18 +64,10 @@ export default class InteractivePostTile extends React.Component {
                 <div id="modalDelete" className="modal">
                     <div className="modal-content">
                         <h5>Confirm Delete</h5>                        
-                    
-                    
                         <a href="#!" className="modal-action modal-close waves-effect waves-red btn-flat ">Cancel</a>
                         <a onClick={(e)=>(this.deletePost(e))} href="#!" className="modal-action modal-close waves-effect waves-green btn-flat ">Delete</a>
                     </div>
                 </div>
-                {/* <div id="modalDelete" className="modal">
-                    <div className="modal-content">
-                        <h4>Modal Header</h4>
-                        <p>A bunch of text</p>
-                    </div>            
-                </div> */}
                 <PostModal
                     prevPostId={this.props.prevPostId}
                     nextPostId={this.props.nextPostId}
