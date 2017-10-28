@@ -56,11 +56,12 @@ class PostCreationContainer extends React.Component{
                 }
             });
     }
+
     render(){
         console.log('PostCreationContainer rendering... ');
 
         return(
-            <div className="container">                
+            <div className="container">
                 <form onSubmit={this.handleSubmit} >
                 <h5 className="profilePageHeader">Create-post</h5>
                 <div className="card-content red-text">{this.state.err}</div>
