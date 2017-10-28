@@ -131,7 +131,7 @@ exports.getUserByID = function(req, res){
 };
 
 exports.getPostByID = function(req, res){
-  Post.findOne({'_id': req.params.id}, 'title type address description date', function(err, post){
+  Post.findOne({'_id': req.params.id}, 'title type address description images', function(err, post){
     varifyQuerySuccess(err, res, 'getPostByID');
     res.send(post);
   });
