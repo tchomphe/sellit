@@ -17,13 +17,17 @@ class PostEditContainer extends React.Component{
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.getPostInformation = this.getPostInformation.bind(this);
     }
 
     componentDidMount(){
         // Initialize the Materialize select
         $('select').material_select();
 
-        //TODO: move request into function
+        this.getPostInformation();
+    }
+
+    getPostInformation(){
         Request.get('/post/' + this.state.id).then((res) => {
             console.log('Response Body: ' + JSON.stringify(res.body, null, 4));
             this.setState({
@@ -45,7 +49,39 @@ class PostEditContainer extends React.Component{
     handleSubmit(event){
         event.preventDefault();
 
-        //TODO: write submit logic
+        //Create formData object and populate it with values in state
+        var formData = new FormData();
+        formData.append('title', this.state.title);
+        formData.append('address', this.state.address);
+        formData.append('price', this.state.price);
+        formData.append('description', this.state.description);
+
+        //Materialize select can't handle onChange.. so we have to grab value directly
+        formData.append('type', $('select').val());
+
+        //Finally, attach all files for uploading
+        var images = document.getElementById('postImages').files;
+        for (var key in images) {
+            //if item is a File object, append to formData
+            if (images.hasOwnProperty(key) && images[key] instanceof File)
+                formData.append(key, images[key]);
+        }
+
+        //Clear files attached to postImages
+        document.getElementById('postImages').value = "";
+
+        Request
+            .put('/post/' + this.state.id)
+            .send(formData)
+            .end((err, res) => {
+                if(err){
+                    this.setState({err: res.body.error});
+                } else {
+                    //if MyPostPage is not rerendered, run -> this.setState({err: ""});
+                    Materialize.toast('Update successful!', 4000);
+                    this.getPostInformation();
+                }
+            });
     }
 
     render(){
@@ -58,7 +94,7 @@ class PostEditContainer extends React.Component{
 
         return(
             <div className="container">
-                <div className="red-text">{this.state.err}HELLO WORLD!</div>
+                <div className="red-text">{this.state.err}</div>
                 <form id="postEditForm" onSubmit={this.handleSubmit}>
                 <div className="card-panel">
                     <div className="row">
