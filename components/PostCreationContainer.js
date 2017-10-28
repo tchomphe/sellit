@@ -63,7 +63,7 @@ class PostCreationContainer extends React.Component{
         return(
             <div className="container">
                 <form onSubmit={this.handleSubmit} >
-                <h5 className="profilePageHeader">Create-post</h5>
+                <h5 className="profilePageHeader">Create Post</h5>
                 <div className="card-content red-text">{this.state.err}</div>
                 <div className="row">
                     <InputField fieldClass="col s6" labelText="* Title"
