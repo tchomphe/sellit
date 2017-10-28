@@ -11,12 +11,12 @@ class PostModal extends React.Component{
         this.prevPost = this.prevPost.bind(this);
     }
     nextPost(e){
-        e.preventDefault();  
+        e.preventDefault();
         $('#'+this.props.modalID).modal('close');
-        $('#postModal'+this.props.nextPostId).modal('open');        
+        $('#postModal'+this.props.nextPostId).modal('open');
     }
     prevPost(e){
-        e.preventDefault();  
+        e.preventDefault();
         // If nextPostId is 1, can't move back since you are on the first modal else move back.
         ((this.props.nextPostId) === 1) ? (
             $('#'+this.props.modalID).modal('close')
@@ -29,17 +29,17 @@ class PostModal extends React.Component{
         $("body").keydown(function(e) {
             if(e.keyCode == 37) { // left
                 console.log("Left key pressed!");
-                // this.prevPost(e);                
-                // alert('Left');                
-            }            
+                // this.prevPost(e);
+                // alert('Left');
+            }
             else if(e.keyCode == 39) { // right
-                console.log("Right key pressed!");                                
-                // this.nextPost(e);   
+                console.log("Right key pressed!");
+                // this.nextPost(e);
                 // alert('Right');
-              };            
+              };
           });
     }
-    render(){                
+    render(){
         var placeholderMessage = "[Not specified, contact seller]";
 
         var postImages = this.props.images;

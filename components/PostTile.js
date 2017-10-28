@@ -37,7 +37,7 @@ export default class PostTile extends React.Component {
                 </div>
                 <PostModal
                         prevPostId={this.props.prevPostId}
-                        nextPostId={this.props.nextPostId}                        
+                        nextPostId={this.props.nextPostId}
                         modalID={this.props.postModalID}
                         title={this.props.post.title}
                         price={this.props.post.price}

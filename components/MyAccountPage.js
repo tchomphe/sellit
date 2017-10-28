@@ -22,7 +22,7 @@ export default class MyAccountPage extends React.Component{
         this.setState({ [event.target.name]: event.target.value });
     }
     handleSubmit(event){
-        event.preventDefault();        
+        event.preventDefault();
         if(this.state.password !== ""){
             if (this.state.newPassword == this.state.confirmNewPassword){
                 Request

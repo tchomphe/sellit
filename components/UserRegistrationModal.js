@@ -67,16 +67,16 @@ class UserRegistrationModal extends React.Component{
                     }
                 });
         } else {
-            $("#userRegistrationModal #password").removeClass("valid").addClass("invalid");            
-            $("#userRegistrationModal #confirm_password").removeClass("valid").addClass("invalid");            
+            $("#userRegistrationModal #password").removeClass("valid").addClass("invalid");
+            $("#userRegistrationModal #confirm_password").removeClass("valid").addClass("invalid");
         }
     }
     render(){
         return(
             <div id="userRegistrationModal" className="modal">
                 <a className="modal-action modal-close modalButtonClose"><i className="material-icons">close</i></a>
-                <div className="modal-content">                    
-                    <h5>Sign up</h5>                    
+                <div className="modal-content">
+                    <h5>Sign up</h5>
                     <form className="col s12" onSubmit={this.handleSubmit} >
                         <div className="row">
                             <InputField labelText="* Email" labelSuccess="" labelError={(this.state.err)?this.state.err:"Enter a valid email address"}
@@ -84,23 +84,23 @@ class UserRegistrationModal extends React.Component{
 
                             <InputField fieldClass="col s6" labelText="* Password"
                                 id="password" type="password" className="validate" onChange={this.handleInputChange} required="required" />
-                            
+
                             <InputField fieldClass="col s6" labelText="* Confirm Password" labelSuccess="" labelError="mismatch"
                                 id="confirm_password" type="password" onChange={this.handleInputChange} required="required" />
-                            
+
                             <InputField labelText="Name/Nickname"
                                 id="nickname" onChange={this.handleInputChange} />
-                            
+
                             <InputField labelText="Phone"
                                 id="phone" onChange={this.handleInputChange} />
                             {/* <input name="phone" type="tel" pattern="^\d{3}\d{3}\d{4}$" className="validate" /> */}
                         </div>
-                        <div className="row">                            
+                        <div className="row">
                             <button className="btn blue waves-effect waves-light" type="submit" name="action">Register</button>
                         </div>
                     </form>
                 </div>
-                </div>            
+                </div>
         );
     }
 }
