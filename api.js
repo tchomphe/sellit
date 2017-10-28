@@ -429,6 +429,40 @@ exports.deleteUser = function (req, res) {
   });
 };
 
+exports.deleteImage = function (req, res) {
+  //varify user is logged in
+  if (req.isAuthenticated()){
+    varifyRightfulOwner(req, function(isRightfulOwner){
+      if (isRightfulOwner){
+        //find and delete image attachments
+        Post.findOne({'_id': req.params.id}, 'images', function(err, post){
+          if (post.images !== []){
+            //get attached image's URL, then convert its public path -to-> local path
+            var imageURL = post.images[req.params.index];
+            var localImageURL = imageURL.replace('/assets/', 'static/');
+
+            //TODO: check if image was the thumbnail!!
+            //remove image from server
+            fs.unlinkSync(localImageURL);
+
+            //update database entry with new images array
+            Post.findByIdAndUpdate(
+              {_id: req.params.id}, //query
+              { $pullAll: {images: [imageURL]} }, //updates to make
+              function(err, post) {
+                varifyQuerySuccess(err, res, 'updateUserInfo');
+                res.send('Got a DELETE request at /image/:id/:index');
+            });
+          }
+        });
+      }
+      else {
+        res.status(400).send({message: 'You are not the owner of this post.'});
+      }
+    });
+  }
+}
+
 exports.deletePost = function (req, res) {
   //varify user is logged in
   if (req.isAuthenticated()){
