@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch, hashHistory } from 'react-route
 import Layout from './Layout';
 import MainPage from './MainPage';
 import PostCreationContainer from './PostCreationContainer';
+import PostEditContainer from './PostEditContainer';
 import SearchResultsPage from './SearchResultsPage';
 import MyPostsPage from './MyPostsPage';
 import UserPostPage from './UserPostPage';
@@ -78,6 +79,7 @@ export default class AppRoutes extends React.Component {
               <MainPage posts={this.state.posts} page={this.state.page} />)} />
             <Route path="/search/:query" component={SearchResultsPage} />
             <Route path="/create-post" component={PostCreationContainer} />
+            <Route path="/edit-post/:postId" component={PostEditContainer} />
             <Route path="/my-posts" component={MyPostsPage} />
             <Route path="/user-posts/:ownerId" component={UserPostPage} />
             <Route path="/forgot" component={Forgot} />
