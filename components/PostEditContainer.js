@@ -23,6 +23,7 @@ class PostEditContainer extends React.Component{
     componentDidMount(){
         // Initialize the Materialize select
         $('select').material_select();
+        $('.materialboxed').materialbox();
 
         this.getPostInformation();
     }
@@ -90,7 +91,10 @@ class PostEditContainer extends React.Component{
         //map all post images into HTML elements
         var postImagesHTML = "";
         if (this.state.pictures)
-            postImagesHTML = this.state.pictures.map((pictureURL, index) => <img className="form-items-gallery-picture" src={pictureURL} alt="Post Picture" />);
+            postImagesHTML = this.state.pictures.map((pictureURL, index) =>
+                <div className="material-placeholder">
+                    <img className="form-items-gallery-picture materialboxed" src={pictureURL} alt="Post Picture" />
+                </div>);
 
         return(
             <div className="container">
