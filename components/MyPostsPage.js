@@ -92,7 +92,7 @@ class MyPostPage extends React.Component {
                 <h4 className="profilePageHeader">My Posts</h4>
                 {this.state.postTiles}
                 <FloatingBackButton />
-                {this.state.postEditModal}
+                {/*this.state.postEditModal*/}
             </div>
         )
     }
