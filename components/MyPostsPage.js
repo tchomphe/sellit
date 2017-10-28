@@ -1,22 +1,24 @@
 import React from 'react';
-import PostEditModal from './PostEditModal';
+//----REMOVE----> import PostEditModal from './PostEditModal';
 import FloatingBackButton from './FloatingBackButton';
 import InteractivePostTile from './InteractivePostTile';
 import Request from 'superagent';
+import { withRouter } from 'react-router-dom';
 
-export default class MyPostPage extends React.Component {
+class MyPostPage extends React.Component {
     constructor(props){
         super(props);
 
         //define state variables
         this.state = {
-            postEditModal: <PostEditModal post="" />, //TODO: move PostEditModal inside InteractivePostTile
+            //----REMOVE----> postEditModal: <PostEditModal post="" />, //TODO: move PostEditModal inside InteractivePostTile
             postTiles: null,
             err: "",
         };
 
         this.requestUserPosts = this.requestUserPosts.bind(this);
-        this.updatePostEditModal = this.updatePostEditModal.bind(this);
+        //----REMOVE----> this.updatePostEditModal = this.updatePostEditModal.bind(this);
+        this.openPostEditContainer = this.openPostEditContainer.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
 
@@ -42,7 +44,7 @@ export default class MyPostPage extends React.Component {
                     prevPostId={(index-1)}
                     key={index}
                     deletePost={this.handleDelete}
-                    updatePostEditModal={this.updatePostEditModal}
+                    openPostEditContainer={this.openPostEditContainer}
                     postModalID={'postModal'+index}
                     post={currentPost} />
             );
@@ -54,14 +56,17 @@ export default class MyPostPage extends React.Component {
         });
     }
 
-    updatePostEditModal(post){
-        //pass information about the (user-selected) post to the modal
-        this.setState({
-            postEditModal: <PostEditModal post={post} rerenderMyPostsPage={this.requestUserPosts} />
-        });
+    //----REMOVE----> updatePostEditModal(post){
+    //     //pass information about the (user-selected) post to the modal
+    //     this.setState({
+    //         postEditModal: <PostEditModal post={post} rerenderMyPostsPage={this.requestUserPosts} />
+    //     });
 
-        //display the modal on the screen
-        $('#postEditModal').modal('open');
+    //     //display the modal on the screen
+    //     $('#postEditModal').modal('open');
+    // }
+    openPostEditContainer(post){
+        this.props.history.push('/edit-post/' + post._id);
     }
 
     handleDelete(post){
@@ -92,3 +97,4 @@ export default class MyPostPage extends React.Component {
         )
     }
 }
+export default withRouter(MyPostPage);
