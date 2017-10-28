@@ -37,7 +37,7 @@ export default class InteractivePostTile extends React.Component {
 
     handleEdit(e){
         e.preventDefault();
-        this.props.updatePostEditModal(this.props.post);
+        this.props.openPostEditContainer(this.props.post);
     }
 
     handleDelete(e){
