@@ -9,6 +9,7 @@ class PostEditContainer extends React.Component{
             err:"",
             id: this.props.match.params.postId,
             title:"",
+            type:"",
             address:"",
             price:"",
             description:"",
@@ -24,8 +25,16 @@ class PostEditContainer extends React.Component{
 
         //TODO: move request into function
         Request.get('/post/' + this.state.id).then((res) => {
-            console.log('got this: ' + res);
-            //TODO: save response to state
+            console.log('Response Body: ' + JSON.stringify(res.body, null, 4));
+            this.setState({
+                id: res.body._id,
+                title: res.body.title,
+                type: res.body.type,
+                address: res.body.address,
+                price: res.body.price,
+                description: res.body.description,
+                pictures: res.body.images,
+            });
         });
     }
 
@@ -41,6 +50,7 @@ class PostEditContainer extends React.Component{
 
     render(){
         console.log("PostEditContainer rendering..");
+        console.log('current state: ' + JSON.stringify(this.state, null, 4));
 
         return(
             <div className="container">
