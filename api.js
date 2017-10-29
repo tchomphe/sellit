@@ -131,7 +131,7 @@ exports.getUserByID = function(req, res){
 };
 
 exports.getPostByID = function(req, res){
-  Post.findOne({'_id': req.params.id}, 'title type address description images', function(err, post){
+  Post.findOne({'_id': req.params.id}, 'title type address description images thumbnail', function(err, post){
     varifyQuerySuccess(err, res, 'getPostByID');
     res.send(post);
   });
@@ -441,7 +441,6 @@ exports.deleteImage = function (req, res) {
             var imageURL = post.images[req.params.index];
             var localImageURL = imageURL.replace('/assets/', 'static/');
 
-            //TODO: check if image was the thumbnail!!
             //remove image from server
             fs.unlinkSync(localImageURL);
 
