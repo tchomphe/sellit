@@ -113,7 +113,7 @@ app.put('/post/:id', upload.any(), api.updatePostInfo);
 // DELETE requests
 app.delete('/user/:id', api.deleteUser);
 app.delete('/post/:id', api.deletePost);
-app.delete('/image/:id/:index', api.deleteImage);
+app.delete('/image/:id/:imageName', api.deleteImage);
 
 // Start up server
 app.listen((process.env.PORT || 8080), function(){

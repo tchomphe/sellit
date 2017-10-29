@@ -90,11 +90,12 @@ class PostEditContainer extends React.Component{
             });
     }
 
-    handleImageDelete(e, imageIndex){
+    handleImageDelete(e, imageURL){
         e.preventDefault();
-        //alert('index is:: ' + index);
+        //get image name and pass it in request to server
+        var imageName = imageURL.split("/").pop();
         Request
-            .delete('/image/' + this.state.id + '/' + imageIndex)
+            .delete('/image/' + this.state.id + '/' + imageName)
             .end((err, res) => {
                 Materialize.toast('Image deleted.', 4000);
                 this.getPostInformation();
@@ -112,8 +113,8 @@ class PostEditContainer extends React.Component{
         if (this.state.pictures)
             postImagesHTML = this.state.pictures.map((pictureURL, index) =>
                 <div className="material-placeholder">
-                    <a onClick={(e) => (this.handleImageDelete(e, index))} href="#!" className="waves-effect waves-light btn red">Delete</a>
-                    <img className="form-items-gallery-picture materialboxed" src={pictureURL} alt="Post Picture" /><br />
+                    <a onClick={(e) => (this.handleImageDelete(e, pictureURL))} href="#!" className="waves-effect waves-light btn red">Delete</a>
+                    <img className="form-items-gallery-picture materialboxed" src={pictureURL} alt={'Post Picture' + index} /><br />
                 </div>);
 
         return(

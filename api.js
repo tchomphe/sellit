@@ -437,9 +437,9 @@ exports.deleteImage = function (req, res) {
         //find and delete image attachments
         Post.findOne({'_id': req.params.id}, 'images', function(err, post){
           if (post.images !== []){
-            //get attached image's URL, then convert its public path -to-> local path
-            var imageURL = post.images[req.params.index];
-            var localImageURL = imageURL.replace('/assets/', 'static/');
+            //convert attached image's name to full public and local path
+            var publicImageURL = '/assets/uploads/' + req.params.imageName;
+            var localImageURL = 'static/uploads/' + req.params.imageName;
 
             //remove image from server
             fs.unlinkSync(localImageURL);
@@ -447,7 +447,7 @@ exports.deleteImage = function (req, res) {
             //update database entry with new images array
             Post.findByIdAndUpdate(
               {_id: req.params.id}, //query
-              { $pullAll: {images: [imageURL]} }, //updates to make
+              { $pullAll: {images: [publicImageURL]} }, //updates to make
               function(err, post) {
                 varifyQuerySuccess(err, res, 'updateUserInfo');
                 res.send('Got a DELETE request at /image/:id/:index');
@@ -471,8 +471,9 @@ exports.deletePost = function (req, res) {
         Post.findOne({'_id': req.params.id}, 'images', function(err, post){
           if (post.images !== []){
             (post.images).forEach(function(imageURL){
-              //replace public path with private directory
+              //convert public path image URL -to-> server's local path
               var localImageURL = imageURL.replace('/assets/', 'static/');
+              //TODO: error handle unlinking, right now server goes down if file can't be found
               fs.unlinkSync(localImageURL);
             });
           }
