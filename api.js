@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Post = require('./config/models/post');
 var User = require('./config/models/user');
-var fs = require('fs');
+var fileSystem = require('fs');
 var passport = require('passport');
 var authentication = require('./config/passport');
 var nodemailer = require('nodemailer');
@@ -443,7 +443,7 @@ exports.deleteImage = function (req, res) {
 
             //remove image from server
             try {
-              fs.unlinkSync(localImageURL);
+              fileSystem.unlinkSync(localImageURL);
             } catch (err) {
               console.log("API deleteImage();\n--> " + err);
             }
@@ -478,7 +478,7 @@ exports.deletePost = function (req, res) {
               //convert public path image URL -to-> server's local path
               var localImageURL = imageURL.replace('/assets/', 'static/');
               try {
-                fs.unlinkSync(localImageURL);
+                fileSystem.unlinkSync(localImageURL);
               } catch (err) {
                 console.log("API deletePost();\n--> " + err);
               }
