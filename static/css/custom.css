@@ -274,57 +274,6 @@ select:-webkit-autofill:focus {
     padding-left: 10px;
 }
 
-/* .card-panel {
-    -webkit-transition: -webkit-box-shadow .25s;
-    transition: -webkit-box-shadow .25s;
-    transition: box-shadow .25s;
-    transition: box-shadow .25s, -webkit-box-shadow .25s;
-    padding: 24px;
-    margin: .5rem 0 1rem 0;
-    border-radius: 2px;
-    background-color: #fafafa;
-} */
-
-.card {
-    width: 33%;
-    display: inline-block;
-    /* border-radius: 0; */
-    /* background-color: #fafafa; */
-}
-
-/* .z-depth-1, .card {
-    box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0;
-} */
-
-.card .custom-shadow{
-    box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0;
-}
-
-.card a, .card a img {
-    width: 100%;
-}
-
-/* .card .card-image img {
-     border-radius: 0 0 0 0;
-} */
-
-/* .card .card-content{
-    color: #5a5757;
-    font-size: 13px;
-} */
-
-/* .card .card-title {
-    color: #000000;
-    font-size: 14px;
-    font-weight: 400;
-} */
-
-/* .card .card-content .card-title {
-    display: block;
-    line-height: 15px;
-    margin-bottom: 8px;
-} */
-
 .banner {
     height: 400px;
     background-color: #fafafa;
@@ -486,32 +435,44 @@ button {
     padding: 0px !important;
 }
 
-
-/* Smartphones (portrait) ----------- */
-@media only screen and (max-width : 400px) {
-.card {
-        width: 100%;
-    }
+.card a, .card a img {
+    width: 100%;
 }
 
+.cards-container {
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+.cards-container .card {
+    display: inline-table;
+    overflow: visible;
+}
+
+/* Smartphones (portrait) ----------- */
 /* Smartphones (landscape) ----------- */
-@media only screen and (min-width : 401px) and (max-width : 700px) {
-.card {
-        width: 50%;
+@media only screen and (max-width: 600px) {
+    .cards-container {
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
     }
 }
 
 /* ----------- Medium Screens ----------- */
-@media only screen  and (min-width : 1224px) {
-.card {
-        width: 33.33333%; /* fallback width */
-        width: calc(100% / 3);
+@media only screen and (min-width: 601px) {
+    .cards-container {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
     }
 }
 
 /* ----------- Large screens ----------- */
-@media only screen  and (min-width : 1200px) {
-.card {
-        width: 25%;
+@media only screen and (min-width: 993px) {
+    .cards-container {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
     }
 }
