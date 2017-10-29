@@ -442,7 +442,11 @@ exports.deleteImage = function (req, res) {
             var localImageURL = 'static/uploads/' + req.params.imageName;
 
             //remove image from server
-            fs.unlinkSync(localImageURL);
+            try {
+              fs.unlinkSync(localImageURL);
+            } catch (err) {
+              console.log("API deleteImage();\n--> " + err);
+            }
 
             //update database entry with new images array
             Post.findByIdAndUpdate(
@@ -473,8 +477,11 @@ exports.deletePost = function (req, res) {
             (post.images).forEach(function(imageURL){
               //convert public path image URL -to-> server's local path
               var localImageURL = imageURL.replace('/assets/', 'static/');
-              //TODO: error handle unlinking, right now server goes down if file can't be found
-              fs.unlinkSync(localImageURL);
+              try {
+                fs.unlinkSync(localImageURL);
+              } catch (err) {
+                console.log("API deletePost();\n--> " + err);
+              }
             });
           }
         });
