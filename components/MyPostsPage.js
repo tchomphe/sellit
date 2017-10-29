@@ -1,5 +1,4 @@
 import React from 'react';
-import FloatingBackButton from './FloatingBackButton';
 import InteractivePostTile from './InteractivePostTile';
 import Request from 'superagent';
 import { withRouter } from 'react-router-dom';
@@ -22,12 +21,6 @@ class MyPostPage extends React.Component {
     componentDidMount(){
         // Initiate Materialize Modal
         $('.modal').modal();
-
-        // Set up click handler for floating back button
-        $('.floatingBackButton').click(function(){
-            $('.floatingBackButton').addClass('hide');
-            $('.modal').modal('close');
-        });
 
         // Populate PostTile's with current user's posts
         this.requestUserPosts();
@@ -79,7 +72,6 @@ class MyPostPage extends React.Component {
             <div className="app-content row center">
                 <h4 className="title"><strong>My posts</strong> - edit or delete your post</h4>
                 {this.state.postTiles}
-                <FloatingBackButton />
             </div>
         )
     }

@@ -44,11 +44,6 @@ export default class MainPage extends React.Component {
         this.requestAllPosts(this.state.page);
     }
 
-    handleCloseModal(){
-        $('.floatingBackButton').addClass('hide');
-        $('.modal').modal('close');
-    }
-
     render(){
         console.log('MainPage rendering... posts: ');
 

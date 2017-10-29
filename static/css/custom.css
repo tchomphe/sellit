@@ -39,7 +39,7 @@ body {
     background-color: #E6E6E6;
 }
 
-nav {    
+nav {
     background-color: #232323;
     width: 100%;
     z-index: 99;
@@ -48,12 +48,12 @@ nav {
     /* box-shadow: 0px 0px 0px 0px; */
 }
 
-/* .side-nav {    
+/* .side-nav {
     background-color: #222;
 }
 
-.side-nav li a {    
-    color: #ffffff;    
+.side-nav li a {
+    color: #ffffff;
 }
 
 .side-nav li>a>i, .side-nav li>a>[class^="mdi-"], .side-nav li>a li>a>[class*="mdi-"], .side-nav li>a>i.material-icons {
@@ -69,7 +69,7 @@ nav {
     z-index: 999;
 }
 
-nav ul li:hover {    
+nav ul li:hover {
     background-color: #363649;
     /* background-color: none;  */
 }
@@ -88,8 +88,8 @@ nav .brand-logo {
     padding: 15px;
 }
 
-.dropdown-content {    
-    background-color: #FFFFFF;  
+.dropdown-content {
+    background-color: #FFFFFF;
     /* margin: 0; */
     /* display: none; */
     min-width: 300px; /* Changed this to accomodate content width */
@@ -115,11 +115,11 @@ nav .brand-logo {
     padding: 14px 16px;
 }
 
-nav ul a {    
+nav ul a {
     color: #ffffff;
     font-size: 16px;
     display: block;
-    padding: 0 15px 0 15px;    
+    padding: 0 15px 0 15px;
     cursor: pointer;
 }
 
@@ -157,17 +157,17 @@ input:not([type]).valid+label:after, input:not([type]):focus.valid+label:after, 
     opacity: 1;
 }
 
-/* email */ 
+/* email */
 .input-field input[type=email]:focus + label {
     color: #42A5F5;
 }
 
-/* email */ 
+/* email */
 .input-field input[type=text]:focus + label {
     color: #42A5F5;
 }
 
-/* password */ 
+/* password */
 .input-field input[type=password]:focus + label {
     color: #42A5F5;
 }
@@ -224,7 +224,7 @@ input:not([type]).valid+label:after, input:not([type]):focus.valid+label:after, 
     border-bottom: 1px solid #4285f4;
     box-shadow: 0 1px 0 0 #4285f4;
   } */
-       
+
 /* Input field bottom border on focus */
 input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
     border-bottom: 1px solid #4285f4;
@@ -233,9 +233,9 @@ input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]),
 
 /* Change Autocomplete styles in Chrome*/
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus
-input:-webkit-autofill, 
+input:-webkit-autofill,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover
 textarea:-webkit-autofill:focus,
@@ -248,14 +248,14 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-.custom_search_invisible {    
+.custom_search_invisible {
     display:none;
 }
 
-.custom_search {    
+.custom_search {
     display:block;
     all: default;
-    position: fixed;    
+    position: fixed;
     left: 0px;
     width: 100%;
     height: 90px;
@@ -278,7 +278,7 @@ select:-webkit-autofill:focus {
     -webkit-transition: -webkit-box-shadow .25s;
     transition: -webkit-box-shadow .25s;
     transition: box-shadow .25s;
-    transition: box-shadow .25s, -webkit-box-shadow .25s;    
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
     padding: 24px;
     margin: .5rem 0 1rem 0;
     border-radius: 2px;
@@ -287,7 +287,7 @@ select:-webkit-autofill:focus {
 
 .card {
     width: 33%;
-    display: inline-block;   
+    display: inline-block;
     /* border-radius: 0; */
     /* background-color: #fafafa; */
 }
@@ -330,13 +330,6 @@ select:-webkit-autofill:focus {
     background-color: #fafafa;
     /*background-image: url('/assets/img/toronto3.jpg');*/
     background-size: 100%;
-}
-
-.floatingBackButton {
-    position: fixed !important;
-    z-index: 9999;
-    top: 30px;
-    left: 30px;
 }
 
 /* .btn-blue {
@@ -404,8 +397,8 @@ button {
     height: 45px;
     padding: 15px 10px 0px 0px;
     color: #000;
-    line-height: 10px;    
-    text-transform: none;    
+    line-height: 10px;
+    text-transform: none;
 }
 
 /* set modal window's height and width */

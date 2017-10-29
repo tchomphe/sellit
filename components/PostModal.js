@@ -1,5 +1,4 @@
 import React from 'react';
-import FloatingBackButton from './FloatingBackButton';
 import PostContact from './PostContact';
 import Map from './Map'
 import { Link, withRouter } from 'react-router-dom';
