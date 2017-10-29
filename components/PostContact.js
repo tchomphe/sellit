@@ -49,8 +49,7 @@ class PostContact extends React.Component{
         return(
             <form className="col s12 center" onSubmit={this.handleSubmit}>
                 {/* <div className="card-panel"> */}
-                    <h5>Contact Poster</h5>
-                    {/* {this.props.receiver} */}
+                    <h5 className="left-align title">Contact poster</h5>
                     <div className="row center">
                         <div className="input-field col s12">
                             <input name="sender_email" value={this.state.sender_email} type="email" className="validate" onChange={this.handleInputChange} />
@@ -69,11 +68,10 @@ class PostContact extends React.Component{
                             <label htmlFor="message">Message</label>
                         </div>
                     </div>
-                    <h5>ownerId: {this.props.ownerId}</h5>
-                    <input type="hidden" name="receiver_email" value={this.props.receiver} onChange={this.handleInputChange} />
-                    <button type="submit"> submit </button>
-                    {/* <a href="#" className="waves-effect waves-light btn-large" type="submit" >Send Email</a> */}
-            {/* </div> */}
+                    <div className="row left-align">
+                        <input type="hidden" name="receiver_email" value={this.props.receiver} onChange={this.handleInputChange} />
+                        <button className="blue waves-effect waves-light btn" type="submit"> Send </button>
+                    </div>                                
             </form>
         );
     }

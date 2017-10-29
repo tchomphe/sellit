@@ -420,7 +420,7 @@ button {
 }
 
 .postModal {
-    width: 70%;
+    width: 80%;
     /* height: 95%; */
     max-height: 90%;
     border-radius: 2px;
@@ -432,7 +432,7 @@ button {
 }
 
 .modal .modal-footer{
-    background-color: #000000;
+    background-color: #232323;
     color: #ffffff;
     padding-top: 15px;
 }
