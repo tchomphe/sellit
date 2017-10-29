@@ -4,7 +4,12 @@
 
 body {
     background-color:#fafafa;
-    /* padding-top: 56px; */
+    padding-top: 56px;
+}
+
+.title{
+    font-size: 24px;
+    font-weight: 300;
 }
 
 #container .container {
@@ -136,10 +141,10 @@ nav .input-field{
     border-radius:5px;
 }
 
-.profilePageHeader {
+/* .profilePageHeader {
     margin-top: 90px;
-    /* margin-left: 15px; */
-}
+    margin-left: 15px;
+} */
  /* label color */
  /* .input-field label {
     color: #000;
@@ -284,7 +289,7 @@ select:-webkit-autofill:focus {
     width: 33%;
     display: inline-block;   
     /* border-radius: 0; */
-    background-color: #fafafa;
+    /* background-color: #fafafa; */
 }
 
 /* .z-depth-1, .card {
@@ -296,7 +301,7 @@ select:-webkit-autofill:focus {
 }
 
 .card a, .card a img {
-    width: 75%;
+    width: 100%;
 }
 
 /* .card .card-image img {

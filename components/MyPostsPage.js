@@ -89,7 +89,7 @@ class MyPostPage extends React.Component {
 
         return (
             <div className="app-content row center">
-                <h4 className="profilePageHeader">My Posts</h4>
+                <h4 className="title">My Posts</h4>
                 {this.state.postTiles}
                 <FloatingBackButton />
                 {/*this.state.postEditModal*/}

@@ -57,9 +57,10 @@ export default class MyAccountPage extends React.Component{
         return(
             <div className="container">
                 <div className="row">
-                    <h5 className="profilePageHeader"><b>My account</b> - update your information</h5>
+                    {/* <span className="left-align title">My account - update your information</span> */}
+                    <h5 className="title">My account - update your information</h5>
                     <div className="col s6">
-                        <div className="card-panel hoverable">
+                        <div className="card-panel">
                             <h6><b>Account details</b></h6><br />
                             <div className="card-content red-text">
                                 {this.state.err}
@@ -72,15 +73,17 @@ export default class MyAccountPage extends React.Component{
                                     <InputField labelText="New Password" fieldClass="col s6" id="newPassword" type="password" onChange={this.handleInputChange} />
                                     <InputField labelText="Confirm New Password" fieldClass="col s6" id="confirmNewPassword" type="password" onChange={this.handleInputChange} />
                                     <InputField labelText="* Password" id="password" type="password" onChange={this.handleInputChange} />
+                                    <div className="container right-align">
                                     <button className="btn waves-effect blue white-text darken-text-2" type="submit" name="action">
                                         Save Changes
                                     </button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                     <div className="col s6">
-                        <div className="card-panel hoverable">
+                        <div className="card-panel">
                             <h6><b>Account summary</b></h6>
                             <table>
                                 <tbody>

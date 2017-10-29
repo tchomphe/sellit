@@ -55,9 +55,8 @@ export default class InteractivePostTile extends React.Component {
 
         return(
             <div className="card">
-                <a onClick={(e) => (this.handleEdit(e))} className="waves-effect waves-light btn-large blue"><i className="material-icons right">edit</i>EDIT</a>
-                <a onClick={(e) => (this.deleteConfirmation(e))} className="waves-effect waves-light btn-large red"><i className="material-icons right">delete</i>DELETE</a>
-
+                {/* <a onClick={(e) => (this.handleEdit(e))} className="waves-effect waves-light btn-large blue"><i className="material-icons right">edit</i>EDIT</a>
+                <a onClick={(e) => (this.deleteConfirmation(e))} className="waves-effect waves-light btn-large red"><i className="material-icons right">delete</i>DELETE</a> */}
                 <div className="card-image">
                     <a href="#!" onClick={(e) => (this.handlePreview(e))} className="waves-effect waves-light">
                         <img src={thumbnailImage} alt="Card image cap" />
@@ -66,6 +65,10 @@ export default class InteractivePostTile extends React.Component {
                 <div className="card-content">
                     <span className="card-title">{this.props.post.title}</span>
                     <p className="card-text"><i className="tiny material-icons">location_on</i> {this.props.post.address}</p>
+                </div>
+                <div className="card-action right-align">
+                <a href="#" onClick={(e) => (this.handleEdit(e))}>Edit</a>
+                <a href="#" onClick={(e) => (this.deleteConfirmation(e))}>Delete</a>
                 </div>
                 <div id={"delete_" + this.props.postModalID} className="modal">
                     <div className="modal-content">
