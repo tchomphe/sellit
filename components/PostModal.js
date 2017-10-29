@@ -11,14 +11,17 @@ class PostModal extends React.Component{
     }
     nextPost(e){
         e.preventDefault();
-        $('#'+this.props.modalID).modal('close');
-        $('#postModal'+this.props.nextPostId).modal('open');
+        if(this.props.nextPostId !== undefined){
+            $('#'+this.props.modalID).modal('close');
+            $('#postModal'+this.props.nextPostId).modal('open');
+            console.log(`nextPostId: ${this.props.nextPost}`);
+        }
     }
     prevPost(e){
         e.preventDefault();
         // If nextPostId is 1, can't move back since you are on the first modal else move back.
-        ((this.props.nextPostId) === 1) ? (
-            $('#'+this.props.modalID).modal('close')
+        ((this.props.nextPostId) === 1) ? (            
+            console.log('No previous post available.')
         ) : (
             $('#'+this.props.modalID).modal('close'),
             $('#postModal'+this.props.prevPostId).modal('open')
@@ -92,16 +95,23 @@ class PostModal extends React.Component{
                             <br />
                             <strong>this.props.email: {this.props.email}</strong>
                         </div>
-                    </div>
-                    <div className="modal-footer right-align">
-                        <button className="btn waves-effect blue white-text darken-text-2" onClick={(e)=>(this.nextPost(e))}>
-                            Next Post
-                        </button>
-                        <button className="btn waves-effect blue white-text darken-text-2" onClick={(e)=>(this.prevPost(e))}>
-                            Previous Post
-                        </button>
-                        <li><Link to={"/user-posts/"+this.props.ownerId}>View this user's others posts</Link></li>
-                        <strong>Posted on: September, 1st, 2012</strong>
+                    </div>                    
+                    <div className="row modal-footer">                        
+                        <div className="col s12 m4 l2">
+                            {/* <p>s12 m4</p> */}
+                            <button className="btn-floating btn waves-effect waves-light blue" onClick={(e)=>(this.prevPost(e))}>
+                                <i className="material-icons">chevron_left</i>
+                            </button>
+                        </div>
+                        <div className="col s12 m4 l8">
+                            {/* <p>s12 m4</p> */}
+                            <p><Link to={"/user-posts/"+this.props.ownerId}>View this user's others posts</Link></p>
+                        </div>
+                        <div className="col s12 m4 l2">
+                            <button className="btn-floating btn waves-effect waves-light blue" onClick={(e)=>(this.nextPost(e))}>
+                                <i className="material-icons">chevron_right</i>
+                            </button>    
+                        </div>
                     </div>
                 </div>
 
