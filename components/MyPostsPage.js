@@ -1,5 +1,4 @@
 import React from 'react';
-//----REMOVE----> import PostEditModal from './PostEditModal';
 import FloatingBackButton from './FloatingBackButton';
 import InteractivePostTile from './InteractivePostTile';
 import Request from 'superagent';
@@ -11,13 +10,11 @@ class MyPostPage extends React.Component {
 
         //define state variables
         this.state = {
-            //----REMOVE----> postEditModal: <PostEditModal post="" />, //TODO: move PostEditModal inside InteractivePostTile
             postTiles: null,
             err: "",
         };
 
         this.requestUserPosts = this.requestUserPosts.bind(this);
-        //----REMOVE----> this.updatePostEditModal = this.updatePostEditModal.bind(this);
         this.openPostEditContainer = this.openPostEditContainer.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
@@ -56,15 +53,6 @@ class MyPostPage extends React.Component {
         });
     }
 
-    //----REMOVE----> updatePostEditModal(post){
-    //     //pass information about the (user-selected) post to the modal
-    //     this.setState({
-    //         postEditModal: <PostEditModal post={post} rerenderMyPostsPage={this.requestUserPosts} />
-    //     });
-
-    //     //display the modal on the screen
-    //     $('#postEditModal').modal('open');
-    // }
     openPostEditContainer(post){
         this.props.history.push('/edit-post/' + post._id);
     }
@@ -92,7 +80,6 @@ class MyPostPage extends React.Component {
                 <h4 className="title"><strong>My posts</strong> - edit or delete your post</h4>
                 {this.state.postTiles}
                 <FloatingBackButton />
-                {/*this.state.postEditModal*/}
             </div>
         )
     }
