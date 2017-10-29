@@ -31,6 +31,10 @@ class PostEditContainer extends React.Component{
     getPostInformation(){
         Request.get('/post/' + this.state.id).then((res) => {
             console.log('Response Body: ' + JSON.stringify(res.body, null, 4));
+            var picsExceptThumb = res.body.images;
+            picsExceptThumb.splice(picsExceptThumb.indexOf(res.body.thumbnail), 1);
+
+            res.body.images.indexOf()
             this.setState({
                 id: res.body._id,
                 title: res.body.title,
@@ -38,7 +42,8 @@ class PostEditContainer extends React.Component{
                 address: res.body.address,
                 price: res.body.price,
                 description: res.body.description,
-                pictures: res.body.images,
+                thumbnail: res.body.thumbnail,
+                pictures: picsExceptThumb,
             });
         });
     }
@@ -100,6 +105,9 @@ class PostEditContainer extends React.Component{
         console.log("PostEditContainer rendering..");
 
         //map all post images into HTML elements
+        var thumbnailURL =  <div className="material-placeholder">
+                                <img className="form-items-gallery-picture materialboxed" src={this.state.thumbnail} alt="Thumbnail Image" /><br />
+                            </div>;
         var postImagesHTML = "";
         if (this.state.pictures)
             postImagesHTML = this.state.pictures.map((pictureURL, index) =>
@@ -135,7 +143,10 @@ class PostEditContainer extends React.Component{
                                 id="description" value={this.state.description} onChange={this.handleInputChange} />
                         </div>
                         <div className="form-items-gallery col s6">
+                            <h5>Thumbnail</h5>
+                            {thumbnailURL}
                             <h5>Pictures</h5>
+                            {postImagesHTML}
                             <div className="col s12 file-field input-field">
                                 <div className="btn">
                                     <span>Browse</span>
@@ -145,7 +156,6 @@ class PostEditContainer extends React.Component{
                                     <input className="file-path validate" type="text" placeholder="Upload new pictures" />
                                 </div>
                             </div>
-                            {postImagesHTML}
                         </div>
                     </div>
                     <div className="row">
