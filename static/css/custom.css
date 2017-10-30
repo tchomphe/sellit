@@ -181,6 +181,10 @@ input:not([type]).valid+label:after, input:not([type]):focus.valid+label:after, 
     box-shadow: none;
 }
 
+input[type=text]{
+    font-weight: 300;
+}
+
 /* invalid color */
 /* .input-field input[type=email].invalid {
     border-bottom: 1px solid #000;
@@ -277,7 +281,7 @@ select:-webkit-autofill:focus {
 }
 
 /* Buttons */
-button {
+/* button {
     margin-left: 10px;
 }
 .btn {
@@ -291,7 +295,7 @@ button {
 .scrollButton {
     display: inline-block;
     margin-bottom: 20px;
-}
+} */
 
 /* .btn-floating i {
     width: inherit;
