@@ -32,14 +32,10 @@ class Map extends Component {
     }
 
   render() {    
-    var glink = "https://maps.googleapis.com/maps/api/staticmap?center="+this.state.lat+","+this.state.lng+"&zoom=15&size=200x200&maptype=roadmap&markers=color:red%7Clabel:C%7C"+this.state.lat+','+this.state.lng+"&key=AIzaSyBcxF_7FH1aEC4g6CGCvq7WPz1LCisZt3A";
+    var glink = "https://maps.googleapis.com/maps/api/staticmap?center="+this.state.lat+","+this.state.lng+"&zoom=14&size=400x120&maptype=roadmap&markers=color:red%7Clabel:C%7C"+this.state.lat+','+this.state.lng+"&key=AIzaSyBcxF_7FH1aEC4g6CGCvq7WPz1LCisZt3A";
     return (
       <div>                 
-        <img src={glink} />    
-        {/* <p>this.props.address: {this.props.address}</p>
-        <p>this.state.address: {this.state.address}</p>
-         <p>filtered_address: {filtered_address}</p>   
-        <p>lat: {this.state.lat}, lng: {this.state.lng}</p>                 */}
+        <img src={glink} />            
       </div>
     );
   }
