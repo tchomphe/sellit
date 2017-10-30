@@ -62,42 +62,44 @@ class PostCreationContainer extends React.Component{
 
         return(
             <div className="container">
-                <form onSubmit={this.handleSubmit} >
-                <h5 className="profilePageHeader">Create Post</h5>
-                <div className="card-content red-text">{this.state.err}</div>
-                <div className="row">
-                    <InputField fieldClass="col s6" labelText="* Title"
-                        id="title" onChange={this.handleInputChange} required="required" />
-                    <div className="input-field col s6">
-                         <select id="type" name="type" required="required" >
-                            <option value = "" disabled selected></option>
-                            <option value="Phone">Phone</option>
-                            <option value="Laptop">Laptop</option>
-                            <option value="Case">Case</option>
-                            <option value="Other">Other</option>
-                        </select>
-                        <label>* Type</label>
-                    </div>
-                    <InputField fieldClass="col s6" labelText="* Address"
-                        id="address" onChange={this.handleInputChange} required="required" />
-                    <InputField fieldClass="col s6" labelText="Price" id="price" onChange={this.handleInputChange} />
-                    <InputField labelText="Description" id="description" onChange={this.handleInputChange} />
-                    <div className="col s12 file-field input-field">
-                        <div className="btn waves-effect blue white-text darken-text-2">
-                            <span>Browse</span>
-                            <input id="postImages" type="file" name="postImages" multiple/>
+                <div className="card-panel">
+                    <form onSubmit={this.handleSubmit} >
+                    <h5 className="title">Create post</h5>
+                    <div className="card-content red-text">{this.state.err}</div>
+                    <div className="row">
+                        <InputField fieldClass="col s6" labelText="* Title"
+                            id="title" onChange={this.handleInputChange} required="required" />
+                        <div className="input-field col s6">
+                            <select id="type" name="type" required="required" >
+                                <option value = "" disabled selected></option>
+                                <option value="Phone">Phone</option>
+                                <option value="Laptop">Laptop</option>
+                                <option value="Case">Case</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <label>* Type</label>
                         </div>
-                        <div className="file-path-wrapper">
-                            <input className="file-path validate" type="text" placeholder="Upload multiple files" />
+                        <InputField fieldClass="col s6" labelText="* Address"
+                            id="address" onChange={this.handleInputChange} required="required" />
+                        <InputField fieldClass="col s6" labelText="Price" id="price" onChange={this.handleInputChange} />
+                        <InputField labelText="Description" id="description" onChange={this.handleInputChange} />
+                        <div className="col s12 file-field input-field">
+                            <div className="btn waves-effect blue white-text darken-text-2">
+                                <span>Browse</span>
+                                <input id="postImages" type="file" name="postImages" multiple/>
+                            </div>
+                            <div className="file-path-wrapper">
+                                <input className="file-path validate" type="text" placeholder="Upload multiple files" />
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="row center">
-                    <div className="s12">
-                        <button className="btn waves-effect blue white-text darken-text-2" type="submit" name="action">Create</button>
+                    <div className="row right-align">
+                        <div className="s12">
+                            <button className="btn waves-effect blue white-text darken-text-2" type="submit" name="action">Create</button>
+                        </div>
                     </div>
+                    </form>
                 </div>
-                </form>
             </div>
         )
     }
