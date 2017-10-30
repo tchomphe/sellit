@@ -247,16 +247,22 @@ select:-webkit-autofill:focus {
 
 /* Navigation search bar */
 .custom_search_invisible {
-    display:none;
+    /* display:none; */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .2s, visibility 0s .2s;
 }
 
 .custom_search {
-    display:block;
+    visibility: visible;
+    transition: opacity .3s, visibility 0s;    
+    /* display:block; */
     all: default;
     position: fixed;
     left: 0px;
     width: 100%;
     height: 90px;
+    opacity: 1;
     background-color: rgba(0, 0, 0, 0.7);
 }
 

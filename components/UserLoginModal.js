@@ -71,8 +71,8 @@ class UserLoginModal extends React.Component{
                         <InputField labelText="Password" labelSuccess="" labelError={(this.state.err)?this.state.err:"Invalid"}
                             id="password" type="password" onChange={this.handleInputChange} required="" aria-required="true" />
                         <button className="btn blue waves-effect waves-light" type="submit" name="action">Sign in</button>
-                    </form>
-                    <Link onClick={this.close} to="/forgot">Forgot Password?</Link>
+                    </form>                    
+                    <p><Link onClick={this.close} to="/forgot">Forgot Password?</Link></p>
                 </div>
             </div>
         )
