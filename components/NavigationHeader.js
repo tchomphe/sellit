@@ -45,7 +45,13 @@ class NavigationHeader extends React.Component{
                                 </ul>
                                 <ul className="right hide-on-med-and-down">                                                                    
                                     {/* <!-- Dropdown Trigger --> */}          
-                                    <li><a className="dropdown-button" href="#!" data-activates="dropdown1">Category</a></li>                          
+                                    {/* <li><a className="dropdown-button" href="#!" data-activates="dropdown1">Category</a></li> */}
+                                    <li>
+                                        <a className="dropdown-button" href="#!" data-activates="dropdown1" data-beloworigin="true" data-constrainwidth="false" data-hover="true">
+                                            Category
+                                            <i className="material-icons right">arrow_drop_down</i>
+                                        </a>
+                                    </li>
                                     {/* <li><i className="large material-icons">list</i></li> */}
                                     <li><Link to="/">All posts</Link></li>
                                     {/* <li><i className="large material-icons">list</i></li> */}
@@ -62,9 +68,7 @@ class NavigationHeader extends React.Component{
                                     <li><img src="/static/img/logo_small.png"/></li>
                                     <ul className="collapsible collapsible-accordion">
                                         <li>
-                                            <a className="collapsible-header waves-effect">Category 
-                                                {/* <i className="material-icons light-blue-text">expand_more</i>                                                 */}
-                                            </a>
+                                            <a className="collapsible-header waves-effect">Category<i className="material-icons right">arrow_drop_down</i></a>
                                             <div className="collapsible-body">
                                                 <ul>
                                                     <li><Link to="/posts/Phone">Phones</Link></li>
@@ -93,8 +97,13 @@ class NavigationHeader extends React.Component{
                                     <li><Link to="/posts/Laptop">Laptops</Link></li>                                    
                                 </ul>                                
                                 <ul className="right hide-on-med-and-down">                                                                    
-                                    {/* <!-- Dropdown Trigger --> */}
-                                    <li><a className="dropdown-button" href="#!" data-activates="dropdown1">Category</a></li>
+                                    {/* <!-- Dropdown Trigger --> */}                                    
+                                    <li>
+                                        <a className="dropdown-button" href="#!" data-activates="dropdown1" data-beloworigin="true" data-constrainwidth="false" data-hover="true">
+                                            Category
+                                            <i className="material-icons right">arrow_drop_down</i>
+                                        </a>
+                                    </li>
                                     {/* <li><i className="small material-icons">arrow_drop_down</i></li> */}
                                     {/* <li><i className="large material-icons">assignment</i></li> */}
                                     <li><a href="#userRegistrationModal">Sign up</a></li>
@@ -106,9 +115,7 @@ class NavigationHeader extends React.Component{
                                     <li><img src="/static/img/logo_small.png"/></li>                                        
                                     <ul className="collapsible collapsible-accordion">
                                         <li>
-                                            <a className="collapsible-header waves-effect">Category 
-                                            {/* <i className="material-icons light-blue-text">expand_more</i>                                                 */}
-                                            </a>
+                                            <a className="collapsible-header waves-effect">Category<i className="material-icons right">arrow_drop_down</i></a>
                                             <div className="collapsible-body">
                                                 <ul>
                                                     <li><Link to="/posts/Phone">Phones</Link></li>
