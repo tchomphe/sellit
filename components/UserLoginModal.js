@@ -63,7 +63,6 @@ class UserLoginModal extends React.Component{
         return(
             <div id="userLoginModal" className="modal">
                 <a className="modal-action modal-close modalButtonClose"><i className="material-icons">close</i></a>
-
                 <div className="modal-content">
                     <h5>Sign in</h5>
                     <form className="row" onSubmit={this.handleSubmit}>
