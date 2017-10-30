@@ -56,10 +56,9 @@ export default class MyAccountPage extends React.Component{
 
         return(
             <div className="container">
-                <div className="row">
-                    {/* <span className="left-align title">My account - update your information</span> */}
+                <div className="row">                    
                     <h5 className="title"><strong>My account</strong> - update your information</h5>
-                    <div className="col s6">
+                    <div className="col s12 m6 l6">
                         <div className="card-panel">
                             <h6><b>Account details</b></h6><br />
                             <div className="card-content red-text">
@@ -82,7 +81,7 @@ export default class MyAccountPage extends React.Component{
                             </form>
                         </div>
                     </div>
-                    <div className="col s6">
+                    <div className="col s12 m6 l6">
                         <div className="card-panel">
                             <h6><b>Account summary</b></h6>
                             <table>
