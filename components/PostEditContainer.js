@@ -123,8 +123,8 @@ class PostEditContainer extends React.Component{
                 <form id="postEditForm" onSubmit={this.handleSubmit}>
                 <div className="card-panel">
                     <div className="row">
-                        <div className="form-items-info col s6">
-                            <h5>Post Info</h5>
+                        <div className="form-items-info col s12 m6 l6">
+                            <h5>Post information</h5>
                             <InputField labelText="Title"
                                 id="title" value={this.state.title} required="required" onChange={this.handleInputChange} />
                             <InputField fieldClass="col s6" labelText="Price"
@@ -143,13 +143,13 @@ class PostEditContainer extends React.Component{
                             <InputField labelText="Description"
                                 id="description" value={this.state.description} onChange={this.handleInputChange} />
                         </div>
-                        <div className="form-items-gallery col s6">
+                        <div className="form-items-gallery col s12 m6 l6">
                             <h5>Thumbnail</h5>
                             {thumbnailURL}
                             <h5>Pictures</h5>
                             {postImagesHTML}
                             <div className="col s12 file-field input-field">
-                                <div className="btn">
+                                <div className="btn blue">
                                     <span>Browse</span>
                                     <input id="postImages" type="file" name="postImages" multiple/>
                                 </div>
