@@ -86,7 +86,7 @@ class PostCreationContainer extends React.Component{
                         <div className="col s12 file-field input-field">
                             <div className="btn waves-effect blue white-text darken-text-2">
                                 <span>Browse</span>
-                                <input id="postImages" type="file" name="postImages" multiple/>
+                                <input id="postImages" type="file" name="postImages" accept=".jpg,.jpeg,.png" multiple/>
                             </div>
                             <div className="file-path-wrapper">
                                 <input className="file-path validate" type="text" placeholder="Upload multiple files" />
