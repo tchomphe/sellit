@@ -98,17 +98,17 @@ class PostModal extends React.Component{
                         </div>
                     </div> */}
                     <div className="row modal-footer">                        
-                        <div className="col s12 m4 l2">
+                        <div className="col s2 m2 l2">
                             {/* <p>s12 m4</p> */}
                             <button className="btn-floating btn waves-effect waves-light blue" onClick={(e)=>(this.prevPost(e))}>
                                 <i className="material-icons">chevron_left</i>
                             </button>
                         </div>
-                        <div className="col s12 m4 l8">
+                        <div className="col s8 m8 l8">
                             {/* <p>s12 m4</p> */}
                             <p><Link to={"/user-posts/"+this.props.ownerId}>View this user's others posts</Link></p>
                         </div>
-                        <div className="col s12 m4 l2">
+                        <div className="col s2 m2 l2">
                             <button className="btn-floating btn waves-effect waves-light blue" onClick={(e)=>(this.nextPost(e))}>
                                 <i className="material-icons">chevron_right</i>
                             </button>    
