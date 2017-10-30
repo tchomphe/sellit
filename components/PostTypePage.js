@@ -50,7 +50,9 @@ class PostTypePage extends React.Component{
         return(
             <div className="app-content row center">
                 <h4 className="profilePageHeader">{this.state.category}</h4>
-                {this.state.postTiles}
+                <div className="cards-container">
+                    {this.state.postTiles}
+                </div>
                 <p>this.props.params.type: {this.props.match.params.type}</p>
             </div>
         )

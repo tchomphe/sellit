@@ -70,8 +70,10 @@ class MyPostPage extends React.Component {
 
         return (
             <div className="app-content row center">
-                <h4 className="title"><strong>My posts</strong> - edit or delete your post</h4>
-                {this.state.postTiles}
+                <h4 className="title left-align"><strong>My posts</strong> - edit or delete your post</h4>
+                <div className="cards-container">                    
+                    {this.state.postTiles}
+                </div>
             </div>
         )
     }

@@ -81,8 +81,9 @@ export default class SearchResultsPage extends React.Component{
 
         return(
             <div className="app-content row center">
-                <br /><br /><br /><br />
-                {postTiles}
+                <div className="cards-container">
+                    {postTiles}
+                </div>
                 <br />
                 {/* {paginationButton} */}
                 {(searchResult) ? paginationButton : null}

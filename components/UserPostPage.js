@@ -41,7 +41,9 @@ class UserPostPage extends React.Component{
         return(
             <div className="app-content row center">
                 <h4 className="profilePageHeader">All User's Posts</h4>
-                {this.state.postTiles}
+                <div className="cards-container">
+                    {this.state.postTiles}                    
+                </div>
                 <p>this.props.params.ownerId: {this.props.match.params.ownerId}</p>
             </div>
         )
