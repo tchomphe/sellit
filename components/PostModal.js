@@ -20,7 +20,7 @@ class PostModal extends React.Component{
     prevPost(e){
         e.preventDefault();
         // If nextPostId is 1, can't move back since you are on the first modal else move back.
-        ((this.props.nextPostId) === 1) ? (            
+        ((this.props.nextPostId) === 1) ? (
             console.log('No previous post available.')
         ) : (
             $('#'+this.props.modalID).modal('close'),
@@ -47,7 +47,7 @@ class PostModal extends React.Component{
         var postImages = this.props.images;
         var postImagesHTML = [];
 
-        if (postImages){
+        if (postImages.length > 0){
             var numToWord = [
                 '#one!','#two!','#three!','#four!','#five!',
                 '#six!','#seven!','#eight!','#nine!','#ten!',
@@ -60,8 +60,6 @@ class PostModal extends React.Component{
             }
         }
         else{
-            postImagesHTML.push(<a className="carousel-item" href="#one!"><img src="https://unsplash.it/500/250/?image=0&blur" /></a>);
-            postImagesHTML.push(<a className="carousel-item" href="#one!"><img src="https://unsplash.it/500/250/?image=0&blur" /></a>);
             postImagesHTML.push(<a className="carousel-item" href="#one!"><img src="https://unsplash.it/500/250/?image=0&blur" /></a>);
         }
 
@@ -83,21 +81,21 @@ class PostModal extends React.Component{
                             <Map address={this.props.address}/>
                             <div className="divider"></div>
                             {/* <h5 className="left-align">Contact</h5> */}
-                            <PostContact ownerId={this.props.ownerId}/>                                                                                                                
+                            <PostContact ownerId={this.props.ownerId}/>
                         </div>
                     </div>
                     {/* <div className="row">
-                        <div className="col s12 m4 l3">                            
-                            <Map address={this.props.address}/>                            
-                        </div>                        
+                        <div className="col s12 m4 l3">
+                            <Map address={this.props.address}/>
+                        </div>
                         <div className="col s12 m8 l9 left-align">
                             <h5>{this.props.title}</h5>
                             <div className="divider"></div>
                             <h6>${this.props.price || placeholderMessage}</h6>
-                            <p>{this.props.description || placeholderMessage}</p>                            
+                            <p>{this.props.description || placeholderMessage}</p>
                         </div>
                     </div> */}
-                    <div className="row modal-footer">                        
+                    <div className="row modal-footer">
                         <div className="col s2 m2 l2">
                             {/* <p>s12 m4</p> */}
                             <button className="btn-floating btn waves-effect waves-light blue" onClick={(e)=>(this.prevPost(e))}>
@@ -111,7 +109,7 @@ class PostModal extends React.Component{
                         <div className="col s2 m2 l2">
                             <button className="btn-floating btn waves-effect waves-light blue" onClick={(e)=>(this.nextPost(e))}>
                                 <i className="material-icons">chevron_right</i>
-                            </button>    
+                            </button>
                         </div>
                     </div>
                 </div>
