@@ -73,7 +73,7 @@ app.get(['/create-post', '/my-posts', '/my-account'], function(req, res){
 });
 
 app.get('/paginatePosts/:pageNum', api.paginatePosts);
-app.get('/post/:id', api.getPostByID);
+app.get('/postById/:id', api.getPostByID);
 app.get('/user/:id', api.getUserByID);
 app.get('/searchPosts/:searchText/:page', api.searchPosts);
 app.get('/postsByOwner', api.postsByAuthenticatedOwner);

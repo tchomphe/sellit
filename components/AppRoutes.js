@@ -15,7 +15,7 @@ import NotFoundPage from './NotFoundPage';
 import Forgot from './Forgot';
 import Reset from './Reset';
 import PostTypePage from './PostTypePage'
-
+import SinglePostPage from './SinglePostPage';
 import UserRegistrationModal from './UserRegistrationModal';
 import UserLoginModal from './UserLoginModal';
 import NavigationHeader from './NavigationHeader';
@@ -82,6 +82,7 @@ export default class AppRoutes extends React.Component {
             <Route path="/edit-post/:postId" component={PostEditContainer} />
             <Route path="/my-posts" component={MyPostsPage} />
             <Route path="/user-posts/:ownerId" component={UserPostPage} />
+            <Route path="/post/:id" component={SinglePostPage} />
             <Route path="/forgot" component={Forgot} />
             <Route path="/reset/:token" component={Reset} />
             <Route path="/posts/:type" component={PostTypePage} />
