@@ -13,7 +13,7 @@ seeder.upload();
 
 // Session-less API Tests ============================================ //
 describe('Session-less API tests,', function () {
-  
+
   describe('GET /posts/:type', function(){
     it('responds with HTTP status 200', function(done){
       request('http://localhost:8080/posts/' + seeder.posts[0].type, function(error, response, body){
@@ -22,7 +22,7 @@ describe('Session-less API tests,', function () {
       });
     });
   });
-  
+
   describe('GET /', function(){
     it('responds with HTTP Status 200', function(done) {
       request('http://localhost:8080' , function(error, response, body) {
@@ -44,9 +44,9 @@ describe('Session-less API tests,', function () {
     });
   });
 
-  describe('GET /post/:id', function(){
+  describe('GET /postById/:id', function(){
     it('responds with correct post and HTTP Status 200', function(done) {
-      request.get('http://localhost:8080/post/'+postID, function(error, response, body){
+      request.get('http://localhost:8080/postById/'+postID, function(error, response, body){
         expect(response.body.title).to.equal(seeder.posts[0].title);
         expect(response.body.type).to.equal(seeder.posts[0].type);
         expect(response.body.address).to.equal(seeder.posts[0].address);
@@ -265,9 +265,9 @@ describe('Session-based API tests;', function () {
       });
     });
 
-    describe('GET /post/:id', function(){
+    describe('GET /postById/:id', function(){
       it('responds with HTTP Status 200', function(done) {
-        vageta.get('http://localhost:8080/post/'+postID, function(error, response, body){
+        vageta.get('http://localhost:8080/postById/'+postID, function(error, response, body){
           expect(response.body.title).to.equal("iNode 5s");
           expect(response.body.address).to.equal("123 Royal Way");
           expect(response.body.description).to.equal("Ok Condition. It works, deal with it.");
