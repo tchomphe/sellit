@@ -17,6 +17,7 @@ class UserRegistrationModal extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount(){
+        $('.tooltipped').tooltip({delay: 50});        
         $("#userRegistrationModal #password").on("focusout", function (e) {
             if ($(this).val() != $("#userRegistrationModal #confirm_password").val()) {
             $("#userRegistrationModal #confirm_password").removeClass("valid").addClass("invalid");
@@ -54,8 +55,7 @@ class UserRegistrationModal extends React.Component{
 
                     } else {
                         this.setState({err: ""});
-                        $('#userRegistrationModal').modal('close');
-
+                        Materialize.toast('Registered!', 2000)                         
                         //create user object and pass it to prop
                         let userArr = res.header.user.split(', ');
                         let userObj = {
@@ -64,6 +64,7 @@ class UserRegistrationModal extends React.Component{
                             phone: userArr.shift(),
                         };
                         this.props.handleLogin(userObj);
+                        $('#userRegistrationModal').modal('close');
                     }
                 });
         } else {
