@@ -28,7 +28,7 @@ class PostTypePage extends React.Component{
         // Since componentWillReceiveProps don't run on first render, setting the url default to this.props.match.params.type. Else
         // use the props received. This also avoids double clicking category link to render.
         var url = (nextProps) ? nextProps.match.params.type : this.props.match.params.type;
-        Request.get('/posts/' + url).then((res) => {
+        Request.get('/postsByType/' + url).then((res) => {
             var userPosts = res.body.map((post,index) =>
                 <PostTile
                     nextPostId={(index+1)}
@@ -47,6 +47,7 @@ class PostTypePage extends React.Component{
 
     render(){
         console.log('UserPostPage rendering ...');
+
         return(
             <div className="app-content row center">
                 <h4 className="profilePageHeader">{this.state.category}</h4>

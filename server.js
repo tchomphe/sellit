@@ -72,7 +72,6 @@ app.get(['/create-post', '/my-posts', '/my-account'], function(req, res){
     res.redirect('/');
 });
 
-app.get('/posts/:type', api.getPostByType)
 app.get('/paginatePosts/:pageNum', api.paginatePosts);
 app.get('/post/:id', api.getPostByID);
 app.get('/user/:id', api.getUserByID);
@@ -81,6 +80,7 @@ app.get('/postsByOwner', api.postsByAuthenticatedOwner);
 app.get('/postsByOwner/:id', api.postsByOwnerID);
 app.get('/postByTitle/:title', api.getPostByTitle);
 app.get('/userByEmail/:email', api.getUserByEmail);
+app.get('/postsByType/:type', api.getPostByType)
 app.get('/varifyAuthentication', api.varifyAuthentication);
 app.get('/myAccount', function(req, res){
   if (req.isAuthenticated())
