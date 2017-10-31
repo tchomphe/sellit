@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PostModal from './PostModal';
+import Moment from 'react-moment';
 
 export default class PostTile extends React.Component {
     componentDidMount(){
@@ -36,12 +37,12 @@ export default class PostTile extends React.Component {
 
                     <div className="card-content">                    
                         <span className="card-title activator truncate">{this.props.post.title}<i className="material-icons right">keyboard_arrow_up</i></span>
-                        <p className="left-align card-text">{this.props.post.address}<i className="material-icons">location_on</i></p>
-                        <p className="left-align card-text">Posted on: {this.props.post.date}</p>
+                        <p className="left-align card-text"><i className="material-icons">location_on</i>{this.props.post.address}</p>
+                        <p className="left-align card-text">Posted: <Moment fromNow>{this.props.post.date}</Moment></p>
                     </div>   
 
                     <div className="card-reveal">
-                        <span className="card-title truncate">{this.props.post.title}<i className="material-icons right">close</i></span>
+                        <span className="card-title truncate">{this.props.post.title}<i className="material-icons ">close</i></span>
                         <p className="left-align">{this.props.post.description}</p>
                     </div>
 

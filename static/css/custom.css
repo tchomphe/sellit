@@ -60,7 +60,7 @@ body {
 } */
 
 nav {
-    background-color: #232323;
+    background-color: #000000;
     width: 100%;
     z-index: 99;
     left: 0px;
@@ -73,7 +73,7 @@ nav {
 }
 
 nav ul li:hover {
-    background-color: #363649;
+    background-color: #2A2A2A;
     /* background-color: none;  */
 }
 
@@ -273,7 +273,7 @@ select:-webkit-autofill:focus {
     width: 100%;
     color: #fff;
     font-size: 35px;
-    font-weight: 400;
+    font-weight: 200;
     text-align: left;
     padding-left: 10px;
 }
