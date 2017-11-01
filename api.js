@@ -4,7 +4,6 @@ var User = require('./config/models/user');
 var fileSystem = require('fs');
 var passport = require('passport');
 var authentication = require('./config/passport');
-var nodemailer = require('nodemailer');
 var async = require('async');
 var crypto = require('crypto');
 

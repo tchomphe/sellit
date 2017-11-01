@@ -12,7 +12,6 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var path = require('path');
 var logger = require('morgan');
-// var nodemailer = require('nodemailer');
 // Define multer settings (for multi-form file uploading) //
 // TODO: move multer settings into config/ folder
 // TODO: test file limitations
