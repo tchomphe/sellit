@@ -21,6 +21,13 @@ export default class MainPage extends React.Component {
         //send request to initialize post listings
         this.requestAllPosts(1);
         $('.modal').modal();
+
+        $('.grid').masonry({
+            // options
+            itemSelector: '.grid-item',
+            columnWidth: 200,
+            horizontalOrder: true
+          });
     }
 
     requestAllPosts(currentPage){
@@ -62,7 +69,7 @@ export default class MainPage extends React.Component {
         return(
             <div className="app-content center">
                 <Banner />
-                <div className="cards-container">
+                <div className="grid">
                     {postTiles}
                 </div>
                 <br />

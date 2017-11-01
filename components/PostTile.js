@@ -26,20 +26,19 @@ export default class PostTile extends React.Component {
         var thumbnailImage = (this.props.post.thumbnail) ? this.props.post.thumbnail : "https://placehold.it/350x250";
 
         return(
-            <div>
-                <div className="card">
+                <div className="card grid-item">
                     <div className="card-image">
                         <a href="#!" onClick={(e) => (this.handleSubmit(e))}>
                             <img src={thumbnailImage} alt="Card image cap" />
-                        </a>                        
+                        </a>
                         <a className="btn-floating btn-large halfway-fab blue lighten-1">${this.props.post.price}</a>
                     </div>
 
-                    <div className="card-content">                    
+                    <div className="card-content">
                         <span className="card-title activator truncate">{this.props.post.title}<i className="material-icons right">keyboard_arrow_up</i></span>
                         <p className="left-align card-text"><i className="material-icons">location_on</i>{this.props.post.address}</p>
                         <p className="left-align card-text">Posted: <Moment fromNow>{this.props.post.date}</Moment></p>
-                    </div>   
+                    </div>
 
                     <div className="card-reveal">
                         <span className="card-title truncate">{this.props.post.title}<i className="material-icons ">close</i></span>
@@ -48,7 +47,7 @@ export default class PostTile extends React.Component {
 
                     <PostModal
                             prevPostId={this.props.prevPostId}
-                            nextPostId={this.props.nextPostId}                        
+                            nextPostId={this.props.nextPostId}
                             modalID={this.props.postModalID}
                             title={this.props.post.title}
                             price={this.props.post.price}
@@ -57,7 +56,6 @@ export default class PostTile extends React.Component {
                             images={this.props.post.images}
                             ownerId={this.props.post.ownerID} />
                 </div>
-            </div>
         )
     }
 }

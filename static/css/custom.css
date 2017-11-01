@@ -23,6 +23,12 @@ body {
     margin: 0px;
 }
 
+.grid-item {
+    float: left;
+    width: 300px;
+    margin-bottom: 5px;
+}
+
 /* .side-nav .collapsible-header {
     padding-left: 32px;
 } */
@@ -167,7 +173,7 @@ input:not([type]).valid+label:after, input:not([type]):focus.valid+label:after, 
 
 /* valid color */
 .input-field input[type=email].valid {
-    border-bottom: 1px solid #9e9e9e;    
+    border-bottom: 1px solid #9e9e9e;
     box-shadow: none;
 }
 
@@ -255,7 +261,7 @@ select:-webkit-autofill:focus {
 
 .custom_search {
     visibility: visible;
-    transition: opacity .3s, visibility 0s;    
+    transition: opacity .3s, visibility 0s;
     /* display:block; */
     all: default;
     position: fixed;
@@ -362,7 +368,7 @@ select:-webkit-autofill:focus {
 }
 
 .modal .modal-footer{
-    background-color: #232323;    
+    background-color: #232323;
 }
 
 /* .modal-content {
