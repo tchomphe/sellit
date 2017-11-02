@@ -55,7 +55,7 @@ export default class InteractivePostTile extends React.Component {
 
         return(
             <div>
-                <div className="card">                
+                <div className="card">
                     <div className="card-image">
                         <a href="#!" onClick={(e) => (this.handlePreview(e))} className="waves-effect waves-light">
                             <img src={thumbnailImage} alt="Card image cap" />
@@ -66,9 +66,9 @@ export default class InteractivePostTile extends React.Component {
                         <p className="card-text"><i className="tiny material-icons">location_on</i> {this.props.post.address}</p>
                     </div>
                     <div className="card-action right-align">
-                    <a href="#" style={{color: '#4285f4'}} onClick={(e) => (this.handleEdit(e))}>Edit</a>
-                    <a href="#" style={{color: 'red'}} onClick={(e) => (this.deleteConfirmation(e))}>Delete</a>
-                    </div>                
+                    <a href="#" style={{color: '#9C9A9A'}} onClick={(e) => (this.handleEdit(e))}><i className="material-icons">edit</i></a>
+                    <a href="#" style={{color: '#9C9A9A'}} onClick={(e) => (this.deleteConfirmation(e))}><i className="material-icons">delete</i></a>
+                    </div>
                     <PostModal
                         prevPostId={this.props.prevPostId}
                         nextPostId={this.props.nextPostId}
@@ -87,7 +87,7 @@ export default class InteractivePostTile extends React.Component {
                         <p>Are you sure you want to continue?</p>
                     </div>
                     <div className="modal-footer" style={{'background-color':'#fafafa'}}>
-                        <a href="#!" className="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>                        
+                        <a href="#!" className="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
                         <a onClick={(e) => (this.handleDelete(e))} href="#!" className="modal-action modal-close waves-effect waves-red btn-flat">Delete</a>
                     </div>
                 </div>

@@ -25,8 +25,8 @@ export default class MainPage extends React.Component {
         $('.grid').masonry({
             // options
             itemSelector: '.grid-item',
+            horizontalOrder: true,
             columnWidth: 200,
-            horizontalOrder: true
           });
     }
 
@@ -63,12 +63,12 @@ export default class MainPage extends React.Component {
         if (this.state.page == 0)
             paginationButton = <h4>Reached end of posts.</h4>;
         else
-            paginationButton = <a onClick={this.handlePagination} className="btn-floating waves-effect waves-light blue">
+            paginationButton = <a onClick={this.handlePagination} className="btn-floating waves-effect waves-light black">
                                     <i className="material-icons">expand_more</i></a>;
 
         return(
             <div className="app-content center">
-                <Banner />
+                {/* <Banner /> */}
                 <div className="grid">
                     {postTiles}
                 </div>

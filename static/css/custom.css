@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
+
 /* html {
     font-family: Trebuchet, sans-serif;
 } */
@@ -25,9 +27,19 @@ body {
 
 .grid-item {
     float: left;
-    width: 300px;
-    margin-bottom: 5px;
+    width: 320px;
+    height: auto;
+    /* height: 400px; */
+    /* margin-bottom: 5px; */
+    margin: 5px;
 }
+
+/* clearfix */
+.grid:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
 
 /* .side-nav .collapsible-header {
     padding-left: 32px;
@@ -154,21 +166,21 @@ input:not([type]).valid+label:after, input:not([type]):focus.valid+label:after, 
 
 .input-field label{
     font-size: 14px;
-    font-weight: 300;
+    /* font-weight: 300; */
 }
 /* email */
 .input-field input[type=email]:focus + label {
-    color: #42A5F5;
+    color: #000;
 }
 
 /* text */
 .input-field input[type=text]:focus + label {
-    color: #42A5F5;
+    color: #000;
 }
 
 /* password */
 .input-field input[type=password]:focus + label {
-    color: #42A5F5;
+    color: #000;
 }
 
 /* valid color */
@@ -221,17 +233,17 @@ input[type=text]{
 
 /* icon prefix focus color */
 .input-field .prefix.active {
-    color: #4285f4;
+    color: #18ffff;
 }
 
 /* Input field bottom border on focus */
 input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
-    border-bottom: 1px solid #4285f4;
-    box-shadow: 0 1px 0 0 #4285f4;
+    border-bottom: 1px solid #18ffff;
+    box-shadow: none;
 }
 
 textarea.materialize-textarea:focus:not([readonly])+label{
-    color:#4285f4;
+    color:#000;
 }
 
 /* Change Autocomplete styles in Chrome*/
@@ -422,6 +434,7 @@ select:-webkit-autofill:focus {
 }
 
 .card a, .card a img {
+    border-radius: 10px 10px 0 0 !important;
     width: 100%;
 }
 
@@ -472,4 +485,58 @@ select:-webkit-autofill:focus {
         -moz-column-count: 3;
         column-count: 3;
     }
+}
+
+
+/*****GAYCHEY'S EDITS******/
+
+html {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+nav .material-icons  {
+    color: #18ffff;
+}
+
+p .material-icons{
+    position: relative;
+    top: 2px;
+    font-size: 18px;
+    color: #9C9A9A;
+}
+
+.card {
+    border: 1px solid #eee;
+    box-shadow: none;
+    border-radius: 10px;
+}
+
+.card .card-action{
+    border-radius: 0 0 10px 10px;
+}
+
+.btn-floating.halfway-fab {
+    position: absolute;
+    right: 0px;
+    /* bottom: -20px; */
+    top: 0;
+    border-radius: 0px;
+}
+
+.blue.lighten-1 {
+    background-color: rgba(0,0,0,0.8) !important;
+    color: #18ffff;
+    font-weight: 900;
+    border-radius: 0px 10px 0 10px !important;
+    box-shadow: none;
+}
+
+.posted-date {
+    position: relative;
+    top:10px;
+    font-size: 80%;
+    color: #BBB !important;
+}
+a {
+    color: #00b8d4;
 }

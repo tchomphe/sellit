@@ -56,7 +56,7 @@ export default class MyAccountPage extends React.Component{
 
         return(
             <div className="container">
-                <div className="row">                    
+                <div className="row">
                     <h5 className="title"><strong>My account</strong> - update your information</h5>
                     <div className="col s12 m6 l6">
                         <div className="card-panel">
@@ -73,7 +73,7 @@ export default class MyAccountPage extends React.Component{
                                     <InputField labelText="Confirm New Password" fieldClass="col s6" id="confirmNewPassword" type="password" onChange={this.handleInputChange} />
                                     <InputField labelText="* Password" id="password" type="password" onChange={this.handleInputChange} />
                                     <div className="container right-align">
-                                    <button className="btn waves-effect blue white-text darken-text-2" type="submit" name="action">
+                                    <button className="btn black waves-effect white-text darken-text-2" type="submit" name="action">
                                         Save Changes
                                     </button>
                                     </div>

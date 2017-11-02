@@ -84,7 +84,7 @@ class PostCreationContainer extends React.Component{
                         <InputField fieldClass="col s6" labelText="Price" id="price" onChange={this.handleInputChange} />
                         <InputField labelText="Description" id="description" onChange={this.handleInputChange} />
                         <div className="col s12 file-field input-field">
-                            <div className="btn waves-effect blue white-text darken-text-2">
+                            <div className="btn black waves-effect white-text darken-text-2">
                                 <span>Browse</span>
                                 <input id="postImages" type="file" name="postImages" accept=".jpg,.jpeg,.png" multiple/>
                             </div>
@@ -95,7 +95,7 @@ class PostCreationContainer extends React.Component{
                     </div>
                     <div className="row right-align">
                         <div className="s12">
-                            <button className="btn waves-effect blue white-text darken-text-2" type="submit" name="action">Create</button>
+                            <button className="btn black waves-effect white-text darken-text-2" type="submit" name="action">Create</button>
                         </div>
                     </div>
                     </form>

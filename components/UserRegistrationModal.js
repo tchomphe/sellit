@@ -17,7 +17,7 @@ class UserRegistrationModal extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount(){
-        $('.tooltipped').tooltip({delay: 50});        
+        $('.tooltipped').tooltip({delay: 50});
         $("#userRegistrationModal #password").on("focusout", function (e) {
             if ($(this).val() != $("#userRegistrationModal #confirm_password").val()) {
             $("#userRegistrationModal #confirm_password").removeClass("valid").addClass("invalid");
@@ -55,7 +55,7 @@ class UserRegistrationModal extends React.Component{
 
                     } else {
                         this.setState({err: ""});
-                        Materialize.toast('Registered!', 2000)                         
+                        Materialize.toast('Registered!', 2000)
                         //create user object and pass it to prop
                         let userArr = res.header.user.split(', ');
                         let userObj = {
@@ -97,7 +97,7 @@ class UserRegistrationModal extends React.Component{
                             {/* <input name="phone" type="tel" pattern="^\d{3}\d{3}\d{4}$" className="validate" /> */}
                         </div>
                         <div className="row">
-                            <button className="btn blue waves-effect waves-light" type="submit" name="action">Register</button>
+                            <button className="btn black waves-effect waves-light" type="submit" name="action">Register</button>
                         </div>
                     </form>
                 </div>
