@@ -29,7 +29,7 @@ class PostEditContainer extends React.Component{
     }
 
     getPostInformation(){
-        Request.get('/post/' + this.state.id).then((res) => {
+        Request.get('/postById/' + this.state.id).then((res) => {
             console.log('Response Body: ' + JSON.stringify(res.body, null, 4));
             var picsExceptThumb = res.body.images;
             picsExceptThumb.splice(picsExceptThumb.indexOf(res.body.thumbnail), 1);
