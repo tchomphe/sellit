@@ -25,8 +25,7 @@ export default class MainPage extends React.Component {
         $('.grid').masonry({
             // options
             itemSelector: '.grid-item',
-            horizontalOrder: true,
-            columnWidth: 200,
+            columnWidth: 320,
           });
     }
 
@@ -69,7 +68,7 @@ export default class MainPage extends React.Component {
         return(
             <div className="app-content center">
                 {/* <Banner /> */}
-                <div className="grid">
+                <div className="grid center">
                     {postTiles}
                 </div>
                 <div className="app-content-paginationButton">

@@ -27,20 +27,8 @@ body {
 
 .grid {
     height: auto !important;
-}
-
-.app-content-paginationButton {
-    margin-top: 30px;
-    margin-bottom: 20px;
-}
-
-.grid-item {
-    float: left;
-    width: 320px;
-    height: auto;
-    /* height: 400px; */
-    /* margin-bottom: 5px; */
-    margin: 5px;
+    width: auto;
+    margin: 0 auto;
 }
 
 /* clearfix */
@@ -49,6 +37,20 @@ body {
     display: block;
     clear: both;
   }
+
+.app-content-paginationButton {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.grid-item {
+    width: 320px;
+    height: auto;
+    float: left;
+    /* height: 400px; */
+    /* margin-bottom: 5px; */
+    margin: 5px;
+}
 
 /* .side-nav .collapsible-header {
     padding-left: 32px;
