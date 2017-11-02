@@ -72,8 +72,9 @@ export default class MainPage extends React.Component {
                 <div className="grid">
                     {postTiles}
                 </div>
-                <br />
-                {paginationButton}
+                <div className="app-content-paginationButton">
+                    {paginationButton}
+                </div>
             </div>
         );
     }
