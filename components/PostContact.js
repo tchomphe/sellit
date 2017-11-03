@@ -47,7 +47,7 @@ class PostContact extends React.Component{
     }
     render(){
         return(
-            <form className="col s12 left-align" onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit}>
                     <div className="row center">
                         <div className="input-field col s8">
                             <input name="sender_email" value={this.state.sender_email} type="email" className="validate" onChange={this.handleInputChange} />

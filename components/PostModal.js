@@ -74,12 +74,13 @@ class PostModal extends React.Component{
                         </div>
                         <div className="col s12 m5 l5 left-align">
                             <h5>{this.props.title}</h5>
+                            <p><Link to={"/user-posts/"+this.props.ownerId}>View others posts by this user</Link></p>
                             <div className="divider"></div>
                             <p><strong>${this.props.price || placeholderMessage}</strong></p>
                             <p>{this.props.description || placeholderMessage}</p>
                             <p>{this.props.address || placeholderMessage}</p>
                             <Map address={this.props.address}/>
-                            <div className="divider"></div>
+                            {/* <div className="divider"></div> */}
                             {/* <h5 className="left-align">Contact</h5> */}
                             <PostContact ownerId={this.props.ownerId}/>
                         </div>
@@ -95,22 +96,13 @@ class PostModal extends React.Component{
                             <p>{this.props.description || placeholderMessage}</p>
                         </div>
                     </div> */}
-                    <div className="row modal-footer">
-                        <div className="col s2 m2 l2">
-                            {/* <p>s12 m4</p> */}
-                            <button className="btn-floating btn waves-effect waves-light blue" onClick={(e)=>(this.prevPost(e))}>
-                                <i className="material-icons">chevron_left</i>
+                    <div className="row">
+                            <button className="btn-floating btn black post-modal-arrow-left" onClick={(e)=>(this.prevPost(e))}>
+                                <i className="material-icons">chevron_left</i><span className="prev-item-mobile-only">Previous item</span>
                             </button>
-                        </div>
-                        <div className="col s8 m8 l8">
-                            {/* <p>s12 m4</p> */}
-                            <p><Link to={"/user-posts/"+this.props.ownerId}>View this user's others posts</Link></p>
-                        </div>
-                        <div className="col s2 m2 l2">
-                            <button className="btn-floating btn waves-effect waves-light blue" onClick={(e)=>(this.nextPost(e))}>
-                                <i className="material-icons">chevron_right</i>
+                            <button className="btn-floating btn black post-modal-arrow-right" onClick={(e)=>(this.nextPost(e))}>
+                                <i className="material-icons">chevron_right</i><span className="next-item-mobile-only">Next item</span>
                             </button>
-                        </div>
                     </div>
                 </div>
 

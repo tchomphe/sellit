@@ -120,7 +120,7 @@ class NavigationHeader extends React.Component{
             <div className="navbar-fixed">
             <nav>
                 <div className="nav-wrapper">
-                    <Link to="/" className="brand-logo">tolist</Link>
+                    <Link to="/" className="brand-logo">to<span style={{color: '#18ffff'}}>list</span></Link>
                     <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
                     {navMenu}
                 </div>
