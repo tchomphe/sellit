@@ -79,7 +79,7 @@ app.get('/postsByOwner', api.postsByAuthenticatedOwner);
 app.get('/postsByOwner/:id', api.postsByOwnerID);
 app.get('/postByTitle/:title', api.getPostByTitle);
 app.get('/userByEmail/:email', api.getUserByEmail);
-app.get('/postsByType/:type', api.getPostByType)
+app.get('/postsByType/:type/:page', api.getPostByType)
 app.get('/varifyAuthentication', api.varifyAuthentication);
 app.get('/myAccount', function(req, res){
   if (req.isAuthenticated())

@@ -8,53 +8,75 @@ class PostTypePage extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            postTiles: [],
-            category: ""
+            posts: [],
+            category: "",
+            page: 1,
         }
+        this.handlePagination = this.handlePagination.bind(this);
     }
     componentDidMount(){
         // Initiate Materialize Modal
         $('.modal').modal();
 
         // Populate PostTile's with current user's posts
-        this.requestUserPosts();
-    }
-    componentWillReceiveProps(nextProps){
-            console.log(`Recieved props! nextProps: ${nextProps.match.params.type}`);
-            this.requestUserPosts(nextProps);
+        this.requestPosts(this.props.match.params.type, 1);
+
+        $('.grid').masonry({
+            // options
+            itemSelector: '.grid-item',
+            columnWidth: 320,
+          });
     }
 
-    requestUserPosts(nextProps){
-        // Since componentWillReceiveProps don't run on first render, setting the url default to this.props.match.params.type. Else
-        // use the props received. This also avoids double clicking category link to render.
-        var url = (nextProps) ? nextProps.match.params.type : this.props.match.params.type;
-        Request.get('/postsByType/' + url).then((res) => {
-            var userPosts = res.body.map((post,index) =>
-                <PostTile
-                    nextPostId={(index+1)}
-                    prevPostId={(index-1)}
-                    key={index}
-                    postModalID={'postModal'+index}
-                    post={post} />
-                );
+    componentWillReceiveProps(nextProps){
+            this.setState({
+                posts: [],
+            });
+            this.requestPosts(nextProps.match.params.type, 1);
+    }
+
+    requestPosts(query, page){
+        Request.get(`/postsByType/${query}/${page}`).then((res) => {
+            var oldPosts = this.state.posts;
+            var newPosts = res.body.docs;
+            var updatedPosts = oldPosts.concat(newPosts);
+
+            //determine nextPage, if last page of results were encountered, set nextPage to 0
+            var nextPage = (newPosts.length == 0) ? 0 : page + 1;
 
             this.setState({
-                postTiles: userPosts,
-                category: this.props.match.params.type
-            }, () => {console.log('setState executed!')});
+                posts: updatedPosts,
+                page: nextPage,
+              });
         });
+    }
+    handlePagination(e){
+        e.preventDefault();
+        this.requestPosts(this.props.match.params.type, this.state.page);
     }
 
     render(){
         console.log('UserPostPage rendering ...');
+        var postTiles = this.state.posts.map((post, index) =>
+        <PostTile key={index} postModalID={'postModal'+index} post={post} nextPostId={(index+1)} prevPostId={(index-1)} />);
+
+        //determine if pagination button is needed, or if we've reached the end of all posts
+        var paginationButton = null;
+        if (this.state.page == 0)
+            paginationButton = <h4>Reached end of posts.</h4>;
+        else
+            paginationButton = <a onClick={this.handlePagination} className="btn-floating black">
+                                    <i className="material-icons">expand_more</i></a>;
 
         return(
-            <div className="app-content row center">
-                <h4 className="profilePageHeader">{this.state.category}</h4>
-                <div className="cards-container">
-                    {this.state.postTiles}
+            <div className="app-content center">
+                {/* <h4 className="profilePageHeader">{this.props.match.params.type}</h4> */}
+                <div className="grid-center">
+                    {postTiles}
                 </div>
-                <p>this.props.params.type: {this.props.match.params.type}</p>
+                <div className="app-content-paginationButton">
+                    {paginationButton}
+                </div>
             </div>
         )
     }
