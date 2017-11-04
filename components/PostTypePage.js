@@ -70,7 +70,7 @@ class PostTypePage extends React.Component{
 
         return(
             <div className="app-content center">
-                {/* <h4 className="profilePageHeader">{this.props.match.params.type}</h4> */}
+                <h4 className="profilePageHeader">{this.props.match.params.type}</h4>
                 <div className="grid-center">
                     {postTiles}
                 </div>

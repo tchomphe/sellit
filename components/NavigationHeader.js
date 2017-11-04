@@ -35,6 +35,7 @@ class NavigationHeader extends React.Component{
         //redirect to SearchResults and pass the query
         this.props.history.push('/search/' + this.refs.search.value);
         this.setState({customSearchBar: "custom_search_invisible"});
+        $("#navbarContainer #search").val("");
     }
 
     render(){
@@ -125,7 +126,7 @@ class NavigationHeader extends React.Component{
                     <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
                     {navMenu}
                 </div>
-                <div className={this.state.customSearchBar}>
+                <div id="navbarContainer" className={this.state.customSearchBar}>
                     <form onSubmit={(e) => (this.handleSubmit(e))}>
                         <input id="search" type="search" ref="search" className="search_bar" style={{'border-bottom': 'none', 'box-shadow': 'none'}} placeholder="" />
                     </form>

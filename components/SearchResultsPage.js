@@ -26,6 +26,11 @@ export default class SearchResultsPage extends React.Component{
         //send request to initialize post listings
         this.searchPosts(this.state.query, this.state.page);
         $('.modal').modal();
+        $('.grid').masonry({
+            // options
+            itemSelector: '.grid-item',
+            columnWidth: 320,
+          });
     }
 
     searchPosts(query, currentPage){
@@ -80,17 +85,17 @@ export default class SearchResultsPage extends React.Component{
         if (this.state.page == 0)
             paginationButton = <h4>Reached end of posts.</h4>;
         else
-            paginationButton = <a onClick={this.handlePagination} className="scrollButton btn-floating btn-large waves-effect waves-light gray">
+            paginationButton = <a onClick={this.handlePagination} className="btn-floating black">
                                     <i className="material-icons">expand_more</i></a>;
 
         return(
-            <div className="app-content row center">
-                <div className="cards-container">
+            <div className="app-content center">
+                <div className="grid-center">
                     {postTiles}
                 </div>
-                <br />
-                {/* {paginationButton} */}
-                {(searchResult) ? paginationButton : null}
+                <div className="app-content-paginationButton">
+                    {(searchResult) ? paginationButton : null}
+                </div>
             </div>
         )
     }
