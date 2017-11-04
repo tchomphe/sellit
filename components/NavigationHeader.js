@@ -34,6 +34,7 @@ class NavigationHeader extends React.Component{
         //TODO: pass more variables, ex: /?query=121&type=Bob
         //redirect to SearchResults and pass the query
         this.props.history.push('/search/' + this.refs.search.value);
+        this.setState({customSearchBar: "custom_search_invisible"});
     }
 
     render(){

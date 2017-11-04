@@ -67,7 +67,7 @@ exports.getPostByType = function(req, res){
   var options = {
     page: req.params.page,
     sort: {date: -1},
-    limit: 2
+    limit: 3
   }
   // Post.paginate(query, options,function(err, result){
   Post.paginate(query, options, function(err, result){
@@ -75,13 +75,14 @@ exports.getPostByType = function(req, res){
     res.send(result);
   });
 }
+
 exports.searchPosts = function(req, res){
   //define query; search for all posts by default
   var query = { $text: { $search: req.params.searchText } };
   var options = {
     page: req.params.page,
     sort: { date: -1 },
-    limit: 6
+    limit: 3
   }
 
   Post.paginate(query, options, function(err, result){
