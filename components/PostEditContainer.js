@@ -76,10 +76,16 @@ class PostEditContainer extends React.Component{
         //Clear files attached to postImages
         document.getElementById('postImages').value = "";
 
+        //show page loading wrapper
+        $("#dim-page-loader").fadeIn(100);
+
         Request
             .put('/post/' + this.state.id)
             .send(formData)
             .end((err, res) => {
+                //hide page loading wrapper
+                $("#dim-page-loader").fadeOut(100);
+
                 if(err){
                     this.setState({err: res.body.error});
                 } else {

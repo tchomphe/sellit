@@ -52,9 +52,15 @@ class MyPostPage extends React.Component {
 
     handleDelete(post){
         console.log(post._id);
+        //show page loading wrapper
+        $("#dim-page-loader").fadeIn(100);
+
         Request
             .delete('/post/' + post._id)
             .end((err, res)=>{
+                //hide page loading wrapper
+                $("#dim-page-loader").fadeOut(100);
+
                 if(err){
                     this.setState({err: res.body.err});
                 }

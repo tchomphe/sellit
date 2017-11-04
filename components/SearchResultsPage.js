@@ -29,7 +29,11 @@ export default class SearchResultsPage extends React.Component{
     }
 
     searchPosts(query, currentPage){
+        //show page loading wrapper
+        $("#dim-page-loader").fadeIn(100);
         Request.get('/searchPosts/' + query + '/' + currentPage).then((res) => {
+            //hide page loading wrapper
+            $("#dim-page-loader").fadeOut(100);
             //check if current page is 1, if so, reset results -- otherwise, continue pagination
             var oldPosts = (currentPage == 1) ? [] : this.state.posts;
             var newPosts = res.body.docs;
