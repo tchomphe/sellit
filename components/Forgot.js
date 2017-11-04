@@ -52,7 +52,7 @@ class Forgot extends React.Component{
                             <InputField id="email" type="email" labelText="Enter your email" labelSuccess="" labelError={(this.state.err)?this.state.err:"Enter a valid email address"}
                                 onChange={this.handleInputChange} value={this.state.email} required="" aria-required="true" />
                                 {/* <input id="email" name="email" type="text" ref="email" placeholder="Enter your email" required="" aria-required="true" /> */}
-                                <div className="card-action right-align" style={{'padding-right':'20px'}}>
+                                <div className="card-action right-align">
                                     <button className="btn black waves-effect waves-light" type="submit">Send</button>
                                     {/* <a href="#">This is a link</a> */}
                                 </div>
