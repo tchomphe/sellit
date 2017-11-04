@@ -15,6 +15,7 @@ class Reset extends React.Component{
     }
 
     componentDidMount(){
+        // Need to initialize modal so that sign in and sign up modals can trigger
         $('.modal').modal();
         $('.tooltipped').tooltip({delay: 50});
     }
@@ -25,20 +26,26 @@ class Reset extends React.Component{
 
     onSubmit(e){
         e.preventDefault();
-        if (this.state.password === this.state.confirmPassword){
-        Request
-            .post(`/reset/${this.props.match.params.token}`)
-            .send({password: this.state.password})
-            .end(function(err, res){
-                if(err) {
-                    this.setState({err: res.body.error});
-                } else {
-                    Materialize.toast('Your password has been reset!', 4000);
-
-                }
-            });
+        if(this.state.password !== "" && this.state.confirmPassword !==""){
+            if (this.state.password === this.state.confirmPassword){
+            Request
+                .post(`/reset/${this.props.match.params.token}`)
+                .send({password: this.state.password})
+                .end(function(err, res){
+                    if(err) {
+                        this.setState({err: res.body.error});
+                    } else {
+                        $('#resetContainer #password').val("");
+                        $('#resetContainer #confirmPassword').val("");
+                        Materialize.toast('Your password has been reset!', 4000);
+                    }
+                });
+            } else {
+                $("#resetContainer #confirmPassword").removeClass("valid").addClass("invalid");
+            }
         } else {
-            $("#resetContainer #confirmPassword").removeClass("valid").addClass("invalid");
+            // this.setState({err: "Enter your new password!"})
+            $("#resetContainer #password").removeClass("valid").addClass("invalid");
         }
     }
 
@@ -51,10 +58,10 @@ class Reset extends React.Component{
                             <form className="col s12" onSubmit={e => this.onSubmit(e)} >
                                 <span className="card-title">Reset your password</span>
                                 <p>Enter your new password:</p>
-                                <InputField labelText="Enter new password"
-                                    id="password" type="password" onChange={this.handleInputChange} required="" aria-required="true" />
+                                <InputField labelText="Enter new password" labelSuccess="" labelError={(this.state.err)?this.state.err:"Enter your new password!"}
+                                    id="password" type="password" value={this.state.password} onChange={this.handleInputChange} required="" aria-required="true" />
                                 <InputField labelText="Re-enter new password" labelSuccess="" labelError={(this.state.err)?this.state.err:"Password do not match!"}
-                                    id="confirmPassword" type="password" onChange={this.handleInputChange} required="" aria-required="true" />
+                                    id="confirmPassword" type="password" value={this.state.confirmPassword} onChange={this.handleInputChange} required="" aria-required="true" />
                                 <div className="card-action right-align">
                                     <button className="btn black" type="submit">Reset</button>
                                 </div>
