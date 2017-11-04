@@ -248,6 +248,7 @@ exports.send = function(req, res, next){
           console.log(`Error: ${error}`);
         } else {
           console.log('Email successfully sent.');
+          res.sendStatus(200);
         }
       });
     });
