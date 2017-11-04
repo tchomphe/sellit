@@ -41,6 +41,9 @@ class UserRegistrationModal extends React.Component{
     handleSubmit(event){
         event.preventDefault();
         if(this.state.password === this.state.confirm_password){
+            //show page loading wrapper
+            $("#dim-page-loader").fadeIn(100);
+
             Request
                 .post('/createUser')
                 .send({
@@ -49,6 +52,9 @@ class UserRegistrationModal extends React.Component{
                     nickname: this.state.nickname,
                     phone: this.state.phone })
                 .end((err, res) => {
+                    //hide page loading wrapper
+                    $("#dim-page-loader").fadeOut(100);
+
                     if(err){
                         this.setState({err: res.body.msg});
                         $("#userRegistrationModal #email").removeClass("valid").addClass("invalid");

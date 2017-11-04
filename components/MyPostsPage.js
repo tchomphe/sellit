@@ -52,9 +52,15 @@ class MyPostPage extends React.Component {
 
     handleDelete(post){
         console.log(post._id);
+        //show page loading wrapper
+        $("#dim-page-loader").fadeIn(100);
+
         Request
             .delete('/post/' + post._id)
             .end((err, res)=>{
+                //hide page loading wrapper
+                $("#dim-page-loader").fadeOut(100);
+
                 if(err){
                     this.setState({err: res.body.err});
                 }
@@ -71,7 +77,7 @@ class MyPostPage extends React.Component {
         return (
             <div className="app-content row center">
                 <h4 className="title left-align"><strong>My posts</strong> - edit or delete your post</h4>
-                <div className="cards-container">                    
+                <div className="grid center">
                     {this.state.postTiles}
                 </div>
             </div>

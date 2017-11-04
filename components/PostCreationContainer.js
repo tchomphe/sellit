@@ -44,10 +44,16 @@ class PostCreationContainer extends React.Component{
                 formData.append(key, images[key]);
         }
 
+        //show page loading wrapper
+        $("#dim-page-loader").fadeIn(100);
+
         Request
             .post('/createPost')
             .send(formData)
             .end((err, res) => {
+                //hide page loading wrapper
+                $("#dim-page-loader").fadeOut(100);
+
                 if(err){
                     this.setState({err: res.body.error});
                 } else {

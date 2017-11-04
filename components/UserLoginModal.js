@@ -31,11 +31,17 @@ class UserLoginModal extends React.Component{
 
     handleSubmit(event){
         event.preventDefault();
+        //show page loading wrapper
+        $("#dim-page-loader").fadeIn(100);
+
         if(this.state.email != "" && this.state.password != ""){
             Request
                 .post('/login')
                 .send({email: this.state.email, password: this.state.password})
                 .end((err, res) => {
+                    //hide page loading wrapper
+                    $("#dim-page-loader").fadeOut(100);
+
                     if(err){
                         this.setState({err: res.body.error});
                         if((res.body.error).includes("Password" || "password")){

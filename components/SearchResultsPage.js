@@ -29,7 +29,11 @@ export default class SearchResultsPage extends React.Component{
     }
 
     searchPosts(query, currentPage){
+        //show page loading wrapper
+        $("#dim-page-loader").fadeIn(100);
         Request.get('/searchPosts/' + query + '/' + currentPage).then((res) => {
+            //hide page loading wrapper
+            $("#dim-page-loader").fadeOut(100);
             //check if current page is 1, if so, reset results -- otherwise, continue pagination
             var oldPosts = (currentPage == 1) ? [] : this.state.posts;
             var newPosts = res.body.docs;
@@ -55,14 +59,14 @@ export default class SearchResultsPage extends React.Component{
         var searchResult = true;
         var postTiles;
         //fetch posts and place them within PostTile's
-        if((this.state.posts).length == 0){ 
+        if((this.state.posts).length == 0){
             postTiles = <h5>Sorry, we didn't find any result.</h5>;
             searchResult = false;
         } else {
             postTiles = this.state.posts.map((post, index) =>
             <PostTile key={index} postModalID={'postModal'+index} post={post} />)
         }
-        
+
         // var postTiles = ((this.state.posts).length == 0) ? (
         //     <h5>Sorry, we didn't find any result.</h5>
         //     // searchResult = null
@@ -70,7 +74,7 @@ export default class SearchResultsPage extends React.Component{
         //     this.state.posts.map((post, index) =>
         //     <PostTile key={index} postModalID={'postModal'+index} post={post} />)
         // );
-        
+
         //determine if pagination button is needed, or if we've reached the end of all posts
         var paginationButton = null;
         if (this.state.page == 0)
