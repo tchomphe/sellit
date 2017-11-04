@@ -8,6 +8,7 @@ class PostModal extends React.Component{
         super(props);
         this.nextPost = this.nextPost.bind(this);
         this.prevPost = this.prevPost.bind(this);
+        // this.onKeyDown = this.onKeyDown.bind(this);
     }
     nextPost(e){
         e.preventDefault();
@@ -27,19 +28,26 @@ class PostModal extends React.Component{
             $('#postModal'+this.props.prevPostId).modal('open')
         );
     }
+    // onKeyDown(e){
+    //     if(e.keyCode === 39){
+    //         this.nextPost(e);
+    //     }
+    // }
     componentDidMount(){
-        $("body").keydown(function(e) {
-            if(e.keyCode == 37) { // left
-                console.log("Left key pressed!");
-                // this.prevPost(e);
-                // alert('Left');
-            }
-            else if(e.keyCode == 39) { // right
-                console.log("Right key pressed!");
-                // this.nextPost(e);
-                // alert('Right');
-              };
-          });
+        // $("body").keydown(function(e) {
+        //     if(e.keyCode == 37) { // left
+        //         console.log("Left key pressed!");
+        //         // this.prevPost(e);
+        //         // alert('Left');
+        //     }
+        //     else if(e.keyCode == 39) { // right
+        //         console.log("Right key pressed!");
+
+        //         // $('#'+this.state.modalID).modal('close')
+        //         // this.nextPost(e);
+        //         // alert('Right');
+        //       };
+        //   });
     }
     render(){
         var placeholderMessage = "[Not specified, contact seller]";
@@ -64,48 +72,47 @@ class PostModal extends React.Component{
         }
 
         return(
+            // <div id={this.props.modalID} tabIndex="0" className="modal postModal" onKeyDown={this.onKeyDown}>
             <div id={this.props.modalID} className="modal postModal">
                 <div className="modal-content">
+                    {/* <div className="row">
+                        <button className="btn-floating black post-modal-arrow-left" onClick={(e)=>(this.prevPost(e))}>
+                            <i className="material-icons">chevron_left</i><span className="prev-item-mobile-only">Previous item</span>
+                        </button>
+                        <button className="btn-floating black post-modal-arrow-right" onClick={(e)=>(this.nextPost(e))}>
+                            <span className="next-item-mobile-only">Next item</span><i className="material-icons">chevron_right</i>
+                        </button>
+                    </div> */}
                     <div className="row">
                         <div className="col s12 m7 l7 postImagesSlideshow">
                             <div className="carousel" data-indicators="true">
                                 {postImagesHTML}
                             </div>
                         </div>
-                        <div className="col s12 m5 l5 left-align">
+                        <div className="col s12 m5 l5 left-align" style={{padding: '20px 40px 0px 40px'}}>
                             <h5>{this.props.title}</h5>
                             <p><Link to={"/user-posts/"+this.props.ownerId}>View others posts by this user</Link></p>
                             <div className="divider"></div>
                             <p><strong>${this.props.price || placeholderMessage}</strong></p>
                             <p>{this.props.description || placeholderMessage}</p>
                             <p>{this.props.address || placeholderMessage}</p>
+                            <p><strong>{this.props.phone}</strong></p>
                             <Map address={this.props.address}/>
-                            {/* <div className="divider"></div> */}
-                            {/* <h5 className="left-align">Contact</h5> */}
-                            <PostContact ownerId={this.props.ownerId}/>
+                            <PostContact ownerId={this.props.ownerId} id={this.props.modalID} />
                         </div>
                     </div>
-                    {/* <div className="row">
-                        <div className="col s12 m4 l3">
-                            <Map address={this.props.address}/>
-                        </div>
-                        <div className="col s12 m8 l9 left-align">
-                            <h5>{this.props.title}</h5>
-                            <div className="divider"></div>
-                            <h6>${this.props.price || placeholderMessage}</h6>
-                            <p>{this.props.description || placeholderMessage}</p>
-                        </div>
-                    </div> */}
                     <div className="row">
-                            <button className="btn-floating btn black post-modal-arrow-left" onClick={(e)=>(this.prevPost(e))}>
-                                <i className="material-icons">chevron_left</i><span className="prev-item-mobile-only">Previous item</span>
-                            </button>
-                            <button className="btn-floating btn black post-modal-arrow-right" onClick={(e)=>(this.nextPost(e))}>
-                                <i className="material-icons">chevron_right</i><span className="next-item-mobile-only">Next item</span>
-                            </button>
+                        <button className="btn-floating black post-modal-arrow-left" onClick={(e)=>(this.prevPost(e))}>
+                            <i className="material-icons">chevron_left</i>
+                            {/* <span className="prev-item-mobile-only">Previous item</span> */}
+                        </button>
+                        <button className="btn-floating black post-modal-arrow-right" onClick={(e)=>(this.nextPost(e))}>
+                            {/* <span className="next-item-mobile-only">Next item</span> */}
+                            <i className="material-icons">chevron_right</i>
+                        </button>
                     </div>
                 </div>
-
+                <a className="modal-action modal-close postModalButtonClose"><i className="material-icons">close</i></a>
             </div>
         );
     }

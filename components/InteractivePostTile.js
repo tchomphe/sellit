@@ -55,7 +55,7 @@ export default class InteractivePostTile extends React.Component {
 
         return(
             <div>
-                <div className="card">
+                <div className="card grid-item">
                     <div className="card-image">
                         <a href="#!" onClick={(e) => (this.handlePreview(e))} className="waves-effect waves-light">
                             <img src={thumbnailImage} alt="Card image cap" />

@@ -36,7 +36,7 @@ export default class PostTile extends React.Component {
 
                     <div className="card-content">
                         {/* <span className="card-title activator truncate">{this.props.post.title}<i className="material-icons right">keyboard_arrow_up</i></span> */}
-                        <span className="card-title activator truncate">{this.props.post.title}</span>
+                        <span className="card-title truncate activator">{this.props.post.title}</span>
                         <p className="left-align card-text"><i className="material-icons position">location_on</i>{this.props.post.address}</p>
                         <p className="right-align card-text posted-date"><Moment fromNow>{this.props.post.date}</Moment></p>
                     </div>

@@ -171,7 +171,7 @@ nav .input-field label.active i {
 /* data-sucess color */
 input:not([type]).valid+label:after, input:not([type]):focus.valid+label:after, input[type=text].valid+label:after, input[type=text]:focus.valid+label:after, input[type=password].valid+label:after, input[type=password]:focus.valid+label:after, input[type=email].valid+label:after, input[type=email]:focus.valid+label:after, input[type=url].valid+label:after, input[type=url]:focus.valid+label:after, input[type=time].valid+label:after, input[type=time]:focus.valid+label:after, input[type=date].valid+label:after, input[type=date]:focus.valid+label:after, input[type=datetime].valid+label:after, input[type=datetime]:focus.valid+label:after, input[type=datetime-local].valid+label:after, input[type=datetime-local]:focus.valid+label:after, input[type=tel].valid+label:after, input[type=tel]:focus.valid+label:after, input[type=number].valid+label:after, input[type=number]:focus.valid+label:after, input[type=search].valid+label:after, input[type=search]:focus.valid+label:after, textarea.materialize-textarea.valid+label:after, textarea.materialize-textarea:focus.valid+label:after {
     content: attr(data-success);
-    color: #F44336;
+    color: #000;
     opacity: 1;
 }
 
@@ -213,34 +213,6 @@ input:not([type]).valid+label:after, input:not([type]):focus.valid+label:after, 
 input[type=text]{
     font-weight: 300;
 }
-
-/* invalid color */
-/* .input-field input[type=email].invalid {
-    border-bottom: 1px solid #000;
-    box-shadow: 0 1px 0 0 #000;
-} */
-
-/* label focus color */
-/* .input-field input[type=text]:focus + label {
-    color: #4285f4;
-} */
-
-/* label underline focus color */
-/* .input-field input[type=text]:focus {
-    border-bottom: 1px solid #4285f4;
-    box-shadow: 0 1px 0 0 #4285f4;
-} */
-
-/* valid color */
-/* .input-field input[type=text].valid {
-    border-bottom: 1px solid #4285f4;
-    box-shadow: 0 1px 0 0 #4285f4;
-} */
-/* invalid color */
-/* .input-field input[type=text].invalid {
-    border-bottom: 1px solid #000;
-    box-shadow: 0 1px 0 0 #000;
-} */
 
 /* icon prefix focus color */
 .input-field .prefix.active {
@@ -360,17 +332,22 @@ select:-webkit-autofill:focus {
     position: absolute;
     right: 0px;
     top: 0px;
-    height: 45px;
     padding: 15px 10px 0px 0px;
     color: #000;
-    line-height: 10px;
-    text-transform: none;
 }
 
+.postModalButtonClose {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 40px !important;
+    padding: 15px 10px 0px 0px;
+    color: #000;
+}
 /* set modal window's height and width */
 .modal {
     /* border-radius: 0px; */
-    max-height: 90%;
+    max-height: 95%;
 }
 
 /* .modalButtonClose:hover {
@@ -388,10 +365,6 @@ select:-webkit-autofill:focus {
 
 .postModal .modal-content {
     padding: 0px;
-}
-
-.modal .modal-footer{
-    background-color: #232323;
 }
 
 /* .modal-content {
@@ -417,21 +390,9 @@ select:-webkit-autofill:focus {
     max-width: 200px;
 }
 
-/* .postContact {
-     background-color: lightgreen;
-     width: 150px;
-     height: 400px;
-} */
-
 #navigationModal .modal-content {
     padding: 30px 40px;
 }
-
-/* search box color modification*/
-/* .input-field input[type=search]:focus {
-    background-color: #ffffff;
-    color: #000000;
-} */
 
 .nav-wrapper form {
     display: inline-block;
@@ -441,7 +402,7 @@ select:-webkit-autofill:focus {
 
 .GMap{
     width: 100%;
-    height: 300px;
+    /* height: 300px; */
 }
 
 .card a, .card a img {
@@ -450,6 +411,9 @@ select:-webkit-autofill:focus {
 }
 
 /*****GAYCHEY'S EDITS******/
+.z-depth-1-half, .btn:hover, .btn-large:hover, .btn-floating:hover {
+    box-shadow:none;
+}
 
 html {
     font-family: 'Nunito Sans', sans-serif;
@@ -474,12 +438,13 @@ p .material-icons{
 
 .card .card-action{
     border-radius: 0 0 10px 10px;
+    padding: 10px 0px;
 }
+
 
 .btn-floating.halfway-fab {
     position: absolute;
     right: 0px;
-    /* bottom: -20px; */
     top: 0;
     border-radius: 0px;
 }
@@ -523,8 +488,14 @@ a {
     background: rgba(0,0,0,0.3) !important;
     box-shadow: none;
 }
+
 .post-modal-arrow-right .next-item-mobile-only {
     display:none;
+}
+
+.col s12 m5 l5 .post-modal-padding{
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 /* Smartphones (portrait) ----------- */
@@ -553,6 +524,9 @@ a {
     }
     .post-modal-arrow-left .prev-item-mobile-only {
         display:inline;
+        position: absolute;
+        top: 0;
+        /* left: 10px; */
     }
 
     .post-modal-arrow-right {
@@ -567,6 +541,8 @@ a {
     }
     .post-modal-arrow-right .next-item-mobile-only {
         display:inline;
+        /* position: absolute; */
+        top: 0;
     }
 }
 
