@@ -228,6 +228,9 @@ textarea.materialize-textarea.valid, textarea.materialize-textarea:focus.valid {
     border-bottom: 1px solid #9e9e9e;
     box-shadow: none;
 }
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: none;
+}
 
 textarea.materialize-textarea:focus:not([readonly])+label{
     color:#000;
