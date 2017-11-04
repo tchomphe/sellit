@@ -15,8 +15,8 @@ class Reset extends React.Component{
     }
 
     componentDidMount(){
-        $('.modal').modal();                
-        $('.tooltipped').tooltip({delay: 50});        
+        $('.modal').modal();
+        $('.tooltipped').tooltip({delay: 50});
     }
 
     handleInputChange(event){
@@ -34,29 +34,29 @@ class Reset extends React.Component{
                     this.setState({err: res.body.error});
                 } else {
                     Materialize.toast('Your password has been reset!', 4000);
-                    
+
                 }
-            });            
+            });
         } else {
             $("#resetContainer #confirmPassword").removeClass("valid").addClass("invalid");
-        }        
+        }
     }
 
-    render(){        
+    render(){
         return(
             <div className="col s12 m7 center">
                 <div className="card large">
-                    <div id="resetContainer" className="container">                    
-                        <div className="card-content left-align">                    
+                    <div id="resetContainer" className="container">
+                        <div className="card-content left-align">
                             <form className="col s12" onSubmit={e => this.onSubmit(e)} >
                                 <span className="card-title">Reset your password</span>
                                 <p>Enter your new password:</p>
                                 <InputField labelText="Enter new password"
                                     id="password" type="password" onChange={this.handleInputChange} required="" aria-required="true" />
                                 <InputField labelText="Re-enter new password" labelSuccess="" labelError={(this.state.err)?this.state.err:"Password do not match!"}
-                                    id="confirmPassword" type="password" onChange={this.handleInputChange} required="" aria-required="true" />    
+                                    id="confirmPassword" type="password" onChange={this.handleInputChange} required="" aria-required="true" />
                                 <div className="card-action right-align">
-                                    <button className="btn blue waves-effect waves-light" type="submit">Reset</button>
+                                    <button className="btn black" type="submit">Reset</button>
                                 </div>
                             </form>
                         </div>
