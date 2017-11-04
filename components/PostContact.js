@@ -17,44 +17,49 @@ class PostContact extends React.Component{
 
     }
     handleInputChange(event){
-        const target = event.target;
-        const name = target.name;
-        const value = target.value;
-
-        this.setState({
-            [name]: value
-        });
+        this.setState({ [event.target.name]: event.target.value });
     }
+
     handleSubmit(event){
         event.preventDefault();
-        Request
-            .post('/send')
-            .send({
-                ownerId: this.props.ownerId,
-                sender_name: this.state.sender_name,
-                sender_email: this.state.sender_email,
-                message: this.state.message
-            })
-            // .send({ownerId: this.props.ownderId, sender_email: this.state.sender_email, sender_name: this.state.sender_name, message: this.state.message, receiver_email: this.state.receiver_email})
-            .end((err, res) => {
-                if(err){
-                    this.setState({err: res.body.error});
-                } else {
-                    this.setState({err: ""});
-                    // Materialize.toast('Message sent!', 4000)
-                }
-            });
+        if(this.state.sender_email !== ""){
+            if(this.state.message !== ""){
+                Request
+                    .post('/send')
+                    .send({
+                        ownerId: this.props.ownerId,
+                        sender_name: this.state.sender_name,
+                        sender_email: this.state.sender_email,
+                        message: this.state.message
+                    })
+                    .end((err, res) => {
+                        if(err){
+                            this.setState({err: res.body.error});
+                        } else {
+                            this.setState({err: ""});
+                            Materialize.toast('Message sent!', 4000);
+                            this.setState({
+                                sender_email: "",
+                                name: "",
+                                message: ""
+                            });
+                        }
+                    });
+            } else {
+                $(`#${this.props.id} #message`).removeClass("valid").addClass("invalid");
+            }
+        } else {
+            $(`#${this.props.id} #sender_email`).removeClass("valid").addClass("invalid");
+        }
     }
     render(){
         return(
             <form onSubmit={this.handleSubmit}>
-                    <div className="row center">
+                    <div className="row">
                         <div className="input-field col s8">
-                            <input name="sender_email" value={this.state.sender_email} type="email" className="validate" onChange={this.handleInputChange} />
-                            <label htmlFor="email" data-error="wrong" data-success="right">* Email</label>
+                            <input id="sender_email" name="sender_email" value={this.state.sender_email} type="email" className="validate" onChange={this.handleInputChange} />
+                            <label htmlFor="email" data-error="Enter a valid email" data-success="">* Email</label>
                         </div>
-                    {/* </div>
-                    <div className="row"> */}
                         <div className="input-field col s4">
                             <input name="sender_name" value={this.state.sender_name} type="text" className="validate" onChange={this.handleInputChange} />
                             <label htmlFor="name">Name</label>
@@ -62,13 +67,12 @@ class PostContact extends React.Component{
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <textarea name="message" value={this.state.message} className="materialize-textarea" onChange={this.handleInputChange} />
-                            <label htmlFor="message">Message</label>
+                            <textarea id="message" name="message" value={this.state.message} className="materialize-textarea validate" onChange={this.handleInputChange} />
+                            <label htmlFor="message" data-error="Message cannot be empty" data-success="">Message</label>
                         </div>
                     </div>
                     <div className="row right-align">
-                        <input type="hidden" name="receiver_email" value={this.props.receiver} onChange={this.handleInputChange} />
-                        <button className="black waves-effect waves-light btn" type="submit"> Send </button>
+                        <button className="btn black" type="submit"> Send </button>
                     </div>
             </form>
         );

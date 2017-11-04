@@ -224,6 +224,10 @@ input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]),
     border-bottom: 1px solid #18ffff;
     box-shadow: none;
 }
+textarea.materialize-textarea.valid, textarea.materialize-textarea:focus.valid {
+    border-bottom: 1px solid #9e9e9e;
+    box-shadow: none;
+}
 
 textarea.materialize-textarea:focus:not([readonly])+label{
     color:#000;
