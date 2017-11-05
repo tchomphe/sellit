@@ -66,12 +66,12 @@ export default class MainPage extends React.Component {
                                     <i className="material-icons">expand_more</i></a>;
 
         return(
-            <div className="app-content center">
+            <div className="app-content center-align">
                 {/* <Banner /> */}
-                <div className="grid center">
+                <div className="grid row">
                     {postTiles}
                 </div>
-                <div className="app-content-paginationButton">
+                <div className="app-content-paginationButton row">
                     {paginationButton}
                 </div>
             </div>
