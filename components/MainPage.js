@@ -68,7 +68,7 @@ export default class MainPage extends React.Component {
         return(
             <div className="app-content center-align">
                 {/* <Banner /> */}
-                <div className="grid row">
+                <div className="grid center-align row">
                     {postTiles}
                 </div>
                 <div className="app-content-paginationButton row">
