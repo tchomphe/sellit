@@ -69,12 +69,12 @@ class PostTypePage extends React.Component{
                                     <i className="material-icons">expand_more</i></a>;
 
         return(
-            <div className="app-content center">
-                <h4 className="profilePageHeader">{this.props.match.params.type}</h4>
-                <div className="grid-center">
+            <div className="app-content center-align">
+                <h4 className="profilePageHeader row">{this.props.match.params.type}</h4>
+                <div className="grid-center row">
                     {postTiles}
                 </div>
-                <div className="app-content-paginationButton">
+                <div className="app-content-paginationButton row" style={{'padding-top':'50px'}}>
                     {paginationButton}
                 </div>
             </div>

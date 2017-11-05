@@ -89,11 +89,11 @@ export default class SearchResultsPage extends React.Component{
                                     <i className="material-icons">expand_more</i></a>;
 
         return(
-            <div className="app-content center">
-                <div className="grid-center">
+            <div className="app-content center-align">
+                <div className="grid-center row">
                     {postTiles}
                 </div>
-                <div className="app-content-paginationButton">
+                <div className="app-content-paginationButton row" style={{'padding-top':'50px'}}>
                     {(searchResult) ? paginationButton : null}
                 </div>
             </div>
