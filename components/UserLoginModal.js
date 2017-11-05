@@ -26,7 +26,7 @@ class UserLoginModal extends React.Component{
     close(){
         event.preventDefault();
         $('#userLoginModal').modal('close');
-        this.props.history.push('/forgot')
+        this.props.history.push('/forgot');
     }
 
     handleSubmit(event){
@@ -49,9 +49,12 @@ class UserLoginModal extends React.Component{
                         } else {
                             $("#userLoginModal #email").removeClass("valid").addClass("invalid");
                         }
-                    } else {
+                    }
+                    else {
                         this.setState({err: ""});
                         $('#userLoginModal').modal('close');
+
+                        Materialize.toast('Log in successful. Welcome!', 4000);
 
                         //create user object and pass it to prop
                         let userArr = res.header.user.split(', ');
