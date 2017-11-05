@@ -89,7 +89,7 @@ app.get('/myAccount', function(req, res){
 });
 app.get('/logout', function(req, res){
   req.logout();
-  res.redirect('/');
+  res.status(200).send({message: 'Logout successful!'});
 });
 app.get('*', function(req, res){
   res.render('home');
