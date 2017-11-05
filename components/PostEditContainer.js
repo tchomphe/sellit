@@ -155,7 +155,7 @@ class PostEditContainer extends React.Component{
                             <h5>Pictures</h5>
                             {postImagesHTML}
                             <div className="col s12 file-field input-field">
-                                <div className="btn blue">
+                                <div className="btn black">
                                     <span>Browse</span>
                                     <input id="postImages" type="file" name="postImages" accept=".jpg,.jpeg,.png" multiple/>
                                 </div>
@@ -167,7 +167,7 @@ class PostEditContainer extends React.Component{
                     </div>
                     <div className="row">
                         <div className="s12">
-                            <button className="btn waves-effect blue white-text darken-text-2" type="submit" value="Submit">Update</button>
+                            <button className="btn black" type="submit" value="Submit">Update</button>
                         </div>
                     </div>
                 </div>
