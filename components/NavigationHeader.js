@@ -10,6 +10,7 @@ class NavigationHeader extends React.Component{
             customSearchBar: "custom_search_invisible",
         }
         this.handleOnClick = this.handleOnClick.bind(this);
+        this.handleLogoutButtonClick = this.handleLogoutButtonClick.bind(this);
     }
 
     componentDidMount(){
@@ -27,6 +28,11 @@ class NavigationHeader extends React.Component{
             this.setState({customSearchBar: "custom_search_invisible"});
         }
         $('.button-collapse').sideNav('hide');
+    }
+
+    handleLogoutButtonClick(event){
+        this.props.handleLogout(event);
+        this.props.history.push('/');
     }
 
     handleSubmit(e){
@@ -60,7 +66,7 @@ class NavigationHeader extends React.Component{
                                     <li><Link to="/my-posts"><i className="left large material-icons">list</i>My posts</Link></li>
                                     <li><Link to="/create-post"><i className="left large material-icons">create</i>Create post</Link></li>
                                     <li><Link to="/my-account"><i className="left large material-icons">account_circle</i>My account</Link></li>
-                                    <li><a href="/logout"><i className="left large material-icons">exit_to_app</i>Logout</a></li>
+                                    <li><a onClick={this.handleLogoutButtonClick}><i className="left large material-icons">exit_to_app</i>Logout</a></li>
                                     <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
                                 </ul>
                                 <ul className="side-nav" id="mobile-demo">
@@ -80,7 +86,7 @@ class NavigationHeader extends React.Component{
                                     <li><Link to="/my-posts"><i className="material-icons left">list</i>My posts</Link></li>
                                     <li><Link to="/create-post"><i className="material-icons left">create</i>Create post</Link></li>
                                     <li><Link to="/my-account"><i className="material-icons left">account_circle</i>My account</Link></li>
-                                    <li><a href="/logout"><i className="material-icons left">exit_to_app</i>Logout</a></li>
+                                    <li><a onClick={this.handleLogoutButtonClick}><i className="material-icons left">exit_to_app</i>Logout</a></li>
                                     <li><a onClick={this.handleOnClick}><i className="material-icons">search</i>Search</a></li>
                                 </ul>
                             </div>;
