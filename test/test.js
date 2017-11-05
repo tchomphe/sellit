@@ -326,8 +326,8 @@ describe('Session-based API tests;', function () {
       it('should redirect to /', function(done) {
         vageta
           .get('http://localhost:8080/logout').end(function(error, response, body){
-            //TODO: checking for redirect.. this is terrible PLEASE fix me!
-            expect(response.res.req.path).to.equal('/');
+            expect(response.statusCode).to.equal(200);
+            expect(response.body.message).to.equal('Logout successful!');
             done();
           });
       });
@@ -370,8 +370,8 @@ describe('Goku session;', function () {
     it('should redirect to /', function(done) {
       goku
         .get('http://localhost:8080/logout').end(function(error, response, body){
-          //TODO: checking for redirect.. this is terrible PLEASE fix me!
-          expect(response.res.req.path).to.equal('/');
+          expect(response.statusCode).to.equal(200);
+          expect(response.body.message).to.equal('Logout successful!');
           done();
         });
       });
@@ -552,8 +552,8 @@ describe('Goku session API tests;', function () {
     it('should redirect to /', function(done) {
       goku
         .get('http://localhost:8080/logout').end(function(error, response, body){
-          //TODO: checking for redirect.. this is terrible PLEASE fix me!
-          expect(response.res.req.path).to.equal('/');
+          expect(response.statusCode).to.equal(200);
+          expect(response.body.message).to.equal('Logout successful!');
           done();
         });
     });
