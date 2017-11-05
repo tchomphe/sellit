@@ -39,6 +39,7 @@ export default class AppRoutes extends React.Component {
 
     //bind functions to this component
     this.saveUser = this.saveUser.bind(this);
+    this.forgetUser = this.forgetUser.bind(this);
   }
 
   componentDidMount(){
@@ -66,13 +67,37 @@ export default class AppRoutes extends React.Component {
     });
   }
 
+  forgetUser(event){
+    event.preventDefault();
+    //show page loading wrapper
+    $("#dim-page-loader").fadeIn(100);
+
+    //send logout request
+    Request
+      .get('/logout')
+      .end((err, res) => {
+        //hide page loading wrapper
+        $("#dim-page-loader").fadeOut(100);
+
+        if(err){
+          Materialize.toast('Error logging out. Please refresh the page.', 4000);
+          console.log("Logout Error log -> " + res.body.error);
+        }
+        else {
+          Materialize.toast('Logged out.', 4000);
+          //update the state
+          this.setState({ user: { email: null, nickname: null, phone: null, authorized: false } });
+        }
+      });
+  }
+
   render() {
     console.log('AppRoutes rendering... ');
 
     return (
       <Router history={hashHistory}>
         <Layout>
-          <NavigationHeader authorizedUser={this.state.user.authorized} />
+          <NavigationHeader authorizedUser={this.state.user.authorized} handleLogout={this.forgetUser} />
 
           <Switch>
             <Route path="/" exact={true} render={() => (
