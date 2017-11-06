@@ -382,8 +382,13 @@ select:-webkit-autofill:focus {
 }
 
 .carousel-item {
-    width: 700px !important;
-    top: -75px !important;
+    width: inherit !important;
+    height: inherit !important;
+}
+
+.carousel-image {
+    width: 100% !important;
+    height: auto !important;
 }
 
 .postImagesSlideshow, .postLocationMap {
@@ -413,13 +418,6 @@ select:-webkit-autofill:focus {
 
 .card .card-image img {
     border-radius: 10px 10px 0 0 !important;
-}
-
-.carousel-image {
-    margin-top: 75px;
-    width: auto !important;
-    height: 300% !important;
-    margin-right: 26% !important;
 }
 
 /*****GAYCHEY'S EDITS******/
