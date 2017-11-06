@@ -379,6 +379,7 @@ select:-webkit-autofill:focus {
 
 .carousel {
     height: inherit !important;
+    background-color: black;
 }
 
 .carousel-item {
@@ -387,7 +388,9 @@ select:-webkit-autofill:focus {
 }
 
 .carousel-image {
-    width: 100% !important;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto !important;
     height: auto !important;
 }
 
