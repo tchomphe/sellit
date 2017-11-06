@@ -64,7 +64,7 @@ class PostModal extends React.Component{
 
             for (var i=0; i<postImages.length; i++){
                 postImagesHTML.push(
-                    <a className="carousel-item" href={numToWord[i]}><img src={postImages[i]} /></a>);
+                    <a className="carousel-item" href={numToWord[i]}><img className="carousel-image" src={postImages[i]} /></a>);
             }
         }
         else{

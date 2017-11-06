@@ -10,7 +10,7 @@ export default class PostTile extends React.Component {
         $('.postModal').modal({
             ready: function(modal, trigger){
                 $('.carousel').removeClass('hide');
-                $('.carousel').carousel({dist:0,shift:0,padding:0});
+                $('.carousel').carousel({dist:0,shift:0,padding:0,fullWidth:true});
             },
             complete: function(modal, trigger){
                 $('.carousel').addClass('hide');
