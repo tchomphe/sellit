@@ -75,14 +75,6 @@ class PostModal extends React.Component{
             // <div id={this.props.modalID} tabIndex="0" className="modal postModal" onKeyDown={this.onKeyDown}>
             <div id={this.props.modalID} className="modal postModal">
                 <div className="modal-content">
-                    {/* <div className="row">
-                        <button className="btn-floating black post-modal-arrow-left" onClick={(e)=>(this.prevPost(e))}>
-                            <i className="material-icons">chevron_left</i><span className="prev-item-mobile-only">Previous item</span>
-                        </button>
-                        <button className="btn-floating black post-modal-arrow-right" onClick={(e)=>(this.nextPost(e))}>
-                            <span className="next-item-mobile-only">Next item</span><i className="material-icons">chevron_right</i>
-                        </button>
-                    </div> */}
                     <div className="row">
                         <div className="col s12 m7 l7 postImagesSlideshow">
                             <div className="carousel" data-indicators="true">
@@ -101,16 +93,16 @@ class PostModal extends React.Component{
                             <PostContact ownerId={this.props.ownerId} id={this.props.modalID} />
                         </div>
                     </div>
-                    <div className="row">
+                    {/* <div className="row">
                         <button className="btn-floating black post-modal-arrow-left" onClick={(e)=>(this.prevPost(e))}>
                             <i className="material-icons">chevron_left</i>
-                            {/* <span className="prev-item-mobile-only">Previous item</span> */}
+                            <span className="prev-item-mobile-only">Previous item</span>
                         </button>
                         <button className="btn-floating black post-modal-arrow-right" onClick={(e)=>(this.nextPost(e))}>
-                            {/* <span className="next-item-mobile-only">Next item</span> */}
+                            <span className="next-item-mobile-only">Next item</span>
                             <i className="material-icons">chevron_right</i>
                         </button>
-                    </div>
+                    </div> */}
                 </div>
                 <a className="modal-action modal-close postModalButtonClose"><i className="material-icons">close</i></a>
             </div>
