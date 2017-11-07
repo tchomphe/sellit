@@ -25,26 +25,6 @@ body {
     margin: 0px;
 }
 
-.grid {
-    height: auto !important;
-    width: auto;
-    margin: 0 auto;
-}
-
-/* clearfix */
-.grid:after {
-    content: '';
-    display: block;
-    clear: both;
-  }
-
-.grid-item {
-    float: left;
-    width: 32%;
-    height: auto;
-    margin: 5px;
-}
-
 .app-content-paginationButton {
     margin-top: 30px;
     margin-bottom: 20px;
@@ -446,6 +426,8 @@ p .material-icons{
     border: 1px solid #eee;
     box-shadow: none;
     border-radius: 10px;
+    width: 300px;
+    margin:10px;
 }
 
 .card .card-action{

@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from './Banner';
 import PostTile from './PostTile';
 import Request from 'superagent';
+import Masonry from 'react-masonry-component';
 
 export default class MainPage extends React.Component {
     constructor(props){
@@ -66,12 +67,18 @@ export default class MainPage extends React.Component {
                                     <i className="material-icons">expand_more</i></a>;
 
         return(
-            <div className="app-content center-align">
-                {/* <Banner /> */}
-                <div className="grid center-align row">
-                    {postTiles}
+            <div className="container center-align">
+                <div className="row">
+                    <Masonry
+                        className={'my-gallery-class'} // default ''
+                        elementType={'div'} // default 'div'
+                        disableImagesLoaded={false} // default false
+                        updateOnEachImageLoad={false} //
+                    >
+                        {postTiles}
+                    </Masonry>
                 </div>
-                <div className="app-content-paginationButton row">
+                <div className="row">
                     {paginationButton}
                 </div>
             </div>

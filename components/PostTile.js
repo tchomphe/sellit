@@ -26,7 +26,7 @@ export default class PostTile extends React.Component {
         var thumbnailImage = (this.props.post.thumbnail) ? this.props.post.thumbnail : "https://placehold.it/350x250";
 
         return(
-                <div className="card grid-item">
+                <div className="card">
                     <div className="card-image">
                         <a href="#!" onClick={(e) => (this.handleSubmit(e))}>
                             <img src={thumbnailImage} alt="Card image cap" />
