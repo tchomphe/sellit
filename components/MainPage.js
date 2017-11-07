@@ -22,12 +22,6 @@ export default class MainPage extends React.Component {
         //send request to initialize post listings
         this.requestAllPosts(1);
         $('.modal').modal();
-
-        $('.grid').masonry({
-            // options
-            itemSelector: '.grid-item',
-            columnWidth: 320,
-          });
     }
 
     requestAllPosts(currentPage){
