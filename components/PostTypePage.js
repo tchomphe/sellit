@@ -3,6 +3,7 @@ import Request from 'superagent';
 import PostModal from './PostModal';
 import PostTile from './PostTile';
 import { Link, withRouter } from 'react-router-dom';
+import Masonry from 'react-masonry-component';
 
 class PostTypePage extends React.Component{
     constructor(props){
@@ -20,12 +21,6 @@ class PostTypePage extends React.Component{
 
         // Populate PostTile's with current user's posts
         this.requestPosts(this.props.match.params.type, 1);
-
-        $('.grid').masonry({
-            // options
-            itemSelector: '.grid-item',
-            columnWidth: 320,
-          });
     }
 
     componentWillReceiveProps(nextProps){
@@ -69,15 +64,22 @@ class PostTypePage extends React.Component{
                                     <i className="material-icons">expand_more</i></a>;
 
         return(
-            <div className="app-content">
+            <div className="container center-align">
                 <div className="chip">{this.props.match.params.type}</div>
-                <div className="grid-row row center-align">
+            <div className="row">
+                <Masonry
+                    className={'my-gallery-class'} // default ''
+                    elementType={'div'} // default 'div'
+                    disableImagesLoaded={false} // default false
+                    updateOnEachImageLoad={false} //
+                >
                     {postTiles}
-                </div>
-                <div className="app-content-paginationButton center-align row" style={{'padding-top':'50px'}}>
-                    {paginationButton}
-                </div>
+                </Masonry>
             </div>
+            <div className="row">
+                {paginationButton}
+            </div>
+        </div>
         )
     }
 }
