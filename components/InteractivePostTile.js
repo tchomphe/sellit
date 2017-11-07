@@ -54,7 +54,6 @@ export default class InteractivePostTile extends React.Component {
         var thumbnailImage = (this.props.post.thumbnail) ? this.props.post.thumbnail : "https://placehold.it/350x250";
 
         return(
-            <div>
                 <div className="card">
                     <div className="card-image">
                         <a href="#!" onClick={(e) => (this.handlePreview(e))} className="waves-effect waves-light">
@@ -80,18 +79,17 @@ export default class InteractivePostTile extends React.Component {
                         images={this.props.post.images}
                         ownerId={this.props.post.ownerID}
                         email={'placeholder@placehoder.email'} />
-                </div>
-                <div id={"delete_" + this.props.postModalID} className="modal" style={{'max-width':'400px'}}>
-                    <div className="modal-content left-align">
-                        <h5>Confirm</h5>
-                        <p>Are you sure you want to continue?</p>
+                    <div id={"delete_" + this.props.postModalID} className="modal" style={{'max-width':'400px'}}>
+                        <div className="modal-content left-align">
+                            <h5>Confirm</h5>
+                            <p>Are you sure you want to continue?</p>
+                        </div>
+                        <div className="modal-footer">
+                            <a href="#!" className="modal-action modal-close btn black" style={{'margin-left':'5px'}}>Cancel</a>
+                            <a onClick={(e) => (this.handleDelete(e))} href="#!" className="modal-action modal-close btn red">Delete</a>
+                        </div>
                     </div>
-                    <div className="modal-footer">
-                        <a href="#!" className="modal-action modal-close btn black" style={{'margin-left':'5px'}}>Cancel</a>
-                        <a onClick={(e) => (this.handleDelete(e))} href="#!" className="modal-action modal-close btn red">Delete</a>
-                    </div>
                 </div>
-            </div>
         )
     }
 }

@@ -76,14 +76,8 @@ class MyPostPage extends React.Component {
         console.log('MyPostsPage rendering... ');
 
         return (
-            // <div className="app-content row center">
-            //     <h4 className="title left-align"><strong>My posts</strong> - edit or delete your post</h4>
-            //     <div className="cards-container">
-            //         {this.state.postTiles}
-            //     </div>
-            // </div>
             <div className="container center-align">
-                {/* <h4 className="title left-align"><strong>My posts</strong> - edit or delete your post</h4> */}
+                <h4 className="title left-align"><strong>My posts</strong> - edit or delete your post</h4>
             <div className="row">
                 <Masonry
                     className={'my-gallery-class'} // default ''
