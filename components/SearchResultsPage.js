@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PostTile from './PostTile';
 import Request from 'superagent';
+import Masonry from 'react-masonry-component';
 
 export default class SearchResultsPage extends React.Component{
     constructor(props){
@@ -71,15 +72,6 @@ export default class SearchResultsPage extends React.Component{
             postTiles = this.state.posts.map((post, index) =>
             <PostTile key={index} postModalID={'postModal'+index} post={post} />)
         }
-
-        // var postTiles = ((this.state.posts).length == 0) ? (
-        //     <h5>Sorry, we didn't find any result.</h5>
-        //     // searchResult = null
-        // ) : (
-        //     this.state.posts.map((post, index) =>
-        //     <PostTile key={index} postModalID={'postModal'+index} post={post} />)
-        // );
-
         //determine if pagination button is needed, or if we've reached the end of all posts
         var paginationButton = null;
         if (this.state.page == 0)
@@ -89,11 +81,18 @@ export default class SearchResultsPage extends React.Component{
                                     <i className="material-icons">expand_more</i></a>;
 
         return(
-            <div className="app-content center-align">
-                <div className="grid-center row">
-                    {postTiles}
+            <div className="container center-align">
+                <div className="row">
+                    <Masonry
+                        className={'my-gallery-class'} // default ''
+                        elementType={'div'} // default 'div'
+                        disableImagesLoaded={false} // default false
+                        updateOnEachImageLoad={false} //
+                    >
+                        {postTiles}
+                    </Masonry>
                 </div>
-                <div className="app-content-paginationButton row" style={{'padding-top':'50px'}}>
+                <div className="row">
                     {(searchResult) ? paginationButton : null}
                 </div>
             </div>
