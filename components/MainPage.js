@@ -47,7 +47,9 @@ export default class MainPage extends React.Component {
 
     render(){
         console.log('MainPage rendering... posts: ');
-
+        var style = {
+            margin: '5px',
+        };
         //fetch posts and place them within PostTile's
         var postTiles = this.state.posts.map((post, index) =>
             <PostTile key={index} postModalID={'postModal'+index} post={post} nextPostId={(index+1)} prevPostId={(index-1)} />);
@@ -65,6 +67,7 @@ export default class MainPage extends React.Component {
                 <div className="row">
                     <Masonry
                         className={'my-gallery-class'} // default ''
+                        style={style}
                         elementType={'div'} // default 'div'
                         disableImagesLoaded={false} // default false
                         updateOnEachImageLoad={false} //
