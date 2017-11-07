@@ -2,6 +2,7 @@ import React from 'react';
 import InteractivePostTile from './InteractivePostTile';
 import Request from 'superagent';
 import { withRouter } from 'react-router-dom';
+import Masonry from 'react-masonry-component';
 
 class MyPostPage extends React.Component {
     constructor(props){
@@ -75,12 +76,25 @@ class MyPostPage extends React.Component {
         console.log('MyPostsPage rendering... ');
 
         return (
-            <div className="app-content row center">
-                <h4 className="title left-align"><strong>My posts</strong> - edit or delete your post</h4>
-                <div className="cards-container">
+            // <div className="app-content row center">
+            //     <h4 className="title left-align"><strong>My posts</strong> - edit or delete your post</h4>
+            //     <div className="cards-container">
+            //         {this.state.postTiles}
+            //     </div>
+            // </div>
+            <div className="container center-align">
+                {/* <h4 className="title left-align"><strong>My posts</strong> - edit or delete your post</h4> */}
+            <div className="row">
+                <Masonry
+                    className={'my-gallery-class'} // default ''
+                    elementType={'div'} // default 'div'
+                    disableImagesLoaded={false} // default false
+                    updateOnEachImageLoad={false} //
+                >
                     {this.state.postTiles}
-                </div>
+                </Masonry>
             </div>
+        </div>
         )
     }
 }
