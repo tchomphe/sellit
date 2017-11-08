@@ -8,8 +8,8 @@ var async = require('async');
 var crypto = require('crypto');
 
 var mailgun = require("mailgun-js");
-var api_key = process.env.API_KEY;
-var DOMAIN = process.env.DOMAIN;
+var api_key = (process.env.API_KEY||'test'); // Adding optional 'test' string for API key replacement so that codeship can run the server.
+var DOMAIN = (process.env.DOMAIN||'test');
 var mailgun = require('mailgun-js')({apiKey: api_key, domain: DOMAIN});
 /**
  * [Helper Function]: Varifies the success or failure of a MongoDB query
