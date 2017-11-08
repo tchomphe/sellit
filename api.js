@@ -7,9 +7,10 @@ var authentication = require('./config/passport');
 var async = require('async');
 var crypto = require('crypto');
 
-var sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
+var mailgun = require("mailgun-js");
+var api_key = process.env.API_KEY;
+var DOMAIN = process.env.DOMAIN;
+var mailgun = require('mailgun-js')({apiKey: api_key, domain: DOMAIN});
 /**
  * [Helper Function]: Varifies the success or failure of a MongoDB query
  * @param {Error} err
@@ -241,11 +242,11 @@ exports.send = function(req, res, next){
       const msg = {
         to: `${user.email}`,
         from: `${req.body.sender_email}`,
-        subject: 'Sending with SendGrid is Fun',
+        subject: 'Subject',
         text: `${req.body.message}`,
         // html: '<strong>and easy to do anywhere, even with Node.js</strong>',
       };
-      sgMail.send(msg, (error, result) => {
+      mailgun.messages().send(msg, (error, result) => {
         if (error) {
           console.log(`Error: ${error}`);
         } else {
@@ -279,16 +280,16 @@ exports.sendResetEmail = function(req, res, next){
       });
     },
     function(token, user, done){
-      const msg = {
+      var msg = {
         to: `${user.email}`,
-        from: `admin@tolist.ca`,
-        subject: 'Tolist password reset',
+        from: `no-reply@tolist.ca`,
+        subject: 'Tolist Password Reset',
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
         'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
         'http://' + req.headers.host + '/reset/' + token + '\n\n' +
         'If you did not request this, please ignore this email and your password will remain unchanged.\n'
       };
-      sgMail.send(msg, (error, result) => {
+      mailgun.messages().send(msg, (error, result) => {
         if (error) {
           console.log(error);
         } else {
@@ -296,6 +297,23 @@ exports.sendResetEmail = function(req, res, next){
           done(error, 'done');
         }
       });
+      // const msg = {
+      //   to: `${user.email}`,
+      //   from: `admin@tolist.ca`,
+      //   subject: 'Tolist password reset',
+      //   text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+      //   'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+      //   'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+      //   'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+      // };
+      // sgMail.send(msg, (error, result) => {
+      //   if (error) {
+      //     console.log(error);
+      //   } else {
+      //     console.log('Email successfully sent.');
+      //     done(error, 'done');
+      //   }
+      // });
     }
   ], function(err){
     if(err) return next(err);
@@ -329,7 +347,7 @@ exports.postReset = function(req, res){
         text: 'Hello,\n\n' +
         'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n',
       };
-      sgMail.send(msg, (error, result) => {
+      mailgun.messages().send(msg, (error, result) => {
         if (error) {
           console.log(error);
         } else {

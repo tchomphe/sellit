@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sendgrid/mail": "^6.1.4",
     "async": "^2.5.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^6.4.1",
