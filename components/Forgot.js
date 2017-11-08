@@ -43,13 +43,13 @@ class Forgot extends React.Component{
     }
     render(){
         return(
-                <div id="forgotContainer" className="col s12 m7 center">
+                <div id="forgotContainer" className="col s12 m12 l12 right-align">
                     <div className="card large">
-                        <div className="container">
+                        {/* <div className="container"> */}
                             <div className="card-content left-align">
                             <form onSubmit={(e) => this.onSubmit(e)} >
                             <span className="card-title">Forgot your password?</span>
-                            <p>We can send you a password reset link</p>
+                            <p>We can send you a password reset link <br/><br/><br/><br/><br/></p>
                             <InputField id="email" type="email" labelText="Enter your email" labelSuccess="" labelError={(this.state.err)?this.state.err:"Enter a valid email address"}
                                 onChange={this.handleInputChange} value={this.state.email} required="" aria-required="true" />
                                 <div className="card-action right-align">
@@ -58,7 +58,7 @@ class Forgot extends React.Component{
                                 </div>
                             </form>
                         </div>
-                        </div>
+                        {/* </div> */}
                     </div>
                 </div>
         )

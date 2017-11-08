@@ -57,7 +57,8 @@ class Reset extends React.Component{
                         <div className="card-content left-align">
                             <form className="col s12" onSubmit={e => this.onSubmit(e)} >
                                 <span className="card-title">Reset your password</span>
-                                <p>Enter your new password:</p>
+                                {/* <p>Enter your new password:</p> */}
+                                <br/><br/>
                                 <InputField labelText="Enter new password" labelSuccess="" labelError={(this.state.err)?this.state.err:"Enter your new password!"}
                                     id="password" type="password" value={this.state.password} onChange={this.handleInputChange} required="" aria-required="true" />
                                 <InputField labelText="Re-enter new password" labelSuccess="" labelError={(this.state.err)?this.state.err:"Password do not match!"}
