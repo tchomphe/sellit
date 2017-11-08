@@ -3,6 +3,7 @@ import Request from 'superagent';
 import PostModal from './PostModal';
 import PostTile from './PostTile';
 import { Link, withRouter } from 'react-router-dom';
+import Masonry from 'react-masonry-component';
 
 class UserPostPage extends React.Component{
     constructor(props){
@@ -39,12 +40,12 @@ class UserPostPage extends React.Component{
     render(){
         console.log('UserPostPage rendering ...');
         return(
-            <div className="app-content row center">
-                <h4 className="profilePageHeader">All User's Posts</h4>
-                <div className="cards-container">
-                    {this.state.postTiles}                    
+            <div className="container center-align">
+                {/* <h4 className="profilePageHeader">All User's Posts</h4> */}
+                <div className="row">
+                    <Masonry>{this.state.postTiles}</Masonry>
                 </div>
-                <p>this.props.params.ownerId: {this.props.match.params.ownerId}</p>
+                {/* <p>this.props.params.ownerId: {this.props.match.params.ownerId}</p> */}
             </div>
         )
     }
