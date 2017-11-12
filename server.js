@@ -14,18 +14,17 @@ var path = require('path');
 var logger = require('morgan');
 // Define multer settings (for multi-form file uploading) //
 // TODO: move multer settings into config/ folder
-// TODO: test file limitations
 var multer = require('multer');
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './static/uploads')
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now()+ '_' +file.originalname)
-  },
-  limits : {fileSize: 1000000, files:5},
-});
-var upload = multer({ storage: storage })
+var multerSettings = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './static/uploads');
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now()+ '_' +file.originalname);
+    }
+  });
+var multerLimits = { fileSize: 1000000, files: 10 };
+var upload = multer({ storage: multerSettings, limits: multerLimits });
 
 
 //-------- CONFIGURE DB, VIEW ENGINE, & AUTH  --------//
