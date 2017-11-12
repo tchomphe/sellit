@@ -72,7 +72,8 @@ class PostContact extends React.Component{
                         </div>
                     </div>
                     <div className="row right-align">
-                        <button className="btn black" type="submit"> Send </button>
+                        <button className="btn black" type="submit">Send</button>
+                        <br /><br />
                     </div>
             </form>
         );

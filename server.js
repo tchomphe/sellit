@@ -33,7 +33,7 @@ var onlineURI = 'mongodb://admin:password@ds013172.mlab.com:13172/tolist';
 var localURI = 'mongodb://127.0.0.1/tolist';
 
 mongoose.Promise = global.Promise; // promises set up; mongoose's are deprecated
-mongoose.connect(localURI, {  // connect to the database
+mongoose.connect(onlineURI, {  // connect to the database
   useMongoClient: true,
 });
 
