@@ -133,9 +133,9 @@ class PostEditContainer extends React.Component{
                             <h5>Post information</h5>
                             <InputField labelText="Title"
                                 id="title" value={this.state.title} required="required" onChange={this.handleInputChange} />
-                            <InputField fieldClass="col s6" labelText="Price"
+                            <InputField fieldClass="col s12 m6 l6" labelText="Price"
                                 id="price" value={this.state.price} onChange={this.handleInputChange} />
-                            <div className="input-field col s6">
+                            <div className="input-field col s12 m6 l6">
                                 <select id="type" name="type" required="required" >
                                     <option value="Phone" defaultValue>Phone</option>
                                     <option value="Laptop">Laptop</option>
@@ -166,7 +166,7 @@ class PostEditContainer extends React.Component{
                         </div>
                     </div>
                     <div className="row">
-                        <div className="s12">
+                        <div className="s12 right-align">
                             <button className="btn black" type="submit" value="Submit">Update</button>
                         </div>
                     </div>

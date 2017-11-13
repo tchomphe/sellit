@@ -73,9 +73,9 @@ class PostCreationContainer extends React.Component{
                     <h5 className="title">Create post</h5>
                     <div className="card-content red-text">{this.state.err}</div>
                     <div className="row">
-                        <InputField fieldClass="col s6" labelText="* Title"
+                        <InputField fieldClass="col s12 m6 l6" labelText="* Title"
                             id="title" onChange={this.handleInputChange} required="required" />
-                        <div className="input-field col s6">
+                        <div className="input-field col s12 m6 l6">
                             <select id="type" name="type" required="required" >
                                 <option value = "" disabled selected></option>
                                 <option value="Phone">Phone</option>
@@ -85,9 +85,9 @@ class PostCreationContainer extends React.Component{
                             </select>
                             <label>* Type</label>
                         </div>
-                        <InputField fieldClass="col s6" labelText="* Address"
+                        <InputField fieldClass="col s12 m6 l6" labelText="* Address"
                             id="address" onChange={this.handleInputChange} required="required" />
-                        <InputField fieldClass="col s6" labelText="Price" id="price" onChange={this.handleInputChange} />
+                        <InputField fieldClass="col s12 m6 l6" labelText="Price" id="price" onChange={this.handleInputChange} />
                         <InputField labelText="Description" id="description" onChange={this.handleInputChange} />
                         <div className="col s12 file-field input-field">
                             <div className="btn black waves-effect white-text darken-text-2">
