@@ -89,10 +89,10 @@ class UserRegistrationModal extends React.Component{
                             <InputField labelText="* Email" labelSuccess="" labelError={(this.state.err)?this.state.err:"Enter a valid email address"}
                                 id="email" type="email" onChange={this.handleInputChange} required="required" />
 
-                            <InputField fieldClass="col s6" labelText="* Password"
+                            <InputField fieldClass="col s12 m6 l6" labelText="* Password"
                                 id="password" type="password" className="validate" onChange={this.handleInputChange} required="required" />
 
-                            <InputField fieldClass="col s6" labelText="* Confirm Password" labelSuccess="" labelError="mismatch"
+                            <InputField fieldClass="col s12 m6 l6" labelText="* Confirm Password" labelSuccess="" labelError="mismatch"
                                 id="confirm_password" type="password" onChange={this.handleInputChange} required="required" />
 
                             <InputField labelText="Name/Nickname"
