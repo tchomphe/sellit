@@ -14,7 +14,12 @@ class NavigationHeader extends React.Component{
     }
 
     componentDidMount(){
-        $(".button-collapse").sideNav();
+        $('.button-collapse').sideNav({
+            menuWidth: 250, // Default is 300
+            closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            draggable: true, // Choose whether you can drag to open on touch screens,
+          }
+        );
         $(".dropdown-button").dropdown();
         $('.collapsible').collapsible();
     }
@@ -22,7 +27,9 @@ class NavigationHeader extends React.Component{
     handleOnClick(){
         if (this.state.customSearchBar === "custom_search_invisible"){
             this.setState({customSearchBar: "custom_search"});
-            $("#search").addClass("active");
+            // $("#search").addClass("active");
+            // document.search_form.search.focus();
+            document.forms['search_form'].elements['search'].focus();
 
         } else {
             this.setState({customSearchBar: "custom_search_invisible"});
@@ -51,20 +58,25 @@ class NavigationHeader extends React.Component{
     render(){
         var loggedInMenu =  <div>
                                 {/* <!-- Dropdown Structure --> */}
-                                <ul id="dropdown1" className="dropdown-content">
-                                    <li><Link to="/posts/Phone">Phones</Link></li>
-                                    <li><Link to="/posts/Laptop">Laptops</Link></li>
+                                <ul id="dropdown_browse" className="dropdown-content">
+                                    <li><Link to="/posts/Phone"><i className="material-icons left" style={{color: "#000"}}>phone_android</i>Phones</Link></li>
+                                    <li><Link to="/posts/Laptop"><i className="material-icons left" style={{color: "#000"}}>laptop</i>Laptops</Link></li>
                                 </ul>
+                                <ul id="dropdown_logout" className="dropdown-content">
+                                    <li><Link to="/my-account"><i className="left large material-icons">account_circle</i>My account</Link></li>
+                                    <li><a onClick={this.handleLogoutButtonClick}><i className="left large material-icons">exit_to_app</i>Logout</a></li>
+                                </ul>
+
                                 <ul className="right hide-on-med-and-down">
                                     {/* <!-- Dropdown Trigger --> */}
                                     <li>
-                                        <a className="dropdown-button" href="#!" data-activates="dropdown1" data-beloworigin="true" data-constrainwidth="false" data-hover="true">
-                                            <i className="left large material-icons">format_list_bulleted</i>Category<i className="material-icons right">arrow_drop_down</i>
+                                        <a className="dropdown-button" href="#!" data-activates="dropdown_browse" data-beloworigin="true" data-constrainwidth="false" data-hover="true">
+                                            <i className="left large material-icons">format_list_bulleted</i>Browse<i className="material-icons right">arrow_drop_down</i>
                                         </a>
                                     </li>
                                     <li><Link to="/"><i className="left large material-icons">list</i>All posts</Link></li>
-                                    <li><Link to="/my-posts"><i className="left large material-icons">list</i>My posts</Link></li>
-                                    <li><Link to="/create-post"><i className="left large material-icons">create</i>Create post</Link></li>
+                                    <li><Link to="/my-posts"><i className="left large material-icons">list</i>My Listings</Link></li>
+                                    <li><Link to="/create-post"><i className="left large material-icons">create</i>List an item</Link></li>
                                     <li><Link to="/my-account"><i className="left large material-icons">account_circle</i>My account</Link></li>
                                     <li><a onClick={this.handleLogoutButtonClick}><i className="left large material-icons">exit_to_app</i>Logout</a></li>
                                     <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
@@ -73,18 +85,18 @@ class NavigationHeader extends React.Component{
                                     <li><img src="/static/img/logo_small.png"/></li>
                                     <ul className="collapsible collapsible-accordion">
                                         <li>
-                                            <a className="collapsible-header waves-effect"><i className="material-icons left">format_list_bulleted</i>Category<i className="material-icons right">arrow_drop_down</i></a>
+                                            <a className="collapsible-header waves-effect"><i className="material-icons left">format_list_bulleted</i>Browse<i className="material-icons right">arrow_drop_down</i></a>
                                             <div className="collapsible-body">
                                                 <ul>
-                                                    <li><Link to="/posts/Phone">Phones</Link></li>
-                                                    <li><Link to="/posts/Laptop">Laptop</Link></li>
+                                                    <li><Link to="/posts/Phone"><i className="material-icons left">phone_android</i>Phones</Link></li>
+                                                    <li><Link to="/posts/Laptop"><i className="material-icons left">laptop</i>Laptop</Link></li>
                                                 </ul>
                                             </div>
                                         </li>
                                     </ul>
-                                    <li><Link to="/"><i className="material-icons left">list</i>All posts</Link></li>
-                                    <li><Link to="/my-posts"><i className="material-icons left">list</i>My posts</Link></li>
-                                    <li><Link to="/create-post"><i className="material-icons left">create</i>Create post</Link></li>
+                                    {/* <li><Link to="/"><i className="material-icons left">list</i>All posts</Link></li> */}
+                                    <li><Link to="/my-posts"><i className="material-icons left">list</i>My listings</Link></li>
+                                    <li><Link to="/create-post"><i className="material-icons left">create</i>List an item</Link></li>
                                     <li><Link to="/my-account"><i className="material-icons left">account_circle</i>My account</Link></li>
                                     <li><a onClick={this.handleLogoutButtonClick}><i className="material-icons left">exit_to_app</i>Logout</a></li>
                                     <li><a onClick={this.handleOnClick}><i className="material-icons">search</i>Search</a></li>
@@ -92,30 +104,38 @@ class NavigationHeader extends React.Component{
                             </div>;
         var defaultMenu =   <div>
                                 {/* <!-- Dropdown Structure --> */}
-                                <ul id="dropdown1" className="dropdown-content">
-                                    <li><Link to="/posts/Phone">Phones</Link></li>
-                                    <li><Link to="/posts/Laptop">Laptops</Link></li>
+                                <ul id="dropdown_browse" className="dropdown-content">
+                                    <li><Link to="/posts/Phone"><i className="material-icons left" style={{color: "#000"}}>phone_android</i>Phones</Link></li>
+                                    <li><Link to="/posts/Laptop"><i className="material-icons left" style={{color: "#000"}}>laptop</i>Laptops</Link></li>
+                                </ul>
+                                <ul id="dropdown_sign_in" className="dropdown-content">
+                                    <li><a href="#userLoginModal"><i className="material-icons left" style={{color: "#000"}}>exit_to_app</i>Sign in</a></li>
+                                    <li><a href="#userRegistrationModal"><i className="material-icons left" style={{color: "#000"}}>assignment</i>Sign up</a></li>
                                 </ul>
                                 <ul className="right hide-on-med-and-down">
                                     {/* <!-- Dropdown Trigger --> */}
                                     <li>
-                                        <a className="dropdown-button" href="#!" data-activates="dropdown1" data-beloworigin="true" data-constrainwidth="false" data-hover="true">
-                                            <i className="material-icons left">format_list_bulleted</i>Category<i className="material-icons right">arrow_drop_down</i>
+                                        <a className="dropdown-button" href="#!" data-activates="dropdown_browse" data-beloworigin="true" data-constrainwidth="false" data-hover="true">
+                                            <i className="material-icons left">format_list_bulleted</i>Browse<i className="material-icons right">arrow_drop_down</i>
                                         </a>
                                     </li>
-                                    <li><a href="#userRegistrationModal"><i className="material-icons left">assignment</i>Sign up</a></li>
-                                    <li><a href="#userLoginModal"><i className="material-icons left">exit_to_app</i>Sign in</a></li>
+                                    <li><a href="#userLoginModal"><i className="material-icons left">assignment</i>List an item</a></li>
+                                    <li>
+                                        <a className="dropdown-button" href="#!" data-activates="dropdown_sign_in" data-beloworigin="true" data-constrainwidth="false" data-hover="true">
+                                            <i className="material-icons">account_circle</i>
+                                        </a>
+                                    </li>
                                     <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
                                 </ul>
                                 <ul className="side-nav" id="mobile-demo">
                                     <li><img src="/static/img/logo_small.png"/></li>
                                     <ul className="collapsible collapsible-accordion">
                                         <li>
-                                            <a className="collapsible-header waves-effect"><i className="material-icons left">format_list_bulleted</i>Category<i className="material-icons right">arrow_drop_down</i></a>
+                                            <a className="collapsible-header waves-effect"><i className="material-icons left">format_list_bulleted</i>Browse<i className="material-icons right">arrow_drop_down</i></a>
                                             <div className="collapsible-body">
                                                 <ul>
-                                                    <li><Link to="/posts/Phone">Phones</Link></li>
-                                                    <li><Link to="/posts/Laptop">Laptop</Link></li>
+                                                    <li><Link to="/posts/Phone"><i className="material-icons left">phone_android</i>Phones</Link></li>
+                                                    <li><Link to="/posts/Laptop"><i className="material-icons left">laptop</i>Laptop</Link></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -132,13 +152,14 @@ class NavigationHeader extends React.Component{
             <div className="navbar-fixed">
             <nav>
                 <div className="nav-wrapper">
-                    <Link to="/" className="brand-logo">to<span style={{color: '#18ffff'}}>list</span></Link>
+                    {/* <Link to="/" className="brand-logo">to<span style={{color: '#18ffff'}}>list</span></Link> */}
+                    <Link to="/" className="brand-logo"><img src="/assets/img/logo.svg" /></Link>
                     <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
                     {navMenu}
                 </div>
                 <div id="navbarContainer" className={this.state.customSearchBar}>
-                    <form onSubmit={(e) => (this.handleSubmit(e))}>
-                        <input id="search" type="search" ref="search" className="search_bar" style={{'border-bottom': 'none', 'box-shadow': 'none'}} placeholder="" />
+                    <form name="search_form" onSubmit={(e) => (this.handleSubmit(e))}>
+                        <input id="search" name="search" type="search" ref="search" className="search_bar" style={{'border-bottom': 'none', 'box-shadow': 'none'}} placeholder="" />
                     </form>
                 </div>
           </nav>
