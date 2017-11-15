@@ -29,6 +29,12 @@ class UserLoginModal extends React.Component{
         this.props.history.push('/forgot');
     }
 
+    handleClick(e){
+        e.preventDefault();
+        $('#userLoginModal').modal('close');
+        $('#userRegistrationModal').modal('open');
+    }
+
     handleSubmit(event){
         event.preventDefault();
         //show page loading wrapper
@@ -79,7 +85,8 @@ class UserLoginModal extends React.Component{
                                 id="email" type="email" onChange={this.handleInputChange} required="" aria-required="true" />
                         <InputField labelText="Password" labelSuccess="" labelError={(this.state.err)?this.state.err:"Invalid"}
                             id="password" type="password" onChange={this.handleInputChange} required="" aria-required="true" />
-                        <button className="btn black waves-effect waves-light" type="submit" name="action">Sign in</button>
+                        <button className="btn black waves-effect waves-light" type="submit" name="action">Sign in</button> &nbsp;
+                        <button className="btn black waves-effect waves-light" onClick={e=>this.handleClick(e)}>Sign up</button>
                     </form>
                     <p><Link onClick={this.close} to="/forgot">Forgot Password?</Link></p>
                 </div>
