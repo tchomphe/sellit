@@ -33,8 +33,8 @@ class NavigationHeader extends React.Component{
 
         } else {
             this.setState({customSearchBar: "custom_search_invisible"});
+            $('.button-collapse').sideNav('hide');
         }
-        $('.button-collapse').sideNav('hide');
     }
 
     handleLogoutButtonClick(event){
@@ -62,11 +62,11 @@ class NavigationHeader extends React.Component{
                                     <li><Link to="/posts/Phone"><i className="material-icons left" style={{color: "#000"}}>phone_android</i>Phones</Link></li>
                                     <li><Link to="/posts/Laptop"><i className="material-icons left" style={{color: "#000"}}>laptop</i>Laptops</Link></li>
                                 </ul>
+
                                 <ul id="dropdown_logout" className="dropdown-content">
                                     <li><Link to="/my-account"><i className="left large material-icons">account_circle</i>My account</Link></li>
                                     <li><a onClick={this.handleLogoutButtonClick}><i className="left large material-icons">exit_to_app</i>Logout</a></li>
                                 </ul>
-
                                 <ul className="right hide-on-med-and-down">
                                     {/* <!-- Dropdown Trigger --> */}
                                     <li>
@@ -153,7 +153,8 @@ class NavigationHeader extends React.Component{
             <nav>
                 <div className="nav-wrapper">
                     {/* <Link to="/" className="brand-logo">to<span style={{color: '#18ffff'}}>list</span></Link> */}
-                    <Link to="/" className="brand-logo"><img src="/assets/img/logo.svg" /></Link>
+                    <Link to="/" className="brand-logo"><img src="/assets/img/logo_full.svg" /></Link>
+                    <a href="#" style={{position:'absolute', right: '10px'}} onClick={this.handleOnClick}><span className="mobile_search"><i className="material-icons">search</i></span></a>
                     <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
                     {navMenu}
                 </div>
