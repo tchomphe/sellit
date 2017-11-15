@@ -65,7 +65,6 @@ class PostTypePage extends React.Component{
 
         return(
             <div className="container center-align">
-                <div className="chip">{this.props.match.params.type}</div>
             <div className="row">
                 <Masonry
                     className={'my-gallery-class'} // default ''
