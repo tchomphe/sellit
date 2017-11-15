@@ -49,6 +49,12 @@ class PostModal extends React.Component{
         //       };
         //   });
     }
+    handleClick(e){
+        e.preventDefault();
+        $('#'+this.props.modalID).modal('close');
+        // to={"/user-posts/"+this.props.ownerId}
+        this.props.history.push("/user-posts/"+this.props.ownerId);
+    }
     render(){
         var placeholderMessage = "[Not specified, contact seller]";
 
@@ -83,7 +89,7 @@ class PostModal extends React.Component{
                         </div>
                         <div className="col s12 m5 l5 left-align" style={{padding: '20px 40px 0px 40px'}}>
                             <h5>{this.props.title}</h5>
-                            <p><Link to={"/user-posts/"+this.props.ownerId}>View others posts by this user</Link></p>
+                            <p><a href="#" onClick={(e)=>this.handleClick(e)}>View others posts by this user</a></p>
                             <div className="divider"></div>
                             <p><strong>${this.props.price || placeholderMessage}</strong></p>
                             <p>{this.props.description || placeholderMessage}</p>
@@ -110,4 +116,4 @@ class PostModal extends React.Component{
     }
 }
 
-export default PostModal;
+export default withRouter(PostModal);
