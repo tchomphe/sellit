@@ -80,7 +80,14 @@ class PostCreationContainer extends React.Component{
                                 <option value = "" disabled selected></option>
                                 <option value="Phone">Phone</option>
                                 <option value="Laptop">Laptop</option>
-                                <option value="Case">Case</option>
+                                <option value="Desktop">Desktop</option>
+                                <option value="Camera">Camera</option>
+                                <option value="Videogames">Video-game</option>
+                                <option value="Television">Television</option>
+                                <option value="Electronic">Electronic</option>
+                                <option value="Furniture">Furniture</option>
+                                <option value="Automobile">Automobile</option>
+                                <option value="Bike">Bike</option>
                                 <option value="Other">Other</option>
                             </select>
                             <label>* Type</label>
