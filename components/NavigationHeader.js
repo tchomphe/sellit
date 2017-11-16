@@ -58,19 +58,29 @@ class NavigationHeader extends React.Component{
     render(){
         var loggedInMenu =  <div>
                                 {/* <!-- Dropdown Structure --> */}
-                                <ul id="dropdown_browse" className="dropdown-content">
+                                <ul id="dropdown1" className="dropdown-content">
                                     <li><Link to="/posts/Phone"><i className="material-icons left" style={{color: "#000"}}>phone_android</i>Phones</Link></li>
                                     <li><Link to="/posts/Laptop"><i className="material-icons left" style={{color: "#000"}}>laptop</i>Laptops</Link></li>
+                                    <li><Link to="/posts/Desktop"><i className="material-icons left" style={{color: "#000"}}>desktop_windows</i>Desktop</Link></li>
+                                    <li><Link to="/posts/Desktop"><i className="material-icons left" style={{color: "#000"}}>photo_camera</i>Cameras</Link></li>
+                                    <li><Link to="/posts/Videogames"><i className="material-icons left" style={{color: "#000"}}>videogame_asset</i>Video-games</Link></li>
+                                    <li><Link to="/posts/Television"><i className="material-icons left" style={{color: "#000"}}>tv</i>TV & Monitors</Link></li>
+                                    <li><Link to="/posts/Electronic"><i className="material-icons left" style={{color: "#000"}}>devices_other</i>Electronics</Link></li>
+                                    <li><Link to="/posts/Furniture"><i className="material-icons left" style={{color: "#000"}}>weekend</i>Furniture</Link></li>
+                                    <li><Link to="/posts/Automobile"><i className="material-icons left" style={{color: "#000"}}>drive_eta</i>Cars</Link></li>
+                                    <li><Link to="/posts/Bike"><i className="material-icons left" style={{color: "#000"}}>directions_bike</i>Bikes</Link></li>
+                                    <li><Link to="/posts/Other"><i className="material-icons left" style={{color: "#000"}}>list</i>Others</Link></li>
                                 </ul>
 
-                                <ul id="dropdown_logout" className="dropdown-content">
+                                {/* <ul id="dropdown_logout" className="dropdown-content">
                                     <li><Link to="/my-account"><i className="left large material-icons">account_circle</i>My account</Link></li>
                                     <li><a onClick={this.handleLogoutButtonClick}><i className="left large material-icons">exit_to_app</i>Logout</a></li>
-                                </ul>
+                                </ul> */}
+
                                 <ul className="right hide-on-med-and-down">
                                     {/* <!-- Dropdown Trigger --> */}
                                     <li>
-                                        <a className="dropdown-button" href="#!" data-activates="dropdown_browse" data-beloworigin="true" data-constrainwidth="false" data-hover="true">
+                                        <a href="#!" className="dropdown-button" data-activates="dropdown1" data-beloworigin="true" data-constrainwidth="false" data-hover="true">
                                             <i className="left large material-icons">format_list_bulleted</i>Browse<i className="material-icons right">arrow_drop_down</i>
                                         </a>
                                     </li>
@@ -82,7 +92,7 @@ class NavigationHeader extends React.Component{
                                     <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
                                 </ul>
                                 <ul className="side-nav" id="mobile-demo">
-                                    <li><img src="/static/img/logo_small.png"/></li>
+                                    <li>&nbsp;</li>
                                     <ul className="collapsible collapsible-accordion">
                                         <li>
                                             <a className="collapsible-header waves-effect"><i className="material-icons left">format_list_bulleted</i>Browse<i className="material-icons right">arrow_drop_down</i></a>
@@ -90,6 +100,15 @@ class NavigationHeader extends React.Component{
                                                 <ul>
                                                     <li><Link to="/posts/Phone"><i className="material-icons left">phone_android</i>Phones</Link></li>
                                                     <li><Link to="/posts/Laptop"><i className="material-icons left">laptop</i>Laptop</Link></li>
+                                                    <li><Link to="/posts/Desktop"><i className="material-icons left">desktop_windows</i>Desktop</Link></li>
+                                                    <li><Link to="/posts/Desktop"><i className="material-icons left">photo_camera</i>Cameras</Link></li>
+                                                    <li><Link to="/posts/Videogames"><i className="material-icons left">videogame_asset</i>Video-games</Link></li>
+                                                    <li><Link to="/posts/Television"><i className="material-icons left">tv</i>TV & Monitors</Link></li>
+                                                    <li><Link to="/posts/Electronic"><i className="material-icons left">devices_other</i>Electronics</Link></li>
+                                                    <li><Link to="/posts/Furniture"><i className="material-icons left">weekend</i>Furniture</Link></li>
+                                                    <li><Link to="/posts/Automobile"><i className="material-icons left">drive_eta</i>Cars</Link></li>
+                                                    <li><Link to="/posts/Bike"><i className="material-icons left">directions_bike</i>Bikes</Link></li>
+                                                    <li><Link to="/posts/Other"><i className="material-icons left">list</i>Others</Link></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -99,36 +118,47 @@ class NavigationHeader extends React.Component{
                                     <li><Link to="/create-post"><i className="material-icons left">create</i>List an item</Link></li>
                                     <li><Link to="/my-account"><i className="material-icons left">account_circle</i>My account</Link></li>
                                     <li><a onClick={this.handleLogoutButtonClick}><i className="material-icons left">exit_to_app</i>Logout</a></li>
-                                    <li><a onClick={this.handleOnClick}><i className="material-icons">search</i>Search</a></li>
+                                    {/* <li><a onClick={this.handleOnClick}><i className="material-icons">search</i>Search</a></li> */}
                                 </ul>
                             </div>;
         var defaultMenu =   <div>
                                 {/* <!-- Dropdown Structure --> */}
-                                <ul id="dropdown_browse" className="dropdown-content">
+                                <ul id="dropdown1" className="dropdown-content">
                                     <li><Link to="/posts/Phone"><i className="material-icons left" style={{color: "#000"}}>phone_android</i>Phones</Link></li>
                                     <li><Link to="/posts/Laptop"><i className="material-icons left" style={{color: "#000"}}>laptop</i>Laptops</Link></li>
+                                    <li><Link to="/posts/Desktop"><i className="material-icons left" style={{color: "#000"}}>desktop_windows</i>Desktop</Link></li>
+                                    <li><Link to="/posts/Desktop"><i className="material-icons left" style={{color: "#000"}}>photo_camera</i>Cameras</Link></li>
+                                    <li><Link to="/posts/Videogames"><i className="material-icons left" style={{color: "#000"}}>videogame_asset</i>Video-games</Link></li>
+                                    <li><Link to="/posts/Television"><i className="material-icons left" style={{color: "#000"}}>tv</i>TV & Monitors</Link></li>
+                                    <li><Link to="/posts/Electronic"><i className="material-icons left" style={{color: "#000"}}>devices_other</i>Electronics</Link></li>
+                                    <li><Link to="/posts/Furniture"><i className="material-icons left" style={{color: "#000"}}>weekend</i>Furniture</Link></li>
+                                    <li><Link to="/posts/Automobile"><i className="material-icons left" style={{color: "#000"}}>drive_eta</i>Cars</Link></li>
+                                    <li><Link to="/posts/Bike"><i className="material-icons left" style={{color: "#000"}}>directions_bike</i>Bikes</Link></li>
+                                    <li><Link to="/posts/Other"><i className="material-icons left" style={{color: "#000"}}>list</i>Others</Link></li>
                                 </ul>
-                                <ul id="dropdown_sign_in" className="dropdown-content">
+                                {/* <ul id="dropdown_sign_in" className="dropdown-content">
                                     <li><a href="#userLoginModal"><i className="material-icons left" style={{color: "#000"}}>exit_to_app</i>Sign in</a></li>
                                     <li><a href="#userRegistrationModal"><i className="material-icons left" style={{color: "#000"}}>assignment</i>Sign up</a></li>
-                                </ul>
+                                </ul> */}
                                 <ul className="right hide-on-med-and-down">
                                     {/* <!-- Dropdown Trigger --> */}
                                     <li>
-                                        <a className="dropdown-button" href="#!" data-activates="dropdown_browse" data-beloworigin="true" data-constrainwidth="false" data-hover="true">
+                                        <a className="dropdown-button" href="#!" data-activates="dropdown1" data-beloworigin="true" data-constrainwidth="false" data-hover="true">
                                             <i className="material-icons left">format_list_bulleted</i>Browse<i className="material-icons right">arrow_drop_down</i>
                                         </a>
                                     </li>
                                     <li><a href="#userLoginModal"><i className="material-icons left">assignment</i>List an item</a></li>
-                                    <li>
+                                    <li><a href="#userLoginModal"><i className="material-icons left">exit_to_app</i>Sign in</a></li>
+                                    <li><a href="#userRegistrationModal"><i className="material-icons left">assignment</i>Sign up</a></li>
+                                    {/* <li>
                                         <a className="dropdown-button" href="#!" data-activates="dropdown_sign_in" data-beloworigin="true" data-constrainwidth="false" data-hover="true">
                                             <i className="material-icons">account_circle</i>
                                         </a>
-                                    </li>
+                                    </li> */}
                                     <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
                                 </ul>
                                 <ul className="side-nav" id="mobile-demo">
-                                    <li><img src="/static/img/logo_small.png"/></li>
+                                    <li>&nbsp;</li>
                                     <ul className="collapsible collapsible-accordion">
                                         <li>
                                             <a className="collapsible-header waves-effect"><i className="material-icons left">format_list_bulleted</i>Browse<i className="material-icons right">arrow_drop_down</i></a>
@@ -136,13 +166,22 @@ class NavigationHeader extends React.Component{
                                                 <ul>
                                                     <li><Link to="/posts/Phone"><i className="material-icons left">phone_android</i>Phones</Link></li>
                                                     <li><Link to="/posts/Laptop"><i className="material-icons left">laptop</i>Laptop</Link></li>
+                                                    <li><Link to="/posts/Desktop"><i className="material-icons left">desktop_windows</i>Desktop</Link></li>
+                                                    <li><Link to="/posts/Desktop"><i className="material-icons left">photo_camera</i>Cameras</Link></li>
+                                                    <li><Link to="/posts/Videogames"><i className="material-icons left">videogame_asset</i>Video-games</Link></li>
+                                                    <li><Link to="/posts/Television"><i className="material-icons left">tv</i>TV & Monitors</Link></li>
+                                                    <li><Link to="/posts/Electronic"><i className="material-icons left">devices_other</i>Electronics</Link></li>
+                                                    <li><Link to="/posts/Furniture"><i className="material-icons left">weekend</i>Furniture</Link></li>
+                                                    <li><Link to="/posts/Automobile"><i className="material-icons left">drive_eta</i>Cars</Link></li>
+                                                    <li><Link to="/posts/Bike"><i className="material-icons left">directions_bike</i>Bikes</Link></li>
+                                                    <li><Link to="/posts/Other"><i className="material-icons left">list</i>Others</Link></li>
                                                 </ul>
                                             </div>
                                         </li>
                                     </ul>
                                     <li><a href="#userRegistrationModal"><i className="material-icons left">assignment</i>Sign up</a></li>
                                     <li><a href="#userLoginModal"><i className="material-icons left">exit_to_app</i>Sign in</a></li>
-                                    <li><a onClick={this.handleOnClick}><i className="material-icons">search</i>Search</a></li>
+                                    {/* <li><a onClick={this.handleOnClick}><i className="material-icons">search</i>Search</a></li> */}
                                 </ul>
                             </div>;
         //determine whether navigation menu should display a logged in menu, or not
@@ -160,7 +199,8 @@ class NavigationHeader extends React.Component{
                 </div>
                 <div id="navbarContainer" className={this.state.customSearchBar}>
                     <form name="search_form" onSubmit={(e) => (this.handleSubmit(e))}>
-                        <input id="search" name="search" type="search" ref="search" className="search_bar" style={{'border-bottom': 'none', 'box-shadow': 'none'}} placeholder="" />
+                        <input id="search" name="search" type="search" ref="search" className="search_bar" style={{'border-bottom': 'none', 'box-shadow': 'none'}} placeholder="Search..." />
+                        <a href="#" onClick={this.handleOnClick}><i className="material-icons search_close">close</i></a>
                     </form>
                 </div>
           </nav>

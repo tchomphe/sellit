@@ -86,7 +86,7 @@ nav ul li:hover {
     margin-left: -1px; /* Add this to keep dropdown in line with edge of navbar */
     overflow: hidden; /* Changed this from overflow-y:auto; to overflow:hidden; */
     position: absolute;
-    z-index: 1;
+    z-index: 999;
     will-change: width, height;
 }
 
@@ -214,7 +214,7 @@ select:-webkit-autofill:focus {
     /* top: 0px; */
     width: 100%;
     height: 90px;
-    background-color: rgba(0, 0, 0, 1);
+    background-color: rgba(0,0,0,0.9);
 }
 
 .custom_search input[type="search"] {
@@ -226,6 +226,12 @@ select:-webkit-autofill:focus {
     font-size: 30px;
     text-align: left;
     padding-left: 20px;
+}
+.search_close{
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    font-size: 45px !important;
 }
 
 /* Banner */
@@ -434,7 +440,7 @@ a {
     }
 
     #container .container .row {
-        margin: 10px;
+        margin: 0;
     }
 
     .mobile_search{
@@ -494,7 +500,21 @@ a {
         font-size: 12px;
         line-height: 35px;
     }
-
+    .custom_search {
+        top: 0px;
+        height: 60px;
+        z-index: 999;
+        background-color: rgb(0,0,0);
+    }
+    .custom_search input[type="search"] {
+        font-size: 25px;
+    }
+    .search_close{
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        font-size: 30px !important;
+    }
     /* .post-modal-arrow-left {
         float:left;
         border-radius: 0px;
