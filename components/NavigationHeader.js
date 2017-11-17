@@ -61,7 +61,7 @@ class NavigationHeader extends React.Component{
                                 <ul id="dropdown1" className="dropdown-content">
                                     <li><Link to="/posts/Phone"><i className="material-icons left" style={{color: "#000"}}>phone_android</i>Phones</Link></li>
                                     <li><Link to="/posts/Laptop"><i className="material-icons left" style={{color: "#000"}}>laptop</i>Laptops</Link></li>
-                                    <li><Link to="/posts/Desktop"><i className="material-icons left" style={{color: "#000"}}>desktop_windows</i>Desktop</Link></li>
+                                    <li><Link to="/posts/Desktop"><i className="material-icons left" style={{color: "#000"}}>desktop_windows</i>Desktops</Link></li>
                                     <li><Link to="/posts/Desktop"><i className="material-icons left" style={{color: "#000"}}>photo_camera</i>Cameras</Link></li>
                                     <li><Link to="/posts/Videogames"><i className="material-icons left" style={{color: "#000"}}>videogame_asset</i>Video-games</Link></li>
                                     <li><Link to="/posts/Television"><i className="material-icons left" style={{color: "#000"}}>tv</i>TV & Monitors</Link></li>
@@ -84,7 +84,7 @@ class NavigationHeader extends React.Component{
                                             <i className="left large material-icons">format_list_bulleted</i>Browse<i className="material-icons right">arrow_drop_down</i>
                                         </a>
                                     </li>
-                                    <li><Link to="/"><i className="left large material-icons">list</i>All posts</Link></li>
+                                    {/* <li><Link to="/"><i className="left large material-icons">list</i>All posts</Link></li> */}
                                     <li><Link to="/my-posts"><i className="left large material-icons">list</i>My Listings</Link></li>
                                     <li><Link to="/create-post"><i className="left large material-icons">create</i>List an item</Link></li>
                                     <li><Link to="/my-account"><i className="left large material-icons">account_circle</i>My account</Link></li>
@@ -99,13 +99,13 @@ class NavigationHeader extends React.Component{
                                             <div className="collapsible-body">
                                                 <ul>
                                                     <li><Link to="/posts/Phone"><i className="material-icons left">phone_android</i>Phones</Link></li>
-                                                    <li><Link to="/posts/Laptop"><i className="material-icons left">laptop</i>Laptop</Link></li>
-                                                    <li><Link to="/posts/Desktop"><i className="material-icons left">desktop_windows</i>Desktop</Link></li>
+                                                    <li><Link to="/posts/Laptop"><i className="material-icons left">laptop</i>Laptops</Link></li>
+                                                    <li><Link to="/posts/Desktop"><i className="material-icons left">desktop_windows</i>Desktops</Link></li>
                                                     <li><Link to="/posts/Desktop"><i className="material-icons left">photo_camera</i>Cameras</Link></li>
                                                     <li><Link to="/posts/Videogames"><i className="material-icons left">videogame_asset</i>Video-games</Link></li>
                                                     <li><Link to="/posts/Television"><i className="material-icons left">tv</i>TV & Monitors</Link></li>
                                                     <li><Link to="/posts/Electronic"><i className="material-icons left">devices_other</i>Electronics</Link></li>
-                                                    <li><Link to="/posts/Furniture"><i className="material-icons left">weekend</i>Furniture</Link></li>
+                                                    <li><Link to="/posts/Furniture"><i className="material-icons left">weekend</i>Furnitures</Link></li>
                                                     <li><Link to="/posts/Automobile"><i className="material-icons left">drive_eta</i>Cars</Link></li>
                                                     <li><Link to="/posts/Bike"><i className="material-icons left">directions_bike</i>Bikes</Link></li>
                                                     <li><Link to="/posts/Other"><i className="material-icons left">list</i>Others</Link></li>
@@ -126,12 +126,12 @@ class NavigationHeader extends React.Component{
                                 <ul id="dropdown1" className="dropdown-content">
                                     <li><Link to="/posts/Phone"><i className="material-icons left" style={{color: "#000"}}>phone_android</i>Phones</Link></li>
                                     <li><Link to="/posts/Laptop"><i className="material-icons left" style={{color: "#000"}}>laptop</i>Laptops</Link></li>
-                                    <li><Link to="/posts/Desktop"><i className="material-icons left" style={{color: "#000"}}>desktop_windows</i>Desktop</Link></li>
+                                    <li><Link to="/posts/Desktop"><i className="material-icons left" style={{color: "#000"}}>desktop_windows</i>Desktops</Link></li>
                                     <li><Link to="/posts/Desktop"><i className="material-icons left" style={{color: "#000"}}>photo_camera</i>Cameras</Link></li>
                                     <li><Link to="/posts/Videogames"><i className="material-icons left" style={{color: "#000"}}>videogame_asset</i>Video-games</Link></li>
                                     <li><Link to="/posts/Television"><i className="material-icons left" style={{color: "#000"}}>tv</i>TV & Monitors</Link></li>
                                     <li><Link to="/posts/Electronic"><i className="material-icons left" style={{color: "#000"}}>devices_other</i>Electronics</Link></li>
-                                    <li><Link to="/posts/Furniture"><i className="material-icons left" style={{color: "#000"}}>weekend</i>Furniture</Link></li>
+                                    <li><Link to="/posts/Furniture"><i className="material-icons left" style={{color: "#000"}}>weekend</i>Furnitures</Link></li>
                                     <li><Link to="/posts/Automobile"><i className="material-icons left" style={{color: "#000"}}>drive_eta</i>Cars</Link></li>
                                     <li><Link to="/posts/Bike"><i className="material-icons left" style={{color: "#000"}}>directions_bike</i>Bikes</Link></li>
                                     <li><Link to="/posts/Other"><i className="material-icons left" style={{color: "#000"}}>list</i>Others</Link></li>
@@ -165,8 +165,8 @@ class NavigationHeader extends React.Component{
                                             <div className="collapsible-body">
                                                 <ul>
                                                     <li><Link to="/posts/Phone"><i className="material-icons left">phone_android</i>Phones</Link></li>
-                                                    <li><Link to="/posts/Laptop"><i className="material-icons left">laptop</i>Laptop</Link></li>
-                                                    <li><Link to="/posts/Desktop"><i className="material-icons left">desktop_windows</i>Desktop</Link></li>
+                                                    <li><Link to="/posts/Laptop"><i className="material-icons left">laptop</i>Laptops</Link></li>
+                                                    <li><Link to="/posts/Desktop"><i className="material-icons left">desktop_windows</i>Desktops</Link></li>
                                                     <li><Link to="/posts/Desktop"><i className="material-icons left">photo_camera</i>Cameras</Link></li>
                                                     <li><Link to="/posts/Videogames"><i className="material-icons left">videogame_asset</i>Video-games</Link></li>
                                                     <li><Link to="/posts/Television"><i className="material-icons left">tv</i>TV & Monitors</Link></li>
