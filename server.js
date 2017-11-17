@@ -32,7 +32,7 @@ var onlineURI = 'mongodb://admin:password@ds013172.mlab.com:13172/tolist';
 var localURI = 'mongodb://127.0.0.1/tolist';
 
 mongoose.Promise = global.Promise; // promises set up; mongoose's are deprecated
-mongoose.connect(onlineURI, {  // connect to the database
+mongoose.connect(localURI, {  // connect to the database
   useMongoClient: true,
 });
 
@@ -117,10 +117,13 @@ app.delete('/image/:id/:imageName', api.deleteImage);
 //----------------- GLOBAL ERROR HANDLING -----------------//
 // all errors, from all routes, will be sent here O_O
 app.use(function (err, req, res, next) {
-  if (err.code === 'LIMIT_FILE_SIZE') {
+  //reply to client with appropriate error
+  if (err.code === 'LIMIT_FILE_SIZE')
     res.status(500).send('Uploaded image(s) too large!');
-  }
+  else
+    res.status(500).send('ERROR: ' + err.code);
 
+  //log error on server console
   console.log('\n[!] [!] -- Server Error Caught -- [!] [!]');
   console.log('CODE: ' + err.code);
   console.log('FULL: ' + JSON.stringify(err) + '\n');
