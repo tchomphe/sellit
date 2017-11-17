@@ -5,4 +5,4 @@ static/js/bundle.js
 .vscode/
 babel_cache/
 yarn.lock
-sendgrid.env
+mailgun-env
