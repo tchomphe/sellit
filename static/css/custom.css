@@ -6,6 +6,12 @@
     max-height: 100%;
 }
 
+.card-panel{
+    border: 1px solid #eee;
+    box-shadow: none;
+    border-radius: 10px;
+}
+
 body {
     background-color:#fafafa;
     padding-top: 20px;
@@ -200,13 +206,15 @@ select:-webkit-autofill:focus {
 
 /* Navigation search bar */
 .custom_search_invisible {
-    visibility: hidden;
+    /* visibility: hidden; */
+    display:none;
     opacity: 0;
     transition: opacity .2s, visibility 0s .2s;
 }
 
 .custom_search {
-    visibility: visible;
+    display: block;
+    /* visibility: visible; */
     transition: opacity .3s, visibility 0s;
     all: default;
     position: fixed;
@@ -262,13 +270,14 @@ select:-webkit-autofill:focus {
 /* set modal window's height and width */
 .modal {
     /* border-radius: 0px; */
-    max-height: 95%;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .postModal {
     width: 80%;
     /* height: 95%; */
-    max-height: 95%;
+    /* max-height: 95%; */
     border-radius: 2px;
     top: 10px !important;
 }

@@ -67,7 +67,7 @@ export default class MyAccountPage extends React.Component{
                             <form method="post" onSubmit={this.handleSubmit} >
                                 <div className="row">
                                     <InputField labelText="Nickname (optional)" id="nickname" value={this.state.nickname} onChange={this.handleInputChange} />
-                                    <InputField labelText="Email" id="email" type="email" value={this.state.email} onChange={this.handleInputChange} />
+                                    <InputField labelText="Email" id="email" type="email" disabled value={this.state.email} />
                                     <InputField labelText="Phone Number (optional):" id="phone" value={this.state.phone} onChange={this.handleInputChange} />
                                     <InputField labelText="New Password" fieldClass="col s12 m6 l6" id="newPassword" type="password" onChange={this.handleInputChange} />
                                     <InputField labelText="Confirm New Password" fieldClass="col s12 m6 l6" id="confirmNewPassword" type="password" onChange={this.handleInputChange} />
