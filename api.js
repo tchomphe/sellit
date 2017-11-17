@@ -49,6 +49,32 @@ varifyRightfulOwner = function(req, callback){
   });
 }
 
+/**
+ * [Helper Function]: Shrinks uploaded images and populates their URLs into an array
+ * @param {Request} req
+ */
+optimizeImages = function(req, callback){
+  var uploadedImages = [];
+
+  //check if files have been uploaded
+  if (req.files){
+    //save all uploaded images, replacing private directory with public path
+    (req.files).forEach(function(image) {
+      //compress images
+      Jimp.read(image.path).then(function (myImage) {
+        myImage.resize(600, Jimp.AUTO) // resize
+          .quality(60)                 // set JPEG quality
+          .write(image.path);          // overwrite old image with compressed version
+      });
+      //push URL of newly uploaded images to variable (replacing *private directory* with *public path*)
+      uploadedImages.push(image.path.replace('static/', '/assets/'));
+    }, this);
+  }
+
+  //pass images array and continue logic
+  callback(uploadedImages);
+}
+
 //-------------------------- GET request --------------------------//
 exports.paginatePosts = function(req, res){
   var query = {};
@@ -197,42 +223,27 @@ exports.createUser = function(req, res){
 exports.createPost = function(req, res){
   //varify user is logged in
   if (req.isAuthenticated()){
-    var uploadedImages = [];
-    var thumbnail = null;
-
-    //check if there are files to be uploaded
-    if (req.files){
-      //save all uploaded images, replacing private directory with public path
-      (req.files).forEach(function(image) {
-        //compress images
-        Jimp.read(image.path).then(function (myImage) {
-          myImage.resize(600, Jimp.AUTO) // resize
-            .quality(60)                 // set JPEG quality
-            .write(image.path);          // overwrite old image with compressed version
-        });
-        //push URL of newly uploaded images to variable (replacing *private directory* with *public path*)
-        uploadedImages.push(image.path.replace('static/', '/assets/'));
-      }, this);
-
+    optimizeImages(req, function(uploadedImages){
       //save the first image as the thumbnail
-      thumbnail = uploadedImages[0];
-    }
+      var thumbnail = uploadedImages[0];
 
-    var newPost = {
-      ownerID: req.user._id,
-      title: req.body.title,
-      address: req.body.address,
-      price: isNaN(req.body.price) ? 0 : req.body.price, //default to 0 if undefined, to avoid mongo error
-      type: req.body.type,
-      description: req.body.description,
-      thumbnail: thumbnail,
-      images: uploadedImages
-    };
+      //form new post object
+      var newPost = {
+        ownerID: req.user._id,
+        title: req.body.title,
+        address: req.body.address,
+        price: isNaN(req.body.price) ? 0 : req.body.price, //default to 0 if undefined, to avoid mongo error
+        type: req.body.type,
+        description: req.body.description,
+        thumbnail: thumbnail,
+        images: uploadedImages
+      };
 
-    //create new database entry from POST request's JSON object
-    Post.create(newPost, function(err, results){
-      varifyQuerySuccess(err, res, 'createPost');
-      res.send('Received and processed JSON data.');
+      //create new database entry from POST request's JSON object
+      Post.create(newPost, function(err, results){
+        varifyQuerySuccess(err, res, 'createPost');
+        res.send('Received and processed JSON data.');
+      });
     });
   }
   else {
