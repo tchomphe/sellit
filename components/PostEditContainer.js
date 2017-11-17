@@ -6,7 +6,6 @@ class PostEditContainer extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            err:"",
             id: this.props.match.params.postId,
             title:"",
             type:"",
@@ -70,7 +69,7 @@ class PostEditContainer extends React.Component{
         for (var key in images) {
             //if item is a File object, append to formData
             if (images.hasOwnProperty(key) && images[key] instanceof File)
-                formData.append(key, images[key]);
+                formData.append('images', images[key]);
         }
 
         //Clear files attached to postImages
@@ -87,9 +86,8 @@ class PostEditContainer extends React.Component{
                 $("#dim-page-loader").fadeOut(100);
 
                 if(err){
-                    this.setState({err: res.body.error});
+                    Materialize.toast(err.response.text, 4000);
                 } else {
-                    //if MyPostPage is not rerendered, run -> this.setState({err: ""});
                     Materialize.toast('Update successful!', 4000);
                     this.getPostInformation();
                 }
@@ -125,7 +123,6 @@ class PostEditContainer extends React.Component{
 
         return(
             <div className="container">
-                <div className="red-text">{this.state.err}</div>
                 <form id="postEditForm" onSubmit={this.handleSubmit}>
                 <div className="card-panel">
                     <div className="row">
