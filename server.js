@@ -55,7 +55,7 @@ app.use(passport.session());
 app.use(function(req, res, next){ // define variables to pass to client
   res.append('authorized_user', (req.user) ? true : false);
   next();
-})
+});
 
 
 //----------------- CONFIGURE ROUTING -----------------//
@@ -113,7 +113,21 @@ app.delete('/user/:id', api.deleteUser);
 app.delete('/post/:id', api.deletePost);
 app.delete('/image/:id/:imageName', api.deleteImage);
 
-// Start up server
+
+//----------------- GLOBAL ERROR HANDLING -----------------//
+// all errors, from all routes, will be sent here O_O
+app.use(function (err, req, res, next) {
+  if (err.code === 'LIMIT_FILE_SIZE') {
+    res.status(500).send('Uploaded image(s) too large!');
+  }
+
+  console.log('\n[!] [!] -- Server Error Caught -- [!] [!]');
+  console.log('CODE: ' + err.code);
+  console.log('FULL: ' + JSON.stringify(err) + '\n');
+})
+
+
+//------------------ START UP SERVER ------------------//
 app.listen((process.env.PORT || 8080), function(){
   console.log('Server running on port: 8080');
 });
