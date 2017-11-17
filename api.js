@@ -204,6 +204,13 @@ exports.createPost = function(req, res){
     if (req.files){
       //save all uploaded images, replacing private directory with public path
       (req.files).forEach(function(image) {
+        //compress images
+        Jimp.read(image.path).then(function (myImage) {
+          myImage.resize(600, Jimp.AUTO) // resize
+            .quality(60)                 // set JPEG quality
+            .write(image.path);          // overwrite old image with compressed version
+        });
+        //push URL of newly uploaded images to variable (replacing *private directory* with *public path*)
         uploadedImages.push(image.path.replace('static/', '/assets/'));
       }, this);
 
