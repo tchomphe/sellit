@@ -7,7 +7,6 @@ class PostCreationContainer extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            err: "",
             title: "",
             address: "",
             price: "",
@@ -41,7 +40,7 @@ class PostCreationContainer extends React.Component{
         for (var key in images) {
             //if item is a File object, append to formData
             if (images.hasOwnProperty(key) && images[key] instanceof File)
-                formData.append(key, images[key]);
+                formData.append('images', images[key]);
         }
 
         //show page loading wrapper
@@ -55,7 +54,7 @@ class PostCreationContainer extends React.Component{
                 $("#dim-page-loader").fadeOut(100);
 
                 if(err){
-                    this.setState({err: res.body.error});
+                    Materialize.toast(err.response.text, 4000);
                 } else {
                     Materialize.toast('Post has been created!', 4000)
                     this.props.history.push('/my-posts');
