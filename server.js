@@ -23,7 +23,7 @@ var multerSettings = multer.diskStorage({
       cb(null, Date.now()+ '_' +file.originalname);
     }
   });
-var multerLimits = { fileSize: 1000000, files: 10 };
+var multerLimits = { fileSize: 5000000, files: 10 };
 var upload = multer({ storage: multerSettings, limits: multerLimits });
 
 
