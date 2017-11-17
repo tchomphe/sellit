@@ -6,6 +6,7 @@ var passport = require('passport');
 var authentication = require('./config/passport');
 var async = require('async');
 var crypto = require('crypto');
+var Jimp = require("jimp");
 
 var mailgun = require("mailgun-js");
 var api_key = (process.env.API_KEY||'test'); // Adding optional 'test' string for API key replacement so that codeship can run the server.
@@ -400,10 +401,16 @@ exports.updatePostInfo = function (req, res) {
         //define variable to hold newly uploaded images
         var uploadedImages = [];
 
-        //check if there are files to be uploaded
+        //check if files have been uploaded
         if (req.files){
-          //push URL of newly uploaded images to variable (replacing *private directory* with *public path*)
           (req.files).forEach(function(image) {
+            //compress images
+            Jimp.read(image.path).then(function (myImage) {
+              myImage.resize(600, Jimp.AUTO) // resize
+                .quality(60)                 // set JPEG quality
+                .write(image.path);          // overwrite old image with compressed version
+            });
+            //push URL of newly uploaded images to variable (replacing *private directory* with *public path*)
             uploadedImages.push(image.path.replace('static/', '/assets/'));
           }, this);
         }
