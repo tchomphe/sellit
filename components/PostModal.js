@@ -95,7 +95,7 @@ class PostModal extends React.Component{
                             <p>{this.props.description || placeholderMessage}</p>
                             <p><strong>{this.props.phone}</strong></p>
                             <p><strong>{this.props.city}</strong></p>
-                            <Map postal_code={this.props.postal_code}/>
+                            <Map postalCode={this.props.postalCode}/>
                             <PostContact ownerId={this.props.ownerId} id={this.props.modalID} />
                         </div>
                     </div>

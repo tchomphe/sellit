@@ -51,7 +51,7 @@ export default class PostTile extends React.Component {
                             modalID={this.props.postModalID}
                             title={this.props.post.title}
                             price={this.props.post.price}
-                            postal_code={this.props.post.postal_code}
+                            postalCode={this.props.post.postalCode}
                             city={this.props.post.city}
                             description={this.props.post.description}
                             images={this.props.post.images}

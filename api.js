@@ -156,7 +156,7 @@ exports.postsByOwnerID = function(req, res){
 };
 
 exports.getPostByTitle = function(req, res){
-  Post.findOne({'title': req.params.title}, 'title type postal_codes city description date', function(err, post) {
+  Post.findOne({'title': req.params.title}, 'title type postalCode city description date', function(err, post) {
     varifyQuerySuccess(err, res, 'getPostByTitle');
     res.send(post);
   });
@@ -170,7 +170,7 @@ exports.getUserByID = function(req, res){
 };
 
 exports.getPostByID = function(req, res){
-  Post.findOne({'_id': req.params.id}, 'title type price postal_code city description images thumbnail', function(err, post){
+  Post.findOne({'_id': req.params.id}, 'title type price postalCode city description images thumbnail', function(err, post){
     varifyQuerySuccess(err, res, 'getPostByID');
     res.send(post);
   });
@@ -241,7 +241,7 @@ exports.createPost = function(req, res){
       var newPost = {
         ownerID: req.user._id,
         title: req.body.title,
-        postal_code: req.body.postal_code,
+        postalCode: req.body.postalCode,
         city: req.body.city,
         price: isNaN(req.body.price) ? 0 : req.body.price, //default to 0 if undefined, to avoid mongo error
         type: req.body.type,
@@ -436,7 +436,7 @@ exports.updatePostInfo = function (req, res) {
             $set: {
               title: req.body.title,
               price: isNaN(req.body.price) ? 0 : req.body.price, //default to 0 if undefined, to avoid mongo error
-              postal_code: req.body.postal_code,
+              postalCode: req.body.postalCode,
               description: req.body.description,
             },
             $push: {

@@ -5,7 +5,7 @@ class Map extends Component {
   constructor(props){
     super(props);
     this.state = {
-      postal_code: this.props.postal_code,
+      postalCode: this.props.postalCode,
       lat: "",
       lng: "",
       err: "",
@@ -15,7 +15,7 @@ class Map extends Component {
     // Geocoding done in componentWillReceiveProps because props are empty in componentDidMount on it's first run.
     // First run is empty because MainPage calls PostModal with empty props in it's initial state.
     componentDidMount(){
-    var filtered_address = (this.props.postal_code).replace(/\s/g, "+");
+    var filtered_address = (this.props.postalCode).replace(/\s/g, "+");
     Request
       // .get("https://maps.googleapis.com/maps/api/geocode/json?address="+filtered_address.toString()+"&key=AIzaSyD86X7QJpRthF_OfvzcftUNlPg1kzg6sKo")
       .get("https://maps.googleapis.com/maps/api/geocode/json?sensor=false&region=ca&components=postal_code:"+filtered_address.toString()+"&key=AIzaSyD86X7QJpRthF_OfvzcftUNlPg1kzg6sKo")

@@ -8,7 +8,7 @@ class PostCreationContainer extends React.Component{
         super(props);
         this.state={
             title: "",
-            postal_code: "",
+            postalCode: "",
             price: "",
             description: "",
         }
@@ -28,7 +28,7 @@ class PostCreationContainer extends React.Component{
         //Create formData object and populate it with values in state
         var formData = new FormData();
         formData.append('title', this.state.title);
-        formData.append('postal_code', this.state.postal_code);
+        formData.append('postalCode', this.state.postalCode);
         formData.append('price', this.state.price);
         formData.append('description', this.state.description);
 
@@ -93,7 +93,7 @@ class PostCreationContainer extends React.Component{
                             <label>* Type</label>
                         </div>
                         <InputField fieldClass="col s12 m6 l6" labelText="* Postal code"
-                            id="postal_code" onChange={this.handleInputChange} required="required" />
+                            id="postalCode" onChange={this.handleInputChange} required="required" />
                         <InputField fieldClass="col s12 m6 l6" labelText="Price" id="price" onChange={this.handleInputChange} />
                         <div className="input-field col s12 m6 l6">
                             <select id="city" name="city" required="required" >
