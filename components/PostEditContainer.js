@@ -39,7 +39,7 @@ class PostEditContainer extends React.Component{
                 title: res.body.title,
                 type: res.body.type,
                 address: res.body.address,
-                price: res.body.price,
+                price: res.body.price || "",
                 description: res.body.description,
                 thumbnail: res.body.thumbnail,
                 pictures: picsExceptThumb,
@@ -60,9 +60,6 @@ class PostEditContainer extends React.Component{
         formData.append('address', this.state.address);
         formData.append('price', this.state.price);
         formData.append('description', this.state.description);
-
-        //Materialize select can't handle onChange.. so we have to grab value directly
-        formData.append('type', $('select').val());
 
         //Finally, attach all files for uploading
         var images = document.getElementById('postImages').files;
@@ -133,13 +130,8 @@ class PostEditContainer extends React.Component{
                             <InputField fieldClass="col s12 m6 l6" labelText="Price"
                                 id="price" value={this.state.price} onChange={this.handleInputChange} />
                             <div className="input-field col s12 m6 l6">
-                                <select id="type" name="type" required="required" >
-                                    <option value="Phone" defaultValue>Phone</option>
-                                    <option value="Laptop">Laptop</option>
-                                    <option value="Case">Case</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                                <label>* Type</label>
+                                <input id="type" value={this.state.type} type="text" disabled />
+                                <label for="type" className="active">Type</label>
                             </div>
                             <InputField labelText="Address"
                                 id="address" value={this.state.address} onChange={this.handleInputChange} />
