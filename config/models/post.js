@@ -10,7 +10,7 @@ var postSchema = new Schema({
   date: {type: Date, default: Date.now},
   title:  {type: String, required: true, trim: true},
   type: {type: String, required: true, trim: true},
-  address: {type: String, required: true, trim: true},
+  postal_code: {type: String, required: true, trim: true},
   city: {type: String, required: true, trim: true},
   price: {type: Number},
   description: {type: String, trim: true},

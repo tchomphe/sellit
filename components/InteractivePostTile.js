@@ -63,7 +63,7 @@ export default class InteractivePostTile extends React.Component {
                     </div>
                     <div className="card-content">
                         <span className="card-title">{this.props.post.title}</span>
-                        <p className="card-text"><i className="tiny material-icons">location_on</i> {this.props.post.address}</p>
+                        <p className="card-text"><i className="tiny material-icons">location_on</i> {this.props.post.city}</p>
                     </div>
                     <div className="card-action right-align">
                     <a href="#" style={{color: '#9C9A9A'}} onClick={(e) => (this.handleEdit(e))}><i className="material-icons">edit</i></a>
@@ -75,7 +75,8 @@ export default class InteractivePostTile extends React.Component {
                         modalID={this.props.postModalID}
                         title={this.props.post.title}
                         price={this.props.post.price}
-                        address={this.props.post.address}
+                        postal_code={this.props.post.postal_code}
+                        city={this.props.post.city}
                         description={this.props.post.description}
                         images={this.props.post.images}
                         ownerId={this.props.post.ownerID}

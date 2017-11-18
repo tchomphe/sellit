@@ -93,9 +93,9 @@ class PostModal extends React.Component{
                             <div className="divider"></div>
                             <p><strong>${this.props.price || placeholderMessage}</strong></p>
                             <p>{this.props.description || placeholderMessage}</p>
-                            <p>{this.props.address || placeholderMessage}</p>
                             <p><strong>{this.props.phone}</strong></p>
-                            <Map address={this.props.address}/>
+                            <p><strong>{this.props.city}</strong></p>
+                            <Map postal_code={this.props.postal_code}/>
                             <PostContact ownerId={this.props.ownerId} id={this.props.modalID} />
                         </div>
                     </div>

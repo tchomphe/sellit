@@ -37,7 +37,7 @@ export default class PostTile extends React.Component {
                     <div className="card-content">
                         {/* <span className="card-title activator truncate">{this.props.post.title}<i className="material-icons right">keyboard_arrow_up</i></span> */}
                         <span className="card-title truncate activator">{this.props.post.title}</span>
-                        <p className="left-align card-text"><i className="material-icons position">location_on</i>{this.props.post.location}</p>
+                        <p className="left-align card-text"><i className="material-icons position">location_on</i>{this.props.post.city}</p>
                         <p className="right-align card-text posted-date"><Moment fromNow>{this.props.post.date}</Moment></p>
                     </div>
 
@@ -45,15 +45,14 @@ export default class PostTile extends React.Component {
                         <span className="card-title truncate">{this.props.post.title}<i className="material-icons ">close</i></span>
                         <p className="left-align">{this.props.post.description}</p>
                     </div>
-
                     <PostModal
                             prevPostId={this.props.prevPostId}
                             nextPostId={this.props.nextPostId}
                             modalID={this.props.postModalID}
                             title={this.props.post.title}
                             price={this.props.post.price}
-                            address={this.props.post.address}
-                            location={this.props.post.location}
+                            postal_code={this.props.post.postal_code}
+                            city={this.props.post.city}
                             description={this.props.post.description}
                             images={this.props.post.images}
                             ownerId={this.props.post.ownerID} />
