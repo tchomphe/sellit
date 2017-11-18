@@ -170,7 +170,7 @@ exports.getUserByID = function(req, res){
 };
 
 exports.getPostByID = function(req, res){
-  Post.findOne({'_id': req.params.id}, 'title type address description images thumbnail', function(err, post){
+  Post.findOne({'_id': req.params.id}, 'title type price address description images thumbnail', function(err, post){
     varifyQuerySuccess(err, res, 'getPostByID');
     res.send(post);
   });

@@ -39,7 +39,7 @@ class PostEditContainer extends React.Component{
                 title: res.body.title,
                 type: res.body.type,
                 address: res.body.address,
-                price: res.body.price,
+                price: res.body.price || "",
                 description: res.body.description,
                 thumbnail: res.body.thumbnail,
                 pictures: picsExceptThumb,
