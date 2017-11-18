@@ -12,6 +12,7 @@ export default class MainPage extends React.Component {
         this.state = {
             posts: [],
             page: 1,
+            fetchInProgress: true
         };
 
         //bind function to this component
@@ -25,6 +26,7 @@ export default class MainPage extends React.Component {
     }
 
     requestAllPosts(currentPage){
+        this.setState({fetchInProgress:true});
         Request.get('/paginatePosts/' + currentPage).then((res) => {
             var oldPosts = this.state.posts;
             var newPosts = res.body.docs;
@@ -36,6 +38,7 @@ export default class MainPage extends React.Component {
             this.setState({
               posts: updatedPosts,
               page: nextPage,
+              fetchInProgress:false
             });
         });
     }
@@ -60,6 +63,18 @@ export default class MainPage extends React.Component {
             paginationButton = <a onClick={this.handlePagination} className="btn-floating waves-effect waves-light black">
                                     <i className="material-icons">expand_more</i></a>;
 
+        var spinner = <div className="preloader-wrapper active">
+                <div className="spinner-layer spinner-black-only">
+                <div className="circle-clipper left">
+                    <div className="circle"></div>
+                </div><div className="gap-patch">
+                    <div className="circle"></div>
+                </div><div className="circle-clipper right">
+                    <div className="circle"></div>
+                </div>
+                </div>
+            </div>
+
         return(
             <div className="container center-align">
                 <Masonry
@@ -71,7 +86,8 @@ export default class MainPage extends React.Component {
                     {postTiles}
                 </Masonry>
                 <div className="row">
-                    {paginationButton}
+                    {this.state.fetchInProgress ? spinner: paginationButton}
+                    {/* {paginationButton} */}
                 </div>
             </div>
         );
