@@ -7,7 +7,8 @@ class NavigationHeader extends React.Component{
         super(props);
         this.state={
             searchedPosts: [],
-            customSearchBar: "custom_search_invisible",
+            // customSearchBar: "custom_search_invisible",
+            customSearchBar: false,
         }
         this.handleOnClick = this.handleOnClick.bind(this);
         this.handleLogoutButtonClick = this.handleLogoutButtonClick.bind(this);
@@ -25,16 +26,10 @@ class NavigationHeader extends React.Component{
     }
 
     handleOnClick(){
-        if (this.state.customSearchBar === "custom_search_invisible"){
-            this.setState({customSearchBar: "custom_search"});
-            // $("#search").addClass("active");
-            // document.search_form.search.focus();
+        this.setState({customSearchBar: !this.state.customSearchBar});            ;
+            $('.button-collapse').sideNav('hide');
             document.forms['search_form'].elements['search'].focus();
 
-        } else {
-            this.setState({customSearchBar: "custom_search_invisible"});
-            $('.button-collapse').sideNav('hide');
-        }
     }
 
     handleLogoutButtonClick(event){
@@ -48,7 +43,7 @@ class NavigationHeader extends React.Component{
             //TODO: pass more variables, ex: /?query=121&type=Bob
             //redirect to SearchResults and pass the query
             this.props.history.push('/search/' + this.refs.search.value);
-            this.setState({customSearchBar: "custom_search_invisible"});
+            this.setState({customSearchBar: !this.state.customSearchBar});
             $("#navbarContainer #search").val("");
         } else {
             this.setState({customSearchBar: "custom_search_invisible"});
@@ -71,11 +66,6 @@ class NavigationHeader extends React.Component{
                                     <li><Link to="/posts/Bike"><i className="material-icons left" style={{color: "#000"}}>directions_bike</i>Bikes</Link></li>
                                     <li><Link to="/posts/Other"><i className="material-icons left" style={{color: "#000"}}>list</i>Others</Link></li>
                                 </ul>
-
-                                {/* <ul id="dropdown_logout" className="dropdown-content">
-                                    <li><Link to="/my-account"><i className="left large material-icons">account_circle</i>My account</Link></li>
-                                    <li><a onClick={this.handleLogoutButtonClick}><i className="left large material-icons">exit_to_app</i>Logout</a></li>
-                                </ul> */}
 
                                 <ul className="right hide-on-med-and-down">
                                     {/* <!-- Dropdown Trigger --> */}
@@ -136,10 +126,6 @@ class NavigationHeader extends React.Component{
                                     <li><Link to="/posts/Bike"><i className="material-icons left" style={{color: "#000"}}>directions_bike</i>Bikes</Link></li>
                                     <li><Link to="/posts/Other"><i className="material-icons left" style={{color: "#000"}}>list</i>Others</Link></li>
                                 </ul>
-                                {/* <ul id="dropdown_sign_in" className="dropdown-content">
-                                    <li><a href="#userLoginModal"><i className="material-icons left" style={{color: "#000"}}>exit_to_app</i>Sign in</a></li>
-                                    <li><a href="#userRegistrationModal"><i className="material-icons left" style={{color: "#000"}}>assignment</i>Sign up</a></li>
-                                </ul> */}
                                 <ul className="right hide-on-med-and-down">
                                     {/* <!-- Dropdown Trigger --> */}
                                     <li>
@@ -150,11 +136,6 @@ class NavigationHeader extends React.Component{
                                     <li><a href="#userLoginModal"><i className="material-icons left">assignment</i>List an item</a></li>
                                     <li><a href="#userLoginModal"><i className="material-icons left">exit_to_app</i>Sign in</a></li>
                                     <li><a href="#userRegistrationModal"><i className="material-icons left">assignment</i>Sign up</a></li>
-                                    {/* <li>
-                                        <a className="dropdown-button" href="#!" data-activates="dropdown_sign_in" data-beloworigin="true" data-constrainwidth="false" data-hover="true">
-                                            <i className="material-icons">account_circle</i>
-                                        </a>
-                                    </li> */}
                                     <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
                                 </ul>
                                 <ul className="side-nav" id="mobile-demo">
@@ -197,10 +178,10 @@ class NavigationHeader extends React.Component{
                     <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
                     {navMenu}
                 </div>
-                <div id="navbarContainer" className={this.state.customSearchBar}>
+                <div id="navbarContainer" className={this.state.customSearchBar ? "custom_search":"custom_search_invisible"}>
                     <form name="search_form" onSubmit={(e) => (this.handleSubmit(e))}>
-                        <input id="search" name="search" type="search" ref="search" className="search_bar" style={{'border-bottom': 'none', 'box-shadow': 'none'}} placeholder="Search..." />
-                        <a href="#" onClick={this.handleOnClick}><i className="material-icons search_close">close</i></a>
+                        <input id="search" name="search" type="search" ref="search" placeholder="Search..." />
+                        <a onClick={this.handleOnClick}><i className="material-icons search_close">close</i></a>
                     </form>
                 </div>
           </nav>
