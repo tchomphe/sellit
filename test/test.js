@@ -117,6 +117,7 @@ describe('Session-based API tests;', function () {
           .field('ownerID', seeder.users.vageta._id)
           .field('title', 'iCapsule S')
           .field('address', '123 Royal Way')
+          .field('location', 'Namek')
           .field('type', 'smartphone')
           .field('description', 'Alright condition!')
           .end(function(error, response, body){
@@ -284,6 +285,7 @@ describe('Session-based API tests;', function () {
           .set('Content-Type', 'multipart/form-data')
           .field('title', 'iCapsule S')
           .field('address', '123 Royal Way')
+          .field('location', 'Namek')
           .field('type', 'smartphone')
           .field('description', 'Alright condition!')
           .attach('postImages', __dirname + '/image1.jpg')
