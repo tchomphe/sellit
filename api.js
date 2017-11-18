@@ -436,7 +436,6 @@ exports.updatePostInfo = function (req, res) {
               title: req.body.title,
               price: isNaN(req.body.price) ? 0 : req.body.price, //default to 0 if undefined, to avoid mongo error
               address: req.body.address,
-              type: req.body.type,
               description: req.body.description,
             },
             $push: {
