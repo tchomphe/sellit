@@ -58,21 +58,31 @@ optimizeImages = function(req, callback){
 
   //check if files have been uploaded
   if (req.files){
-    //save all uploaded images, replacing private directory with public path
-    (req.files).forEach(function(image) {
-      //compress images
+    //loop through uploaded files synchronously
+    async.eachSeries(req.files, function (image, callback) {
+      console.log("Optimizing image...");
+      //compress current image -- resize, set JPEG quality, and overwrite old image with compressed version
       Jimp.read(image.path).then(function (myImage) {
-        myImage.resize(600, Jimp.AUTO) // resize
-          .quality(60)                 // set JPEG quality
-          .write(image.path);          // overwrite old image with compressed version
+        myImage.resize(600, Jimp.AUTO).quality(60).write(image.path, function(){
+          //move on to next image
+          callback();
+        });
       });
-      //push URL of newly uploaded images to variable (replacing *private directory* with *public path*)
-      uploadedImages.push(image.path.replace('static/', '/assets/'));
-    }, this);
-  }
+    }, function (err) {
+      console.log('Finished optimization!');
+      if (err) { throw err; }
 
-  //pass images array and continue logic
-  callback(uploadedImages);
+      //push URL of newly uploaded images to variable (replacing *private directory* with *public path*)
+      (req.files).forEach(function(image) {
+        uploadedImages.push(image.path.replace('static/', '/assets/'));
+      });
+
+      //pass images array and continue logic
+      callback(uploadedImages);
+    });
+  }
+  else
+    callback(uploadedImages); //pass empty array
 }
 
 //-------------------------- GET request --------------------------//
@@ -416,44 +426,29 @@ exports.updatePostInfo = function (req, res) {
   if (req.isAuthenticated()){
     varifyRightfulOwner(req, function(isRightfulOwner){
       if (isRightfulOwner){
-        //define variable to hold newly uploaded images
-        var uploadedImages = [];
+        optimizeImages(req, function(uploadedImages){
+          //form mongoose query & settings
+          var query = {_id: req.params.id};
+          var settings = {new: true};
+          //form updated post object
+          var newObject ={
+            $set: {
+              title: req.body.title,
+              price: isNaN(req.body.price) ? 0 : req.body.price, //default to 0 if undefined, to avoid mongo error
+              address: req.body.address,
+              type: req.body.type,
+              description: req.body.description,
+            },
+            $push: {
+              images: { $each: uploadedImages }
+            }
+          };
 
-        //check if files have been uploaded
-        if (req.files){
-          (req.files).forEach(function(image) {
-            //compress images
-            Jimp.read(image.path).then(function (myImage) {
-              myImage.resize(600, Jimp.AUTO) // resize
-                .quality(60)                 // set JPEG quality
-                .write(image.path);          // overwrite old image with compressed version
-            });
-            //push URL of newly uploaded images to variable (replacing *private directory* with *public path*)
-            uploadedImages.push(image.path.replace('static/', '/assets/'));
-          }, this);
-        }
-
-        //define mongoose function settings
-        var query = {_id: req.params.id};
-        var newObject ={
-          $set: {
-            title: req.body.title,
-            price: isNaN(req.body.price) ? 0 : req.body.price, //default to 0 if undefined, to avoid mongo error
-            address: req.body.address,
-            type: req.body.type,
-            description: req.body.description,
-          },
-          $push: {
-            images: { $each: uploadedImages }
-          }
-        };
-        var settings = {new: true};
-        console.log(req.body);
-
-        //save updated post settings
-        Post.findByIdAndUpdate(query, newObject, settings, function(err, post) {
-          varifyQuerySuccess(err, res, 'updateUserInfo');
-          res.send('Got a PUT request at /post');
+          //save updated post settings
+          Post.findByIdAndUpdate(query, newObject, settings, function(err, post) {
+            varifyQuerySuccess(err, res, 'updateUserInfo');
+            res.send('Got a PUT request at /post');
+          });
         });
       }
       else {
