@@ -12,6 +12,7 @@ class PostTypePage extends React.Component{
             posts: [],
             category: "",
             page: 1,
+            fetchInProgress:true,
         }
         this.handlePagination = this.handlePagination.bind(this);
     }
@@ -31,6 +32,7 @@ class PostTypePage extends React.Component{
     }
 
     requestPosts(query, page){
+        this.setState({fetchInProgress:true});
         Request.get(`/postsByType/${query}/${page}`).then((res) => {
             var oldPosts = this.state.posts;
             var newPosts = res.body.docs;
@@ -42,6 +44,7 @@ class PostTypePage extends React.Component{
             this.setState({
                 posts: updatedPosts,
                 page: nextPage,
+                fetchInProgress:false,
               });
         });
     }
@@ -63,6 +66,17 @@ class PostTypePage extends React.Component{
             paginationButton = <a onClick={this.handlePagination} className="btn-floating black">
                                     <i className="material-icons">expand_more</i></a>;
 
+        var spinner = <div className="preloader-wrapper active">
+            <div className="spinner-layer spinner-black-only">
+            <div className="circle-clipper left">
+                <div className="circle"></div>
+            </div><div className="gap-patch">
+                <div className="circle"></div>
+            </div><div className="circle-clipper right">
+                <div className="circle"></div>
+            </div>
+            </div>
+        </div>
         return(
             <div className="container center-align">
             <div className="row">
@@ -76,7 +90,7 @@ class PostTypePage extends React.Component{
                 </Masonry>
             </div>
             <div className="row">
-                {paginationButton}
+                {this.state.fetchInProgress ? spinner: paginationButton}
             </div>
         </div>
         )

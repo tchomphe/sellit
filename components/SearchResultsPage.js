@@ -12,6 +12,7 @@ export default class SearchResultsPage extends React.Component{
             query: this.props.match.params.query,
             posts: [],
             page: 1,
+            fetchInProgress:true,
         };
 
         //bind function to this component
@@ -30,11 +31,12 @@ export default class SearchResultsPage extends React.Component{
     }
 
     searchPosts(query, currentPage){
+        this.setState({fetchInProgress:true});
         //show page loading wrapper
-        $("#dim-page-loader").fadeIn(100);
+        // $("#dim-page-loader").fadeIn(100);
         Request.get('/searchPosts/' + query + '/' + currentPage).then((res) => {
             //hide page loading wrapper
-            $("#dim-page-loader").fadeOut(100);
+            // $("#dim-page-loader").fadeOut(100);
             //check if current page is 1, if so, reset results -- otherwise, continue pagination
             var oldPosts = (currentPage == 1) ? [] : this.state.posts;
             var newPosts = res.body.docs;
@@ -46,6 +48,7 @@ export default class SearchResultsPage extends React.Component{
             this.setState({
               posts: updatedPosts,
               page: nextPage,
+              fetchInProgress: false,
             });
         });
     }
@@ -74,7 +77,17 @@ export default class SearchResultsPage extends React.Component{
         else
             paginationButton = <a onClick={this.handlePagination} className="btn-floating black">
                                     <i className="material-icons">expand_more</i></a>;
-
+        var spinner = <div className="preloader-wrapper active">
+            <div className="spinner-layer spinner-black-only">
+            <div className="circle-clipper left">
+                <div className="circle"></div>
+            </div><div className="gap-patch">
+                <div className="circle"></div>
+            </div><div className="circle-clipper right">
+                <div className="circle"></div>
+            </div>
+            </div>
+        </div>
         return(
             <div className="container center-align">
                     <Masonry
@@ -86,7 +99,7 @@ export default class SearchResultsPage extends React.Component{
                         {postTiles}
                     </Masonry>
                 <div className="row">
-                    {(searchResult) ? paginationButton : null}
+                    {(searchResult) ? (this.state.fetchInProgress ? spinner: paginationButton) : null}
                 </div>
             </div>
         )}
