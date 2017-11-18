@@ -27,11 +27,6 @@ export default class SearchResultsPage extends React.Component{
         //send request to initialize post listings
         this.searchPosts(this.state.query, this.state.page);
         $('.modal').modal();
-        $('.grid').masonry({
-            // options
-            itemSelector: '.grid-item',
-            columnWidth: 320,
-          });
     }
 
     searchPosts(query, currentPage){
@@ -75,27 +70,24 @@ export default class SearchResultsPage extends React.Component{
         //determine if pagination button is needed, or if we've reached the end of all posts
         var paginationButton = null;
         if (this.state.page == 0)
-            paginationButton = <h4>Reached end of posts.</h4>;
+            paginationButton = <h5>Reached end of list.</h5>;
         else
             paginationButton = <a onClick={this.handlePagination} className="btn-floating black">
                                     <i className="material-icons">expand_more</i></a>;
 
         return(
             <div className="container center-align">
-                <div className="row">
                     <Masonry
-                        className={'my-gallery-class'} // default ''
+                        className={'row cards-container'} // default ''
                         elementType={'div'} // default 'div'
                         disableImagesLoaded={false} // default false
                         updateOnEachImageLoad={false} //
                     >
                         {postTiles}
                     </Masonry>
-                </div>
                 <div className="row">
                     {(searchResult) ? paginationButton : null}
                 </div>
             </div>
-        )
-    }
+        )}
 }

@@ -96,6 +96,11 @@ nav ul li:hover {
     will-change: width, height;
 }
 
+/* Setting dropdown selection list scrollable */
+.select-dropdown{
+    overflow-y: auto !important;
+}
+
 .dropdown-content :active {
     top: 50px;
 }
@@ -234,7 +239,11 @@ select:-webkit-autofill:focus {
     font-size: 30px;
     text-align: left;
     padding-left: 20px;
+    border-bottom: none !important;
+    box-shadow: none !important;
+
 }
+
 .search_close{
     position: absolute;
     right: 10px;
@@ -398,6 +407,10 @@ p .material-icons{
     box-shadow: none;
 }
 
+.spinner-black, .spinner-black-only {
+    border-color: #000000;
+}
+
 .posted-date {
     position: relative;
     top:10px;
@@ -457,10 +470,10 @@ a {
     }
 
     .card {
-        width: calc(50% - 20px);
-        margin-left: 10px;
-        margin-right: 10px;
-        font-size: 12px;
+        width: calc(50% - 5px);
+        margin-left: 2.5px;
+        margin-right: 2.5px;
+        font-size: 13px;
     }
 
     .card .card-content .card-title {
@@ -470,7 +483,6 @@ a {
     .card .card-reveal .card-title {
         font-size: 16px;
     }
-
 
     .card .card-content {
         padding-top: 15px;
@@ -483,12 +495,12 @@ a {
         width: 100%;
         height: 100%;
         max-height: 100%;
-        border-radius: 2px;
+        /* border-radius: 0px; */
         /* top: 10px !important; */
     }
 
     .postModalButtonClose {
-        color: #fff;
+        color: #222;
     }
 
     .postImagesSlideshow {
@@ -509,19 +521,22 @@ a {
         font-size: 12px;
         line-height: 35px;
     }
+
     .custom_search {
         top: 0px;
-        height: 60px;
+        height: 56px;
         z-index: 999;
         background-color: rgb(0,0,0);
     }
+
     .custom_search input[type="search"] {
         font-size: 25px;
     }
+
     .search_close{
         position: absolute;
         right: 10px;
-        top: 5px;
+        top: 0;
         font-size: 30px !important;
     }
     /* .post-modal-arrow-left {
