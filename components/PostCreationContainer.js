@@ -33,7 +33,8 @@ class PostCreationContainer extends React.Component{
         formData.append('description', this.state.description);
 
         //Materialize select can't handle onChange.. so we have to grab value directly
-        formData.append('type', $('select').val());
+        formData.append('type', $('#type').val());
+        formData.append('location', $('#location').val());
 
         //Finally, attach all files for uploading
         var images = document.getElementById('postImages').files;
@@ -94,6 +95,17 @@ class PostCreationContainer extends React.Component{
                         <InputField fieldClass="col s12 m6 l6" labelText="* Address"
                             id="address" onChange={this.handleInputChange} required="required" />
                         <InputField fieldClass="col s12 m6 l6" labelText="Price" id="price" onChange={this.handleInputChange} />
+                        <div className="input-field col s12 m6 l6">
+                            <select id="location" name="select2" required="required" >
+                                <option value = "" disabled></option>
+                                <option value="City of Toronto">City of Toronto</option>
+                                <option value="Markham / York Region">Markham / York Region</option>
+                                <option value="Oshawa / Durham Region">Oshawa / Durham Region</option>
+                                <option value="Missisauga / Peel Region">Missisauga / Peel Region</option>
+                                <option value="Oakville / Halton Region">Oakville / Halton Region</option>
+                            </select>
+                            <label>* Location</label>
+                        </div>
                         <InputField labelText="Description" id="description" onChange={this.handleInputChange} />
                         <div className="col s12 file-field input-field">
                             <div className="btn black waves-effect white-text darken-text-2">
