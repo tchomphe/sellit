@@ -16,15 +16,15 @@ var seedPosts = module.exports.posts = [
     ownerID: vagetaID,
     title: 'iCapsure Ultimate',
     type: 'smartphone',
-    address: '24 Vogo Corp. St',
-    location: 'Earth'
+    postalCode: 'M5B 2R8',
+    city: 'Central City'
   },
   {
     ownerID: vagetaID,
     title: 'BananaPhone',
     type: 'smartphone',
-    address: '24 Vogo Corp. St',
-    location: 'Earth'
+    postalCode: 'M5B 2R8',
+    city: 'Central City'
   }
 ];
 

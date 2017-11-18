@@ -36,7 +36,7 @@ describe('Session-less API tests,', function () {
     it('responds with correct post and HTTP Status 200', function(done) {
       request('http://localhost:8080/postByTitle/' + seeder.posts[0].title, function(error, response, body){
         expect(response.body.type).to.equal(seeder.posts[0].type);
-        expect(response.body.address).to.equal(seeder.posts[0].address);
+        expect(response.body.city).to.equal(seeder.posts[0].city);
         expect(response.statusCode).to.equal(200);
         postID = response.body._id;
         done();
@@ -49,7 +49,7 @@ describe('Session-less API tests,', function () {
       request.get('http://localhost:8080/postById/'+postID, function(error, response, body){
         expect(response.body.title).to.equal(seeder.posts[0].title);
         expect(response.body.type).to.equal(seeder.posts[0].type);
-        expect(response.body.address).to.equal(seeder.posts[0].address);
+        expect(response.body.city).to.equal(seeder.posts[0].city);
         expect(response.statusCode).to.equal(200);
         done();
       });
@@ -94,10 +94,10 @@ describe('Session-less API tests,', function () {
       request('http://localhost:8080/postsByOwner/' + seeder.users.vageta._id, function(error, response, body){
         expect(response.body[0].title).to.equal(seeder.posts[1].title);
         expect(response.body[0].type).to.equal(seeder.posts[1].type);
-        expect(response.body[0].address).to.equal(seeder.posts[1].address);
+        expect(response.body[0].city).to.equal(seeder.posts[1].city);
         expect(response.body[1].title).to.equal(seeder.posts[0].title);
         expect(response.body[1].type).to.equal(seeder.posts[0].type);
-        expect(response.body[1].address).to.equal(seeder.posts[0].address);
+        expect(response.body[1].city).to.equal(seeder.posts[0].city);
         expect(response.statusCode).to.equal(200);
         done();
       });
@@ -116,8 +116,8 @@ describe('Session-based API tests;', function () {
           .set('Content-Type', 'multipart/form-data')
           .field('ownerID', seeder.users.vageta._id)
           .field('title', 'iCapsule S')
-          .field('address', '123 Royal Way')
-          .field('location', 'Namek')
+          .field('postalCode', 'L4U 0U7')
+          .field('city', 'Turtle Island')
           .field('type', 'smartphone')
           .field('description', 'Alright condition!')
           .end(function(error, response, body){
@@ -133,7 +133,7 @@ describe('Session-based API tests;', function () {
         vageta
           .put('http://localhost:8080/post/'+postID)
           .set('Content-Type', 'application/json')
-          .send('{"title":"iNode 5s", "address":"123 Royal Way", "description":"Ok Condition. It works, deal with it."}')
+          .send('{"title":"iNode 5s", "postalCode":"L4U 0U7", "description":"Ok Condition. It works, deal with it."}')
           .end(function(error, response, body){
             expect(response.statusCode).to.equal(400);
             expect(response.body.message).to.equal('Please Log In.');
@@ -242,10 +242,10 @@ describe('Session-based API tests;', function () {
       vageta.get('http://localhost:8080/postsByOwner', function(error, response, body){
         expect(response.body[0].title).to.equal(seeder.posts[1].title);
         expect(response.body[0].type).to.equal(seeder.posts[1].type);
-        expect(response.body[0].address).to.equal(seeder.posts[1].address);
+        expect(response.body[0].city).to.equal(seeder.posts[1].city);
         expect(response.body[1].title).to.equal(seeder.posts[0].title);
         expect(response.body[1].type).to.equal(seeder.posts[0].type);
-        expect(response.body[1].address).to.equal(seeder.posts[0].address);
+        expect(response.body[1].city).to.equal(seeder.posts[0].city);
         expect(response.statusCode).to.equal(200);
         done();
       });
@@ -258,7 +258,7 @@ describe('Session-based API tests;', function () {
         vageta
           .put('http://localhost:8080/post/'+postID)
           .set('Content-Type', 'application/json')
-          .send('{"title":"iNode 5s", "address":"123 Royal Way", "description":"Ok Condition. It works, deal with it."}')
+          .send('{"title":"iNode 5s", "postalCode":"L4U 0U7", "description":"Ok Condition. It works, deal with it."}')
           .end(function(error, response, body){
             expect(response.statusCode).to.equal(200);
             done();
@@ -270,7 +270,7 @@ describe('Session-based API tests;', function () {
       it('responds with HTTP Status 200', function(done) {
         vageta.get('http://localhost:8080/postById/'+postID, function(error, response, body){
           expect(response.body.title).to.equal("iNode 5s");
-          expect(response.body.address).to.equal("123 Royal Way");
+          expect(response.body.city).to.equal("Central City");
           expect(response.body.description).to.equal("Ok Condition. It works, deal with it.");
           expect(response.statusCode).to.equal(200);
           done();
@@ -284,8 +284,8 @@ describe('Session-based API tests;', function () {
           .post('http://localhost:8080/createPost')
           .set('Content-Type', 'multipart/form-data')
           .field('title', 'iCapsule S')
-          .field('address', '123 Royal Way')
-          .field('location', 'Namek')
+          .field('postalCode', 'L4U 0U7')
+          .field('city', 'Turtle Island')
           .field('type', 'smartphone')
           .field('description', 'Alright condition!')
           .attach('postImages', __dirname + '/image1.jpg')
@@ -302,7 +302,7 @@ describe('Session-based API tests;', function () {
         vageta.get('http://localhost:8080/postByTitle/iCapsule%20S', function(error, response, body){
           postID = response.body._id;
           expect(response.body.title).to.equal("iCapsule S");
-          expect(response.body.address).to.equal("123 Royal Way");
+          expect(response.body.city).to.equal("Turtle Island");
           expect(response.body.description).to.equal("Alright condition!");
           expect(response.statusCode).to.equal(200);
           console.log(response.body);
@@ -515,7 +515,7 @@ describe('Goku session API tests;', function () {
       it('responds with correct post and HTTP Status 200', function(done) {
         goku.get('http://localhost:8080/postByTitle/' + seeder.posts[1].title, function(error, response, body){
           expect(response.body.type).to.equal(seeder.posts[1].type);
-          expect(response.body.address).to.equal(seeder.posts[1].address);
+          expect(response.body.city).to.equal(seeder.posts[1].city);
           expect(response.statusCode).to.equal(200);
           postID = response.body._id;
           done();
