@@ -51,7 +51,7 @@ export default class InteractivePostTile extends React.Component {
     }
 
     render(){
-        var thumbnailImage = (this.props.post.thumbnail) ? this.props.post.thumbnail : "https://placehold.it/350x250";
+        var thumbnailImage = (this.props.post.thumbnail) ? ("/assets/uploads/" + this.props.post.thumbnail) : "https://placehold.it/350x250";
 
         return(
                 <div className="card">

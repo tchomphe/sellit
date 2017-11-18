@@ -32,6 +32,7 @@ class PostEditContainer extends React.Component{
             console.log('Response Body: ' + JSON.stringify(res.body, null, 4));
             var picsExceptThumb = res.body.images;
             picsExceptThumb.splice(picsExceptThumb.indexOf(res.body.thumbnail), 1);
+            picsExceptThumb.forEach((part, i, array) => { array[i] = "/assets/uploads/"+array[i]; });
 
             res.body.images.indexOf()
             this.setState({
@@ -41,7 +42,7 @@ class PostEditContainer extends React.Component{
                 address: res.body.address,
                 price: res.body.price || "",
                 description: res.body.description,
-                thumbnail: res.body.thumbnail,
+                thumbnail: "/assets/uploads/"+res.body.thumbnail,
                 pictures: picsExceptThumb,
             });
         });

@@ -74,7 +74,7 @@ optimizeImages = function(req, callback){
 
       //push URL of newly uploaded images to variable (replacing *private directory* with *public path*)
       (req.files).forEach(function(image) {
-        uploadedImages.push(image.path.replace('static/', '/assets/'));
+        uploadedImages.push(image.path.replace('static/uploads/', ''));
       });
 
       //pass images array and continue logic
@@ -491,7 +491,7 @@ exports.deleteImage = function (req, res) {
             //update database entry with new images array
             Post.findByIdAndUpdate(
               {_id: req.params.id}, //query
-              { $pullAll: {images: [publicImageURL]} }, //updates to make
+              { $pullAll: {images: [req.params.imageName]} }, //updates to make
               function(err, post) {
                 varifyQuerySuccess(err, res, 'updateUserInfo');
                 res.send('Got a DELETE request at /image/:id/:index');
@@ -515,8 +515,8 @@ exports.deletePost = function (req, res) {
         Post.findOne({'_id': req.params.id}, 'images', function(err, post){
           if (post.images !== []){
             (post.images).forEach(function(imageURL){
-              //convert public path image URL -to-> server's local path
-              var localImageURL = imageURL.replace('/assets/', 'static/');
+              //attach server's local path to image url
+              var localImageURL = 'static/uploads/' + imageURL;
               try {
                 fileSystem.unlinkSync(localImageURL);
               } catch (err) {
