@@ -31,7 +31,7 @@ export default class PostTile extends React.Component {
                         <a href="#!" onClick={(e) => (this.handleSubmit(e))}>
                             <img src={thumbnailImage} alt="Card image cap" />
                         </a>
-                        <div className="card-image-price">${this.props.post.price}</div>
+                        <div className="card-image-price">{(this.props.post.price) ? "$"+this.props.post.price : "--"}</div>
                     </div>
 
                     <div className="card-content">
