@@ -156,7 +156,7 @@ exports.postsByOwnerID = function(req, res){
 };
 
 exports.getPostByTitle = function(req, res){
-  Post.findOne({'title': req.params.title}, 'title type address location description date', function(err, post) {
+  Post.findOne({'title': req.params.title}, 'title type address city description date', function(err, post) {
     varifyQuerySuccess(err, res, 'getPostByTitle');
     res.send(post);
   });
@@ -170,7 +170,7 @@ exports.getUserByID = function(req, res){
 };
 
 exports.getPostByID = function(req, res){
-  Post.findOne({'_id': req.params.id}, 'title type price address location description images thumbnail', function(err, post){
+  Post.findOne({'_id': req.params.id}, 'title type price address city description images thumbnail', function(err, post){
     varifyQuerySuccess(err, res, 'getPostByID');
     res.send(post);
   });
@@ -242,7 +242,7 @@ exports.createPost = function(req, res){
         ownerID: req.user._id,
         title: req.body.title,
         address: req.body.address,
-        location: req.body.location,
+        city: req.body.city,
         price: isNaN(req.body.price) ? 0 : req.body.price, //default to 0 if undefined, to avoid mongo error
         type: req.body.type,
         description: req.body.description,
