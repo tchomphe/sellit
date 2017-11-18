@@ -11,6 +11,7 @@ var postSchema = new Schema({
   title:  {type: String, required: true, trim: true},
   type: {type: String, required: true, trim: true},
   address: {type: String, required: true, trim: true},
+  location: {type: String, required: true, trim: true},
   price: {type: Number},
   description: {type: String, trim: true},
   thumbnail: {type: String, trim: true},
