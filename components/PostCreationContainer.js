@@ -70,7 +70,7 @@ class PostCreationContainer extends React.Component{
             <div className="container">
                 <div className="card-panel">
                     <form onSubmit={this.handleSubmit} >
-                    <h5 className="title">Create post</h5>
+                    <h5 className="title">List an item</h5>
                     <div className="card-content red-text">{this.state.err}</div>
                     <div className="row">
                         <InputField fieldClass="col s12 m6 l6" labelText="* Title"
@@ -83,11 +83,7 @@ class PostCreationContainer extends React.Component{
                                 <option value="Desktop">Desktop</option>
                                 <option value="Camera">Camera</option>
                                 <option value="Videogames">Video-game</option>
-                                <option value="Television">Television</option>
                                 <option value="Electronic">Electronic</option>
-                                <option value="Furniture">Furniture</option>
-                                <option value="Automobile">Automobile</option>
-                                <option value="Bike">Bike</option>
                                 <option value="Other">Other</option>
                             </select>
                             <label>* Type</label>

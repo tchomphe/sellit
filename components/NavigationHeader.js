@@ -25,7 +25,8 @@ class NavigationHeader extends React.Component{
         $('.collapsible').collapsible();
     }
 
-    handleOnClick(){
+    handleOnClick(e){
+        e.preventDefault();
         this.setState({customSearchBar: !this.state.customSearchBar});            ;
             $('.button-collapse').sideNav('hide');
             document.forms['search_form'].elements['search'].focus();
@@ -59,11 +60,7 @@ class NavigationHeader extends React.Component{
                                     <li><Link to="/posts/Desktop"><i className="material-icons left" style={{color: "#000"}}>desktop_windows</i>Desktops</Link></li>
                                     <li><Link to="/posts/Desktop"><i className="material-icons left" style={{color: "#000"}}>photo_camera</i>Cameras</Link></li>
                                     <li><Link to="/posts/Videogames"><i className="material-icons left" style={{color: "#000"}}>videogame_asset</i>Video-games</Link></li>
-                                    <li><Link to="/posts/Television"><i className="material-icons left" style={{color: "#000"}}>tv</i>TV & Monitors</Link></li>
                                     <li><Link to="/posts/Electronic"><i className="material-icons left" style={{color: "#000"}}>devices_other</i>Electronics</Link></li>
-                                    <li><Link to="/posts/Furniture"><i className="material-icons left" style={{color: "#000"}}>weekend</i>Furniture</Link></li>
-                                    <li><Link to="/posts/Automobile"><i className="material-icons left" style={{color: "#000"}}>drive_eta</i>Cars</Link></li>
-                                    <li><Link to="/posts/Bike"><i className="material-icons left" style={{color: "#000"}}>directions_bike</i>Bikes</Link></li>
                                     <li><Link to="/posts/Other"><i className="material-icons left" style={{color: "#000"}}>list</i>Others</Link></li>
                                 </ul>
 
@@ -93,11 +90,7 @@ class NavigationHeader extends React.Component{
                                                     <li><Link to="/posts/Desktop"><i className="material-icons left">desktop_windows</i>Desktops</Link></li>
                                                     <li><Link to="/posts/Desktop"><i className="material-icons left">photo_camera</i>Cameras</Link></li>
                                                     <li><Link to="/posts/Videogames"><i className="material-icons left">videogame_asset</i>Video-games</Link></li>
-                                                    <li><Link to="/posts/Television"><i className="material-icons left">tv</i>TV & Monitors</Link></li>
                                                     <li><Link to="/posts/Electronic"><i className="material-icons left">devices_other</i>Electronics</Link></li>
-                                                    <li><Link to="/posts/Furniture"><i className="material-icons left">weekend</i>Furnitures</Link></li>
-                                                    <li><Link to="/posts/Automobile"><i className="material-icons left">drive_eta</i>Cars</Link></li>
-                                                    <li><Link to="/posts/Bike"><i className="material-icons left">directions_bike</i>Bikes</Link></li>
                                                     <li><Link to="/posts/Other"><i className="material-icons left">list</i>Others</Link></li>
                                                 </ul>
                                             </div>
@@ -119,11 +112,7 @@ class NavigationHeader extends React.Component{
                                     <li><Link to="/posts/Desktop"><i className="material-icons left" style={{color: "#000"}}>desktop_windows</i>Desktops</Link></li>
                                     <li><Link to="/posts/Desktop"><i className="material-icons left" style={{color: "#000"}}>photo_camera</i>Cameras</Link></li>
                                     <li><Link to="/posts/Videogames"><i className="material-icons left" style={{color: "#000"}}>videogame_asset</i>Video-games</Link></li>
-                                    <li><Link to="/posts/Television"><i className="material-icons left" style={{color: "#000"}}>tv</i>TV & Monitors</Link></li>
                                     <li><Link to="/posts/Electronic"><i className="material-icons left" style={{color: "#000"}}>devices_other</i>Electronics</Link></li>
-                                    <li><Link to="/posts/Furniture"><i className="material-icons left" style={{color: "#000"}}>weekend</i>Furnitures</Link></li>
-                                    <li><Link to="/posts/Automobile"><i className="material-icons left" style={{color: "#000"}}>drive_eta</i>Cars</Link></li>
-                                    <li><Link to="/posts/Bike"><i className="material-icons left" style={{color: "#000"}}>directions_bike</i>Bikes</Link></li>
                                     <li><Link to="/posts/Other"><i className="material-icons left" style={{color: "#000"}}>list</i>Others</Link></li>
                                 </ul>
                                 <ul className="right hide-on-med-and-down">
@@ -134,8 +123,8 @@ class NavigationHeader extends React.Component{
                                         </a>
                                     </li>
                                     <li><a href="#userLoginModal"><i className="material-icons left">assignment</i>List an item</a></li>
-                                    <li><a href="#userLoginModal"><i className="material-icons left">exit_to_app</i>Sign in</a></li>
                                     <li><a href="#userRegistrationModal"><i className="material-icons left">assignment</i>Sign up</a></li>
+                                    <li><a href="#userLoginModal"><i className="material-icons left">exit_to_app</i>Sign in</a></li>
                                     <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
                                 </ul>
                                 <ul className="side-nav" id="mobile-demo">
@@ -150,11 +139,7 @@ class NavigationHeader extends React.Component{
                                                     <li><Link to="/posts/Desktop"><i className="material-icons left">desktop_windows</i>Desktops</Link></li>
                                                     <li><Link to="/posts/Desktop"><i className="material-icons left">photo_camera</i>Cameras</Link></li>
                                                     <li><Link to="/posts/Videogames"><i className="material-icons left">videogame_asset</i>Video-games</Link></li>
-                                                    <li><Link to="/posts/Television"><i className="material-icons left">tv</i>TV & Monitors</Link></li>
                                                     <li><Link to="/posts/Electronic"><i className="material-icons left">devices_other</i>Electronics</Link></li>
-                                                    <li><Link to="/posts/Furniture"><i className="material-icons left">weekend</i>Furniture</Link></li>
-                                                    <li><Link to="/posts/Automobile"><i className="material-icons left">drive_eta</i>Cars</Link></li>
-                                                    <li><Link to="/posts/Bike"><i className="material-icons left">directions_bike</i>Bikes</Link></li>
                                                     <li><Link to="/posts/Other"><i className="material-icons left">list</i>Others</Link></li>
                                                 </ul>
                                             </div>
@@ -181,7 +166,7 @@ class NavigationHeader extends React.Component{
                 <div id="navbarContainer" className={this.state.customSearchBar ? "custom_search":"custom_search_invisible"}>
                     <form name="search_form" onSubmit={(e) => (this.handleSubmit(e))}>
                         <input id="search" name="search" type="search" ref="search" placeholder="Search..." />
-                        <a onClick={this.handleOnClick}><i className="material-icons search_close">close</i></a>
+                        <a onClick={e => this.handleOnClick(e)}><i className="material-icons search_close">close</i></a>
                     </form>
                 </div>
           </nav>

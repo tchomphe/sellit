@@ -6,34 +6,47 @@ import { Link, withRouter } from 'react-router-dom';
 class PostModal extends React.Component{
     constructor(props){
         super(props);
-        this.nextPost = this.nextPost.bind(this);
-        this.prevPost = this.prevPost.bind(this);
+        // this.nextPost = this.nextPost.bind(this);
+        // this.prevPost = this.prevPost.bind(this);
         // this.onKeyDown = this.onKeyDown.bind(this);
     }
-    nextPost(e){
-        e.preventDefault();
-        if(this.props.nextPostId !== undefined){
-            $('#'+this.props.modalID).modal('close');
-            $('#postModal'+this.props.nextPostId).modal('open');
-            console.log(`nextPostId: ${this.props.nextPost}`);
-        }
-    }
-    prevPost(e){
-        e.preventDefault();
-        // If nextPostId is 1, can't move back since you are on the first modal else move back.
-        ((this.props.nextPostId) === 1) ? (
-            console.log('No previous post available.')
-        ) : (
-            $('#'+this.props.modalID).modal('close'),
-            $('#postModal'+this.props.prevPostId).modal('open')
-        );
-    }
+    // nextPost(e){
+    //     e.preventDefault();
+    //     if(this.props.nextPostId !== undefined){
+    //         $('#'+this.props.modalID).modal('close');
+    //         $('#postModal'+this.props.nextPostId).modal('open');
+    //         console.log(`nextPostId: ${this.props.nextPost}`);
+    //     }
+    // }
+    // prevPost(e){
+    //     e.preventDefault();
+    //     // If nextPostId is 1, can't move back since you are on the first modal else move back.
+    //     ((this.props.nextPostId) === 1) ? (
+    //         console.log('No previous post available.')
+    //     ) : (
+    //         $('#'+this.props.modalID).modal('close'),
+    //         $('#postModal'+this.props.prevPostId).modal('open')
+    //     );
+    // }
     // onKeyDown(e){
     //     if(e.keyCode === 39){
     //         this.nextPost(e);
     //     }
     // }
     componentDidMount(){
+        var $htmlOrBody = $('html, body'), // scrollTop works on <body> for some browsers, <html> for others
+        scrollTopPadding = 8;
+
+        $('input').focus(function() {
+        // get input tag's offset top position
+        var textareaTop = $(this).offset().top;
+        // scroll to the textarea
+        $htmlOrBody.scrollTop(textareaTop - scrollTopPadding);
+
+        // OR  To add animation for smooth scrolling, use this.
+        //$htmlOrBody.animate({ scrollTop: textareaTop - scrollTopPadding }, 200);
+
+        });
         // $("body").keydown(function(e) {
         //     if(e.keyCode == 37) { // left
         //         console.log("Left key pressed!");
@@ -91,9 +104,9 @@ class PostModal extends React.Component{
                             <h5>{this.props.title}</h5>
                             <p><a href="#" onClick={(e)=>this.handleClick(e)}>View others posts by this user</a></p>
                             <div className="divider"></div>
-                            <p><strong>${this.props.price || placeholderMessage}</strong></p>
-                            <p>{this.props.description || placeholderMessage}</p>
+                            <p><strong>${this.props.price}</strong></p>
                             <p><strong>{this.props.phone}</strong></p>
+                            <p>{this.props.description}</p>
                             <p><strong>{this.props.city}</strong></p>
                             <Map postalCode={this.props.postalCode}/>
                             <PostContact ownerId={this.props.ownerId} id={this.props.modalID} />
