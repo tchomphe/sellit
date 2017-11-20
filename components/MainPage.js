@@ -58,7 +58,7 @@ export default class MainPage extends React.Component {
         //determine if pagination button is needed, or if we've reached the end of all posts
         var paginationButton = null;
         if (this.state.page == 0)
-            paginationButton = <h4>Reached end of posts.</h4>;
+            paginationButton = <h5>Reached end of list.</h5>;
         else
             paginationButton = <a onClick={this.handlePagination} className="btn-floating waves-effect waves-light black">
                                     <i className="material-icons">expand_more</i></a>;
