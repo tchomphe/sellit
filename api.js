@@ -327,23 +327,6 @@ exports.sendResetEmail = function(req, res, next){
           done(error, 'done');
         }
       });
-      // const msg = {
-      //   to: `${user.email}`,
-      //   from: `admin@tolist.ca`,
-      //   subject: 'Tolist password reset',
-      //   text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-      //   'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-      //   'http://' + req.headers.host + '/reset/' + token + '\n\n' +
-      //   'If you did not request this, please ignore this email and your password will remain unchanged.\n'
-      // };
-      // sgMail.send(msg, (error, result) => {
-      //   if (error) {
-      //     console.log(error);
-      //   } else {
-      //     console.log('Email successfully sent.');
-      //     done(error, 'done');
-      //   }
-      // });
     }
   ], function(err){
     if(err) return next(err);
@@ -372,7 +355,7 @@ exports.postReset = function(req, res){
     function(user, done){
       const msg = {
         to: `${user.email}`,
-        from: `admin@tolist.ca`,
+        from: `no-reply@tolist.ca`,
         subject: 'Your password has been changed',
         text: 'Hello,\n\n' +
         'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n',
