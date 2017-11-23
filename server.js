@@ -69,7 +69,10 @@ app.get(['/create-post', '/my-posts', '/my-account'], function(req, res){
   else
     res.redirect('/');
 });
-
+//Setting this api to verify domain ownership with godaddy for ssl certificate purpose
+app.get('/.well-known/pki-validation/godaddy.html', function(req, res){
+  res.send('mf7t8bep6oct53qo1nmulf77lo');
+});
 app.get('/paginatePosts/:pageNum', api.paginatePosts);
 app.get('/postById/:id', api.getPostByID);
 app.get('/user/:id', api.getUserByID);
