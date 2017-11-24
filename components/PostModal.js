@@ -105,7 +105,7 @@ class PostModal extends React.Component{
                             <p><a href="#" onClick={(e)=>this.handleClick(e)}>View others posts by this user</a></p>
                             <div className="divider"></div>
                             <p><strong>${this.props.price}</strong></p>
-                            <p><strong>{this.props.phone}</strong></p>
+                            <p><i className="material-icons" style={{color: "#000"}}>phone &nbsp;</i><strong>{this.props.phone?this.props.phone:"--"}</strong></p>
                             <p>{this.props.description}</p>
                             <p><strong>{this.props.city}</strong></p>
                             <Map postalCode={this.props.postalCode}/>

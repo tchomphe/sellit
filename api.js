@@ -91,7 +91,7 @@ exports.paginatePosts = function(req, res){
   var options = {
     page: req.params.pageNum,
     sort: { date: -1 },
-    limit: 3
+    limit: 15
   };
 
   Post.paginate(query, options, function(err, result){
@@ -105,7 +105,7 @@ exports.getPostByType = function(req, res){
   var options = {
     page: req.params.page,
     sort: {date: -1},
-    limit: 3
+    limit: 15
   }
   // Post.paginate(query, options,function(err, result){
   Post.paginate(query, options, function(err, result){
@@ -120,7 +120,7 @@ exports.searchPosts = function(req, res){
   var options = {
     page: req.params.page,
     sort: { date: -1 },
-    limit: 3
+    limit: 15
   }
 
   Post.paginate(query, options, function(err, result){
@@ -156,7 +156,7 @@ exports.postsByOwnerID = function(req, res){
 };
 
 exports.getPostByTitle = function(req, res){
-  Post.findOne({'title': req.params.title}, 'title type postalCode city description date', function(err, post) {
+  Post.findOne({'title': req.params.title}, 'title type postalCode city description date phone', function(err, post) {
     varifyQuerySuccess(err, res, 'getPostByTitle');
     res.send(post);
   });
@@ -170,7 +170,7 @@ exports.getUserByID = function(req, res){
 };
 
 exports.getPostByID = function(req, res){
-  Post.findOne({'_id': req.params.id}, 'title type price postalCode city description images thumbnail', function(err, post){
+  Post.findOne({'_id': req.params.id}, 'title type price postalCode city description images thumbnail phone', function(err, post){
     varifyQuerySuccess(err, res, 'getPostByID');
     res.send(post);
   });
@@ -247,7 +247,8 @@ exports.createPost = function(req, res){
         type: req.body.type,
         description: req.body.description,
         thumbnail: thumbnail,
-        images: uploadedImages
+        images: uploadedImages,
+        phone: req.body.phone,
       };
 
       //create new database entry from POST request's JSON object

@@ -11,6 +11,7 @@ class PostCreationContainer extends React.Component{
             postalCode: "",
             price: "",
             description: "",
+            phone: ""
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,6 +32,7 @@ class PostCreationContainer extends React.Component{
         formData.append('postalCode', this.state.postalCode);
         formData.append('price', this.state.price);
         formData.append('description', this.state.description);
+        formData.append('phone', this.state.phone);
 
         //Materialize select can't handle onChange.. so we have to grab value directly
         formData.append('type', $('#type').val());
@@ -102,6 +104,7 @@ class PostCreationContainer extends React.Component{
                             </select>
                             <label>* City</label>
                         </div>
+                        <InputField fieldClass="col s12 m6 l6" labelText="Phone" id="phone" onChange={this.handleInputChange} />
                         <InputField labelText="Description" id="description" onChange={this.handleInputChange} />
                         <div className="col s12 file-field input-field">
                             <div className="btn black waves-effect white-text darken-text-2">

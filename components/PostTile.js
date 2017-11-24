@@ -55,7 +55,8 @@ export default class PostTile extends React.Component {
                             city={this.props.post.city}
                             description={this.props.post.description}
                             images={this.props.post.images}
-                            ownerId={this.props.post.ownerID} />
+                            ownerId={this.props.post.ownerID}
+                            phone={this.props.post.phone} />
                 </div>
         )
     }

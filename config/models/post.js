@@ -16,6 +16,7 @@ var postSchema = new Schema({
   description: {type: String, trim: true},
   thumbnail: {type: String, trim: true},
   images:[],
+  phone:{type: String, required: false, trim: true},
 });
 
 //create text indexes for text search queries
