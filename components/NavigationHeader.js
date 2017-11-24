@@ -58,7 +58,7 @@ class NavigationHeader extends React.Component{
                                     <li><Link to="/posts/Phone"><i className="material-icons left" style={{color: "#000"}}>phone_android</i>Phones</Link></li>
                                     <li><Link to="/posts/Laptop"><i className="material-icons left" style={{color: "#000"}}>laptop</i>Laptops</Link></li>
                                     <li><Link to="/posts/Desktop"><i className="material-icons left" style={{color: "#000"}}>desktop_windows</i>Desktops</Link></li>
-                                    <li><Link to="/posts/Desktop"><i className="material-icons left" style={{color: "#000"}}>photo_camera</i>Cameras</Link></li>
+                                    <li><Link to="/posts/Camera"><i className="material-icons left" style={{color: "#000"}}>photo_camera</i>Cameras</Link></li>
                                     <li><Link to="/posts/Videogames"><i className="material-icons left" style={{color: "#000"}}>videogame_asset</i>Video-games</Link></li>
                                     <li><Link to="/posts/Electronic"><i className="material-icons left" style={{color: "#000"}}>devices_other</i>Electronics</Link></li>
                                     <li><Link to="/posts/Other"><i className="material-icons left" style={{color: "#000"}}>list</i>Others</Link></li>
@@ -88,7 +88,7 @@ class NavigationHeader extends React.Component{
                                                     <li><Link to="/posts/Phone"><i className="material-icons left">phone_android</i>Phones</Link></li>
                                                     <li><Link to="/posts/Laptop"><i className="material-icons left">laptop</i>Laptops</Link></li>
                                                     <li><Link to="/posts/Desktop"><i className="material-icons left">desktop_windows</i>Desktops</Link></li>
-                                                    <li><Link to="/posts/Desktop"><i className="material-icons left">photo_camera</i>Cameras</Link></li>
+                                                    <li><Link to="/posts/Camera"><i className="material-icons left">photo_camera</i>Cameras</Link></li>
                                                     <li><Link to="/posts/Videogames"><i className="material-icons left">videogame_asset</i>Video-games</Link></li>
                                                     <li><Link to="/posts/Electronic"><i className="material-icons left">devices_other</i>Electronics</Link></li>
                                                     <li><Link to="/posts/Other"><i className="material-icons left">list</i>Others</Link></li>
@@ -137,7 +137,7 @@ class NavigationHeader extends React.Component{
                                                     <li><Link to="/posts/Phone"><i className="material-icons left">phone_android</i>Phones</Link></li>
                                                     <li><Link to="/posts/Laptop"><i className="material-icons left">laptop</i>Laptops</Link></li>
                                                     <li><Link to="/posts/Desktop"><i className="material-icons left">desktop_windows</i>Desktops</Link></li>
-                                                    <li><Link to="/posts/Desktop"><i className="material-icons left">photo_camera</i>Cameras</Link></li>
+                                                    <li><Link to="/posts/Camera"><i className="material-icons left">photo_camera</i>Cameras</Link></li>
                                                     <li><Link to="/posts/Videogames"><i className="material-icons left">videogame_asset</i>Video-games</Link></li>
                                                     <li><Link to="/posts/Electronic"><i className="material-icons left">devices_other</i>Electronics</Link></li>
                                                     <li><Link to="/posts/Other"><i className="material-icons left">list</i>Others</Link></li>
