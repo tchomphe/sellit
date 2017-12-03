@@ -51,7 +51,7 @@ export default class MainPage extends React.Component {
     render(){
         console.log('MainPage rendering... posts: ');
         var masonryOptions = {
-            transitionDuration: 0
+            transitionDuration: 500
         };
         //fetch posts and place them within PostTile's
         var postTiles = this.state.posts.map((post, index) =>
