@@ -28,7 +28,7 @@ var upload = multer({ storage: multerSettings, limits: multerLimits });
 
 
 //-------- CONFIGURE DB, VIEW ENGINE, & AUTH  --------//
-var onlineURI = 'mongodb://admin:password@ds013172.mlab.com:13172/tolist';
+var onlineURI = `mongodb://${process.env.USER}:${process.env.PW}@ds013172.mlab.com:13172/tolist`;
 var localURI = 'mongodb://127.0.0.1/tolist';
 
 mongoose.Promise = global.Promise; // promises set up; mongoose's are deprecated
