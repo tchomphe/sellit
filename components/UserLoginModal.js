@@ -52,6 +52,7 @@ class UserLoginModal extends React.Component{
                         this.setState({err: res.body.error});
                         if((res.body.error).includes("Password" || "password")){
                             $("#userLoginModal #password").removeClass("valid").addClass("invalid");
+                            $("#userLoginModal #password").val("");
                         } else {
                             $("#userLoginModal #email").removeClass("valid").addClass("invalid");
                         }
