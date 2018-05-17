@@ -33,15 +33,12 @@ module.exports.upload = function() {
 
   // write seed users in mongoDB
   for (var i in seedUsers){
-    // save literal pw
-    var literalPassword = seedUsers[i].password;
-
-    // JS always passes objects by reference!
+    // JS always passes objects by reference! So we're creating a clone to pass over to the DB
     // TODO: find a way to pass this by value so saveNewUser doesn't replace pw with hashed version
-    User.saveNewUser(seedUsers[i], function(err, user){
+    var userClone = JSON.parse(JSON.stringify(seedUsers[i]));
+
+    User.saveNewUser(userClone, function(err, user){
       if (err) { console.log(err); }
-      // load literal pw
-      seedUsers[i].password = literalPassword;
     });
   }
 
