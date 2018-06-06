@@ -63,7 +63,7 @@ class UserLoginModal extends React.Component{
                         this.setState({err: ""});
                         $('#userLoginModal').modal('close');
 
-                        Materialize.toast('Log in successful. Welcome!', 4000);
+                        Materialize.toast('Log in successful. Welcome amigo!', 4000);
 
                         //create user object and pass it to prop
                         let userArr = res.header.user.split(', ');
