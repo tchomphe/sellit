@@ -48,6 +48,7 @@ class UserLoginModal extends React.Component{
                     //hide page loading wrapper
                     $("#dim-page-loader").fadeOut(100);
 
+                    //check the server response for an error
                     if(err){
                         this.setState({err: res.body.error});
                         if((res.body.error).includes("Password" || "password")){
@@ -55,6 +56,7 @@ class UserLoginModal extends React.Component{
                             $("#userLoginModal #password").val("");
                         } else {
                             $("#userLoginModal #email").removeClass("valid").addClass("invalid");
+                            $("#userLoginModal #password").val("");
                         }
                     }
                     else {
