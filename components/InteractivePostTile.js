@@ -65,9 +65,9 @@ export default class InteractivePostTile extends React.Component {
                         <span className="card-title">{this.props.post.title}</span>
                         <p className="card-text"><i className="tiny material-icons">location_on</i> {this.props.post.city}</p>
                     </div>
-                    <div className="card-action right-align">
-                    <a href="#" style={{color: '#9C9A9A'}} onClick={(e) => (this.handleEdit(e))}><i className="material-icons">edit</i></a>
-                    <a href="#" style={{color: '#9C9A9A'}} onClick={(e) => (this.deleteConfirmation(e))}><i className="material-icons">delete</i></a>
+                    <div className="card-action">
+                        <a href="#" style={{color: '#9C9A9A'}} className="card-action-edit" onClick={(e) => (this.handleEdit(e))}><i className="material-icons">edit</i></a>
+                        <a href="#" style={{color: '#9C9A9A'}} className="card-action-delete" onClick={(e) => (this.deleteConfirmation(e))}><i className="material-icons">delete</i></a>
                     </div>
                     <PostModal
                         prevPostId={this.props.prevPostId}

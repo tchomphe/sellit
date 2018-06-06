@@ -384,7 +384,28 @@ p .material-icons{
 
 .card .card-action{
     border-radius: 0 0 10px 10px;
-    padding: 10px 10px;
+    padding: 0px;
+}
+
+.card-action > a {
+    margin: 0px !important;
+    padding: 10px;
+    display: inline-block;
+    width: 50%;
+}
+
+.card-action-edit {
+    border-right: 1px solid #eeeeee;
+}
+
+.card-action-edit:hover {
+    border-radius: 0 0 0 10px;
+    background: #eeeeee;
+}
+
+.card .card-action-delete:hover {
+    border-radius: 0 0 10px 0;
+    background: #f54336;
 }
 
 .card-image-price {
