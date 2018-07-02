@@ -24,7 +24,7 @@ export default class PostTile extends React.Component {
     }
 
     render(){
-        var thumbnailImage = (this.props.post.thumbnail) ? ("/assets/uploads/" + this.props.post.thumbnail) : "https://placehold.it/350x250";
+        var thumbnailImage = (this.props.post.thumbnail) ? ("/assets/uploads/" + this.props.post.thumbnail) : "https://unsplash.it/350/250/?image=0&blur";
 
         return(
                 <div className="card">
