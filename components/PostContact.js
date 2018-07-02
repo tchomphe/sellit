@@ -16,6 +16,7 @@ class PostContact extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
 
     }
+
     handleInputChange(event){
         this.setState({ [event.target.name]: event.target.value });
     }
@@ -52,6 +53,7 @@ class PostContact extends React.Component{
             $(`#${this.props.id} #sender_email`).removeClass("valid").addClass("invalid");
         }
     }
+
     render(){
         return(
             <form onSubmit={this.handleSubmit}>

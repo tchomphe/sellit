@@ -16,6 +16,7 @@ class UserRegistrationModal extends React.Component{
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
     componentDidMount(){
         $('.tooltipped').tooltip({delay: 50});
         $("#userRegistrationModal #password").on("focusout", function (e) {
@@ -34,6 +35,7 @@ class UserRegistrationModal extends React.Component{
             }
         });
     }
+
     handleInputChange(event){
         this.setState({ [event.target.name]: event.target.value });
     }
@@ -78,6 +80,7 @@ class UserRegistrationModal extends React.Component{
             $("#userRegistrationModal #confirm_password").removeClass("valid").addClass("invalid");
         }
     }
+
     render(){
         return(
             <div id="userRegistrationModal" className="modal">

@@ -16,13 +16,16 @@ class PostCreationContainer extends React.Component{
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
     componentDidMount(){
         // Initialize the Materialize select
         $('select').material_select();
     }
+
     handleInputChange(event){
         this.setState({ [event.target.name]: event.target.value });
     }
+
     handleSubmit(event){
         event.preventDefault();
 
@@ -124,7 +127,8 @@ class PostCreationContainer extends React.Component{
                     </form>
                 </div>
             </div>
-        )
+        );
     }
 }
+
 export default withRouter(PostCreationContainer);

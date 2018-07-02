@@ -17,6 +17,7 @@ export default class PostTile extends React.Component {
             }
         });
     }
+
     handleSubmit(e){
         e.preventDefault();
         $('#'+this.props.postModalID).modal('open');
@@ -58,7 +59,7 @@ export default class PostTile extends React.Component {
                             ownerId={this.props.post.ownerID}
                             phone={this.props.post.phone} />
                 </div>
-        )
+        );
     }
 }
 

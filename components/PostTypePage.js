@@ -16,6 +16,7 @@ class PostTypePage extends React.Component{
         }
         this.handlePagination = this.handlePagination.bind(this);
     }
+
     componentDidMount(){
         // Initiate Materialize Modal
         $('.modal').modal();
@@ -48,6 +49,7 @@ class PostTypePage extends React.Component{
               });
         });
     }
+
     handlePagination(e){
         e.preventDefault();
         this.requestPosts(this.props.match.params.type, this.state.page);
@@ -93,7 +95,7 @@ class PostTypePage extends React.Component{
                 {this.state.fetchInProgress ? spinner: paginationButton}
             </div>
         </div>
-        )
+        );
     }
 }
 

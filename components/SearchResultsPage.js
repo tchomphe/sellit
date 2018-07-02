@@ -19,6 +19,7 @@ export default class SearchResultsPage extends React.Component{
         this.searchPosts = this.searchPosts.bind(this);
         this.handlePagination = this.handlePagination.bind(this);
     }
+
     componentWillReceiveProps(nextProps){
         //update search results for each new query
         this.searchPosts(nextProps.match.params.query, 1);
@@ -88,6 +89,7 @@ export default class SearchResultsPage extends React.Component{
             </div>
             </div>
         </div>
+
         return(
             <div className="container center-align">
                     <Masonry
@@ -102,5 +104,6 @@ export default class SearchResultsPage extends React.Component{
                     {(searchResult) ? (this.state.fetchInProgress ? spinner: paginationButton) : null}
                 </div>
             </div>
-        )}
+        );
+    }
 }

@@ -12,6 +12,7 @@ class UserPostPage extends React.Component{
             postTiles: null
         }
     }
+
     componentDidMount(){
         // Initiate Materialize Modal
         $('.modal').modal();
@@ -47,7 +48,7 @@ class UserPostPage extends React.Component{
                 </div>
                 {/* <p>this.props.params.ownerId: {this.props.match.params.ownerId}</p> */}
             </div>
-        )
+        );
     }
 }
 

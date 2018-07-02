@@ -77,6 +77,7 @@ class UserLoginModal extends React.Component{
                 });
             }
     }
+
     render(){
         return(
             <div id="userLoginModal" className="modal">
@@ -94,7 +95,8 @@ class UserLoginModal extends React.Component{
                     <p><Link onClick={this.close} to="/forgot">Forgot Password?</Link></p>
                 </div>
             </div>
-        )
+        );
     }
 }
+
 export default withRouter(UserLoginModal);

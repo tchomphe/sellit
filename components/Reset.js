@@ -73,8 +73,8 @@ class Reset extends React.Component{
                     </div>
                 </div>
             </div>
-        )
+        );
     }
-
 }
+
 export default withRouter(Reset);

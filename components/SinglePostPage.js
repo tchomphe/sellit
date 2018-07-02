@@ -17,6 +17,7 @@ class SinglePostPage extends React.Component{
             date: ""
         }
     }
+
     componentDidMount(){
         // Initiate Materialize Modal
         $('.modal').modal();
@@ -42,7 +43,6 @@ class SinglePostPage extends React.Component{
     }
 
     render(){
-
         var postImages = this.state.images;
         var postImagesHTML = [];
 
@@ -62,6 +62,7 @@ class SinglePostPage extends React.Component{
             postImagesHTML.push(<a className="carousel-item" href="#one!"><img src="https://unsplash.it/500/250/?image=0&blur" /></a>);
         }
         console.log('UserPostPage rendering ...');
+
         return(
             <div className="row center">
                 <div className="col s12 m7 l7 postImagesSlideshow">
@@ -79,7 +80,7 @@ class SinglePostPage extends React.Component{
                     <p><img src={this.state.thumbnail} /></p>
                 </div>
             </div>
-        )
+        );
     }
 }
 
