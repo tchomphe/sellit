@@ -80,7 +80,7 @@ export default class InteractivePostTile extends React.Component {
                         description={this.props.post.description}
                         images={this.props.post.images}
                         ownerId={this.props.post.ownerID}
-                        email={'placeholder@placehoder.email'} />
+                        phone={this.props.post.phone} />
                     <div id={"delete_" + this.props.postModalID} className="modal" style={{'max-width':'400px'}}>
                         <div className="modal-content left-align">
                             <h5>Confirm</h5>
