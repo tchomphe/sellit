@@ -75,7 +75,7 @@ class PostCreationContainer extends React.Component{
             <div className="container">
                 <div className="card-panel">
                     <form onSubmit={this.handleSubmit} >
-                    <h5 className="title">List an item</h5>
+                    <h5 className="title"><b>List an Item</b></h5>
                     <div className="card-content red-text">{this.state.err}</div>
                     <div className="row">
                         <InputField fieldClass="col s12 m6 l6" labelText="* Title"

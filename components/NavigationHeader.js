@@ -73,8 +73,8 @@ class NavigationHeader extends React.Component{
                                     </li>
                                     {/* <li><Link to="/"><i className="left large material-icons">list</i>All posts</Link></li> */}
                                     <li><Link to="/my-posts"><i className="left large material-icons">list</i>My Listings</Link></li>
-                                    <li><Link to="/create-post"><i className="left large material-icons">create</i>List an item</Link></li>
-                                    <li><Link to="/my-account"><i className="left large material-icons">account_circle</i>My account</Link></li>
+                                    <li><Link to="/create-post"><i className="left large material-icons">create</i>List an Item</Link></li>
+                                    <li><Link to="/my-account"><i className="left large material-icons">account_circle</i>My Account</Link></li>
                                     <li><a onClick={this.handleLogoutButtonClick}><i className="left large material-icons">exit_to_app</i>Logout</a></li>
                                     <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>
                                 </ul>
@@ -97,8 +97,8 @@ class NavigationHeader extends React.Component{
                                         </li>
                                     </ul>
                                     {/* <li><Link to="/"><i className="material-icons left">list</i>All posts</Link></li> */}
-                                    <li><Link to="/my-posts"><i className="material-icons left">list</i>My listings</Link></li>
-                                    <li><Link to="/create-post"><i className="material-icons left">create</i>List an item</Link></li>
+                                    <li><Link to="/my-posts"><i className="material-icons left">list</i>My Listings</Link></li>
+                                    <li><Link to="/create-post"><i className="material-icons left">create</i>List an Item</Link></li>
                                     <li><Link to="/my-account"><i className="material-icons left">account_circle</i>My account</Link></li>
                                     <li><a onClick={this.handleLogoutButtonClick}><i className="material-icons left">exit_to_app</i>Logout</a></li>
                                     {/* <li><a onClick={this.handleOnClick}><i className="material-icons">search</i>Search</a></li> */}
@@ -122,7 +122,7 @@ class NavigationHeader extends React.Component{
                                             <i className="material-icons left">format_list_bulleted</i>Browse<i className="material-icons right">arrow_drop_down</i>
                                         </a>
                                     </li>
-                                    <li><a href="#userLoginModal"><i className="material-icons left">assignment</i>List an item</a></li>
+                                    <li><a href="#userLoginModal"><i className="material-icons left">assignment</i>List an Item</a></li>
                                     <li><a href="#userRegistrationModal"><i className="material-icons left">assignment</i>Sign up</a></li>
                                     <li><a href="#userLoginModal"><i className="material-icons left">exit_to_app</i>Sign in</a></li>
                                     <li><a onClick={this.handleOnClick}><i className="material-icons">search</i></a></li>

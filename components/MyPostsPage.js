@@ -77,7 +77,7 @@ class MyPostPage extends React.Component {
 
         return (
             <div className="container center-align">
-                <h5 className="title left-align"><strong>My Listings</strong> - edit or delete your item</h5>
+                <h5 className="title left-align"><b>My Listings</b> - edit or delete your items</h5>
             <div className="row">
                 <Masonry
                     className={'my-gallery-class'} // default ''
