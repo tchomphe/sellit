@@ -89,7 +89,8 @@ class MyPostPage extends React.Component {
                 </Masonry>
             </div>
         </div>
-        )
+        );
     }
 }
+
 export default withRouter(MyPostPage);

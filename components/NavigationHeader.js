@@ -174,4 +174,5 @@ class NavigationHeader extends React.Component{
         );
     }
 }
+
 export default withRouter(NavigationHeader);

@@ -18,9 +18,11 @@ export default class MyAccountPage extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
     }
+
     handleInputChange(event){
         this.setState({ [event.target.name]: event.target.value });
     }
+
     handleSubmit(event){
         event.preventDefault();
         if(this.state.password !== ""){
@@ -51,6 +53,7 @@ export default class MyAccountPage extends React.Component{
             Materialize.toast('Enter password to update!', 4000);
         }
     }
+
     render(){
         console.log('MyAccountPage rendering... ');
 
@@ -98,7 +101,7 @@ export default class MyAccountPage extends React.Component{
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 
