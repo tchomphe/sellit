@@ -23,6 +23,12 @@ class PostEditContainer extends React.Component{
         this.getPostInformation();
     }
 
+    componentDidUpdate(){
+        // Initialize Materialize Lightbox, used for image preview
+        $('.materialboxed').materialbox();
+        console.log('hey!');
+    }
+
     getPostInformation(){
         Request.get('/postById/' + this.state.id).then((res) => {
             console.log('Response Body: ' + JSON.stringify(res.body, null, 4));
@@ -102,9 +108,6 @@ class PostEditContainer extends React.Component{
 
     render(){
         console.log("PostEditContainer rendering..");
-
-        // Initialize Materialize Lightbox, used for image preview
-        $('.materialboxed').materialbox();
 
         //map all post images into HTML elements
         var thumbnailPlaceholder = <i>[N/A, please upload a picture]</i>;
