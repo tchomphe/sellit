@@ -42,7 +42,7 @@ class PostEditContainer extends React.Component{
                 address: res.body.address,
                 price: res.body.price || "",
                 description: res.body.description,
-                thumbnail: "/assets/uploads/"+res.body.thumbnail,
+                thumbnail: (res.body.thumbnail) ? "/assets/uploads/"+res.body.thumbnail : null,
                 pictures: picsExceptThumb,
             });
         });
@@ -108,9 +108,12 @@ class PostEditContainer extends React.Component{
         console.log("PostEditContainer rendering..");
 
         //map all post images into HTML elements
+        var thumbnailPlaceholder = <i>[N/A, please upload a picture]</i>;
+        var thumbnailImage = <img className="form-items-gallery-picture materialboxed" src={this.state.thumbnail} alt="Thumbnail Image" />;
         var thumbnailURL =  <div className="material-placeholder">
-                                <img className="form-items-gallery-picture materialboxed" src={this.state.thumbnail} alt="Thumbnail Image" /><br />
+                                {this.state.thumbnail ? thumbnailImage : thumbnailPlaceholder}<br /><br />
                             </div>;
+
         var postImagesHTML = "";
         if (this.state.pictures)
             postImagesHTML = this.state.pictures.map((pictureURL, index) =>
