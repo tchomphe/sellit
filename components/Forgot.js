@@ -41,6 +41,7 @@ class Forgot extends React.Component{
             $('#forgotContainer #email').removeClass("valid").addClass("invalid");
         }
     }
+
     render(){
         return(
                 <div id="forgotContainer" className="col s12 m12 l12">
@@ -62,7 +63,8 @@ class Forgot extends React.Component{
                         </div>
                     </div>
                 </div>
-        )
+        );
     }
 }
+
 export default Forgot;
