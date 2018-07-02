@@ -323,7 +323,7 @@ select:-webkit-autofill:focus {
 }
 
 .form-items-gallery-picture {
-    max-width: 200px;
+    width: 200px;
 }
 
 #navigationModal .modal-content {
