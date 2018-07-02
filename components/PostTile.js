@@ -47,17 +47,17 @@ export default class PostTile extends React.Component {
                         <p className="left-align">{this.props.post.description}</p>
                     </div>
                     <PostModal
-                            prevPostId={this.props.prevPostId}
-                            nextPostId={this.props.nextPostId}
-                            modalID={this.props.postModalID}
-                            title={this.props.post.title}
-                            price={this.props.post.price}
-                            postalCode={this.props.post.postalCode}
-                            city={this.props.post.city}
-                            description={this.props.post.description}
-                            images={this.props.post.images}
-                            ownerId={this.props.post.ownerID}
-                            phone={this.props.post.phone} />
+                        prevPostId={this.props.prevPostId}
+                        nextPostId={this.props.nextPostId}
+                        modalID={this.props.postModalID}
+                        title={this.props.post.title}
+                        price={this.props.post.price}
+                        postalCode={this.props.post.postalCode}
+                        city={this.props.post.city}
+                        description={this.props.post.description}
+                        images={this.props.post.images}
+                        ownerId={this.props.post.ownerID}
+                        phone={this.props.post.phone} />
                 </div>
         );
     }
