@@ -27,7 +27,7 @@ class NavigationHeader extends React.Component{
 
     handleOnClick(e){
         e.preventDefault();
-        this.setState({customSearchBar: !this.state.customSearchBar});            ;
+        this.setState({customSearchBar: !this.state.customSearchBar});
             $('.button-collapse').sideNav('hide');
             document.forms['search_form'].elements['search'].focus();
 
@@ -147,7 +147,6 @@ class NavigationHeader extends React.Component{
                                     </ul>
                                     <li><a href="#userRegistrationModal"><i className="material-icons left">assignment</i>Sign up</a></li>
                                     <li><a href="#userLoginModal"><i className="material-icons left">exit_to_app</i>Sign in</a></li>
-                                    {/* <li><a onClick={this.handleOnClick}><i className="material-icons">search</i>Search</a></li> */}
                                 </ul>
                             </div>;
         //determine whether navigation menu should display a logged in menu, or not
@@ -157,7 +156,6 @@ class NavigationHeader extends React.Component{
             <div className="navbar-fixed">
             <nav>
                 <div className="nav-wrapper">
-                    {/* <Link to="/" className="brand-logo">to<span style={{color: '#18ffff'}}>list</span></Link> */}
                     <Link to="/" className="brand-logo"><img src="/assets/img/logo_full.svg" /></Link>
                     <a href="#" style={{position:'absolute', right: '10px'}} onClick={this.handleOnClick}><span className="mobile_search"><i className="material-icons">search</i></span></a>
                     <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
