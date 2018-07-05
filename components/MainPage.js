@@ -60,9 +60,9 @@ export default class MainPage extends React.Component {
         //determine if pagination button is needed, or if we've reached the end of all posts
         var paginationButton = null;
         if (this.state.page == 0)
-            paginationButton = <h5>Reached end of list.</h5>;
+            paginationButton = <h5 className="paginationButton">Reached end of items.</h5>;
         else
-            paginationButton = <a onClick={this.handlePagination} className="btn-floating waves-effect waves-light black">
+            paginationButton = <a onClick={this.handlePagination} className="btn-floating waves-effect waves-light black paginationButton">
                                     <i className="material-icons">expand_more</i></a>;
 
         var spinner = <div className="preloader-wrapper active">
@@ -90,7 +90,6 @@ export default class MainPage extends React.Component {
                 </Masonry>
                 <div className="row">
                     {this.state.fetchInProgress ? spinner: paginationButton}
-                    {/* {paginationButton} */}
                 </div>
             </div>
         );

@@ -422,6 +422,10 @@ p .material-icons{
     z-index: 10;
 }
 
+.paginationButton {
+    margin-bottom: 30px;
+}
+
 .spinner-black, .spinner-black-only {
     border-color: #000000;
 }
