@@ -284,6 +284,11 @@ select:-webkit-autofill:focus {
     max-height: 100%;
     width: auto !important;
     height: auto !important;
+    /* center carousel images vertically */
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%)!important;
 }
 
 .postImagesSlideshow, .postLocationMap {
